@@ -18,8 +18,10 @@ class Grid extends Component {
     ];
 
     const { expandMenu, isEditable } = this.props;
+
+    const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
     return (
-      <div className="grid">
+      <div className="grid" style={gridStyle}>
       <AutoSizer>
         {
           ({ width, height }) => (
@@ -33,7 +35,7 @@ class Grid extends Component {
               isResizable={isEditable}
             >
               <div key={'a'}>
-                <Paper zDepth={2} onClick={() => expandMenu()} style={{  width: '100%', height: '100%', backgroundColor: 'rgb(140,140,140)'}}>
+                <Paper zDepth={2} onDoubleClick={() => expandMenu()} style={{  width: '100%', height: '100%', backgroundColor: 'rgb(140,140,140)'}}>
                   <div width="100%" height="100%" className="divthing">
                   </div>
                 </Paper>
