@@ -42,8 +42,11 @@ class Appbar extends Component {
           }
         }}>&times;</div>
 
-        <div className="lockIconDivet"  onClick={this.toggleLock} />
-        <div className="xIconDivet" style={isLocked ? lockStyle : unlockStyle}  onClick={this.toggleLock} />
+        <div className="holder" >
+          <div className="lockIconDivet"  onClick={this.toggleLock} />
+          <div className="xIconDivet" style={isLocked ? lockStyle : unlockStyle}  onClick={this.toggleLock} />
+          <div className="app_title"><h1>automate</h1></div>
+        </div>
 
       </div>
     );
