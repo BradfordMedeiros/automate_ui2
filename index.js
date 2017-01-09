@@ -58,6 +58,7 @@ const App = () => (
         <Appbar />
         <SelectionOverlay />
         <Grid />
+        <div className="footer" />
       </div>
     </Provider>
   </MuiThemeProvider>

@@ -30,7 +30,7 @@ class Grid extends Component {
               cols={12}
               rowHeight={30}
               width={width}
-              verticalCompact={false}
+              verticalCompact
               isDraggable={isEditable}
               isResizable={isEditable}
             >

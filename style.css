@@ -70,9 +70,22 @@ html * {
 }
 body{
     overflow: hidden;
+    background: black;
 }
 
 
+
+.footer {
+    width: 100%;
+    height: 10px;
+    background: rgb(40,40,40);
+    position: fixed;
+    z-index: 1000;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px 4px black;
+    bottom: 0px;
+
+}
 
 .titlebar {
     height: 50px;
@@ -86,12 +99,16 @@ body{
 }
 
 .grid {
-    background: blue;
-    background-color: rgb(40,40,40);
+    background: linear-gradient(rgb(60,60,60), rgb(45,45,45));
     height: 95%;
-    top: 5%;
+    top: 50px;
     overflow: auto;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    border: 1px solid grey;
+    z-index: 1;
 }
+
 
 .overlay {
     width: 100vw;
@@ -108,9 +125,6 @@ body{
 
 }
 
-.grid {
-}
-
 @keyframes gridinedit {
     from {
         box-shadow: none;
@@ -118,6 +132,7 @@ body{
     }
     to {
         box-shadow: 0px -40px 50px -50px rgb(40,40,100) inset;
+        border: 1px solid rgb(90,90,255);
     }
 }
 
@@ -148,7 +163,6 @@ body{
 
 .lockIconDivet {
     z-index: 2;
-    color: red;
     position: fixed;
     right: 90px;
     font-size: 300%;
@@ -218,21 +232,27 @@ body{
         top: -90vh;
         background: blue;
         opacity: 1;
+        z-index: 10;
     }
     100% {
-        top: 5vh;
+        top: 50px;
         opacity: 0.98;
+        z-index: 10;
     }
 }
 @keyframes fade_out {
     0%   {
-        top: 5vh;
+        top: 5px;
         background: blue;
         opacity: 1;
+        z-index: 10;
+
     }
     100% {
         top: -90vh;
         opacity: 0.98;
+        z-index: 0;
+
     }
 }
 
