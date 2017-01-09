@@ -1,0 +1,145 @@
+html * {
+    padding: 0;
+    margin: 0;
+}
+body{
+    overflow: hidden;
+}
+
+.titlebar {
+    height: 50px;
+    width: 100%;
+    top: 0;
+    background: rgb(40,40,40);
+    position: fixed;
+    box-shadow: 0px 0.1px 15px 0.1px black;
+    border-bottom: 3px solid black;
+    z-index: 100;
+}
+
+.grid {
+    background: blue;
+    background-color: rgb(40,40,40);
+    height: 95%;
+    top: 5%;
+    overflow: auto;
+}
+
+.overlay {
+    width: 100vw;
+    height: 95vh;
+    background: rgb(40,40,170);
+    z-index: 1;
+    position: absolute;
+    border-top: 5px solid black;
+    opacity: 0.98;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    top: 0vh;
+    opacity: 0;
+
+}
+
+.xIcon {
+    color: red;
+    position: fixed;
+    right: 25px;
+    font-size: 300%;
+    top: -4px;
+    color: rgb(140,140,180);
+    text-shadow: 0px 1px blue;
+    transform: rotateZ(45deg);
+    cursor: pointer;
+}
+
+
+.lockIconDivet {
+    z-index: 2;
+    color: red;
+    position: fixed;
+    right: 90px;
+    font-size: 300%;
+    width: 30px;
+    height: 28px;
+    border: 1px solid rgb(40,40,40);
+    top:10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px 1px black inset;
+}
+
+
+.xIconDivet {
+
+    background: grey;
+    position: fixed;
+    right: 90px;
+    font-size: 300%;
+    width: 30px;
+    height: 15px;
+    border: 1px solid black;;
+    top: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px 1px black inset;
+    z-index: 3;
+}
+
+@keyframes lock {
+    from {
+        top: 30px;
+    }
+    to {
+        top: 10px;
+    }
+}
+@keyframes unlock {
+    from {
+        top: 10px;
+    }
+    to {
+        top: 30px;
+        background: blue;
+    }
+}
+
+
+@keyframes turn_into_x {
+    from {
+        transform: rotateZ(45deg);
+    }
+    to {
+        transform: rotateZ(90deg);
+
+    }
+}
+@keyframes turn_out_x {
+    from {
+        transform: rotateZ(90deg);
+    }
+    to {
+        transform: rotateZ(45deg);
+    }
+}
+
+@keyframes fade_in {
+    0%   {
+        top: -90vh;
+        background: blue;
+        opacity: 1;
+    }
+    100% {
+        top: 5vh;
+        opacity: 0.98;
+    }
+}
+@keyframes fade_out {
+    0%   {
+        top: 5vh;
+        background: blue;
+        opacity: 1;
+    }
+    100% {
+        top: -90vh;
+        opacity: 0.98;
+    }
+}
