@@ -93,7 +93,7 @@ body{
     top: 0;
     background: rgb(40,40,40);
     position: fixed;
-    box-shadow: 0px 0.1px 15px 0.1px black;
+    box-shadow: 0px 1px 4px 0.5px black;
     border-bottom: 3px solid black;
     z-index: 100;
 }
@@ -107,20 +107,25 @@ body{
     margin-right: 0.5%;
     border: 1px solid grey;
     z-index: 1;
+    position: fixed;
+    left: 210px;
+    right: 0;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 
 .overlay {
-    width: 98%;
     height: 95vh;
     z-index: 1;
     position: absolute;
     overflow: hidden;
-    left: 1%;
+    left: 230px;
+    right: 20px;
     padding: 0;
     top: 0vh;
     opacity: 0.98;
-    background: rgb(120,120,120);
+    background: linear-gradient( rgb(220,220,220), rgb(200,200,200), rgb(230,230,230));
 
 }
 
@@ -250,3 +255,48 @@ body{
 }
 
 
+
+.tileDrawer {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 7px;
+    background: linear-gradient(rgb(40,40,40), rgb(30,30,30));
+    border-top: 1px solid rgb(70,70,70);
+    box-shadow: 0 0 0px 1px black;
+    left: 0;
+    top: 45px;
+}
+
+@keyframes drop {
+    from {
+        top: 45px;
+
+
+    }
+    to{
+        top: 180px;
+
+
+    }
+}
+
+.menu {
+    width: 210px;
+    height: 94%;
+    position: fixed;
+    left: 5px;;
+    top: 0;
+    top: 55px;
+    z-index: 500;
+    background: linear-gradient(rgb(50,50,50),rgb(40,40,40));
+    box-shadow: 0 0 4px 1px rgb(30,30,30) inset;
+}
+
+.liname {
+    font-size: 110%;
+    font-family: Arial;
+    color: rgb(180,180,180);
+    padding: 5px;
+    text-shadow: 2px 8px rgb(30,30,30);
+}
