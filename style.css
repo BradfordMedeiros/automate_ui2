@@ -111,17 +111,16 @@ body{
 
 
 .overlay {
-    width: 100vw;
+    width: 98%;
     height: 95vh;
     z-index: 1;
     position: absolute;
-    opacity: 0.98;
     overflow: hidden;
-    margin: 0;
+    left: 1%;
     padding: 0;
     top: 0vh;
-    opacity: 0;
-    background: blue;
+    opacity: 0.98;
+    background: rgb(120,120,120);
 
 }
 
@@ -153,7 +152,7 @@ body{
     right: 25px;
     font-size: 300%;
     top: -4px;
-    color: rgb(140,140,180);
+    color: rgb(140,140,140);
     text-shadow: 2px 4px 2px black;
     transform: rotateZ(45deg);
     cursor: pointer;
@@ -204,7 +203,7 @@ body{
     }
     to {
         top: 30px;
-        background: blue;
+
     }
 }
 
@@ -230,29 +229,24 @@ body{
 @keyframes fade_in {
     0%   {
         top: -90vh;
-        background: blue;
-        opacity: 1;
         z-index: 10;
     }
     100% {
         top: 50px;
-        opacity: 0.98;
         z-index: 10;
     }
 }
 @keyframes fade_out {
     0%   {
         top: 5px;
-        background: blue;
-        opacity: 1;
         z-index: 10;
 
     }
     100% {
         top: -90vh;
-        opacity: 0.98;
         z-index: 0;
 
     }
 }
+
 

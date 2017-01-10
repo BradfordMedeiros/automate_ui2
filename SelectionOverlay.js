@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+import { Paper } from 'material-ui';
 
 const style = {
   expanded: {
@@ -15,7 +15,11 @@ class SelectionOverlay extends Component {
   render() {
     const { isExpanded } = this.props;
     const overlay_style = isExpanded ? style.expanded : style.not_expanded;
-    return <div className="overlay" style={overlay_style} />;
+    return (
+        <div className="overlay" style={overlay_style} >
+          <div className="contentPaper" />
+        </div>
+    );
   }
 }
 
