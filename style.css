@@ -108,7 +108,7 @@ body{
     overflow: auto;
     margin-left: 0.5%;
     margin-right: 0.5%;
-    border: 1px solid grey;
+    border: 3px solid rgb(60,60,60);
     z-index: 1;
     position: fixed;
     left: 210px;
@@ -262,12 +262,12 @@ body{
     position: fixed;
     z-index: 1;
     width: 100%;
-    height: 7px;
+    height: 8px;
     background: linear-gradient(rgb(40,40,40), rgb(30,30,30));
     border-top: 1px solid rgb(70,70,70);
     box-shadow: 0 0 0px 1px black;
     left: 0;
-    top: 45px;
+    top: 51px;
 }
 
 @keyframes drop {
