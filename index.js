@@ -13,6 +13,8 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
 import Menu from './components/menu/menu';
+import Footer from './components/footer/footer';
+
 const initialState = fromJS({
   menuExpanded: false,
   isLocked: true,
@@ -57,8 +59,8 @@ const App = () => (
         <Appbar />
         <SelectionOverlay />
         <Grid />
-        <div className="footer" />
         <Menu />
+        <Footer />
       </div>
     </Provider>
   </MuiThemeProvider>
