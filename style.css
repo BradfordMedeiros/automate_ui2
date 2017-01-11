@@ -41,30 +41,8 @@ pre {
     line-height: 18.5714px;
 }
 
-.app_title{
-    color: grey;
-    top: 8px;
-    position: fixed;
-    box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
-    padding: 2px;
-    padding-left: 20px;
-    padding-right: 15px;
 
-    margin-left: 30px;
-    position: fixed;
-    left: 0;
-}
 
-.holder {
-    position: fixed;
-    width: 130px;
-    height: 41px;
-    top: 4px;
-    right: 12px;
-    box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
-    pointer-events: none;
-
-}
 
 
 html * {
@@ -90,185 +68,12 @@ body{
 
 }
 
-.titlebar {
-    height: 50px;
-    width: 100%;
-    top: 0;
-    background: rgb(40,40,40);
-    position: fixed;
-    box-shadow: 0px 1px 4px 0.5px black;
-    border-bottom: 3px solid black;
-    z-index: 100;
-}
-
-.grid {
-    background: linear-gradient(rgb(60,60,60), rgb(45,45,45));
-    top: 50px;
-    bottom: 10px;
-    overflow: auto;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-    border: 3px solid rgb(60,60,60);
-    z-index: 1;
-    position: fixed;
-    left: 210px;
-    right: 0;
-    padding-left: 1%;
-    padding-right: 1%;
-}
-
-
-.overlay {
-    height: 95vh;
-    z-index: 1;
-    position: absolute;
-    overflow: hidden;
-    left: 230px;
-    right: 20px;
-    padding: 0;
-    top: 0vh;
-    opacity: 0.98;
-    background: linear-gradient( rgb(220,220,220), rgb(200,200,200), rgb(230,230,230));
-
-}
-
-@keyframes gridinedit {
-    from {
-        box-shadow: none;
-
-    }
-    to {
-        box-shadow: 0px -40px 50px -50px rgb(40,40,100) inset;
-    }
-}
-
-@keyframes gridoutedit {
-    from {
-        box-shadow: 0px -10px 50px -10px rgb(40,40,100) inset;
-
-    }
-    to {
-        box-shadow: none;
-
-    }
-}
-
-.xIcon {
-    color: red;
-    position: fixed;
-    right: 25px;
-    font-size: 300%;
-    top: -4px;
-    color: rgb(140,140,140);
-    text-shadow: 2px 4px 2px black;
-    transform: rotateZ(45deg);
-    cursor: pointer;
-
-}
-
-
-.lockIconDivet {
-    z-index: 2;
-    position: fixed;
-    right: 90px;
-    font-size: 300%;
-    width: 30px;
-    height: 28px;
-    border: 1px solid rgb(40,40,40);
-    top:10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 1px black inset;
-    pointer-events: bounding-box;
-}
-
-
-.xIconDivet {
-
-    background: grey;
-    position: fixed;
-    right: 90px;
-    font-size: 300%;
-    width: 32px;
-    height: 15px;
-    top: 10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 2px  black inset;
-    z-index: 3;
-}
-
-@keyframes lock {
-    from {
-        top: 30px;
-    }
-    to {
-        top: 10px;
-    }
-}
-@keyframes unlock {
-    from {
-        top: 10px;
-    }
-    to {
-        top: 30px;
-
-    }
-}
-
-
-@keyframes turn_into_x {
-    from {
-        transform: rotateZ(45deg);
-    }
-    to {
-        transform: rotateZ(90deg);
-
-    }
-}
-@keyframes turn_out_x {
-    from {
-        transform: rotateZ(90deg);
-    }
-    to {
-        transform: rotateZ(45deg);
-    }
-}
-
-@keyframes fade_in {
-    0%   {
-        top: -90vh;
-        z-index: 10;
-    }
-    100% {
-        top: 50px;
-        z-index: 10;
-    }
-}
-@keyframes fade_out {
-    0%   {
-        top: 5px;
-        z-index: 10;
-
-    }
-    100% {
-        top: -90vh;
-        z-index: 0;
-
-    }
-}
 
 
 
-.tileDrawer {
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 8px;
-    background: linear-gradient(rgb(40,40,40), rgb(30,30,30));
-    border-top: 1px solid rgb(70,70,70);
-    box-shadow: 0 0 0px 1px black;
-    left: 0;
-    top: 51px;
-}
+
+
+
 
 @keyframes drop {
     from {
@@ -281,24 +86,4 @@ body{
 
 
     }
-}
-
-.menu {
-    width: 210px;
-    height: 94%;
-    position: fixed;
-    left: 5px;;
-    top: 0;
-    top: 55px;
-    z-index: 500;
-    background: linear-gradient(rgb(50,50,50),rgb(40,40,40));
-    box-shadow: 0 0 4px 1px rgb(30,30,30) inset;
-}
-
-.liname {
-    font-size: 110%;
-    font-family: Arial;
-    color: rgb(180,180,180);
-    padding: 5px;
-    text-shadow: 2px 8px rgb(30,30,30);
 }

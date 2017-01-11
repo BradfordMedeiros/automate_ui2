@@ -4,16 +4,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { container as Appbar } from './Appbar';
+import { container as Appbar } from './components/appbar/Appbar.js';
 
-import { container as Grid } from './Grid.js';
-import {  container as SelectionOverlay } from './SelectionOverlay';
+import { container as Grid } from './components/Grid/Grid.js';
+import {  container as SelectionOverlay } from './components/SelectionOverlay/SelectionOverlay';
 import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
-import { List, ListItem } from 'material-ui';
-
+import Menu from './components/menu/menu';
 const initialState = fromJS({
   menuExpanded: false,
   isLocked: true,
@@ -51,10 +50,6 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer, applyMiddleware(createLogger()));
 
-const liStyle = {
-  border: '1px solid rgb(40,40,40)',
-};
-
 const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Provider store={store} >
@@ -63,16 +58,7 @@ const App = () => (
         <SelectionOverlay />
         <Grid />
         <div className="footer" />
-        <div className="menu" >
-            <List>
-              <ListItem style={liStyle}><div className="liname"> home </div></ListItem>
-              <ListItem style={liStyle}><div className="liname"> creation </div></ListItem>
-              <ListItem style={liStyle}><div className="liname"> store </div></ListItem>
-              <ListItem style={liStyle}><div className="liname"> disconnect </div></ListItem>
-
-
-            </List>
-        </div>
+        <Menu />
       </div>
     </Provider>
   </MuiThemeProvider>

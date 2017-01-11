@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { expandMenu, lock } from './index.js';
+import { expandMenu, lock } from '../../index.js';
 import { ActionLock } from 'material-ui/svg-icons';
 import { FontIcon } from 'material-ui';
+import './style.css';
+
 const style = {
   expanded: {
     animation: 'turn_into_x 0.1s forwards',
@@ -28,7 +30,7 @@ class Appbar extends Component {
     }else{
       lockGrid(true);
     }
-  }
+  };
   render() {
     console.log('appbar updating');
     const { menuExpanded, expandMenu, isLocked } = this.props;
@@ -46,9 +48,7 @@ class Appbar extends Component {
           <div className="lockIconDivet"  onClick={this.toggleLock} />
           <div className="xIconDivet" style={isLocked ? lockStyle : unlockStyle}  onClick={this.toggleLock} />
           <div className="app_title"><h1>automate</h1></div>
-          <div className="tileDrawer" />
         </div>
-
       </div>
     );
   }

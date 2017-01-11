@@ -1,0 +1,36 @@
+.overlay {
+    height: 95vh;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    left: 230px;
+    right: 20px;
+    padding: 0;
+    top: 0vh;
+    opacity: 0.98;
+    background: linear-gradient( rgb(220,220,220), rgb(200,200,200), rgb(230,230,230));
+
+}
+
+@keyframes fade_in {
+    0%   {
+        top: -90vh;
+        z-index: 10;
+    }
+    100% {
+        top: 50px;
+        z-index: 10;
+    }
+}
+@keyframes fade_out {
+    0%   {
+        top: 5px;
+        z-index: 10;
+
+    }
+    100% {
+        top: -90vh;
+        z-index: 0;
+
+    }
+}

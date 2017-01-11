@@ -3,10 +3,10 @@ import { Paper } from 'material-ui';
 import { AutoSizer } from 'react-virtualized';
 import { connect } from 'react-redux';
 import ReactGridLayout from 'react-grid-layout';
-import './node_modules/react-grid-layout/css/styles.css';
-import './node_modules/react-resizable/css/styles.css';
-
-import { expandMenu } from './index.js';
+import '../../node_modules/react-grid-layout/css/styles.css';
+import '../../node_modules/react-resizable/css/styles.css';
+import './style.css';
+import { expandMenu } from '../../index.js';
 
 class Grid extends Component {
 
