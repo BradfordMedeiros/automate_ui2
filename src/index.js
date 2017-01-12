@@ -14,6 +14,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
 import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
+import './style.css';
 
 const initialState = fromJS({
   menuExpanded: false,
