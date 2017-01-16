@@ -14,16 +14,24 @@ import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
 import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
-import './style.css';
+import { container as AddGrid } from './components/addgrid/AddGrid';
+import MinimalMenu from './components/menu/minimalMenu';
 
 const initialState = fromJS({
   menuExpanded: false,
-  isLocked: true,
+  addGridExpanded: false,
+  isLocked: false,
 });
 
 export const expandMenu = isExpanded => {
   return ({
     type: 'expandMenu',
+    isExpanded,
+  });
+};
+export const expandAddGrid = isExpanded => {
+  return ({
+    type: 'expandAddGrid',
     isExpanded,
   });
 };
@@ -37,13 +45,15 @@ export const lock = isLocked => {
 
 
 const reducer = (state = initialState, action) => {
-  console.log('got action');
   switch(action.type){
     case 'expandMenu': {
-      return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
+      return state.set('menuExpanded', action.isExpanded).set('isLocked', false);
     }
     case 'lockGrid': {
-      return state.set('isLocked', action.isLocked);
+      return state.set('isLocked', false);  // making it so you cannot lock grid for now
+    }
+    case 'expandAddGrid': {
+      return state.set('addGridExpanded', action.isExpanded);
     }
     default: {
       return state;
@@ -57,6 +67,7 @@ const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Provider store={store} >
       <div style={{ width: '100vw', height: '100vh', top: 0 , overflow: 'hidden' }}>
+        <MinimalMenu />
         <Appbar />
         <SelectionOverlay />
         <Grid />

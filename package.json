@@ -26,6 +26,7 @@
     "react-dom": "^15.4.2",
     "react-grid-layout": "^0.13.9",
     "react-redux": "^5.0.1",
+    "react-responsive": "^1.2.5",
     "react-virtualized": "^8.9.0",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
@@ -43,6 +44,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "getstorybook": "^1.7.0",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.16.2"
   }
 }
