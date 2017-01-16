@@ -12,10 +12,14 @@ import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
+
+import createRoutes from './Routing';
+
 import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
 import { container as AddGrid } from './components/addgrid/AddGrid';
 import MinimalMenu from './components/menu/minimalMenu';
+
 
 const initialState = fromJS({
   menuExpanded: false,
@@ -61,6 +65,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+
 const store = createStore(reducer, applyMiddleware(createLogger()));
 
 const App = () => (
@@ -78,4 +83,7 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Routes = createRoutes(App);
+
+
+ReactDOM.render(Routes, document.getElementById('root'));
