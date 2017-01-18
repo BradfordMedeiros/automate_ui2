@@ -6,11 +6,13 @@
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
 
+
+const path = require('path');
 module.exports = {
   plugins: [
     // your custom plugins
   ],
-  module: {
+ module: {
     loaders: [
       {
         test: /\.css/,
@@ -29,6 +31,17 @@ module.exports = {
         test: /\.json$/,
         loader: 'json',
       },
+      { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+
     ],
   },
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
+  },
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules'),
+  },
+ 
 };

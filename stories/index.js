@@ -1,20 +1,15 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { storiesOf, addDecorator } from '@kadira/storybook';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Provider } from 'react-redux';
-import Welcome from './Welcome';
+import {muiTheme } from 'storybook-addon-material-ui';
 import Menu from '../src/components/menu/menu';
-
+import { List } from 'immutable';
 storiesOf('Button', module)
-  .add('with text', () => (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <Menu />
-      </MuiThemeProvider>
+  .addDecorator(muiTheme(darkBaseTheme))
+  .add('basic menu', () => (
+    <Menu buttonLabels={['connect','disconnect', 'free', 'evolve', 'builder']} />
+
   ))
-  .add('apppbar', () => (
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-      <Menu />
-    </MuiThemeProvider>
+  .add('scrollable menu', () => (
+        <Menu buttonLabels={['one','two','three','four','five','six',7,8,9,10,'11','twelve','sixteeeennnnnnnnnnnnnnnnnnnn']} />
   ));

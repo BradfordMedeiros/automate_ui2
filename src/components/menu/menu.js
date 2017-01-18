@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { List, ListItem } from 'material-ui';
+import { List as IList } from 'immutable';
 import './style.css';
 
 
@@ -9,17 +10,28 @@ const liStyle = {
 
 class Menu extends Component {
   render() {
+    const { buttonLabels, style } = this.props;
     return (
-      <div className="menu" >
+      <div style={style} className="menu" >
         <List>
-          <ListItem style={liStyle}><div className="liname"> home </div></ListItem>
-          <ListItem style={liStyle}><div className="liname"> creation </div></ListItem>
-          <ListItem style={liStyle}><div className="liname"> store </div></ListItem>
-          <ListItem style={liStyle}><div className="liname"> disconnect </div></ListItem>
+          {buttonLabels.map(
+            (label,index) =>
+              <ListItem style={liStyle}>
+                <div className="liname">{label}</div>
+              </ListItem>
+          )}
         </List>
       </div>
     );
   }
 }
 
+Menu.propTypes = {
+  buttonLabels: PropTypes.object,
+  style: PropTypes.object,
+};
+
+Menu.defaultProps = {
+  buttonLabels: IList([]),
+};
 export default Menu;

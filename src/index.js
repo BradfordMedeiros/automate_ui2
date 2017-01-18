@@ -10,7 +10,7 @@ import { container as Grid } from './components/Grid/Grid.js';
 import {  container as SelectionOverlay } from './components/SelectionOverlay/SelectionOverlay';
 import createLogger from 'redux-logger';
 import { applyMiddleware, createStore } from 'redux';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 import createRoutes from './Routing';
 
@@ -18,7 +18,7 @@ import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
 import { container as AddGrid } from './components/addgrid/AddGrid';
 import MinimalMenu from './components/menu/minimalMenu';
-
+import { ActionHome } from 'material-ui/svg-icons';
 
 const initialState = fromJS({
   menuExpanded: false,
@@ -71,11 +71,22 @@ const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Provider store={store} >
       <div style={{ width: '100vw', height: '100vh', top: 0 , overflow: 'hidden' }}>
-        <MinimalMenu />
         <Appbar />
         <SelectionOverlay />
         <Grid />
-        <Menu />
+        <Menu
+          buttonLabels={fromJS(['home','creation','store','disconnect'])}
+          style={
+            {
+              width: 210,
+              height: '94%',
+              position: 'fixed',
+              left: 5,
+              top: 55,
+              zIndex: 500,
+            }
+          }
+        />
         <Footer />
       </div>
     </Provider>
