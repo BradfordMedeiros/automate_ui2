@@ -70,4 +70,5 @@ const mapDispatchToProps = dispatch => ({
   lockGrid: lockState => dispatch(lock(lockState)),
 });
 
+export default Appbar;
 export const container = connect(mapStateToProps, mapDispatchToProps)(Appbar);

@@ -12,7 +12,23 @@ module.exports = {
   ],
   module: {
     loaders: [
-      // add your custom loaders.
+      {
+        test: /\.css/,
+        loader: 'style!css',
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['react', 'es2015', 'stage-0'],
+
+        }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json',
+      },
     ],
   },
 };

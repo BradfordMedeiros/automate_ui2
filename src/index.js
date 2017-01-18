@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { container as Appbar } from './components/appbar/Appbar.js';
+import { Provider } from 'react-redux';
 
+import { container as Appbar } from './components/appbar/Appbar.js';
 import { container as Grid } from './components/Grid/Grid.js';
 import {  container as SelectionOverlay } from './components/SelectionOverlay/SelectionOverlay';
 import createLogger from 'redux-logger';
-import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { fromJS } from 'immutable';
 
