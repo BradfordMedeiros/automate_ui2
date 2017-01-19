@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Paper } from 'material-ui';
 import { AutoSizer } from 'react-virtualized';
-import { connect } from 'react-redux';
 import ReactGridLayout from 'react-grid-layout';
 import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import './style.css';
-import { expandMenu } from '../../index.js';
 
 class Grid extends Component {
-
   render() {
     const layout = [
       {i: 'a', x: 0, y: 0, w: 1, h: 2, static: false},
@@ -17,7 +14,7 @@ class Grid extends Component {
       {i: 'c', x: 4, y: 0, w: 1, h: 2}
     ];
 
-    const { expandMenu, isEditable } = this.props;
+    const { onGridItemClick, isEditable } = this.props;
 
     const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
     return (
@@ -35,7 +32,7 @@ class Grid extends Component {
               isResizable={isEditable}
             >
               <div key={'a'}>
-                <Paper zDepth={2} onDoubleClick={() => expandMenu()} style={{  width: '100%', height: '100%', backgroundColor: 'rgb(140,140,140)'}}>
+                <Paper zDepth={2} onDoubleClick={() => onGridItemClick()} style={{  width: '100%', height: '100%', backgroundColor: 'rgb(140,140,140)'}}>
                   <div width="100%" height="100%" className="divthing">
                   </div>
                 </Paper>
@@ -60,16 +57,7 @@ class Grid extends Component {
 }
 
 Grid.PropTypes = {
-  expandMenu: PropTypes.func.isRequired,
+  onGridItemClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isEditable: !state.get('isLocked'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  expandMenu: () =>  dispatch(expandMenu(true)),
-});
-
-export const container = connect(mapStateToProps, mapDispatchToProps)(Grid);
-
+export default Grid;

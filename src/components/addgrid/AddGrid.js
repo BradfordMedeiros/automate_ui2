@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  expandMenu: () =>  dispatch(expandMenu(false)),
+  onGridItemClick: () =>  dispatch(expandMenu(false)),
   lockGrid: lockState => dispatch(lock(lockState)),
 });
 

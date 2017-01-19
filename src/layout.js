@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { fromJS } from 'immutable';
 
 import { container as Appbar } from './components/appbar/Appbar.js';
-import { container as Grid } from './components/Grid/Grid.js';
+import { container as Grid } from './containers/Grid';
 import {  container as SelectionOverlay } from './components/SelectionOverlay/SelectionOverlay';
 import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
