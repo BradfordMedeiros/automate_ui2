@@ -1,18 +1,17 @@
 
 .grid {
     background: linear-gradient(rgb(60,60,60), rgb(45,45,45));
-    top: 50px;
-    bottom: 10px;
     overflow: auto;
     margin-left: 0.5%;
     margin-right: 0.5%;
     border: 3px solid rgb(60,60,60);
-    z-index: 1;
-    position: fixed;
-    left: 210px;
-    right: 0;
     padding-left: 1%;
     padding-right: 1%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 

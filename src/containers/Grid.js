@@ -1,4 +1,4 @@
-import Grid from '../components/Grid/Grid';
+import Grid from '../components/grid/Grid';
 import { connect } from 'react-redux';
 import { expandMenu } from '../index.js';
 
