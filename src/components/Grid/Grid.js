@@ -39,7 +39,7 @@ class Grid extends Component {
               </div>
               <div key={'b'}>
                 <Paper zDepth={2}  style={{  width: '100%', height: '100%', backgroundColor: 'white'  }}>
-                  <div style={{ border: '1px solid black', color: 'blue', width: '100%', height: '100%' }} onClick={() => console.log('clicked')}>
+                  <div style={{ border: '1px solid black', color: 'blue', width: '100%', height: '100%' }}>
                     CLICK ME
                   </div>
                 </Paper>

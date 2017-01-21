@@ -16,7 +16,7 @@ class Menu extends Component {
         <List>
           {buttonLabels.map(
             (label,index) =>
-              <ListItem style={liStyle}>
+              <ListItem key={index} style={liStyle}>
                 <div className="liname">{label}</div>
               </ListItem>
           )}
