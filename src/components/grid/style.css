@@ -2,8 +2,6 @@
 .grid {
     background: linear-gradient(rgb(60,60,60), rgb(45,45,45));
     overflow: auto;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
     border: 3px solid rgb(60,60,60);
     padding-left: 1%;
     padding-right: 1%;

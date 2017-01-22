@@ -1,29 +1,70 @@
 
 .titlebar {
-    height: 50px;
-    width: 100%;
-    top: 0;
     background: rgb(40,40,40);
-    position: fixed;
     box-shadow: 0px 1px 4px 0.5px black;
     border-bottom: 3px solid black;
-    z-index: 100;
+    position: fixed;
 }
 
-.holder {
+
+.app_title{
+    color: grey;
+    top: 8px;
+    height: 30px;
     position: fixed;
-    width: 130px;
-    height: 41px;
-    top: 4px;
-    right: 12px;
+    box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
+    padding: 2px;
+    padding-left: 20px;
+    padding-right: 15px;
+    margin-left: 30px;
+    left: 0;
+}
+
+
+
+.holder {
     box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
     pointer-events: none;
+    position: absolute;
+    width: 130px;
+    top: 4px;
+    bottom: 4px;
+    right: 10px;
 
+}
+
+
+
+.lockIconDivet {
+    z-index: 2;
+    position: absolute;
+    right: 80px;
+    font-size: 300%;
+    width: 30px;
+    height: 28px;
+    border: 1px solid rgb(40,40,40);
+    top: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px 1px black inset;
+}
+
+.xIconDivet {
+
+    background: grey;
+    position: absolute;
+    right: 80px;
+    font-size: 300%;
+    width: 32px;
+    height: 15px;
+    top: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 2px  black inset;
+    z-index: 3;
 }
 
 .xIcon {
     color: red;
-    position: fixed;
+    position: absolute;
     right: 25px;
     font-size: 300%;
     top: -4px;
@@ -31,50 +72,6 @@
     text-shadow: 2px 4px 2px black;
     transform: rotateZ(45deg);
     cursor: pointer;
-
-}
-
-
-.lockIconDivet {
-    z-index: 2;
-    position: fixed;
-    right: 90px;
-    font-size: 300%;
-    width: 30px;
-    height: 28px;
-    border: 1px solid rgb(40,40,40);
-    top:10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 1px black inset;
-}
-
-
-.xIconDivet {
-
-    background: grey;
-    position: fixed;
-    right: 90px;
-    font-size: 300%;
-    width: 32px;
-    height: 15px;
-    top: 10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 2px  black inset;
-    z-index: 3;
-}
-
-.app_title{
-    color: grey;
-    top: 8px;
-    position: fixed;
-    box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
-    padding: 2px;
-    padding-left: 20px;
-    padding-right: 15px;
-
-    margin-left: 30px;
-    position: fixed;
-    left: 0;
 }
 
 @keyframes turn_into_x {

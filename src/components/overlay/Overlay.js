@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Paper } from 'material-ui';
 import './style.css';
 
 const style = {
@@ -22,16 +20,9 @@ class SelectionOverlay extends Component {
   }
 }
 
-
 SelectionOverlay.PropTypes = {
   isExpanded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isExpanded: state.get('menuExpanded'),
-});
-
-export const container = connect(mapStateToProps)(SelectionOverlay);
-
-
+export default SelectionOverlay;
 

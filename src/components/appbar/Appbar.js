@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import './style.css';
 
-const style = {
+const styles = {
   expanded: {
     animation: 'turn_into_x 0.1s forwards',
   },
   not_expanded: {
     animation: 'turn_out_x 0.1s forwards',
-  }
+  },
 };
 
 const lockStyle = {
@@ -29,12 +29,12 @@ class Appbar extends Component {
   };
   render() {
     console.log('appbar updating');
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked } = this.props;
-    const xStyle  = rotateAddIcon ? style.expanded : style.not_expanded;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked, style } = this.props;
+    const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
     return (
-      <div className="titlebar">
+      <div className="titlebar" style={style}>
 
-        <div className="xIcon" style={xStyle} onClick={() => {
+         <div className="xIcon" style={xStyle} onClick={() => {
           if (rotateAddIcon){
             onRotatedAddIconClick();
           }
@@ -51,9 +51,16 @@ class Appbar extends Component {
 }
 
 Appbar.propTypes = {
-  rotateAddIcon: PropTypes.bool,
+  style: PropTypes.object,
   isLocked: PropTypes.bool,
-  onRotatedAddIconClick: PropTypes.func.isRequired,
+  rotateAddIcon: PropTypes.bool,
+  onRotatedAddIconClick: PropTypes.func,
+};
+
+Appbar.defaultProps = {
+  isLocked: false,
+  rotateAddIcon: false,
+  onRotatedAddIconClick: () => {},
 };
 
 export default Appbar;
