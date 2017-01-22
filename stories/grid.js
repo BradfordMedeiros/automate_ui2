@@ -20,11 +20,17 @@ const tileNameToTile = Map({
   c: <div>tile ---c</div>,
 });
 
+const tileNameToFullScreen =  Map({
+  a: <div>this is fullscreen a</div>,
+  b: <div>this is fullscreeb b</div>,
+  c: <div>woo oo woo</div>
+});
+
 
 storiesOf('grid')
   .addDecorator(muiTheme(darkBaseTheme))
   .add('basic', () => (
-    <Grid layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} />
+    <Grid onGridItemClick={x => console.log( x, 'clicked')} layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} />
   ));
 
 

@@ -16,8 +16,15 @@ const initialState = fromJS({
   menuExpanded: false,
   addGridExpanded: false,
   isLocked: false,
+  content: undefined,
 });
 
+export const setContent = content => {
+  return ({
+    type: 'setContent',
+    content,
+  });
+};
 export const expandMenu = isExpanded => {
   return ({
     type: 'expandMenu',
@@ -49,6 +56,9 @@ const reducer = (state = initialState, action) => {
     }
     case 'expandAddGrid': {
       return state.set('addGridExpanded', action.isExpanded);
+    }
+    case 'setContent': {
+      return state.set('content', action.content);
     }
     default: {
       return state;

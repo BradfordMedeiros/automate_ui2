@@ -9,7 +9,7 @@
     top: 0vh;
     opacity: 0.98;
     background: linear-gradient( rgb(220,220,220), rgb(200,200,200), rgb(230,230,230));
-
+    border: 1px solid black;
 }
 
 @keyframes fade_in {

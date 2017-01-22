@@ -11,17 +11,17 @@ import Footer from './components/footer/footer';
 import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
 
 const layout = List([
-  {i: 'a', x: 0, y: 0, w: 3, h: 7, static: true},
-  {i: 'b', x: 6, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
+  {i: 'a', x: 0, y: 0, w: 3, h: 7},
+  {i: 'b', x: 6, y: 0, w: 3, h: 2, minW: 2},
   {i: 'c', x: 4, y: 0, w: 1, h: 2}
 ]);
 
 const tileNames = List(['a','b','c']);
 
 const tileNameToTile = Map({
-  a: <div>tile a</div>,
-  b: <div>tile b</div>,
-  c: <div>tile ---c</div>,
+  a: <div style={{ background: 'grey', width: '100%', height: '100%' }}>tile a</div>,
+  b: <div style={{ background: 'yellow', width: '100%', height: '100%' }}>tile b</div>,
+  c: <div style={{ background: 'white', width: '100%', height: '100%'}}>tile ---c</div>,
 });
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
