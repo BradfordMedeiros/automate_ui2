@@ -17,12 +17,18 @@ const initialState = fromJS({
   addGridExpanded: false,
   isLocked: false,
   content: undefined,
+  layout: fromJS([{"w":5,"h":9,"x":0,"y":0,"i":"a","moved":false,"static":false},{"w":7,"h":22,"x":5,"y":0,"i":"b","minW":2,"moved":false,"static":false},{"w":5,"h":13,"x":0,"y":9,"i":"c","moved":false,"static":false}]),
 });
-
 export const setContent = content => {
   return ({
     type: 'setContent',
     content,
+  });
+};
+export const setLayout = layout => {
+  return ({
+    type: 'setLayout',
+    layout,
   });
 };
 export const expandMenu = isExpanded => {
@@ -47,6 +53,7 @@ export const lock = isLocked => {
 
 
 const reducer = (state = initialState, action) => {
+  window.state = state;
   switch(action.type){
     case 'expandMenu': {
       return state.set('menuExpanded', action.isExpanded).set('isLocked', false);
@@ -59,6 +66,9 @@ const reducer = (state = initialState, action) => {
     }
     case 'setContent': {
       return state.set('content', action.content);
+    }
+    case 'setLayout': {
+      return state.set('layout', action.layout);
     }
     default: {
       return state;

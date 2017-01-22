@@ -10,7 +10,7 @@ import './style.css';
 
 class Grid extends Component {
   render() {
-    const { layout, tileNames, tileNameToTile, onGridItemClick, isEditable, style } = this.props;
+    const { layout, tileNames, tileNameToTile, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
 
     const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
 
@@ -29,6 +29,11 @@ class Grid extends Component {
               verticalCompact
               isDraggable={isEditable}
               isResizable={isEditable}
+              onLayoutChange={layout => {
+                if (onLayoutChange){
+                  onLayoutChange(layout);
+                }
+              }}
             >
                 {tileKeys.map((key,index) => (
                   <div
@@ -54,7 +59,7 @@ Grid.PropTypes = {
   onGridItemClick: PropTypes.func,
   tileNames:PropTypes.object.isRequired,
   tileNameToTile: PropTypes.object.isRequired,
-  onGridItemClick: PropTypes.object,
+  onLayoutChange: PropTypes.func,
   layout: PropTypes.object.isRequired,
   style: PropTypes.object,
 };

@@ -10,12 +10,6 @@ import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
 
-const layout = List([
-  {i: 'a', x: 0, y: 0, w: 3, h: 7},
-  {i: 'b', x: 6, y: 0, w: 3, h: 2, minW: 2},
-  {i: 'c', x: 4, y: 0, w: 1, h: 2}
-]);
-
 const tileNames = List(['a','b','c']);
 
 const tileNameToTile = Map({
@@ -45,7 +39,7 @@ class Layout extends Component {
         <Desktop>
           <Menu buttonLabels={fromJS(['home','creation','store','disconnect'])} style={desktopStyles.menu} />
           <Appbar style={desktopStyles.appbar} />
-          <Grid layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
+          <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
           <SelectionOverlay left={desktopStyles.overlay.left} right={desktopStyles.overlay.right} />
           <Footer />
         </Desktop>
@@ -53,7 +47,7 @@ class Layout extends Component {
         <Mobile>
           <MinimalMenu buttonIcons={List([<ActionHome/>, <ContentCreate/>, <ActionStore/>, <ActionSettingsPower/> ])} style={mobileStyles.minMenu} />
           <Appbar style={mobileStyles.appbar} />
-          <Grid layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
+          <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import { List } from 'immutable';
 import Grid from '../components/grid/Grid';
 import { connect } from 'react-redux';
-import { expandMenu, setContent } from '../index.js';
+import { expandMenu, setContent, setLayout } from '../index.js';
 
 const tileNameToTile = {
   a: <div style={{ width: '100%', height: '100%', background: 'red' }}>tile content a</div>,
@@ -16,12 +17,16 @@ const TileToRender = ({tileName}) => {
 
 const mapStateToProps = (state) => ({
   isEditable: !state.get('isLocked'),
+  layout: state.get('layout'),
 });
 
 const mapDispatchToProps = dispatch => ({
   onGridItemClick: tileName =>  {
     dispatch(setContent(<TileToRender tileName={tileName} />));
     dispatch(expandMenu(true));
+  },
+  onLayoutChange: layout => {
+    dispatch(setLayout(List(layout)));
   }
 });
 
