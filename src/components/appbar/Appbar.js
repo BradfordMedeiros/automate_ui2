@@ -1,8 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { expandMenu, lock } from '../../index.js';
-import { ActionLock } from 'material-ui/svg-icons';
-import { FontIcon } from 'material-ui';
 import './style.css';
 
 const style = {
@@ -33,14 +29,14 @@ class Appbar extends Component {
   };
   render() {
     console.log('appbar updating');
-    const { menuExpanded, expandMenu, isLocked } = this.props;
-    const xStyle  = menuExpanded ? style.expanded : style.not_expanded;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked } = this.props;
+    const xStyle  = rotateAddIcon ? style.expanded : style.not_expanded;
     return (
       <div className="titlebar">
 
         <div className="xIcon" style={xStyle} onClick={() => {
-          if (menuExpanded){
-            expandMenu();
+          if (rotateAddIcon){
+            onRotatedAddIconClick();
           }
         }}>&times;</div>
 
@@ -55,20 +51,9 @@ class Appbar extends Component {
 }
 
 Appbar.propTypes = {
-  menuExpanded: PropTypes.bool,
+  rotateAddIcon: PropTypes.bool,
   isLocked: PropTypes.bool,
-  expandMenu: PropTypes.func.isRequired,
+  onRotatedAddIconClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  menuExpanded: state.get('menuExpanded'),
-  isLocked: state.get('isLocked'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  expandMenu: () =>  dispatch(expandMenu(false)),
-  lockGrid: lockState => dispatch(lock(lockState)),
-});
-
 export default Appbar;
-export const container = connect(mapStateToProps, mapDispatchToProps)(Appbar);

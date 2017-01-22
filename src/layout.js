@@ -1,7 +1,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { fromJS, List, Map } from 'immutable';
-import { container as Appbar } from './components/appbar/Appbar.js';
+import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/Grid';
 import {  container as SelectionOverlay } from './components/SelectionOverlay/SelectionOverlay';
 import Menu from './components/menu/menu';
