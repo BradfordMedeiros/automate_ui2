@@ -8,6 +8,7 @@ import {  container as SelectionOverlay } from './containers/Overlay';
 import Menu from './components/menu/menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
+import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
 
 const layout = List([
   {i: 'a', x: 0, y: 0, w: 3, h: 7, static: true},
@@ -28,11 +29,13 @@ const desktopStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
   grid: { top: 50, bottom: 10, left: 210, right: 0 },
   menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
+  overlay: { left: 230, right: 20 },
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
   grid: { top: 50, bottom: 10, left: 55, right: 0 },
-  menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
+  minMenu: { width: 55, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
+  overlay: { left: 75, right: 20 },
 };
 
 class Layout extends Component {
@@ -43,15 +46,15 @@ class Layout extends Component {
           <Menu buttonLabels={fromJS(['home','creation','store','disconnect'])} style={desktopStyles.menu} />
           <Appbar style={desktopStyles.appbar} />
           <Grid layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
-          <SelectionOverlay  />
+          <SelectionOverlay left={desktopStyles.overlay.left} right={desktopStyles.overlay.right} />
           <Footer />
         </Desktop>
 
         <Mobile>
-          <MinimalMenu />
+          <MinimalMenu buttonIcons={List([<ActionHome/>, <ContentCreate/>, <ActionStore/>, <ActionSettingsPower/> ])} style={mobileStyles.minMenu} />
           <Appbar style={mobileStyles.appbar} />
           <Grid layout={layout} tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
-          <SelectionOverlay  />
+          <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
 
         </Mobile>

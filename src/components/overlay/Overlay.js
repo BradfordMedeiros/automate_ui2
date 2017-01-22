@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Paper } from 'material-ui';
 import './style.css';
 
 const style = {
@@ -12,17 +14,22 @@ const style = {
 
 class SelectionOverlay extends Component {
   render() {
-    const { isExpanded } = this.props;
+    const { isExpanded, left, right } = this.props;   // @todo wo would be nice to add general support for style override
     const overlay_style = isExpanded ? style.expanded : style.not_expanded;
     return (
-        <div className="overlay" style={overlay_style} />
+        <div className="overlay"  style={{left: left, right: right, ...overlay_style }} />
     );
   }
 }
 
+
 SelectionOverlay.PropTypes = {
   isExpanded: PropTypes.bool.isRequired,
+  left: PropTypes.any,
+  right: PropTypes.any,
 };
 
 export default SelectionOverlay;
+
+
 

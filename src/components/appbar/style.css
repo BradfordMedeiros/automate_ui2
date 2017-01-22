@@ -34,34 +34,6 @@
 }
 
 
-
-.lockIconDivet {
-    z-index: 2;
-    position: absolute;
-    right: 80px;
-    font-size: 300%;
-    width: 30px;
-    height: 28px;
-    border: 1px solid rgb(40,40,40);
-    top: 5px;
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 1px black inset;
-}
-
-.xIconDivet {
-
-    background: grey;
-    position: absolute;
-    right: 80px;
-    font-size: 300%;
-    width: 32px;
-    height: 15px;
-    top: 5px;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 2px  black inset;
-    z-index: 3;
-}
-
 .xIcon {
     color: red;
     position: absolute;
@@ -89,23 +61,5 @@
     }
     to {
         transform: rotateZ(45deg);
-    }
-}
-
-@keyframes lock {
-    from {
-        top: 30px;
-    }
-    to {
-        top: 10px;
-    }
-}
-@keyframes unlock {
-    from {
-        top: 10px;
-    }
-    to {
-        top: 30px;
-
     }
 }

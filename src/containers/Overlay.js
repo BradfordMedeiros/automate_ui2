@@ -1,4 +1,3 @@
-import Grid from '../components/grid/Grid';
 import { connect } from 'react-redux';
 import Overlay from '../components/overlay/Overlay';
 

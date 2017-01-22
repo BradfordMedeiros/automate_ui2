@@ -20,6 +20,7 @@ class MinimalMenu extends Component {
     const { buttonIcons, style } = this.props;
     return (
       <div style={style} className='min_menu'>
+        <div className="innerContainer">
         {buttonIcons.map((icon, index) => (
           <IconMenu
             key={index}
@@ -28,6 +29,7 @@ class MinimalMenu extends Component {
             iconButtonElement={<IconButton iconStyle={iconStyle} >{icon}</IconButton>}
           />
         ))}
+        </div>
       </div>
     );
   }
