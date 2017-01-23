@@ -18,7 +18,8 @@ const initialState = fromJS({
   addGridExpanded: false,
   isLocked: false,
   content: undefined,
-  layout: fromJS([{"w":3,"h":4,"x":0,"y":0,"i":"a", minW: 3, maxW: 3, minH: 4, maxH: 4, "moved":false,"static":false}]),
+  layout: fromJS([{"w":6,"h":4,"x":0,"y":0,"i":"a", minW: 6, maxW: 6, minH: 4, maxH: 4, "moved":false,"static":false},
+    {"w":1,"h":16,"x":5,"y":0,"i":"b", minW: 1, maxW: 1, minH: 16, maxH: 16, "moved":false,"static":false}]),
 });
 export const setContent = content => {
   return ({

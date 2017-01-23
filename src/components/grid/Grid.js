@@ -23,7 +23,7 @@ class Grid extends Component {
           ({ width, height }) => (
               <ReactGridLayout
               layout={jsLayout}
-              cols={12}
+              cols={24}
               rowHeight={30}
               width={width}
               verticalCompact
