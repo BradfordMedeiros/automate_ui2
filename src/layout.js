@@ -10,26 +10,20 @@ import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
 
-const tileNames = List(['a','b','c']);
-
-const tileNameToTile = Map({
-  a: <div style={{ background: 'grey', width: '100%', height: '100%' }}>tile a</div>,
-  b: <div style={{ background: 'yellow', width: '100%', height: '100%' }}>tile b</div>,
-  c: <div style={{ background: 'white', width: '100%', height: '100%'}}>tile ---c</div>,
-});
+import { tileNames, tileNameToTile } from './tiles';
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
 const desktopStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
   grid: { top: 50, bottom: 10, left: 210, right: 0 },
   menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: { left: 230, right: 20 },
+  overlay: { left: 230, right: 18 },
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
   grid: { top: 50, bottom: 10, left: 55, right: 0 },
   minMenu: { width: 55, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: { left: 75, right: 20 },
+  overlay: { left: 75, right: 18 },
 };
 
 class Layout extends Component {

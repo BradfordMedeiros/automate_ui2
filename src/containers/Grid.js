@@ -4,15 +4,11 @@ import Grid from '../components/grid/Grid';
 import { connect } from 'react-redux';
 import { expandMenu, setContent, setLayout } from '../index.js';
 
-const tileNameToTile = {
-  a: <div style={{ width: '100%', height: '100%', background: 'red' }}>tile content a</div>,
-  b: <div style={{ width: '100%', height: '100%', background: 'blue' }}>tile content b</div>,
-  c: <div style={{ width: '100%', height: '100%', background: 'silver' }}>tile content c</div>,
-  undefined: <div>no matching tile</div>
-};
+import { tileNameToContent } from '../tiles';
+
 
 const TileToRender = ({tileName}) => {
-  return tileNameToTile[tileName];
+  return tileNameToContent.get(tileName);
 };
 
 const mapStateToProps = (state) => ({

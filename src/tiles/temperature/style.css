@@ -1,0 +1,35 @@
+
+
+.symbol {
+    color: white;
+    top: 5px;
+    left: 10px;
+    position: absolute !important;
+    font-size: 700%;
+}
+
+
+
+.number {
+    position: absolute;
+    top: 20px;
+    left: 160px;
+    font-size: 600%;
+    text-shadow: 1px 1px 2px black;
+    box-shadow: 0px 0px 10px 2px rgb(55,55,55) ;
+}
+
+
+.tiles_thermometer{
+    height: 100%;
+    width: 100%;
+    background: rgb(60,50,50);
+    border: 1px solid rgb(30,30,30);
+}
+
+.shipSpeed {
+    top: 200px;
+    left: 460px;
+    position: absolute;
+
+}

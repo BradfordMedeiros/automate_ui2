@@ -17,7 +17,7 @@ const initialState = fromJS({
   addGridExpanded: false,
   isLocked: false,
   content: undefined,
-  layout: fromJS([{"w":5,"h":9,"x":0,"y":0,"i":"a","moved":false,"static":false},{"w":7,"h":22,"x":5,"y":0,"i":"b","minW":2,"moved":false,"static":false},{"w":5,"h":13,"x":0,"y":9,"i":"c","moved":false,"static":false}]),
+  layout: fromJS([{"w":3,"h":4,"x":0,"y":0,"i":"a", minW: 3, maxW: 3, minH: 4, maxH: 4, "moved":false,"static":false},{"w":7,"h":22,"x":5,"y":0,"i":"b","minW":2,"moved":false,"static":false},{"w":5,"h":13,"x":0,"y":9,"i":"c","moved":false,"static":false}]),
 });
 export const setContent = content => {
   return ({
