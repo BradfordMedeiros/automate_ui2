@@ -8,7 +8,9 @@ export const tileNames = List(['a','b','c']);
 export const tileNameToTile = Map({
   a: <TemperatureTile temperature={75}/>,
   b: <DimmerTile />,
-  c: <div style={{ background: 'white', width: '100%', height: '100%'}}>tile ---c</div>,
+  c: <DimmerTile />,
+  d: <DimmerTile />,
+
 });
 
 export const tileNameToContent = Map({

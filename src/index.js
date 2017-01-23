@@ -12,6 +12,8 @@ import { fromJS, List } from 'immutable';
 import createRoutes from './Routing';
 import Layout from './layout';
 import Helmet from 'react-helmet';
+import mqtt from './mqtt';
+
 
 const initialState = fromJS({
   menuExpanded: false,
@@ -19,7 +21,12 @@ const initialState = fromJS({
   isLocked: false,
   content: undefined,
   layout: fromJS([{"w":6,"h":4,"x":0,"y":0,"i":"a", minW: 6, maxW: 6, minH: 4, maxH: 4, "moved":false,"static":false},
-    {"w":1,"h":16,"x":5,"y":0,"i":"b", minW: 1, maxW: 1, minH: 16, maxH: 16, "moved":false,"static":false}]),
+    {"w":1,"h":16,"x":5,"y":0,"i":"b", minW: 1, maxW: 1, minH: 16, maxH: 16, "moved":false,"static":false},
+    {"w":1,"h":16,"x":7,"y":0,"i":"c", minW: 1, maxW: 1, minH: 16, maxH: 16, "moved":false,"static":false},
+    {"w":1,"h":16,"x":9,"y":0,"i":"d", minW: 1, maxW: 1, minH: 16, maxH: 16, "moved":false,"static":false},
+
+
+  ]),
 });
 export const setContent = content => {
   return ({
