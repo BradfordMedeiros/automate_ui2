@@ -1820,7 +1820,7 @@ deep-diff@0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.4.tgz#aac5c39952236abe5f037a2349060ba01b00ae48"
 
-deep-equal@^1.0.1:
+deep-equal@1.0.1, deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -2295,6 +2295,10 @@ eventsource@~0.1.6:
 exenv@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.0.tgz#3835f127abf075bfe082d0aed4484057c78e3c89"
+
+exenv@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.1.tgz#75de1c8dee02e952b102aa17f8875973e0df14f9"
 
 exit-hook@^1.0.0:
   version "1.1.1"
@@ -4349,6 +4353,14 @@ react-grid-layout@^0.13.9:
     react-draggable "^2.1.1"
     react-resizable "^1.4.0"
 
+react-helmet@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-4.0.0.tgz#df74bcd6ff585a1ccbbfba5aaa1c346cabc43d03"
+  dependencies:
+    deep-equal "1.0.1"
+    object-assign "^4.0.1"
+    react-side-effect "^1.1.0"
+
 react-inspector@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-1.1.2.tgz#192bc54f2be44f9fa0f29f183386f7f6e380f5ec"
@@ -4422,6 +4434,13 @@ react-router@^3.0.1:
     invariant "^2.2.1"
     loose-envify "^1.2.0"
     warning "^3.0.0"
+
+react-side-effect@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.1.0.tgz#57209f7ebc940d55e0fda82fe51422654175d609"
+  dependencies:
+    exenv "^1.2.1"
+    shallowequal "^0.2.2"
 
 react-simple-di@^1.2.0:
   version "1.2.0"

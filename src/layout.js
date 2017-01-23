@@ -17,7 +17,7 @@ const desktopStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
   grid: { top: 50, bottom: 10, left: 210, right: 0 },
   menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: { left: 230, right: 18 },
+  overlay: { left: 213, right: 1 },
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },

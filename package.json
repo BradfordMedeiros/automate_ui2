@@ -25,6 +25,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-grid-layout": "^0.13.9",
+    "react-helmet": "^4.0.0",
     "react-redux": "^5.0.1",
     "react-responsive": "^1.2.5",
     "react-router": "^3.0.1",
