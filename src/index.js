@@ -11,7 +11,7 @@ import { fromJS, List } from 'immutable';
 import createRoutes from './Routing';
 import Layout from './layout';
 import Helmet from 'react-helmet';
-import logger from './logger';
+import logger from './util/logger';
 
 import mqtt from './mqtt/mqtt';
 
