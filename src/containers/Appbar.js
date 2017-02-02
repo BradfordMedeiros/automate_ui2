@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { expandMenu, lock } from '../index.js';
 
 const mapStateToProps = (state) => ({
-  rotateAddIcon: state.get('menuExpanded'),
-  isLocked: state.get('isLocked'),
+  rotateAddIcon: state.getIn(['reducer','menuExpanded']),
+  isLocked: state.getIn(['reducer', 'isLocked']),
 });
 
 const mapDispatchToProps = dispatch => ({

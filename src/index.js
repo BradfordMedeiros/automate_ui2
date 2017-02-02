@@ -4,15 +4,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
-
-import createLogger from 'redux-logger';
 import { applyMiddleware, createStore } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { fromJS, List } from 'immutable';
 
 import createRoutes from './Routing';
 import Layout from './layout';
 import Helmet from 'react-helmet';
-import mqtt from './mqtt';
+import logger from './logger';
+
+import mqtt from './mqtt/mqtt';
 
 
 const initialState = fromJS({
@@ -62,7 +63,6 @@ export const lock = isLocked => {
 
 
 const reducer = (state = initialState, action) => {
-  window.state = state;
   switch(action.type){
     case 'expandMenu': {
       return state.set('menuExpanded', action.isExpanded).set('isLocked', false);
@@ -86,7 +86,10 @@ const reducer = (state = initialState, action) => {
 };
 
 
-const store = createStore(reducer, applyMiddleware(createLogger()));
+
+
+const reducers = combineReducers({ reducer });
+const store = createStore(reducers, applyMiddleware(logger()));
 
 const App = () => (
   <div>

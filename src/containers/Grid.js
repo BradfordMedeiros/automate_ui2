@@ -12,8 +12,8 @@ const TileToRender = ({tileName}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isEditable: !state.get('isLocked'),
-  layout: state.get('layout'),
+  isEditable: !state.getIn(['reducer','isLocked']),
+  layout: state.getIn(['reducer', 'layout']),
 });
 
 const mapDispatchToProps = dispatch => ({
