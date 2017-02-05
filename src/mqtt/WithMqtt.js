@@ -42,7 +42,6 @@ class WithMqtt extends Component {
       return theMap;
     } , {});
 
-    window.c  = this.state.client;
     return children ? children(topicProps, this.state.client.publish.bind(this.state.client)) : null;
   }
 }
