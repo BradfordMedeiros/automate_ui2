@@ -10,7 +10,7 @@ class TemperatureTile extends Component {
     return (
       <div className="tiles_thermometer">
         <div className="symbol">&#127777;</div>
-        <div className="number" style={{ color: color }}>{temperature}</div>
+        <div className="number" style={{ color: color }}>{temperature === undefined ? '?' : temperature}</div>
       </div>
     )
   }

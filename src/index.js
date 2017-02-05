@@ -13,7 +13,7 @@ import Layout from './layout';
 import Helmet from 'react-helmet';
 import logger from './util/logger';
 
-import mqtt from './mqtt/mqtt';
+import WithMqtt from './mqtt/WithMqtt';
 
 
 const initialState = fromJS({
