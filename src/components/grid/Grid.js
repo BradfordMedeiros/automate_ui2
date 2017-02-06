@@ -37,12 +37,11 @@ class Grid extends Component {
               }}
             >
                 {tileKeys.map((key,index) => {
-                  console.log('tile name:  ', tileKeyToTileName[key])
                   return (
                     <div
                       key={key}
                       style={{ width: '100%', height: '100%' }}
-                      onDoubleClick={() => onGridItemClick(key)}
+                      onDoubleClick={() => onGridItemClick(tileKeyToTileName.get(key))}
                     >
                       <Paper zDepth={2} style={{ width: '100%', height: '100%' }}>
                         {tileNameToTile.get(tileKeyToTileName.get(key))}

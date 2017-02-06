@@ -7,7 +7,7 @@ import WithMqtt from '../../mqtt/WithMqtt';
 
 export const tileNameToTile = Map({
   mqtt: <MqttTile/>,
-  b: <DimmerTile />,
+  dimmer: <DimmerTile />,
   c: <DimmerTile />,
   d: <DimmerTile />,
   e: <WithMqtt topics={List(['temperature'])}>
@@ -17,8 +17,8 @@ export const tileNameToTile = Map({
 });
 
 export const tileNameToContent = Map({
-  a: <MqttOverlay/>,
-  b: <DimmerOverlay />,
+  mqtt: <MqttOverlay/>,
+  dimmer: <DimmerOverlay />,
   c: <div style={{ width: '100%', height: '100%', background: 'silver' }}>tile content c</div>,
   undefined: <div>no matching tile</div>
 });
