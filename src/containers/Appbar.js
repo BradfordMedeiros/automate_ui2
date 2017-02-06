@@ -1,6 +1,6 @@
 import Appbar from '../components/appbar/Appbar';
 import { connect } from 'react-redux';
-import { expandMenu, lock } from '../index.js';
+import { expandMenu, lock } from './grid/module.js';
 
 const mapStateToProps = (state) => ({
   rotateAddIcon: state.getIn(['reducer','menuExpanded']),

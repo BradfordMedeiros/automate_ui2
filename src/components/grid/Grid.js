@@ -10,8 +10,9 @@ import './style.css';
 
 class Grid extends Component {
   render() {
-    const { layout, tileNames, tileNameToTile, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
+    const { layout, tileNames, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
 
+    window.t = tileKeyToTileName;
     const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
 
     const jsLayout = layout.toJS();
@@ -35,17 +36,20 @@ class Grid extends Component {
                 }
               }}
             >
-                {tileKeys.map((key,index) => (
-                  <div
-                    key={key}
-                    style={{ width: '100%', height: '100%' }}
-                    onDoubleClick={() => onGridItemClick(key)}
-                  >
-                    <Paper zDepth={2} style={{ width: '100%', height: '100%' }}>
-                      {tileNameToTile.get(key)}
-                    </Paper>
-                  </div>
-                ))}
+                {tileKeys.map((key,index) => {
+                  console.log('tile name:  ', tileKeyToTileName[key])
+                  return (
+                    <div
+                      key={key}
+                      style={{ width: '100%', height: '100%' }}
+                      onDoubleClick={() => onGridItemClick(key)}
+                    >
+                      <Paper zDepth={2} style={{ width: '100%', height: '100%' }}>
+                        {tileNameToTile.get(tileKeyToTileName.get(key))}
+                      </Paper>
+                    </div>
+                  )
+                })}
             </ReactGridLayout>
           )
         }
@@ -59,6 +63,7 @@ Grid.PropTypes = {
   onGridItemClick: PropTypes.func,
   tileNames:PropTypes.object.isRequired,
   tileNameToTile: PropTypes.object.isRequired,
+  tileKeyToTileName: PropTypes.object.isRequired,
   onLayoutChange: PropTypes.func,
   layout: PropTypes.object.isRequired,
   style: PropTypes.object,

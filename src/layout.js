@@ -3,14 +3,14 @@ import React, { Component, PropTypes } from 'react';
 import { fromJS, List, Map } from 'immutable';
 import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
-import { container as Grid } from './containers/Grid';
-import {  container as SelectionOverlay } from './containers/Overlay';
+import { container as Grid } from './containers/grid/Grid';
+import {  container as SelectionOverlay } from './containers/overlay/Overlay';
 import Menu from './components/menu/menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
 
-import { tileNames, tileNameToTile } from './tiles';
+import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
 const desktopStyles = {
