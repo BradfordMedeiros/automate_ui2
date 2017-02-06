@@ -41,10 +41,10 @@ class Grid extends Component {
                     <div
                       key={key}
                       style={{ width: '100%', height: '100%' }}
-                      onDoubleClick={() => onGridItemClick(tileKeyToTileName.get(key))}
+                      onDoubleClick={() => onGridItemClick(tileKeyToTileName.get(key), key)}
                     >
                       <Paper zDepth={2} style={{ width: '100%', height: '100%' }}>
-                        {tileNameToTile.get(tileKeyToTileName.get(key))}
+                        {tileNameToTile.get(tileKeyToTileName.get(key), key)}
                       </Paper>
                     </div>
                   )

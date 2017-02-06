@@ -7,7 +7,7 @@ import { expandMenu, setContent, setLayout } from './module';
 import { tileNameToContent } from './tiles';
 
 
-const TileToRender = ({tileName}) =>  tileNameToContent.get(tileName);
+const TileToRender = ({tileName, tileKey}) =>  tileNameToContent.get(tileName, tileKey);
 
 const mapStateToProps = (state) => ({
   isEditable: !state.getIn(['reducer','isLocked']),
@@ -18,9 +18,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => {
   window.d = dispatch;
   return ({
-    onGridItemClick: tileName =>  {
+    onGridItemClick: (tileName, tileKey) =>  {
       console.log('tilename is : ', tileName);
-      dispatch(setContent(<TileToRender tileName={tileName} />));
+      dispatch(setContent(<TileToRender tileName={tileName} tileKey={tileKey} />));
       dispatch(expandMenu(true));
     },
     onLayoutChange: layout => {

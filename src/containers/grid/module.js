@@ -7,6 +7,7 @@ const initialState = fromJS({
   content: undefined,
   layout: [],
   tileKeyToTileName: {},
+  savedTileContent: {}, //maps key to content
 
 });
 
@@ -23,6 +24,15 @@ export const setContent = content => {
     content,
   });
 };
+
+export const saveContent = (tileKey, content) => {
+  return ({
+    type: 'saveContent',
+    tileKey,
+    content,
+  })
+};
+
 export const setLayout = layout => {
   return ({
     type: 'setLayout',
@@ -71,6 +81,10 @@ const reducer = (state = initialState, action) => {
     }
     case 'setContent': {
       return state.set('content', action.content);
+    }
+    case 'saveContent': {
+      const { tileKey, content } = action;
+      return state.setIn(['savedTileContent', tileKey], content);
     }
     case 'setLayout': {
       return state.set('layout', action.layout);
