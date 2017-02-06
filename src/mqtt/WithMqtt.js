@@ -13,10 +13,7 @@ class WithMqtt extends Component {
     }
   }
   componentWillReceiveProps(props) {
-    console.log('subscribg to ', props.topics.toJS());
-
-    window.p = props.topics;
-    window.t = this.props.topics;
+    window.c = this.state.client;
     if (!props.topics.equals(this.props.topics)){
       if (this.props.topics && this.props.topics.count() > 0){
         this.state.client.unsubscribe(this.props.topics.toJS())

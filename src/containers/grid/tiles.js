@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { List, Map } from 'immutable';
 import { tile as TemperatureTile, overlay as TemperatureOverlay } from './tiles/temperature/Temperature';
 import { tile as DimmerTile, overlay as DimmerOverlay } from './tiles/lightdimmer/LightDimmer';
-import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/MqttDisplay';
-import WithMqtt from '../../mqtt/WithMqtt';
+import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
+import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
+
 import { connect } from 'react-redux';
 import { saveContent } from './module';
 
@@ -15,7 +16,7 @@ class Tile extends Component {
         return <MqttTile {...otherProps} />
       }
       case 'dimmer': {
-        return <DimmerTile {...otherProps} />
+        return <MqttSliderTile {...otherProps} />
       }
       case 'test': {
         return <div>hello world</div>
@@ -35,7 +36,7 @@ class TileOverlay extends Component {
         return <MqttOverlay {...otherProps} />
       }
       case 'dimmer': {
-        return <DimmerOverlay {...otherProps} />
+        return <MqttSliderOverlay {...otherProps} />
       }
       case 'test': {
         return <div>test overlay</div>
