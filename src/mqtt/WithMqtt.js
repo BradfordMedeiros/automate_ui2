@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'mqtt';
 import { fromJS, Map } from 'immutable';
 
-const MQTT_URL = 'http://fe80::18c9:81ff:fe28:cd1a:4000';
+const MQTT_URL = 'http://127.0.0.1:4000';
 
 class WithMqtt extends Component {
   constructor(props) {
@@ -13,7 +13,6 @@ class WithMqtt extends Component {
     }
   }
   componentWillReceiveProps(props) {
-    window.c = this.state.client;
     if (!props.topics.equals(this.props.topics)){
       if (this.props.topics && this.props.topics.count() > 0){
         this.state.client.unsubscribe(this.props.topics.toJS())
