@@ -6,7 +6,12 @@
     font-size: 700%;
 }
 
-
+.tiles_thermometer{
+    height: 100%;
+    width: 100%;
+    background: rgb(60,50,50);
+    border: 1px solid rgb(30,30,30);
+}
 
 .number {
     position: absolute;
@@ -19,16 +24,16 @@
 }
 
 
-.tiles_thermometer{
+.temp {
+    background: rgb(40, 40, 40);
     height: 100%;
-    width: 100%;
-    background: rgb(60,50,50);
-    border: 1px solid rgb(30,30,30);
+    padding: 20%;
 }
 
-.shipSpeed {
-    top: 200px;
-    left: 460px;
-    position: absolute;
 
+.mqtt_display {
+    font-size: 120%;
+    position: fixed;
+    color: rgb(170,170,170);
+    font-family: Arial;
 }

@@ -66,7 +66,7 @@ class MqttOverlay extends Component {
     const { temperature, saveContent, savedContent } = this.props;
     console.log('in overlay ', saveContent);
     return (
-      <div className="temp" >
+      <div className="mqtt_slider_overlay" >
         <TextField
           onChange={(x) => {
             this.setState({

@@ -58,11 +58,12 @@ class MqttOverlay extends Component {
               topic: x.target.value,
             })
           }}
-          errorText={"mqtt topic cannot be null"}
           hintText={"mqtt topic"}
         />
-        <div style={{color: 'red' }}>saved content:  {savedContent}</div>
-        <RaisedButton onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
+        <div className="mqtt_display" >saved content:  {savedContent}</div>
+        <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
+
+
       </div>
     );
   }

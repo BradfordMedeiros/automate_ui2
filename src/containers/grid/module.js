@@ -1,6 +1,8 @@
 import { fromJS } from 'immutable';
 
-const initialState = fromJS({
+const savedContent = fromJS({"menuExpanded":false,"addGridExpanded":false,"isLocked":true,"layout":[{"w":8,"h":4,"x":15,"y":4,"i":"0","moved":false,"static":false},{"w":8,"h":4,"x":15,"y":0,"i":"1","moved":false,"static":false},{"w":3,"h":22,"x":7,"y":0,"i":"2","moved":false,"static":false},{"w":3,"h":22,"x":4,"y":0,"i":"3","moved":false,"static":false},{"w":3,"h":22,"x":1,"y":0,"i":"4","moved":false,"static":false}],"tileKeyToTileName":{"0":"mqtt","1":"mqtt","2":"dimmer","3":"dimmer","4":"dimmer"},"savedTileContent":{"0":"humidity","1":"sun","2":"humidity","3":"sun","4":"sun"},"content":{"key":null,"ref":null,"props":{"tileName":"dimmer","tileKey":"4"},"_owner":null,"_store":{}}});
+
+const initialState = savedContent || fromJS({
   menuExpanded: false,
   addGridExpanded: false,
   isLocked: false,
@@ -14,7 +16,7 @@ const initialState = fromJS({
 const getNextTile = layout => {
   const nextIndex = layout.reduce((answer, value) =>  answer > Number(value.i) ? answer : Number(value.i) + 1, 0);
   return (
-    {"w":6,"h":4,"x":0,"y":0,"i": String(nextIndex), minW: 6, maxW: 6, minH: 4, maxH: 4, "moved":false,"static":false}
+    {"w":6,"h":4,"x":0,"y":0,"i": String(nextIndex), "moved":false,"static":false}
   );
 }
 
@@ -69,12 +71,13 @@ export const addTile = tileName => {
 
 const reducer = (state = initialState, action) => {
   window.add= addTile;
+  window.s  = state;
   switch(action.type){
     case 'expandMenu': {
-      return state.set('menuExpanded', action.isExpanded).set('isLocked', false);
+      return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
     }
     case 'lockGrid': {
-      return state.set('isLocked', false);  // making it so you cannot lock grid for now
+      return state.set('isLocked', action.isLocked);  // making it so you cannot lock grid for now
     }
     case 'expandAddGrid': {
       return state.set('addGridExpanded', action.isExpanded);

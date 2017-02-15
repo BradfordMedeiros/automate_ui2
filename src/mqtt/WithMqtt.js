@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'mqtt';
 import { fromJS, Map } from 'immutable';
 
-const MQTT_URL = 'http://localhost:4000';
+const MQTT_URL = 'http://fe80::18c9:81ff:fe28:cd1a:4000';
 
 class WithMqtt extends Component {
   constructor(props) {
