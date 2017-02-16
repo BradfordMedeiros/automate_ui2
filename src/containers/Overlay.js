@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Overlay from '../../components/overlay/Overlay';
+import Overlay from '../components/overlay/Overlay';
 
 const mapStateToProps = (state) => ({
   isExpanded: state.getIn(['reducer', 'menuExpanded']),

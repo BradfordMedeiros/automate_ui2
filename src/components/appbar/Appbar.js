@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Toggle, Drawer, MenuItem } from 'material-ui';
+import { Toggle, Drawer, MenuItem,  Subheader, Divider } from 'material-ui';
 import './style.css';
 
 const styles = {
@@ -36,7 +36,7 @@ class Appbar extends Component {
   };
   render() {
     console.log('appbar updating');
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked, style } = this.props;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, style } = this.props;
     const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     const { height, top, marginTop } = style;
@@ -44,15 +44,21 @@ class Appbar extends Component {
       <div className="titlebar" style={style}>
         <Drawer
           open={this.state.open}
-          onRequestChange={x=> console.log(x)}
           openSecondary
           containerStyle={{
             top: ( height ? height : 0) + (marginTop ? marginTop : 0),
             marginTop,
           }}
         >
-          <MenuItem>Mqtt Slider</MenuItem>
-          <MenuItem>Mqtt Display</MenuItem>
+          <Subheader>Tiles</Subheader>
+          <Divider />
+          { (tileNames === undefined || tileNames.length === 0) ?
+            <MenuItem>No tiles</MenuItem> :
+            tileNames.map(tile => <MenuItem onClick={() => {
+              this.setState({ open: false });
+              onTileClick(tile);
+            }}>{tile}</MenuItem>)
+          }
         </Drawer>
         <div className="toggle">
           <Toggle/>
@@ -80,6 +86,8 @@ Appbar.propTypes = {
   isLocked: PropTypes.bool,
   rotateAddIcon: PropTypes.bool,
   onRotatedAddIconClick: PropTypes.func,
+  tileNames: PropTypes.array,
+  onTileClick: PropTypes.func,
 };
 
 Appbar.defaultProps = {

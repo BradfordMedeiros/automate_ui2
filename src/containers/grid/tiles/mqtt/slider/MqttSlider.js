@@ -26,7 +26,7 @@ const styles = {
 class LightDimmerTile extends Component {
   render() {
     const { savedContent } = this.props;
-    const { topic, min, max } = savedContent;
+    const { topic, min, max } = savedContent ? savedContent : { };
 
 
     return (

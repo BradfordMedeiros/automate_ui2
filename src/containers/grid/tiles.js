@@ -6,6 +6,8 @@ import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mq
 import { connect } from 'react-redux';
 import { saveContent } from './module';
 
+export const tileNames = ['mqtt', 'dimmer', 'test'];
+
 class Tile extends Component {
   render() {
     const { tileName, ...otherProps } = this.props;
@@ -70,7 +72,6 @@ const Wrapper = connect(mapStateToProps, mapDispatchToProps)(TileWrapper);
 
 export const tileNameToTile = {
   get: (tileName, tileKey) => {
-    console.log('tilekey is: ', tileKey);
     return (
       <Wrapper
         tileKey={tileKey}>
@@ -86,7 +87,6 @@ export const tileNameToTile = {
 
 export const tileNameToContent = {
   get: (tileName, tileKey) => {
-    console.log('tikkkkekey is-:  ', tileKey);
     return (
       <Wrapper tileKey={tileKey}>
         {({savedContent, saveContent}) => {

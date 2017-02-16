@@ -10,7 +10,7 @@ import './style.css';
 
 class Grid extends Component {
   render() {
-    const { layout, tileNames, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
+    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
 
     window.t = tileKeyToTileName;
     const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
@@ -60,7 +60,6 @@ class Grid extends Component {
 
 Grid.PropTypes = {
   onGridItemClick: PropTypes.func,
-  tileNames:PropTypes.object.isRequired,
   tileNameToTile: PropTypes.object.isRequired,
   tileKeyToTileName: PropTypes.object.isRequired,
   onLayoutChange: PropTypes.func,

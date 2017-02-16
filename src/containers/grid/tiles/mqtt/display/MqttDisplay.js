@@ -6,9 +6,7 @@ import WithMqtt from '../../../../../mqtt/WithMqtt';
 
 class MqttTile extends Component {
   render() {
-    const { temperature, savedContent } = this.props;
-    const color = temperature > 50 ? 'rgb(220,40,40)': 'rgb(40,40,220)';
-
+    const {  savedContent } = this.props;
     const content = savedContent ? List([savedContent]) : List();
     return (
         <div className="tiles_thermometer">
@@ -16,7 +14,7 @@ class MqttTile extends Component {
             {
               (stuff) => {
                 const value = stuff[savedContent];
-                return <div className="number" style={{color: color}}>{value}</div>
+                return <div className="number" style={{color: 'blue'}}>{value}</div>
               }
             }
           </WithMqtt>
@@ -47,7 +45,7 @@ class MqttOverlay extends Component {
     };
   }
   render() {
-    const { temperature, saveContent, savedContent } = this.props;
+    const { saveContent, savedContent } = this.props;
     console.log('in overlay ', saveContent);
     return (
       <div className="temp" >
@@ -61,8 +59,6 @@ class MqttOverlay extends Component {
         />
         <div className="mqtt_display" >saved content:  {savedContent}</div>
         <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
-
-
       </div>
     );
   }

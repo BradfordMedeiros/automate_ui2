@@ -4,7 +4,7 @@ import { fromJS, List, Map } from 'immutable';
 import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/grid/Grid';
-import {  container as SelectionOverlay } from './containers/overlay/Overlay';
+import {  container as SelectionOverlay } from './containers/Overlay';
 import Menu from './components/menu/menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
@@ -32,7 +32,7 @@ class Layout extends Component {
       <div style={appStyle}>
         <Desktop>
           <Menu buttonLabels={fromJS(['home','creation','store','disconnect'])} style={desktopStyles.menu} />
-          <Appbar style={desktopStyles.appbar} />
+          <Appbar tileNames={tileNames} style={desktopStyles.appbar} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
           <SelectionOverlay left={desktopStyles.overlay.left} right={desktopStyles.overlay.right} />
           <Footer />
@@ -40,7 +40,7 @@ class Layout extends Component {
 
         <Mobile>
           <MinimalMenu buttonIcons={List([<ActionHome/>, <ContentCreate/>, <ActionStore/>, <ActionSettingsPower/> ])} style={mobileStyles.minMenu} />
-          <Appbar style={mobileStyles.appbar} />
+          <Appbar tileNames={tileNames} style={mobileStyles.appbar} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />

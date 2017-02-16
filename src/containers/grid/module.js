@@ -70,8 +70,6 @@ export const addTile = tileName => {
 
 
 const reducer = (state = initialState, action) => {
-  window.add= addTile;
-  window.s  = state;
   switch(action.type){
     case 'expandMenu': {
       return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
@@ -93,7 +91,6 @@ const reducer = (state = initialState, action) => {
       return state.set('layout', action.layout);
     }
     case 'addTile': {
-      console.log('add tile called')
       const tile = getNextTile(state.get('layout'));
       const layout = state.get('layout').push(tile);
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, action.tileName);

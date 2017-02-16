@@ -1,6 +1,6 @@
 import Appbar from '../components/appbar/Appbar';
 import { connect } from 'react-redux';
-import { expandMenu, lock } from './grid/module.js';
+import { expandMenu, lock, addTile } from './grid/module.js';
 
 const mapStateToProps = (state) => ({
   rotateAddIcon: state.getIn(['reducer','menuExpanded']),
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   onRotatedAddIconClick: () =>  dispatch(expandMenu(false)),
   lockGrid: lockState => dispatch(lock(lockState)),
+  onTileClick: tileName =>  dispatch(addTile(tileName)),
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(Appbar);
