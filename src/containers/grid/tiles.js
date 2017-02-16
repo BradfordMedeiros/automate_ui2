@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { List, Map } from 'immutable';
-import { tile as TemperatureTile, overlay as TemperatureOverlay } from './tiles/temperature/Temperature';
-import { tile as DimmerTile, overlay as DimmerOverlay } from './tiles/lightdimmer/LightDimmer';
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
 import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
 

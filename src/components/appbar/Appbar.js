@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Toggle, Drawer, MenuItem } from 'material-ui';
 import './style.css';
 
 const styles = {
@@ -19,6 +20,12 @@ const unlockStyle = {
 };
 
 class Appbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    }
+  }
   toggleLock = () => {
     const { isLocked, lockGrid } = this.props;
     if (isLocked){
@@ -31,12 +38,32 @@ class Appbar extends Component {
     console.log('appbar updating');
     const { rotateAddIcon, onRotatedAddIconClick, isLocked, style } = this.props;
     const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
+
+    const { height, top, marginTop } = style;
     return (
       <div className="titlebar" style={style}>
-
+        <Drawer
+          open={this.state.open}
+          onRequestChange={x=> console.log(x)}
+          openSecondary
+          containerStyle={{
+            top: ( height ? height : 0) + (marginTop ? marginTop : 0),
+            marginTop,
+          }}
+        >
+          <MenuItem>Mqtt Slider</MenuItem>
+          <MenuItem>Mqtt Display</MenuItem>
+        </Drawer>
+        <div className="toggle">
+          <Toggle/>
+        </div>
          <div className="xIcon" style={xStyle} onClick={() => {
           if (rotateAddIcon){
             onRotatedAddIconClick();
+          }else{
+            this.setState({
+              open: !this.state.open,
+            })
           }
         }}>&times;</div>
 

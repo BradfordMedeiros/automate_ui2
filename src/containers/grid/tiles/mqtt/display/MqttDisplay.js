@@ -12,7 +12,6 @@ class MqttTile extends Component {
     const content = savedContent ? List([savedContent]) : List();
     return (
         <div className="tiles_thermometer">
-          <div className="symbol">&#127777;</div>
           <WithMqtt topics={content} >
             {
               (stuff) => {
