@@ -2,10 +2,10 @@
 import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
-const url = 'http://localhost:5000/topics/10';
-const request = async () => {
+const url = 'http://localhost:5000/topics/';
+const request = async (topic) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch((url + topic), {
       method: 'GET',
       mode: 'cors',
     });
@@ -33,7 +33,8 @@ class WithMongo extends Component {
     };
   }
   componentWillMount() {
-    request().then( response => {
+    const { topic } = this.props;
+    request(topic).then( response => {
       this.setState({
         data: response,
       })
@@ -42,15 +43,14 @@ class WithMongo extends Component {
     });
   }
   render() {
-    const { Child, topic  } = this.props;
+    const { children } = this.props;
 
-    return (this.state.data === null || Child === undefined) ? null : <Child data={this.state.data} error={this.state.error} />
+    return (this.state.data && children) ? children({ data: this.state.data }) : null;
   }
 }
 
 WithMongo.propTypes = {
   topic: PropTypes.string,
-  Child: PropTypes.node,
 };
 
 export default WithMongo;

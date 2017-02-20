@@ -6,8 +6,12 @@ class Mongo extends Component {
   render() {
     return (
         <WithMongo
-          Child={<div>hello</div>}
-        />
+          topic="blue"
+        >
+          {
+            ({ data }) =>  <div>{data.map(item => <div>topic: {item.topic}  message: {item.message} </div>)}</div>
+          }
+        </WithMongo>
     )
   }
 }
