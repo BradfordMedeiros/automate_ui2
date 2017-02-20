@@ -5,7 +5,7 @@ const savedContent = fromJS({"menuExpanded":false,"addGridExpanded":false,"isLoc
 const initialState = savedContent || fromJS({
   menuExpanded: false,
   addGridExpanded: false,
-  isLocked: false,
+  isLocked: true,
   content: undefined,
   layout: [],
   tileKeyToTileName: {},
@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
       return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
     }
     case 'lockGrid': {
-      return state.set('isLocked', action.isLocked);  // making it so you cannot lock grid for now
+      return state.set('isLocked', action.isLocked);
     }
     case 'expandAddGrid': {
       return state.set('addGridExpanded', action.isExpanded);

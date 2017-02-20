@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => ({
   onRotatedAddIconClick: () =>  dispatch(expandMenu(false)),
   lockGrid: lockState => dispatch(lock(lockState)),
   onTileClick: tileName =>  dispatch(addTile(tileName)),
+  onToggle: (x, elementIsToggled) => dispatch(lock(!elementIsToggled)),
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(Appbar);

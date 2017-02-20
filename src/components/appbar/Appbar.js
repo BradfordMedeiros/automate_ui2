@@ -35,8 +35,7 @@ class Appbar extends Component {
     }
   };
   render() {
-    console.log('appbar updating');
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, style } = this.props;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, onToggle, style } = this.props;
     const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     const { height, top, marginTop } = style;
@@ -61,7 +60,7 @@ class Appbar extends Component {
           }
         </Drawer>
         <div className="toggle">
-          <Toggle/>
+          <Toggle onToggle={onToggle} />
         </div>
          <div className="xIcon" style={xStyle} onClick={() => {
           if (rotateAddIcon){
@@ -88,6 +87,7 @@ Appbar.propTypes = {
   onRotatedAddIconClick: PropTypes.func,
   tileNames: PropTypes.array,
   onTileClick: PropTypes.func,
+  onToggle: PropTypes.func,
 };
 
 Appbar.defaultProps = {
