@@ -6,7 +6,10 @@ import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mq
 import { connect } from 'react-redux';
 import { saveContent } from './module';
 
-export const tileNames = ['mqtt', 'dimmer', 'test'];
+import Mongo from './tiles/mongoTest';
+
+
+export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo'];
 
 class Tile extends Component {
   render() {
@@ -20,6 +23,9 @@ class Tile extends Component {
       }
       case 'test': {
         return <div>hello world</div>
+      }
+      case 'mongo': {
+        return <Mongo />
       }
       default :{
         return <div>invalid tile</div>;
@@ -40,6 +46,9 @@ class TileOverlay extends Component {
       }
       case 'test': {
         return <div>test overlay</div>
+      }
+      case 'mongo': {
+        return <div>test mongo</div>
       }
       default :{
         return <div>invalid tile</div>;

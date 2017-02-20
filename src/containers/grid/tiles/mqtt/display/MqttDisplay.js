@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { TextField, RaisedButton } from 'material-ui';
 import { List } from 'immutable';
 import './style.css';
-import WithMqtt from '../../../../../mqtt/WithMqtt';
+import WithMqtt from '../../../../../data/WithMqtt';
 
 class MqttTile extends Component {
   render() {

@@ -14,8 +14,7 @@ import Helmet from 'react-helmet';
 import logger from './util/logger';
 import reducer from './containers/grid/module';
 
-import WithMqtt from './mqtt/WithMqtt';
-
+import WithMongo from './data/WithMongo';
 
 const reducers = combineReducers({ reducer });
 const store = createStore(reducers, applyMiddleware(logger()));
@@ -25,7 +24,10 @@ const App = () => (
     <Helmet title="Automate" />
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Provider store={store} >
-        <Layout />
+        <div>
+          <Layout />
+          <WithMongo/>
+        </div>
       </Provider>
     </MuiThemeProvider>
   </div>

@@ -5,7 +5,7 @@ import { TextField, RaisedButton } from 'material-ui';
 
 import { DeviceBrightnessHigh, DeviceBrightnessLow } from 'material-ui/svg-icons';
 import './style.css';
-import WithMqtt from '../../../../../mqtt/WithMqtt';
+import WithMqtt from '../../../../../data/WithMqtt';
 
 const styles = {
   root: {
