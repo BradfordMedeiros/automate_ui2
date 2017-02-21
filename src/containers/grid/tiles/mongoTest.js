@@ -1,15 +1,33 @@
-
 import React, { Component } from 'react';
+import  { Line }  from 'react-chartjs-2'
 import WithMongo from '../../../data/WithMongo';
 
 class Mongo extends Component {
   render() {
     return (
         <WithMongo
-          topic="blue"
+          topic="temperature"
+          refresh={true}
         >
           {
-            ({ data }) =>  <div>{data.map(item => <div>topic: {item.topic}  message: {item.message} </div>)}</div>
+            ({ data }) =>  {
+
+              const topic = data[0].topic;
+              const dataToRender = data.map(item => Number(item.message));
+
+              const theData = {
+                labels: data.map((item, index) => index),
+                  datasets: [
+                    {
+                      label: topic,
+                      data: dataToRender,
+                      backgroundColor: "rgba(153,255,51,0.4)"
+                    }]
+              };
+
+              const a = <div>{data.map(item => <div>topic: {item.topic}  message: {item.message} </div>)}</div>;
+              return <Line data={theData} />
+            }
           }
         </WithMongo>
     )

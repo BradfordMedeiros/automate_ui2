@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 const url = 'http://localhost:5000/topics/';
 const request = async (topic) => {
   try {
-    const response = await fetch((url + topic), {
+    const response = await fetch((url + topic +  '/50'), {
       method: 'GET',
       mode: 'cors',
     });
@@ -33,14 +33,30 @@ class WithMongo extends Component {
     };
   }
   componentWillMount() {
-    const { topic } = this.props;
-    request(topic).then( response => {
-      this.setState({
-        data: response,
-      })
-    }).catch({
-      error: true,
-    });
+    const { topic, refresh } = this.props;
+    if (refresh){
+      setInterval(() => {
+      request(topic).then( response => {
+        console.log('refreshing');
+        response.reverse();
+        this.setState({
+          data: response,
+        })
+        }).catch({
+          error: true,
+        })
+      }, 1000);
+    }else{
+      request(topic).then( response => {
+        response.reverse()
+        this.setState({
+          data: response,
+        })
+      }).catch({
+        error: true,
+      });
+    }
+
   }
   render() {
     const { children } = this.props;
