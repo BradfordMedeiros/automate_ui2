@@ -16,7 +16,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  window.d = dispatch;
   return ({
     onGridItemClick: (tileName, tileKey) =>  {
       console.log('tilename is : ', tileName);

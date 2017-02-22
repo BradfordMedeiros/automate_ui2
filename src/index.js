@@ -5,6 +5,8 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+
 import { combineReducers } from 'redux-immutable';
 import { fromJS, List } from 'immutable';
 
@@ -14,10 +16,9 @@ import Helmet from 'react-helmet';
 import logger from './util/logger';
 import reducer from './containers/grid/module';
 
-import WithMongo from './data/WithMongo';
+const reducers = combineReducers({ reducer  });
+const store = createStore(reducers, applyMiddleware(logger(), thunk));
 
-const reducers = combineReducers({ reducer });
-const store = createStore(reducers, applyMiddleware(logger()));
 
 const App = () => (
   <div>
@@ -26,7 +27,6 @@ const App = () => (
       <Provider store={store} >
         <div>
           <Layout />
-          <WithMongo/>
         </div>
       </Provider>
     </MuiThemeProvider>

@@ -1,8 +1,7 @@
 import { fromJS } from 'immutable';
 
-const savedContent = fromJS({"menuExpanded":false,"addGridExpanded":false,"isLocked":true,"layout":[{"w":8,"h":4,"x":15,"y":4,"i":"0","moved":false,"static":false},{"w":8,"h":4,"x":15,"y":0,"i":"1","moved":false,"static":false},{"w":3,"h":22,"x":7,"y":0,"i":"2","moved":false,"static":false},{"w":3,"h":22,"x":4,"y":0,"i":"3","moved":false,"static":false},{"w":3,"h":22,"x":1,"y":0,"i":"4","moved":false,"static":false}],"tileKeyToTileName":{"0":"mqtt","1":"mqtt","2":"dimmer","3":"dimmer","4":"dimmer"},"savedTileContent":{"0":"humidity","1":"sun","2":"humidity","3":"sun","4":"sun"},"content":{"key":null,"ref":null,"props":{"tileName":"dimmer","tileKey":"4"},"_owner":null,"_store":{}}});
 
-const initialState = savedContent || fromJS({
+const initialState =  fromJS({
   menuExpanded: false,
   addGridExpanded: false,
   isLocked: true,
