@@ -24,8 +24,6 @@ class Mongo extends Component {
                       backgroundColor: "rgba(153,255,51,0.4)"
                     }]
               };
-
-              const a = <div>{data.map(item => <div>topic: {item.topic}  message: {item.message} </div>)}</div>;
               return <Line data={theData} />
             }
           }
