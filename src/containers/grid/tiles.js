@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { List, Map } from 'immutable';
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
 import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
-
+import { tile as MqttButtonTile, overlay as  MqttButtonOverlay } from './tiles/mqtt/button/button';
 
 import { connect } from 'react-redux';
 import { saveContent } from './module';
@@ -10,7 +10,7 @@ import { saveContent } from './module';
 import Mongo from './tiles/mongo/line/mongoTile';
 import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';;
 
-export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo'];
+export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button'];
 
 class Tile extends Component {
   render() {
@@ -27,6 +27,9 @@ class Tile extends Component {
       }
       case 'test': {
         return <div>hello world</div>
+      }
+      case 'button': {
+        return <MqttButtonTile {...otherProps} />
       }
       default :{
         return <div>invalid tile</div>;
@@ -50,6 +53,9 @@ class TileOverlay extends Component {
       }
       case 'test': {
         return <div>test overlay</div>
+      }
+      case 'button': {
+        return <MqttButtonOverlay {...otherProps} />
       }
       default :{
         return <div>invalid tile</div>;
