@@ -1,16 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { List, Map } from 'immutable';
+import { connect } from 'react-redux';
+import { saveContent } from './module';
+
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
 import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
 import { tile as MqttButtonTile, overlay as  MqttButtonOverlay } from './tiles/mqtt/button/button';
 
-import { connect } from 'react-redux';
-import { saveContent } from './module';
-
 import Mongo from './tiles/mongo/line/mongoTile';
-import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';;
+import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';
 
-export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button'];
+import Conditions from './tiles/Conditions';
+
+
+
+export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'conditions'];
 
 class Tile extends Component {
   render() {
@@ -31,6 +34,10 @@ class Tile extends Component {
       case 'button': {
         return <MqttButtonTile {...otherProps} />
       }
+      case 'conditions': {
+        return <Conditions />
+      }
+
       default :{
         return <div>invalid tile</div>;
       }
@@ -56,6 +63,9 @@ class TileOverlay extends Component {
       }
       case 'button': {
         return <MqttButtonOverlay {...otherProps} />
+      }
+      case 'conditions' :{
+        return <div>no overlay available</div>
       }
       default :{
         return <div>invalid tile</div>;
