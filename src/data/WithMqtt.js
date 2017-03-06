@@ -54,5 +54,9 @@ WithMqtt.propTypes = {
   children: PropTypes.func,
 };
 
+WithMqtt.defaultProps = {
+  topics: fromJS({}),
+}
+
 export default WithMqtt;
 

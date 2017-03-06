@@ -9,8 +9,8 @@ import { tile as MqttButtonTile, overlay as  MqttButtonOverlay } from './tiles/m
 import Mongo from './tiles/mongo/line/mongoTile';
 import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';
 
-import Conditions from './tiles/Conditions';
-
+import Conditions from './tiles/system/conditions/Conditions';
+import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
 
 export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'conditions'];
@@ -65,7 +65,7 @@ class TileOverlay extends Component {
         return <MqttButtonOverlay {...otherProps} />
       }
       case 'conditions' :{
-        return <div>no overlay available</div>
+        return <ConditionsOverlay />
       }
       default :{
         return <div>invalid tile</div>;

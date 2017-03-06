@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const CONDITIONS_URL = AUTOMATE_CORE_URL + '/conditions';
-
+const REFRESH_RATE = 1000;
 
 class WithConditions extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class WithConditions extends Component {
     this.state = {
       hasData: false,
     }
+    this.handle = undefined;
   }
   getData = async () => {
     try {
@@ -32,7 +33,10 @@ class WithConditions extends Component {
   }
 
   componentWillMount() {
-    this.getData();
+    this.handle = setInterval(this.getData, REFRESH_RATE);
+  }
+  componentWillUnmount() {
+    clearInterval(this.handle);
   }
 
   render() {
