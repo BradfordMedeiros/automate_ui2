@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {List, ListItem} from 'material-ui/List';
+import {List, ListItem, Subheader, Divider, IconButton} from 'material-ui';
+import { AvPlayArrow, AvPause } from 'material-ui/svg-icons';
 import WithConditions from '../../../../../data/WithConditions';
 import WithMqtt from '../../../../../data/WithMqtt';
+import './style.css';
 
 const createMqttTopic = condition_name => `/automate_sys/req/condtions/${condition_name}`;
 
@@ -23,11 +25,18 @@ class Conditions extends Component {
                 {conditions.map(
                   (condition, index) =>
                     <ListItem
-                      onClick={() => this.handleOnTouchTap(publish, condition.name, condition.state)}
+                      primaryTogglesNestedList={false}
+                      style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                       key={index}
+                      primaryText={<Subheader>{condition.name}</Subheader>}
                     >
-                      <div>name: {condition.name}</div>
-                      <div>enabled: { condition.state }</div>
+                      <div className="play_toggle">
+                        <IconButton
+                          onClick={() => this.handleOnTouchTap(publish, condition.name, condition.state)}
+                        >
+                          {condition.state === 'active' ? <AvPause/> : <AvPlayArrow/>}
+                        </IconButton>
+                      </div>
                     </ListItem>
                 )}
               </List>

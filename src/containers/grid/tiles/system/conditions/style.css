@@ -10,3 +10,12 @@
     padding: 40%;
 }
 
+
+
+.play_toggle{
+    float: left;
+    position: fixed;
+    right: 30px;
+    width: 50px;
+    box-shadow: 0px 0px 10px 1px #393939;
+}
