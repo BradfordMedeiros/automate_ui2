@@ -11,7 +11,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   devtool: 'eval-source-map',
   output: {
-    filename: 'bundle.js'
+    filename: 'build/bundle.js'
   },
   module: {
     loaders: [
@@ -43,15 +43,7 @@ module.exports = {
     root: path.join(__dirname, 'node_modules'),
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
-};
-
-/*
-new CleanPlugin('build/'),
-    new Dotenv({ path: './.env', safe: true }),
+    new CleanPlugin('build/'),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -63,4 +55,6 @@ new CleanPlugin('build/'),
       threshold: 10240,
       minRatio: 0.8,
     }),
-*/
+  ],
+};
+
