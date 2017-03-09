@@ -5,7 +5,7 @@ import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/grid/Grid';
 import {  container as SelectionOverlay } from './containers/Overlay';
-import Menu from './components/menu/menu';
+import { container as Menu } from  './containers/menu/Menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
@@ -31,7 +31,7 @@ class Layout extends Component {
     return (
       <div style={appStyle}>
         <Desktop>
-          <Menu buttonLabels={fromJS(['home','creation','store','disconnect'])} style={desktopStyles.menu} />
+          <Menu style={desktopStyles.menu} />
           <Appbar tileNames={tileNames} style={desktopStyles.appbar} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
           <SelectionOverlay left={desktopStyles.overlay.left} right={desktopStyles.overlay.right} />

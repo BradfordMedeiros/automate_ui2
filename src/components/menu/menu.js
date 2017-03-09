@@ -9,17 +9,26 @@ const liStyle = {
 };
 
 class Menu extends Component {
+  renderItem = (item, index) => {
+   if (typeof(item) === 'string'){
+     return (
+       <ListItem key={index} style={liStyle}>
+         <div className="liname">{item}</div>
+       </ListItem>
+     )
+   }
+   return (
+     <ListItem key={index} style={liStyle} onClick={item.onClick} >
+       <div className="liname">{item.label}</div>
+     </ListItem>
+   )
+  }
   render() {
     const { buttonLabels, style } = this.props;
     return (
       <div style={style} className="menu" >
         <List>
-          {buttonLabels.map(
-            (label,index) =>
-              <ListItem key={index} style={liStyle}>
-                <div className="liname">{label}</div>
-              </ListItem>
-          )}
+          {buttonLabels.map(this.renderItem)}
         </List>
       </div>
     );
@@ -27,7 +36,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  buttonLabels: PropTypes.object,
+  buttonLabels: PropTypes.array,
   style: PropTypes.object,
 };
 
