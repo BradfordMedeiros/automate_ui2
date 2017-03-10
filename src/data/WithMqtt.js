@@ -4,6 +4,10 @@ import { fromJS, Map } from 'immutable';
 
 const MQTT_URL = 'http://127.0.0.1:4000';
 
+const DEFAULT_MQTT_PUBLISH_OPTIONS = {
+  retain: true,
+};
+
 class WithMqtt extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +15,7 @@ class WithMqtt extends Component {
       client: connect(MQTT_URL),
       topics: fromJS({})
     }
+    window.c = this.state.client;
   }
   componentWillReceiveProps(props) {
     if (!props.topics.equals(this.props.topics)){
@@ -45,7 +50,9 @@ class WithMqtt extends Component {
       return theMap;
     } , {});
 
-    return children ? children(topicProps, this.state.client.publish.bind(this.state.client)) : null;
+    const publish = (topic, message, options, callback) => this.state.client.publish(
+      topic, message, (options ? options: DEFAULT_MQTT_PUBLISH_OPTIONS), callback);
+    return children ? children(topicProps, publish) : null;
   }
 }
 
