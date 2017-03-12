@@ -13,8 +13,9 @@ import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
 import States from './tiles/system/states/States';
+import Actions from './tiles/system/actions/Actions';
 
-export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'states', 'conditions'];
+export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'states', 'actions', 'conditions'];
 
 class Tile extends Component {
   render() {
@@ -40,6 +41,9 @@ class Tile extends Component {
       }
       case 'states': {
         return <States />
+      }
+      case 'actions': {
+        return <Actions />
       }
       default :{
         return <div>invalid tile</div>;
@@ -72,6 +76,9 @@ class TileOverlay extends Component {
       }
       case 'states': {
         return <div>placeholder for states</div>
+      }
+      case 'actions': {
+        return <div>placeholder for actions</div>
       }
       default :{
         return <div>invalid tile</div>;
