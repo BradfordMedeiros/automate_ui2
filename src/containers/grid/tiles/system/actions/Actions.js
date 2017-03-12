@@ -14,13 +14,14 @@ class Actions extends Component {
         </div>
         <div className="system_actions_inner">
           <WithActions>
-            {({ actions }) => (
+            {({ actions, executeAction }) => (
               <List>
                 {actions.map((action,index) =>
                   <ListItem
                     primaryTogglesNestedList={false}
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                     key={index}
+                    onClick={() => executeAction(action.name)}
                     primaryText={<Subheader>{action.name}</Subheader>}
                   >
                   </ListItem>

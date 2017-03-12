@@ -2,8 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const CONDITIONS_URL = AUTOMATE_CORE_URL + '/actions';
+const ACTIONS_URL = AUTOMATE_CORE_URL + '/actions';
 const REFRESH_RATE = 1000;
+
+
+const executeAction = actionName => {
+  fetch(`${ACTIONS_URL}/${actionName}`, {
+    method: 'POST',
+  });
+};
 
 class WithStates extends Component {
   constructor(props) {
@@ -15,7 +22,7 @@ class WithStates extends Component {
   }
   getData = async () => {
     try {
-      const response = await fetch(CONDITIONS_URL, {
+      const response = await fetch(ACTIONS_URL, {
         mode: "cors",
         method: "GET",
         headers: {
@@ -41,8 +48,8 @@ class WithStates extends Component {
 
   render() {
     const { children } = this.props;
-    const { hasData, actions} = this.state;
-    return (hasData && children) ? children({ actions }) : null;
+    const { hasData, actions } = this.state;
+    return (hasData && children) ? children({ actions, executeAction }) : null;
   }
 }
 
