@@ -16,6 +16,8 @@ import Helmet from 'react-helmet';
 import logger from './util/logger';
 import reducer from './containers/grid/module';
 
+import SSH from './ssh/ssh';
+
 const reducers = combineReducers({ reducer  });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
 

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
 import { setContent, expandMenu } from './grid/module';
 
+import SSH from '../ssh/ssh';
+
 const MenuContainer = ({ setSSHContent, ...otherProps}) => (
   <Menu {...otherProps}  buttonLabels={
     [
@@ -20,7 +22,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   setSSHContent: () => {
-    dispatch(setContent(<div>hello world</div>))
+    dispatch(setContent(<SSH />))
     dispatch(expandMenu(true));
   }
 });
