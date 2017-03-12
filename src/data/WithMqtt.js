@@ -32,7 +32,7 @@ class WithMqtt extends Component {
     this.state.client.subscribe(this.props.topics.toJS());
     this.state.client.on('message', (topic, message) => {
       try{
-        const parsedMessage = JSON.parse(message);
+        const parsedMessage = message.toString();
         const newTopic = this.state.topics.set(topic, parsedMessage);
         this.setState({ topics: newTopic });
       }catch(error){
