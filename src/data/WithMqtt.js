@@ -15,7 +15,6 @@ class WithMqtt extends Component {
       client: connect(MQTT_URL),
       topics: fromJS({})
     }
-    window.c = this.state.client;
   }
   componentWillReceiveProps(props) {
     if (!props.topics.equals(this.props.topics)){

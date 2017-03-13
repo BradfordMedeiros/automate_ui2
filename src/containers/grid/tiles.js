@@ -13,6 +13,8 @@ import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
 import States from './tiles/system/states/States';
+import StatesOverlay from './tiles/system/states/StatesOverlay';
+
 import Actions from './tiles/system/actions/Actions';
 
 export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'states', 'actions', 'conditions'];
@@ -75,7 +77,7 @@ class TileOverlay extends Component {
         return <ConditionsOverlay />
       }
       case 'states': {
-        return <div>placeholder for states</div>
+        return <StatesOverlay />
       }
       case 'actions': {
         return <div>placeholder for actions</div>
@@ -129,7 +131,6 @@ export const tileNameToContent = {
     return (
       <Wrapper tileKey={tileKey}>
         {({savedContent, saveContent}) => {
-          console.log(saveContent);
           return (
             <TileOverlay
               saveContent={saveContent}
