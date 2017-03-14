@@ -11,13 +11,6 @@ const createConditionRoute = conditionName => {
 //@todo major technical debt:
 // do this without calling eval
 const submitCondition = ({ conditionName, actions, states, evalLogic }) => {
-  console.error('submitting condition');
-  console.error('-------------');
-  console.error('condition name : ', conditionName);
-  console.error('actions : ', actions);
-  console.error('states : ', states);
-  console.error('eval logic ', evalLogic);
-
   const newCondition = { };
   newCondition.state = eval(states);
   newCondition.action = eval(actions);
@@ -51,8 +44,6 @@ class ConditionOverlay extends Component {
     })
   };
   submitDataToServer = () => {
-    console.error('submitting data');
-    console.error(this.state);
     const newRoute = createConditionRoute(this.state.conditionName);
     submitCondition(this.state);
   };
