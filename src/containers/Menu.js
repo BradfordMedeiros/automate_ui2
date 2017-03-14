@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
-import { setContent, expandMenu } from './grid/module';
+import { setContent, expandMenu, setGridIsOpen } from './grid/module';
 
 import SSH from '../ssh/ssh';
 
@@ -22,8 +22,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   setSSHContent: () => {
-    dispatch(setContent(<SSH />))
-    dispatch(expandMenu(true));
+    //dispatch(setContent(<SSH />))
+    //dispatch(expandMenu(true));
+    dispatch(setGridIsOpen());
   }
 });
 

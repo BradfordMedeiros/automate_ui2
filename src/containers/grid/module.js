@@ -9,7 +9,7 @@ const initialState =  fromJS({
   layout: [],
   tileKeyToTileName: {},
   savedTileContent: {}, //maps key to content
-
+  gridIsOpen: false,
 });
 
 const getNextTile = layout => {
@@ -67,6 +67,13 @@ export const addTile = tileName => {
   });
 };
 
+export const setGridIsOpen = isOpen => {
+  return ({
+    type : 'setGridIsOpen',
+    isOpen,
+  });
+};
+
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
@@ -94,6 +101,13 @@ const reducer = (state = initialState, action) => {
       const layout = state.get('layout').push(tile);
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, action.tileName);
       return state.set('layout', layout).set('tileKeyToTileName', tileKeyToTileName);
+    }
+    case 'setGridIsOpen': {
+      if (action.isOpen === undefined){
+        return state.set('gridIsOpen', !state.get('gridIsOpen'));
+      }else{
+        return state.set('gridIsOpen', action.isOpen);
+      }
     }
     default: {
       return state;

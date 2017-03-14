@@ -13,6 +13,31 @@
 }
 
 
+.grid_background {
+    background: black;
+    overflow: auto;
+    border: 3px solid rgb(60,60,60);
+    padding-left: 1%;
+    padding-right: 1%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+@keyframes grid_slide {
+    to {
+        top: 90vh;
+    }
+}
+
+@keyframes grid_slide_out {
+    from {
+        top: 90vh;
+    }
+}
 
 @keyframes gridinedit {
     from {

@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   isEditable: !state.getIn(['reducer','isLocked']),
   layout: state.getIn(['reducer', 'layout']),
   tileKeyToTileName: state.getIn(['reducer', 'tileKeyToTileName']),
+  isOpen: state.getIn(['reducer', 'gridIsOpen']),
 });
 
 const mapDispatchToProps = dispatch => {

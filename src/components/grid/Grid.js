@@ -7,18 +7,22 @@ import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import './style.css';
 
+import SSH from '../../ssh/ssh';
 
 class Grid extends Component {
   render() {
-    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
+    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style, isOpen } = this.props;
 
-    window.t = tileKeyToTileName;
-    const gridStyle = isEditable ? { animation: 'gridinedit 0.1s linear forwards' } :  { animation: 'gridoutedit 0.1s ease-in forwards' };
+    let gridStyle = isOpen ? { animation: 'grid_slide 0.2s linear forwards' } :  { animation: 'grid_slide_out 0.1s linear forwards' };
 
     const jsLayout = layout.toJS();
     const tileKeys = jsLayout.map(item => item.i);
+
     return (
-      <div className="grid" style={style}>
+      <div>
+        <div className="grid_background" style={style}><SSH /></div>
+
+        <div className="grid" style={{...style, ...gridStyle }}>
       <AutoSizer>
         {
           ({ width, height }) => (
@@ -54,6 +58,7 @@ class Grid extends Component {
         }
       </AutoSizer>
       </div>
+      </div>
     )
   }
 }
@@ -65,6 +70,7 @@ Grid.PropTypes = {
   onLayoutChange: PropTypes.func,
   layout: PropTypes.object.isRequired,
   style: PropTypes.object,
+  opened: PropTypes.bool,
 };
 
 export default Grid;
