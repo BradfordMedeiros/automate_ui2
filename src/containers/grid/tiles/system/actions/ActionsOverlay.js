@@ -3,7 +3,7 @@ import { FlatButton, TextField, Dialog } from 'material-ui';
 import fetch from 'isomorphic-fetch';
 import './style.css';
 
-const ENDPOINT = 'http://localhost:9000/states/modify';
+const ENDPOINT = 'http://localhost:9000/actions/modify/';
 const createStateRoute = stateName => {
   return ENDPOINT + stateName;
 };
@@ -27,7 +27,7 @@ const createStateFromSimpleFunction = (evalLogicString) => {
 };
 
 const submitState = ({ stateName, evalLogic }) => {
-  const stateEval =  createStateFromSimpleFunction(evalLogic);
+  const actionEval =  createStateFromSimpleFunction(evalLogic);
 
   fetch(createStateRoute(stateName), {
     headers: new Headers({
@@ -35,13 +35,13 @@ const submitState = ({ stateName, evalLogic }) => {
       Accept: 'application/json',
     }),
     body: JSON.stringify({
-      stateEval,
+      actionEval,
     }),
     method: 'POST',
   });
 };
 
-class StatesOverlay extends Component {
+class ActionsOverlay extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -106,4 +106,4 @@ class StatesOverlay extends Component {
 }
 
 
-export default StatesOverlay;
+export default ActionsOverlay;
