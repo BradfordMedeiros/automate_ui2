@@ -9,12 +9,12 @@
 
 .number {
     position: absolute;
-    top: 20px;
-    left: 160px;
-    font-size: 600%;
+    top: 20%;
+    left: 30%;
+    font-size: 200%;
     text-shadow: 1px 1px 2px black;
-    box-shadow: 0px 0px 10px 2px rgb(55,55,55) ;
-
+    right: 30%;
+    color: rgb(80,80,80);
 }
 
 

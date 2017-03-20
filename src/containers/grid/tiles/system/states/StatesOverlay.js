@@ -3,7 +3,7 @@ import { FlatButton, TextField, Dialog } from 'material-ui';
 import fetch from 'isomorphic-fetch';
 import './style.css';
 
-const ENDPOINT = 'http://localhost:9000/states/modify';
+const ENDPOINT = 'http://localhost:9000/states/modify/';
 const createStateRoute = stateName => {
   return ENDPOINT + stateName;
 };
@@ -76,7 +76,6 @@ class StatesOverlay extends Component {
           title="Select a name for the condition"
           modal={false}
           open={this.state.showModal}
-          onRequestClose={() => console.log('closing')}
           actions={[
             <FlatButton onClick={() => {
               this.setState({ showModal: false })
