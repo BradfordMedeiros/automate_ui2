@@ -6,8 +6,8 @@ import WithMongo from '../../../../../data/WithMongo';
 
 const options = {
   responsive: true,
-  title:{
-    display:true,
+    title:{
+  display:true,
     text:"Timechart"
   },
   scales: {
@@ -19,7 +19,7 @@ const options = {
         labelString: 'Date'
       }
     }],
-    yAxes: [{
+      yAxes: [{
       display: true,
       scaleLabel: {
         display: true,
@@ -48,8 +48,8 @@ class Mongo extends Component {
             }
             const topic = data[0].topic;
             const dataToRender = data.map(item => ({
-              x: new Date(item.timestamp),
-              y: Number(item.message),
+                x: new Date(item.timestamp),
+                y: Number(item.message),
             }));
 
             const theData = {
@@ -60,6 +60,23 @@ class Mongo extends Component {
                   data: dataToRender,
                   backgroundColor: "rgba(153,255,51,0.4)"
                 }],
+              scales: {
+                xAxes: [{
+                  type: "time",
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                  }
+                }],
+                yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'value'
+                  }
+                }]
+              }
             };
             return <Line options={options} data={theData}/>
           }

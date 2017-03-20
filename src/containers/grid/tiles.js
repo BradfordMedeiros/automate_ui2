@@ -6,7 +6,8 @@ import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/M
 import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
 import { tile as MqttButtonTile, overlay as  MqttButtonOverlay } from './tiles/mqtt/button/button';
 
-import Mongo from './tiles/mongo/line/mongoTile';
+import MongoLine from './tiles/mongo/line/mongoTile';
+import MongoPie from './tiles/mongo/pie/MongoPie';
 import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';
 
 import Conditions from './tiles/system/conditions/Conditions';
@@ -18,7 +19,7 @@ import StatesOverlay from './tiles/system/states/StatesOverlay';
 import Actions from './tiles/system/actions/Actions';
 import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
-export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo', 'button', 'states', 'actions', 'conditions'];
+export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo line', 'mongo pie', 'button', 'states', 'actions', 'conditions'];
 
 class Tile extends Component {
   render() {
@@ -30,8 +31,11 @@ class Tile extends Component {
       case 'dimmer': {
         return <MqttSliderTile {...otherProps} />
       }
-      case 'mongo': {
-        return <Mongo {...otherProps} />
+      case 'mongo line': {
+        return <MongoLine {...otherProps} />
+      }
+      case 'mongo pie': {
+        return <MongoPie {...otherProps} />
       }
       case 'test': {
         return <div>hello world</div>
@@ -65,7 +69,10 @@ class TileOverlay extends Component {
       case 'dimmer': {
         return <MqttSliderOverlay {...otherProps} />
       }
-      case 'mongo': {
+      case 'mongo line': {
+        return <MongoOverlay {...otherProps} />
+      }
+      case 'mongo pie': {
         return <MongoOverlay {...otherProps} />
       }
       case 'test': {
