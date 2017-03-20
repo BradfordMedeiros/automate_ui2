@@ -10,6 +10,7 @@ const MenuContainer = (
     setSSHContent,
     closeSSHContent,
     setRouterOptions,
+    setEventLog,
     closeMenu,
     menuIsExpanded,
     addGridExpanded,
@@ -46,7 +47,7 @@ const MenuContainer = (
             closeMenu();
             closeSSHContent();
           }else{
-            setRouterOptions();
+            setEventLog();
           }
         }
       },

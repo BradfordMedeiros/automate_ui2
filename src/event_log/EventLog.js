@@ -18,34 +18,29 @@ const styles = {
 
 const tableData = [
   {
-    name: 'John Smith',
+    name: 'Light On',
     status: 'Employed',
     selected: true,
-  },
-  {
-    name: 'Randal White',
-    status: 'Unemployed',
-  },
-  {
-    name: 'Stephanie Sanders',
-    status: 'Employed',
-    selected: true,
-  },
-  {
-    name: 'Steve Brown',
-    status: 'Employed',
+    timestamp: (new Date()).toDateString(),
+    message: "Light turned on",
   },
   {
     name: 'Joyce Whitten',
     status: 'Employed',
+    timestamp: (new Date()).toDateString(),
+    message: "Cat fed",
   },
   {
     name: 'Samuel Roberts',
     status: 'Employed',
+    timestamp: (new Date()).toDateString(),
+    message: "Washing machine on",
   },
   {
     name: 'Adam Moore',
     status: 'Employed',
+    timestamp: (new Date()).toDateString(),
+    message: "Washing machine off"
   },
 ];
 
@@ -57,14 +52,14 @@ export default class TableExampleComplex extends React.Component {
     this.state = {
       fixedHeader: true,
       fixedFooter: true,
-      stripedRows: false,
+      stripedRows: true,
       showRowHover: false,
-      selectable: true,
+      selectable: false,
       multiSelectable: false,
       enableSelectAll: false,
       deselectOnClickaway: true,
-      showCheckboxes: true,
-      height: '300px',
+      showCheckboxes: false,
+      height: '100%',
     };
   }
 
@@ -80,7 +75,7 @@ export default class TableExampleComplex extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ background: 'rgb(40,40,40)' }}>
         <Table
           height={this.state.height}
           fixedHeader={this.state.fixedHeader}
@@ -95,13 +90,13 @@ export default class TableExampleComplex extends React.Component {
           >
             <TableRow>
               <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
-                Super Header
+                Events
               </TableHeaderColumn>
             </TableRow>
             <TableRow>
-              <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -110,94 +105,15 @@ export default class TableExampleComplex extends React.Component {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            {tableData.map( (row, index) => (
+            {tableData.concat(tableData).concat(tableData).concat(tableData).concat(tableData).concat(tableData).map( (row, index) => (
               <TableRow key={index} selected={row.selected}>
                 <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
-                <TableRowColumn>{row.status}</TableRowColumn>
+                <TableRowColumn>{row.timestamp}</TableRowColumn>
+                <TableRowColumn>{row.message}</TableRowColumn>
               </TableRow>
             ))}
           </TableBody>
-          <TableFooter
-            adjustForCheckbox={this.state.showCheckboxes}
-          >
-            <TableRow>
-              <TableRowColumn>ID</TableRowColumn>
-              <TableRowColumn>Name</TableRowColumn>
-              <TableRowColumn>Status</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
-                Super Footer
-              </TableRowColumn>
-            </TableRow>
-          </TableFooter>
         </Table>
-
-        <div style={styles.propContainer}>
-          <h3>Table Properties</h3>
-          <TextField
-            floatingLabelText="Table Body Height"
-            defaultValue={this.state.height}
-            onChange={this.handleChange}
-          />
-          <Toggle
-            name="fixedHeader"
-            label="Fixed Header"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.fixedHeader}
-          />
-          <Toggle
-            name="fixedFooter"
-            label="Fixed Footer"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.fixedFooter}
-          />
-          <Toggle
-            name="selectable"
-            label="Selectable"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.selectable}
-          />
-          <Toggle
-            name="multiSelectable"
-            label="Multi-Selectable"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.multiSelectable}
-          />
-          <Toggle
-            name="enableSelectAll"
-            label="Enable Select All"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.enableSelectAll}
-          />
-          <h3 style={styles.propToggleHeader}>TableBody Properties</h3>
-          <Toggle
-            name="deselectOnClickaway"
-            label="Deselect On Clickaway"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.deselectOnClickaway}
-          />
-          <Toggle
-            name="stripedRows"
-            label="Stripe Rows"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.stripedRows}
-          />
-          <Toggle
-            name="showRowHover"
-            label="Show Row Hover"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.showRowHover}
-          />
-          <h3 style={styles.propToggleHeader}>Multiple Properties</h3>
-          <Toggle
-            name="showCheckboxes"
-            label="Show Checkboxes"
-            onToggle={this.handleToggle}
-            defaultToggled={this.state.showCheckboxes}
-          />
-        </div>
       </div>
     );
   }
