@@ -95,8 +95,8 @@ export default class TableExampleComplex extends React.Component {
             </TableRow>
             <TableRow>
               <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
               <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -108,8 +108,8 @@ export default class TableExampleComplex extends React.Component {
             {tableData.concat(tableData).concat(tableData).concat(tableData).concat(tableData).concat(tableData).map( (row, index) => (
               <TableRow key={index} selected={row.selected}>
                 <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.timestamp}</TableRowColumn>
                 <TableRowColumn>{row.message}</TableRowColumn>
+                <TableRowColumn>{row.timestamp}</TableRowColumn>
               </TableRow>
             ))}
           </TableBody>
