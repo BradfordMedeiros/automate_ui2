@@ -29,13 +29,13 @@
 
 @keyframes grid_slide {
     to {
-        top: 90vh;
+        top: 95vh;
     }
 }
 
 @keyframes grid_slide_out {
     from {
-        top: 90vh;
+        top: 95vh;
     }
 }
 
