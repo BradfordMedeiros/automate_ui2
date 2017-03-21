@@ -13,7 +13,7 @@ class Grid extends Component {
   render() {
     const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style, isOpen } = this.props;
 
-    let gridStyle = isOpen ? { animation: 'grid_slide 0.2s linear forwards' } :  { animation: 'grid_slide_out 0.1s linear forwards' };
+    let gridStyle = isOpen ? { animation: 'grid_slide 0.1s linear forwards' } :  { animation: 'grid_slide_out 0.1s linear forwards' };
 
     const jsLayout = layout.toJS();
     const tileKeys = jsLayout.map(item => item.i);
