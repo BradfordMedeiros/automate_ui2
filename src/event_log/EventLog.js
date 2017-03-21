@@ -1,9 +1,7 @@
 
 import React from 'react';
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
-  from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import WithEvents from '../data/WithEvents';
 
 const styles = {
   propContainer: {
@@ -76,44 +74,50 @@ export default class TableExampleComplex extends React.Component {
   render() {
     return (
       <div style={{ background: 'rgb(40,40,40)' }}>
-        <Table
-          height={this.state.height}
-          fixedHeader={this.state.fixedHeader}
-          fixedFooter={this.state.fixedFooter}
-          selectable={this.state.selectable}
-          multiSelectable={this.state.multiSelectable}
-        >
-          <TableHeader
-            displaySelectAll={this.state.showCheckboxes}
-            adjustForCheckbox={this.state.showCheckboxes}
-            enableSelectAll={this.state.enableSelectAll}
-          >
-            <TableRow>
-              <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
-                Events
-              </TableHeaderColumn>
-            </TableRow>
-            <TableRow>
-              <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody
-            displayRowCheckbox={this.state.showCheckboxes}
-            deselectOnClickaway={this.state.deselectOnClickaway}
-            showRowHover={this.state.showRowHover}
-            stripedRows={this.state.stripedRows}
-          >
-            {tableData.concat(tableData).concat(tableData).concat(tableData).concat(tableData).concat(tableData).map( (row, index) => (
-              <TableRow key={index} selected={row.selected}>
-                <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.message}</TableRowColumn>
-                <TableRowColumn>{row.timestamp}</TableRowColumn>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <WithEvents>
+          {({ data }) =>
+            <Table
+              height={this.state.height}
+              fixedHeader={this.state.fixedHeader}
+              fixedFooter={this.state.fixedFooter}
+              selectable={this.state.selectable}
+              multiSelectable={this.state.multiSelectable}
+            >
+              <TableHeader
+                displaySelectAll={this.state.showCheckboxes}
+                adjustForCheckbox={this.state.showCheckboxes}
+                enableSelectAll={this.state.enableSelectAll}
+              >
+                <TableRow>
+                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
+                    Events
+                  </TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                  <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
+                  <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
+                  <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody
+                displayRowCheckbox={this.state.showCheckboxes}
+                deselectOnClickaway={this.state.deselectOnClickaway}
+                showRowHover={this.state.showRowHover}
+                stripedRows={this.state.stripedRows}
+              >
+                {data.map((item, index) => (
+                  <TableRow key={index} >
+                    <TableRowColumn>{index}</TableRowColumn>
+                    <TableRowColumn>{item.event}</TableRowColumn>
+                    <TableRowColumn>{item.timestamp}</TableRowColumn>
+                  </TableRow>
+                ))}
+
+              </TableBody>
+
+            </Table>
+          }
+        </WithEvents>
       </div>
     );
   }
