@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Toggle, Drawer, MenuItem,  Subheader, Divider } from 'material-ui';
+import { Toggle, Drawer, MenuItem,  Subheader, Divider, IconButton } from 'material-ui';
+import { NavigationMenu } from 'material-ui/svg-icons';
 import './style.css';
 
 const styles = {
@@ -59,7 +60,7 @@ class Appbar extends Component {
             }}>{tile}</MenuItem>)
           }
         </Drawer>
-        <div className="hide_menu" onClick={() => onHideMenu()} />
+        <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>
         <div className="toggle">
           <Toggle onToggle={onToggle} />
         </div>

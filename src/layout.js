@@ -8,7 +8,7 @@ import {  container as SelectionOverlay } from './containers/Overlay';
 import { container as Menu } from  './containers/Menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
-import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'material-ui/svg-icons';
+import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower } from 'material-ui/svg-icons';
 
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
