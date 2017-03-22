@@ -15,10 +15,9 @@ import Layout from './layout';
 import Helmet from 'react-helmet';
 import logger from './util/logger';
 import reducer from './containers/grid/module';
+import actionReducer from './containers/grid/tiles/system/actions/module';
 
-import SSH from './ssh/ssh';
-
-const reducers = combineReducers({ reducer  });
+const reducers = combineReducers({ reducer, actionReducer });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
 
 

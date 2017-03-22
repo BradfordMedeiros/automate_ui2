@@ -12,6 +12,8 @@ import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower} from 'mat
 
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
+import SpeechRecognition from './SpeechRecognition';
+
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
 const desktopStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
@@ -36,6 +38,7 @@ class Layout extends Component {
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={desktopStyles.grid} />
           <SelectionOverlay left={desktopStyles.overlay.left} right={desktopStyles.overlay.right} />
           <Footer />
+          <SpeechRecognition />
         </Desktop>
 
         <Mobile>
