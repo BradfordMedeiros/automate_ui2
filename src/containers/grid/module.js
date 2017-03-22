@@ -10,6 +10,7 @@ const initialState =  fromJS({
   tileKeyToTileName: {},
   savedTileContent: {}, //maps key to content
   gridIsOpen: false,
+  menuIsHidden: false,
 });
 
 const getNextTile = layout => {
@@ -18,6 +19,12 @@ const getNextTile = layout => {
     {"w":6,"h":4,"x":0,"y":0,"i": String(nextIndex), "moved":false,"static":false}
   );
 }
+
+export const setMenu = isOpen => {
+  return ({
+    type: 'set_menu',
+  });
+};
 
 export const setContent = content => {
   return ({
@@ -77,6 +84,9 @@ export const setGridIsOpen = isOpen => {
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
+    case 'set_menu': {
+      return state.set('menuIsHidden', !state.get('menuIsHidden'));
+    }
     case 'expandMenu': {
       return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
     }

@@ -35,7 +35,7 @@ class Appbar extends Component {
     }
   };
   render() {
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, onToggle, style } = this.props;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, onToggle, style, onHideMenu } = this.props;
     const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     const { height, top, marginTop } = style;
@@ -59,6 +59,7 @@ class Appbar extends Component {
             }}>{tile}</MenuItem>)
           }
         </Drawer>
+        <div className="hide_menu" onClick={() => onHideMenu()} />
         <div className="toggle">
           <Toggle onToggle={onToggle} />
         </div>
@@ -88,6 +89,7 @@ Appbar.propTypes = {
   tileNames: PropTypes.array,
   onTileClick: PropTypes.func,
   onToggle: PropTypes.func,
+  onHideMenu: PropTypes.func,
 };
 
 Appbar.defaultProps = {
