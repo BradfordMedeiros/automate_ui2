@@ -33,7 +33,7 @@
         opacity: 0.9;
     }
     70% {
-        background: linear-gradient(rgb(160,160,160),rgb(130, 130, 130),rgb(160,160,160));
+        background: linear-gradient(rgb(50,50,50),rgb(50, 50, 50),rgb(50,50,50));
         opacity: 0.87;
     }
     100% {
