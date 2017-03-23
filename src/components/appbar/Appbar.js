@@ -76,9 +76,8 @@ class Appbar extends Component {
         }}>&times;</div>
         </div>
 
-        <div className="holder" >
           <div className="app_title"><h1>automate</h1></div>
-        </div>
+
       </div>
     );
   }

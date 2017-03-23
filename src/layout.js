@@ -41,6 +41,7 @@ class Layout extends Component {
           <SelectionOverlay left={desktopStyles.overlay(hideMenu).left} right={desktopStyles.overlay(hideMenu).right} />
           <Footer />
           <SpeechRecognition />
+          <DisconnectedOverlay />
         </Desktop>
 
         <Mobile>
@@ -50,6 +51,7 @@ class Layout extends Component {
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
           <SpeechRecognition />
+          <DisconnectedOverlay />
         </Mobile>
       </div>
     )

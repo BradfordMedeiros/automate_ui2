@@ -20,19 +20,6 @@
     left: 0;
 }
 
-
-
-.holder {
-    box-shadow: 0 0 13px 1px rgb(30,30,30) inset;
-    pointer-events: none;
-    position: absolute;
-    width: 130px;
-    top: 4px;
-    bottom: 4px;
-    right: 10px;
-
-}
-
 .xIcon {
     color: red;
     position: absolute;
