@@ -64,7 +64,8 @@ class Appbar extends Component {
         <div className="toggle">
           <Toggle onToggle={onToggle} />
         </div>
-         <div className="xIcon" style={xStyle} onClick={() => {
+        <div className="xBorderBox">
+        <div className="xIcon" style={xStyle} onClick={() => {
           if (rotateAddIcon){
             onRotatedAddIconClick();
           }else{
@@ -73,6 +74,7 @@ class Appbar extends Component {
             })
           }
         }}>&times;</div>
+        </div>
 
         <div className="holder" >
           <div className="app_title"><h1>automate</h1></div>
