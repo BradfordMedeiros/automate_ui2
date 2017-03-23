@@ -13,6 +13,7 @@ import { ActionHome, ContentCreate,  ActionStore, ActionSettingsPower } from 'ma
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
 import SpeechRecognition from './SpeechRecognition';
+import DisconnectedOverlay from './components/disconnected_overlay/DisconnectedOverlay';
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
 const desktopStyles = {
@@ -40,6 +41,7 @@ class Layout extends Component {
           <SelectionOverlay left={desktopStyles.overlay(hideMenu).left} right={desktopStyles.overlay(hideMenu).right} />
           <Footer />
           <SpeechRecognition />
+          <DisconnectedOverlay />
         </Desktop>
 
         <Mobile>
@@ -49,6 +51,7 @@ class Layout extends Component {
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
           <SpeechRecognition />
+          <DisconnectedOverlay />
         </Mobile>
       </div>
     )

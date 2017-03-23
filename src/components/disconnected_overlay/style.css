@@ -1,0 +1,35 @@
+
+
+.disconnected_overlay{
+    border-top: 1px solid #423e3e;
+    background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    top: 47px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 24%;
+    justify-content: center;
+    opacity: 0.97;
+    animation: shimmer 20s alternate infinite;
+}
+
+
+@keyframes shimmer {
+    0% {
+        background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
+        opacity: 0.97;
+    }
+    50% {
+        background: linear-gradient(rgb(10,10,10),rgb(30, 30, 30),rgb(60,60,60));
+        opacity: 0.7;
+    }
+    100% {
+        background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
+        opacity: 0.97;
+    }
+}
