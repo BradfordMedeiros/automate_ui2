@@ -15,7 +15,7 @@
     padding: 24%;
     justify-content: center;
     opacity: 0.97;
-    animation: shimmer 20s alternate infinite;
+    animation: shimmer 100s alternate infinite;
 }
 
 
@@ -27,6 +27,14 @@
     50% {
         background: linear-gradient(rgb(10,10,10),rgb(30, 30, 30),rgb(60,60,60));
         opacity: 0.7;
+    }
+    60% {
+        background: linear-gradient(rgb(70,70,70),rgb(80, 80, 80),rgb(90,90,90));
+        opacity: 0.9;
+    }
+    70% {
+        background: linear-gradient(rgb(160,160,160),rgb(130, 130, 130),rgb(160,160,160));
+        opacity: 0.87;
     }
     100% {
         background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
