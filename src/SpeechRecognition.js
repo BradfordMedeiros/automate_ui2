@@ -1,12 +1,15 @@
 
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { IconButton } from 'material-ui';
 import { AvMic,  AvMicNone } from 'material-ui/svg-icons';
 import { doAction } from './containers/grid/tiles/system/actions/module';
 
-const style = { zIndex: 2000, position: 'fixed', top: 0, right: 250, boxShadow: '0px 0px 3px 0.1px black inset' };
+const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
+const ACTIONS_URL = AUTOMATE_CORE_URL + '/actions/special/speech_recognition';
 
+const style = { zIndex: 2000, position: 'fixed', top: 0, right: 250, boxShadow: '0px 0px 3px 0.1px black inset' };
 
 class SpeechRecognition extends Component {
   constructor(props) {
@@ -33,11 +36,18 @@ class SpeechRecognition extends Component {
         const phrase = event.results[0][0].transcript;
         const confidence = event.results[0][0].confidence;
         console.log('phrase is ', phrase);
-        if (phrase.indexOf('on') > 0) {
-          this.props.doAction('turn_on_light');
-        }else if (phrase.indexOf('off') > 0){
-          this.props.doAction('turn_off_light');
-        }
+
+        const response = fetch(ACTIONS_URL, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            speech: phrase,
+          }),
+        });
       };
       recognition.start();
     }

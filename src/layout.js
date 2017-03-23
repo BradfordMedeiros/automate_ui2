@@ -48,6 +48,7 @@ class Layout extends Component {
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
+          <SpeechRecognition />
         </Mobile>
       </div>
     )
