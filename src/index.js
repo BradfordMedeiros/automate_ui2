@@ -6,6 +6,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import './style.css';
 
 import { combineReducers } from 'redux-immutable';
 import { fromJS, List } from 'immutable';
