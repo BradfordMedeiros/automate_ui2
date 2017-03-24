@@ -15,11 +15,10 @@ import Layout from './layout';
 import Helmet from 'react-helmet';
 import logger from './util/logger';
 import reducer from './containers/grid/module';
-import actionReducer from './containers/grid/tiles/system/actions/module';
+import connection from './containers/disconnected_overlay/module';
 
-const reducers = combineReducers({ reducer, actionReducer });
+const reducers = combineReducers({ reducer, connection });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
-
 
 const App = () => (
   <div>
@@ -35,6 +34,5 @@ const App = () => (
 );
 
 const Routes = createRoutes(App);
-
 
 ReactDOM.render(Routes, document.getElementById('root'));

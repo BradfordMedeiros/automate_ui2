@@ -23,7 +23,6 @@ class DisconnectedOverlay extends Component {
         <Subheader style={{ fontSize: '100%' }}>
           <div>Attempting to reconnect {Array.apply(null, Array(this.state.numDots)).map(x => '.')}</div>
         </Subheader>
-
       </div>
     );
   }

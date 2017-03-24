@@ -4,7 +4,6 @@ import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { IconButton } from 'material-ui';
 import { AvMic,  AvMicNone } from 'material-ui/svg-icons';
-import { doAction } from './containers/grid/tiles/system/actions/module';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const ACTIONS_URL = AUTOMATE_CORE_URL + '/actions/special/speech_recognition';
