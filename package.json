@@ -38,6 +38,7 @@
     "redux": "^3.6.0",
     "redux-immutable": "^3.0.11",
     "redux-logger": "^2.7.4",
+    "redux-persist-immutable": "^4.2.0",
     "redux-thunk": "^2.2.0",
     "style-loader": "^0.13.1"
   },
