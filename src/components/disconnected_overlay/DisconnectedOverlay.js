@@ -13,7 +13,7 @@ class DisconnectedOverlay extends Component {
   componentWillMount() {
     this.countHandle = setInterval(() => this.setState({ numDots: (this.state.numDots +1) %5 }),1000);
   }
-  componentWilLUnmount() {
+  componentWillUnmount() {
     clearInterval(this.countHandle);
   }
   render() {
