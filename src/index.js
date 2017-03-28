@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist-immutable';
+
 import './style.css';
 
 import { combineReducers } from 'redux-immutable';

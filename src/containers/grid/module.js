@@ -82,9 +82,33 @@ export const setGridIsOpen = isOpen => {
   });
 };
 
+const fixTile = tile => {
+  console.log('fixing tile ', tile);
+  return Object.keys(tile).reduce((ans, curr) => {
+    if (tile[curr] === null){
+      ans[curr] = undefined;
+    }else{
+      ans[curr] = tile[curr];
+    }
+    return ans;
+  }, { });
+};
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
+    case REHYDRATE: {
+     if (action.payload && action.payload.reducer) {
+        const layout = action.payload.reducer.get('layout');
+        //const tileKeyToTileName = action.payload.reducer.get('tileKeyToTileName');
+
+        window.r  = action.payload.reducer;
+        return action.payload.reducer.set('layout', layout.map(fixTile));
+          //.set('tileKeyToTileName', action.payload.reducer.get('tileKeyToTileName'))
+          //.set('savedTileContent', action.payload.reducer.get('savedTileContent'))
+          //.set('content', action.payload.reducer.get('content'));
+      }
+      return state;
+    }
     case 'set_menu': {
       return state.set('menuIsHidden', !state.get('menuIsHidden'));
     }

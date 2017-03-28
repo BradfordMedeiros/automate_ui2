@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => {
   return ({
     onGridItemClick: (tileName, tileKey) =>  {
-      dispatch(setContent(<TileToRender tileName={tileName} tileKey={tileKey} />));
+      dispatch(setContent(() => <TileToRender tileName={tileName} tileKey={tileKey} />));
       dispatch(expandMenu(true));
     },
     onLayoutChange: layout => {
