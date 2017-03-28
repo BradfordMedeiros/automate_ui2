@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Toggle, Drawer, MenuItem,  Subheader, Divider, IconButton } from 'material-ui';
+import { Toggle, Drawer, MenuItem, Subheader, Divider, IconButton } from 'material-ui';
 import { NavigationMenu } from 'material-ui/svg-icons';
 import './style.css';
 
@@ -13,11 +13,11 @@ const styles = {
 };
 
 const lockStyle = {
-  animation: 'lock 0.1s forwards'
+  animation: 'lock 0.1s forwards',
 };
 
 const unlockStyle = {
-  animation: 'unlock 0.1s forwards'
+  animation: 'unlock 0.1s forwards',
 };
 
 class Appbar extends Component {
@@ -25,19 +25,19 @@ class Appbar extends Component {
     super(props);
     this.state = {
       open: false,
-    }
+    };
   }
   toggleLock = () => {
     const { isLocked, lockGrid } = this.props;
-    if (isLocked){
+    if (isLocked) {
       lockGrid(false);
-    }else{
+    } else {
       lockGrid(true);
     }
   };
   render() {
     const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, onToggle, style, onHideMenu } = this.props;
-    const xStyle  = rotateAddIcon ? styles.expanded : styles.not_expanded;
+    const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     const { height, top, marginTop } = style;
     return (
@@ -46,7 +46,7 @@ class Appbar extends Component {
           open={this.state.open}
           openSecondary
           containerStyle={{
-            top: ( height ? height : 0) + (marginTop ? marginTop : 0),
+            top: (height || 0) + (marginTop || 0),
             marginTop,
           }}
         >
@@ -54,10 +54,12 @@ class Appbar extends Component {
           <Divider />
           { (tileNames === undefined || tileNames.length === 0) ?
             <MenuItem>No tiles</MenuItem> :
-            tileNames.map(tile => <MenuItem onClick={() => {
-              this.setState({ open: false });
-              onTileClick(tile);
-            }}>{tile}</MenuItem>)
+            tileNames.map(tile => <MenuItem
+              onClick={() => {
+                this.setState({ open: false });
+                onTileClick(tile);
+              }}
+            >{tile}</MenuItem>)
           }
         </Drawer>
         <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>
@@ -65,18 +67,20 @@ class Appbar extends Component {
           <Toggle onToggle={onToggle} />
         </div>
         <div className="xBorderBox">
-        <div className="xIcon" style={xStyle} onClick={() => {
-          if (rotateAddIcon){
-            onRotatedAddIconClick();
-          }else{
-            this.setState({
-              open: !this.state.open,
-            })
-          }
-        }}>&times;</div>
+          <div
+            className="xIcon" style={xStyle} onClick={() => {
+              if (rotateAddIcon) {
+                onRotatedAddIconClick();
+              } else {
+                this.setState({
+                  open: !this.state.open,
+                });
+              }
+            }}
+          >&times;</div>
         </div>
 
-          <div className="app_title"><h1>automate</h1></div>
+        <div className="app_title"><h1>automate</h1></div>
 
       </div>
     );

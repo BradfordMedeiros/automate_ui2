@@ -4,19 +4,17 @@ import fetch from 'isomorphic-fetch';
 import './style.css';
 
 const ENDPOINT = 'http://localhost:9000/actions/modify/';
-const createStateRoute = stateName => {
-  return ENDPOINT + stateName;
-};
+const createStateRoute = stateName => ENDPOINT + stateName;
 
-//@todo major technical debt:
+// @todo major technical debt:
 // do this without calling eval
 
 // need to send a stringified version of the function to send to the server
 // The function must return the state as a json string via stdout
 const createStateFromSimpleFunction = (evalLogicString) => {
   const isFunction = eval(`(${evalLogicString})`); // kind of dangerous but frontend anyway so who really cares
-  if (typeof(isFunction) != typeof(() => {
-    })) {
+  if (typeof (isFunction) !== typeof (() => {
+  })) {
     throw (new Error('must be a function'));
   }
   const stringToSend = `() => {
@@ -27,7 +25,7 @@ const createStateFromSimpleFunction = (evalLogicString) => {
 };
 
 const submitState = ({ stateName, evalLogic }) => {
-  const actionEval =  createStateFromSimpleFunction(evalLogic);
+  const actionEval = createStateFromSimpleFunction(evalLogic);
 
   fetch(createStateRoute(stateName), {
     headers: new Headers({
@@ -42,24 +40,24 @@ const submitState = ({ stateName, evalLogic }) => {
 };
 
 class ActionsOverlay extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showModal: false,
       stateName: undefined,
       evalLogic: undefined,
-    }
+    };
   }
   handleSubmit = () => {
     this.setState({
       showModal: true,
-    })
+    });
   };
   submitDataToServer = () => {
     const newRoute = createStateRoute(this.state.stateName);
     submitState(this.state);
   };
-  handleTextFieldLogicChange = (x,evalLogic) => {
+  handleTextFieldLogicChange = (x, evalLogic) => {
     this.setState({
       evalLogic,
     });
@@ -67,7 +65,7 @@ class ActionsOverlay extends Component {
   handleSetStateName = (x, stateName) => {
     this.setState({
       stateName,
-    })
+    });
   };
   render() {
     return (
@@ -78,17 +76,19 @@ class ActionsOverlay extends Component {
           open={this.state.showModal}
           onRequestClose={() => console.log('closing')}
           actions={[
-            <FlatButton onClick={() => {
-              this.setState({ showModal: false })
-              this.submitDataToServer();
-            }}>
+            <FlatButton
+              onClick={() => {
+                this.setState({ showModal: false });
+                this.submitDataToServer();
+              }}
+            >
               OK
             </FlatButton>,
-            <FlatButton onClick={() => this.setState({ showModal: false })}>Cancel</FlatButton>
+            <FlatButton onClick={() => this.setState({ showModal: false })}>Cancel</FlatButton>,
           ]}
         >
           <TextField
-            hintText={"State Name"}
+            hintText={'State Name'}
             onChange={this.handleSetStateName}
           />
         </Dialog>
@@ -101,7 +101,7 @@ class ActionsOverlay extends Component {
           <FlatButton secondary>Cancel</FlatButton>
         </div>
       </div>
-    )
+    );
   }
 }
 

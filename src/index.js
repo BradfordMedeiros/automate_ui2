@@ -22,9 +22,9 @@ const reducers = combineReducers({ reducer, connection });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
 
 persistStore(store,
-    {
-        whitelist: ['reducer'],
-    });
+  {
+    whitelist: ['reducer'],
+  });
 
 const App = () => (
   <div>

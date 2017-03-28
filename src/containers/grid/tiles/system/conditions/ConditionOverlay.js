@@ -4,11 +4,9 @@ import fetch from 'isomorphic-fetch';
 import './style.css';
 
 const ENDPOINT = 'http://localhost:9000/conditions/';
-const createConditionRoute = conditionName => {
-  return ENDPOINT + conditionName;
-};
+const createConditionRoute = conditionName => ENDPOINT + conditionName;
 
-//@todo major technical debt:
+// @todo major technical debt:
 // do this without calling eval
 const submitCondition = ({ conditionName, actions, states, evalLogic }) => {
   const newCondition = { };
@@ -28,7 +26,7 @@ const submitCondition = ({ conditionName, actions, states, evalLogic }) => {
 };
 
 class ConditionOverlay extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showModal: false,
@@ -36,36 +34,36 @@ class ConditionOverlay extends Component {
       evalLogic: undefined,
       actions: undefined,
       conditionName: undefined,
-    }
+    };
   }
   handleSubmit = () => {
     this.setState({
       showModal: true,
-    })
+    });
   };
   submitDataToServer = () => {
     const newRoute = createConditionRoute(this.state.conditionName);
     submitCondition(this.state);
   };
-  handleTextFieldStateChange = (x,states) => {
+  handleTextFieldStateChange = (x, states) => {
     this.setState({
       states,
     });
   };
-  handleTextFieldLogicChange = (x,evalLogic) => {
+  handleTextFieldLogicChange = (x, evalLogic) => {
     this.setState({
       evalLogic,
     });
   };
-  handleTextFieldActionChange = (x,actions) => {
+  handleTextFieldActionChange = (x, actions) => {
     this.setState({
       actions,
-    })
+    });
   };
   handleSetConditionName = (x, conditionName) => {
     this.setState({
       conditionName,
-    })
+    });
   };
   render() {
     return (
@@ -76,44 +74,46 @@ class ConditionOverlay extends Component {
           open={this.state.showModal}
           onRequestClose={() => console.log('closing')}
           actions={[
-            <FlatButton onClick={() => {
-              this.setState({ showModal: false })
-              this.submitDataToServer();
-            }}>
+            <FlatButton
+              onClick={() => {
+                this.setState({ showModal: false });
+                this.submitDataToServer();
+              }}
+            >
               OK
             </FlatButton>,
-            <FlatButton onClick={() => this.setState({ showModal: false })}>Cancel</FlatButton>
+            <FlatButton onClick={() => this.setState({ showModal: false })}>Cancel</FlatButton>,
           ]}
         >
           <TextField
-            hintText={"Condition Name"}
+            hintText={'Condition Name'}
             onChange={this.handleSetConditionName}
           />
         </Dialog>
         <div className="inner_condition_overlay" >
-        <div>
-          <TextField
-            hintText="states"
-            onChange={this.handleTextFieldStateChange}
-          />
-        </div>
-        <div>
-          <TextField
-            hintText="logic"
-            onChange={this.handleTextFieldLogicChange}
-          />
-        </div>
-        <div>
-          <TextField
-            hintText="action"
-            onChange={this.handleTextFieldActionChange}
-          />
-        </div>
-        <FlatButton primary onClick={this.handleSubmit}>Submit</FlatButton>
-        <FlatButton secondary>Cancel</FlatButton>
+          <div>
+            <TextField
+              hintText="states"
+              onChange={this.handleTextFieldStateChange}
+            />
+          </div>
+          <div>
+            <TextField
+              hintText="logic"
+              onChange={this.handleTextFieldLogicChange}
+            />
+          </div>
+          <div>
+            <TextField
+              hintText="action"
+              onChange={this.handleTextFieldActionChange}
+            />
+          </div>
+          <FlatButton primary onClick={this.handleSubmit}>Submit</FlatButton>
+          <FlatButton secondary>Cancel</FlatButton>
         </div>
       </div>
-    )
+    );
   }
 }
 

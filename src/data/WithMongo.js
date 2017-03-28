@@ -5,21 +5,21 @@ import fetch from 'isomorphic-fetch';
 const url = 'http://localhost:5000/topics/';
 const request = async (topic) => {
   try {
-    const response = await fetch((url + topic +  '/50'), {
+    const response = await fetch((`${url + topic}/50`), {
       method: 'GET',
       mode: 'cors',
     });
     const text = await response.text();
-    try{
+    try {
       const parsedText = JSON.parse(text);
       return parsedText;
-    }catch(err){
+    } catch (err) {
       console.error('error parsing response from ', url);
       console.error(err);
-      throw(err);
+      throw (err);
     }
-  }catch (err){
-    throw(err);
+  } catch (err) {
+    throw (err);
   }
 };
 
@@ -36,25 +36,25 @@ class WithMongo extends Component {
   }
   getMongoData() {
     const { topic, refresh } = this.props;
-    if (topic !== this.lastTopic){
+    if (topic !== this.lastTopic) {
       clearInterval(this.intervalHandle);
-      if (refresh){
+      if (refresh) {
         this.intervalHandle = setInterval(() => {
-          request(topic).then( response => {
+          request(topic).then((response) => {
             response.reverse();
             this.setState({
               data: response,
-            })
+            });
           }).catch({
             error: true,
-          })
+          });
         }, 1000);
-      }else{
-        request(topic).then( response => {
+      } else {
+        request(topic).then((response) => {
           response.reverse();
           this.setState({
             data: response,
-          })
+          });
         }).catch({
           error: true,
         });

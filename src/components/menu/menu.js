@@ -10,18 +10,18 @@ const liStyle = {
 
 class Menu extends Component {
   renderItem = (item, index) => {
-   if (typeof(item) === 'string'){
-     return (
-       <ListItem key={index} style={liStyle}>
-         <div className="liname">{item}</div>
-       </ListItem>
-     )
-   }
-   return (
-     <ListItem key={index} style={liStyle} onClick={item.onClick} >
-       <div className="liname">{item.label}</div>
-     </ListItem>
-   )
+    if (typeof (item) === 'string') {
+      return (
+        <ListItem key={index} style={liStyle}>
+          <div className="liname">{item}</div>
+        </ListItem>
+      );
+    }
+    return (
+      <ListItem key={index} style={liStyle} onClick={item.onClick} >
+        <div className="liname">{item.label}</div>
+      </ListItem>
+    );
   }
   render() {
     const { buttonLabels, style } = this.props;

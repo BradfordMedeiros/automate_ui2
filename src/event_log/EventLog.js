@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import WithEvents from '../data/WithEvents';
 
 const styles = {
@@ -20,25 +20,25 @@ const tableData = [
     status: 'Employed',
     selected: true,
     timestamp: (new Date()).toDateString(),
-    message: "Light turned on",
+    message: 'Light turned on',
   },
   {
     name: 'Joyce Whitten',
     status: 'Employed',
     timestamp: (new Date()).toDateString(),
-    message: "Cat fed",
+    message: 'Cat fed',
   },
   {
     name: 'Samuel Roberts',
     status: 'Employed',
     timestamp: (new Date()).toDateString(),
-    message: "Washing machine on",
+    message: 'Washing machine on',
   },
   {
     name: 'Adam Moore',
     status: 'Employed',
     timestamp: (new Date()).toDateString(),
-    message: "Washing machine off"
+    message: 'Washing machine off',
   },
 ];
 
@@ -68,7 +68,7 @@ export default class TableExampleComplex extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({height: event.target.value});
+    this.setState({ height: event.target.value });
   };
 
   render() {
@@ -89,7 +89,7 @@ export default class TableExampleComplex extends React.Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
                 <TableRow>
-                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
+                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: 'center' }}>
                     Events
                   </TableHeaderColumn>
                 </TableRow>

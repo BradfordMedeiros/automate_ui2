@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const CONDITIONS_URL = AUTOMATE_CORE_URL + '/states';
+const CONDITIONS_URL = `${AUTOMATE_CORE_URL}/states`;
 const REFRESH_RATE = 1000;
 
 class WithStates extends Component {
@@ -10,24 +10,24 @@ class WithStates extends Component {
     super(props);
     this.state = {
       hasData: false,
-    }
+    };
     this.handle = undefined;
   }
   getData = async () => {
     try {
       const response = await fetch(CONDITIONS_URL, {
-        mode: "cors",
-        method: "GET",
+        mode: 'cors',
+        method: 'GET',
         headers: {
-          "Accept": "application/json"
-        }
+          Accept: 'application/json',
+        },
       });
       const states = await response.json();
       this.setState({
         hasData: true,
         states: states.states,
       });
-    }catch(err){
+    } catch (err) {
       console.error('error while fetching ', err);
     }
   }

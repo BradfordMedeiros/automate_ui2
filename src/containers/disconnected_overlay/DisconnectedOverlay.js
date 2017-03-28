@@ -5,27 +5,27 @@ import DisconnectedOverlay from '../../components/disconnected_overlay/Disconnec
 import { setIsConnected, setIsDisconnected } from './module';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const ACTIONS_URL = AUTOMATE_CORE_URL + '/status';
+const ACTIONS_URL = `${AUTOMATE_CORE_URL}/status`;
 const REFRESH_RATE = 1000;
 
 class Disconnection extends Component {
   handle = undefined;
   getData = async () => {
-    const {  isDisconnected, setIsConnected, setIsDisconnected } = this.props;
+    const { isDisconnected, setIsConnected, setIsDisconnected } = this.props;
     try {
       const response = await fetch(ACTIONS_URL, {
-        mode: "cors",
-        method: "GET",
+        mode: 'cors',
+        method: 'GET',
         headers: {
-          "Accept": "application/json"
-        }
+          Accept: 'application/json',
+        },
       });
       const states = await response.json();
-      if (isDisconnected){
+      if (isDisconnected) {
         setIsConnected();
       }
-    }catch(err){
-      if (!isDisconnected){
+    } catch (err) {
+      if (!isDisconnected) {
         setIsDisconnected();
       }
     }
@@ -39,7 +39,7 @@ class Disconnection extends Component {
   render() {
     const { isDisconnected } = this.props;
     if (isDisconnected) {
-      return <DisconnectedOverlay/>;
+      return <DisconnectedOverlay />;
     }
     return null;
   }

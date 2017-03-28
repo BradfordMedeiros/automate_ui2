@@ -9,16 +9,16 @@ const request = async () => {
       mode: 'cors',
     });
     const text = await response.text();
-    try{
+    try {
       const parsedText = JSON.parse(text);
       return parsedText;
-    }catch(err){
+    } catch (err) {
       console.error('error parsing response from ', url);
       console.error(err);
-      throw(err);
+      throw (err);
     }
-  }catch (err){
-    throw(err);
+  } catch (err) {
+    throw (err);
   }
 };
 
@@ -38,11 +38,11 @@ class WithMongo extends Component {
     const { refresh } = this.props;
 
     this.intervalHandle = setInterval(() => {
-      request().then(response => {
+      request().then((response) => {
         response.reverse();
         this.setState({
           data: response,
-        })
+        });
       }).catch({
         error: true,
       });
