@@ -25,7 +25,7 @@ storiesOf('menu')
 
 
 const buttonIcons = List([<NavigationMoreVert/>, <NotificationPower/>, <ActionAccessibility/>]);
-const onClick = List([action('action 0'), action('action 1'), action('action 2')])
+const onClick = List([action('action 0'), action('action 1'), action('action 2')]);
 storiesOf('minimal menu')
   .addDecorator(muiTheme(darkBaseTheme))
   .add('basic', () => (

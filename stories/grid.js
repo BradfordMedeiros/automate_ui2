@@ -15,15 +15,15 @@ const layout = List([
 const tileNames = List(['a','b','c']);
 
 const tileNameToTile = Map({
-  a: <div>tile a</div>,
-  b: <div>tile b</div>,
-  c: <div>tile ---c</div>,
+    a: <div>tile a</div>,
+    b: <div>tile b</div>,
+    c: <div>tile ---c</div>,
 });
 
 const tileNameToFullScreen =  Map({
-  a: <div>this is fullscreen a</div>,
-  b: <div>this is fullscreeb b</div>,
-  c: <div>woo oo woo</div>
+    a: <div>this is fullscreen a</div>,
+    b: <div>this is fullscreeb b</div>,
+    c: <div>woo oo woo</div>
 });
 
 
