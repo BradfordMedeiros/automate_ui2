@@ -2,10 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Slider from 'material-ui/Slider';
 import { List } from 'immutable';
 import { TextField, RaisedButton } from 'material-ui';
-
-import { DeviceBrightnessHigh, DeviceBrightnessLow } from 'material-ui/svg-icons';
-import './style.css';
 import WithMqtt from '../../../../../data/WithMqtt';
+import './style.css';
 
 const styles = {
   root: {
