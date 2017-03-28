@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import { connect } from 'react-redux';
 import { IconButton } from 'material-ui';
 import { AvMic, AvMicNone } from 'material-ui/svg-icons';
 
@@ -20,7 +19,7 @@ class SpeechRecognition extends Component {
   handleMicClick = () => {
     if (!this.state.micIsActive) {
       // start recording
-      const recognition = new webkitSpeechRecognition();
+      const recognition = new window.webkitSpeechRecognition();
       recognition.onstart = () => {
         this.setState({
           micIsActive: true,
@@ -33,10 +32,8 @@ class SpeechRecognition extends Component {
       };
       recognition.onresult = (event) => {
         const phrase = event.results[0][0].transcript;
-        const confidence = event.results[0][0].confidence;
-        console.log('phrase is ', phrase);
 
-        const response = fetch(ACTIONS_URL, {
+        fetch(ACTIONS_URL, {
           mode: 'cors',
           method: 'POST',
           headers: {
@@ -54,19 +51,15 @@ class SpeechRecognition extends Component {
   render() {
     return (
       <div className="speech" style={style} >
-        <IconButton onClick={this.handleMicClick}>{this.state.micIsActive ? <AvMicNone /> : <AvMic />}</IconButton>
+        <IconButton
+          onClick={this.handleMicClick}
+        >
+          {this.state.micIsActive ? <AvMicNone /> : <AvMic />}
+        </IconButton>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-
-});
-
-const mapDispatchToProps = dispatch => ({
-  doAction: action => dispatch(doAction(action)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SpeechRecognition);
+export default SpeechRecognition;
 

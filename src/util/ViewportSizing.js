@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { PropTypes, Component } from 'react';
 import MediaQuery from 'react-responsive';
 
