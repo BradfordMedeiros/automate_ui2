@@ -1,5 +1,5 @@
 
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const url = 'http://localhost:5000/topics/';
@@ -14,6 +14,7 @@ const request = async (topic) => {
       const parsedText = JSON.parse(text);
       return parsedText;
     } catch (err) {
+      /* eslint-disable no-console */
       console.error('error parsing response from ', url);
       console.error(err);
       throw (err);
@@ -34,6 +35,15 @@ class WithMongo extends Component {
     this.intervalHandle = undefined;
     this.lastTopic = undefined;
   }
+  componentWillMount() {
+    this.getMongoData();
+  }
+  componentWillReceiveProps() {
+    this.getMongoData();
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalHandle);
+  }
   getMongoData() {
     const { topic, refresh } = this.props;
     if (topic !== this.lastTopic) {
@@ -48,7 +58,7 @@ class WithMongo extends Component {
           }).catch({
             error: true,
           });
-        }, 1000);
+        }, refresh);
       } else {
         request(topic).then((response) => {
           response.reverse();
@@ -61,15 +71,6 @@ class WithMongo extends Component {
       }
     }
   }
-  componentWillReceiveProps() {
-    this.getMongoData();
-  }
-  componentWillMount() {
-    this.getMongoData();
-  }
-  componentWillUnmount() {
-    clearInterval(this.intervalHandle);
-  }
   render() {
     const { children } = this.props;
     return (this.state.data && children) ? children({ data: this.state.data }) : null;
@@ -77,7 +78,14 @@ class WithMongo extends Component {
 }
 
 WithMongo.propTypes = {
-  topic: PropTypes.string,
+  topic: PropTypes.string.isRequired,
+  refresh: PropTypes.number,
+  children: PropTypes.node,
+};
+
+WithMongo.defaultProps = {
+  refresh: undefined,
+  children: undefined,
 };
 
 export default WithMongo;
