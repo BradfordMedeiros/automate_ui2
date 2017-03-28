@@ -10,15 +10,15 @@ import './style.css';
 import SSH from '../../ssh/ssh';
 
 class Grid extends Component {
-  render() {
-    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style, isOpen } = this.props;
+    render() {
+        const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style, isOpen } = this.props;
 
-    let gridStyle = isOpen ? { animation: 'grid_slide 0.1s linear forwards' } :  { animation: 'grid_slide_out 0.1s linear forwards' };
+        let gridStyle = isOpen ? { animation: 'grid_slide 0.1s linear forwards' } :  { animation: 'grid_slide_out 0.1s linear forwards' };
 
-    const jsLayout = layout.toJS();
-    const tileKeys = jsLayout.map(item => item.i);
+        const jsLayout = layout.toJS();
+        const tileKeys = jsLayout.map(item => item.i);
 
-    return (
+        return (
       <div>
         <div className="grid_background" style={style}><SSH /></div>
 
@@ -35,13 +35,13 @@ class Grid extends Component {
               isDraggable={isEditable}
               isResizable={isEditable}
               onLayoutChange={layout => {
-                if (onLayoutChange){
-                  onLayoutChange(layout);
-                }
+                  if (onLayoutChange){
+                      onLayoutChange(layout);
+                  }
               }}
             >
                 {tileKeys.map((key,index) => {
-                  return (
+                    return (
                     <div
                       key={key}
                       style={{ width: '100%', height: '100%' }}
@@ -51,7 +51,7 @@ class Grid extends Component {
                         {tileNameToTile.get(tileKeyToTileName.get(key), key)}
                       </Paper>
                     </div>
-                  )
+                    );
                 })}
             </ReactGridLayout>
           )
@@ -59,18 +59,18 @@ class Grid extends Component {
       </AutoSizer>
       </div>
       </div>
-    )
-  }
+        );
+    }
 }
 
 Grid.PropTypes = {
-  onGridItemClick: PropTypes.func,
-  tileNameToTile: PropTypes.object.isRequired,
-  tileKeyToTileName: PropTypes.object.isRequired,
-  onLayoutChange: PropTypes.func,
-  layout: PropTypes.object.isRequired,
-  style: PropTypes.object,
-  opened: PropTypes.bool,
+    onGridItemClick: PropTypes.func,
+    tileNameToTile: PropTypes.object.isRequired,
+    tileKeyToTileName: PropTypes.object.isRequired,
+    onLayoutChange: PropTypes.func,
+    layout: PropTypes.object.isRequired,
+    style: PropTypes.object,
+    opened: PropTypes.bool,
 };
 
 export default Grid;

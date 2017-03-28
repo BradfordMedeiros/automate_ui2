@@ -17,22 +17,22 @@ import { container as DisconnectedOverlay } from './containers/disconnected_over
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0 , overflow: 'hidden' };
 const desktopStyles = {
-  appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
-  grid: menuIsHidden => menuIsHidden ? { top: 50, bottom: 10, left: 0, right: 0 } : { top: 50, bottom: 10, left: 210, right: 0 },
-  menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: menuIsHidden => menuIsHidden ? { left: 0, right: 1} : { left: 213, right: 1 },
+    appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
+    grid: menuIsHidden => menuIsHidden ? { top: 50, bottom: 10, left: 0, right: 0 } : { top: 50, bottom: 10, left: 210, right: 0 },
+    menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
+    overlay: menuIsHidden => menuIsHidden ? { left: 0, right: 1} : { left: 213, right: 1 },
 };
 const mobileStyles = {
-  appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
-  grid: { top: 50, bottom: 10, left: 55, right: 0 },
-  minMenu: { width: 55, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: { left: 75, right: 18 },
+    appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
+    grid: { top: 50, bottom: 10, left: 55, right: 0 },
+    minMenu: { width: 55, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
+    overlay: { left: 75, right: 18 },
 };
 
 class Layout extends Component {
-  render()  {
-    const { hideMenu } = this.props;
-    return (
+    render()  {
+        const { hideMenu } = this.props;
+        return (
       <div style={appStyle}>
         <Desktop>
           {hideMenu ? null : <Menu style={desktopStyles.menu} />}
@@ -54,16 +54,16 @@ class Layout extends Component {
           <DisconnectedOverlay />
         </Mobile>
       </div>
-    )
-  }
+        );
+    }
 }
 
 Layout.propTypes = {
-  hideMenu: false,
+    hideMenu: false,
 };
 
 const mapStateToProps = (state) => ({
-  hideMenu: state.getIn(['reducer', 'menuIsHidden']),
+    hideMenu: state.getIn(['reducer', 'menuIsHidden']),
 });
 
 export default connect(mapStateToProps)(Layout);

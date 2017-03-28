@@ -6,8 +6,8 @@ import './style.css';
 
 
 class States extends Component {
-  render() {
-    return (
+    render() {
+        return (
       <div className="system_states_outer">
         <div className="system_states_title">
           <Subheader>States</Subheader>
@@ -30,8 +30,8 @@ class States extends Component {
         </WithStates>
         </div>
       </div>
-    )
-  }
+        );
+    }
 }
 
 export default States;
