@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
@@ -13,6 +13,13 @@ class WithStates extends Component {
     };
     this.handle = undefined;
   }
+  componentWillMount() {
+    this.handle = setInterval(this.getData, REFRESH_RATE);
+  }
+  componentWillUnmount() {
+    clearInterval(this.handle);
+  }
+
   getData = async () => {
     try {
       const response = await fetch(CONDITIONS_URL, {
@@ -28,17 +35,10 @@ class WithStates extends Component {
         states: states.states,
       });
     } catch (err) {
+      /* eslint-disable no-console */
       console.error('error while fetching ', err);
     }
   }
-
-  componentWillMount() {
-    this.handle = setInterval(this.getData, REFRESH_RATE);
-  }
-  componentWillUnmount() {
-    clearInterval(this.handle);
-  }
-
   render() {
     const { children } = this.props;
     const { hasData, states } = this.state;
@@ -46,6 +46,13 @@ class WithStates extends Component {
   }
 }
 
+WithStates.propTypes = {
+  children: PropTypes.node,
+};
+
+WithStates.defaultProps = {
+  children: undefined,
+};
 
 export default WithStates;
 

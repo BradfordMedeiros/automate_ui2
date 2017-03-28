@@ -1,46 +1,7 @@
 
 import React from 'react';
-import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import WithEvents from '../data/WithEvents';
-
-const styles = {
-  propContainer: {
-    width: 200,
-    overflow: 'hidden',
-    margin: '20px auto 0',
-  },
-  propToggleHeader: {
-    margin: '20px auto 10px',
-  },
-};
-
-const tableData = [
-  {
-    name: 'Light On',
-    status: 'Employed',
-    selected: true,
-    timestamp: (new Date()).toDateString(),
-    message: 'Light turned on',
-  },
-  {
-    name: 'Joyce Whitten',
-    status: 'Employed',
-    timestamp: (new Date()).toDateString(),
-    message: 'Cat fed',
-  },
-  {
-    name: 'Samuel Roberts',
-    status: 'Employed',
-    timestamp: (new Date()).toDateString(),
-    message: 'Washing machine on',
-  },
-  {
-    name: 'Adam Moore',
-    status: 'Employed',
-    timestamp: (new Date()).toDateString(),
-    message: 'Washing machine off',
-  },
-];
 
 export default class TableExampleComplex extends React.Component {
 
@@ -106,7 +67,7 @@ export default class TableExampleComplex extends React.Component {
                 stripedRows={this.state.stripedRows}
               >
                 {data.map((item, index) => (
-                  <TableRow key={index} >
+                  <TableRow>
                     <TableRowColumn>{index}</TableRowColumn>
                     <TableRowColumn>{item.event}</TableRowColumn>
                     <TableRowColumn>{item.timestamp}</TableRowColumn>
