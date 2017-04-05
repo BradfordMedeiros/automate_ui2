@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
-const url = 'http://localhost:5000/events/';
+const url = 'http://localhost:9000/events/';
 const request = async () => {
   try {
     const response = await fetch(url, {

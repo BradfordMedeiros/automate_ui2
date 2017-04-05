@@ -2,7 +2,7 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
-const url = 'http://localhost:5000/topics/';
+const url = 'http://localhost:9000/topics/';
 const request = async (topic) => {
   try {
     const response = await fetch((`${url + topic}/50`), {
