@@ -31,17 +31,6 @@ const MenuContainer = (
           },
         },
         {
-          label: 'router',
-          onClick: () => {
-            if (menuIsExpanded || addGridExpanded) {
-              closeMenu();
-              closeSSHContent();
-            } else {
-              setRouterOptions();
-            }
-          },
-        },
-        {
           label: 'events',
           onClick: () => {
             if (menuIsExpanded || addGridExpanded) {
@@ -78,10 +67,6 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
   closeSSHContent: () => {
     dispatch(setGridIsOpen(false));
-  },
-  setRouterOptions: () => {
-    dispatch(setContent(() => <RouterOptions />));
-    dispatch(expandMenu(true));
   },
   setEventLog: () => {
     dispatch(setContent(() => <EventLog />));

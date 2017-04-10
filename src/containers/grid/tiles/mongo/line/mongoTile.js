@@ -61,7 +61,11 @@ class Mongo extends Component {
                   backgroundColor: 'rgba(153,255,51,0.4)',
                 }],
             };
-            return <Line options={options} data={theData} />;
+            return (
+              <div style={{  height: '100%', overflow: 'hidden' }}>
+                <Line options={options} data={theData} />
+              </div>
+            );
           }
         }
       </WithMongo>
