@@ -21,9 +21,7 @@ class Actions extends Component {
     console.error('render called');
     return (
       <div className="system_actions_outer">
-        <div className="system_actions_title">
-          <Subheader>Actions <div className="system_actions_add"> + Add New Action</div></Subheader>
-        </div>
+        <div className="system_actions_title"><Subheader>Actions </Subheader></div>
         <div className="system_actions_inner">
           <WithActions>
             {({ actions, executeAction }) => {

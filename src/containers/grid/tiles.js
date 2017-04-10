@@ -21,41 +21,55 @@ import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
 export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo line', 'mongo pie', 'button', 'states', 'actions', 'conditions'];
 
+const InnerTile = (props) => {
+  const { tileName, ...otherProps } = props;
+  switch (tileName) {
+    case 'mqtt': {
+      return <MqttTile {...otherProps} />;
+    }
+    case 'dimmer': {
+      return <MqttSliderTile {...otherProps} />;
+    }
+    case 'mongo line': {
+      return <MongoLine {...otherProps} />;
+    }
+    case 'mongo pie': {
+      return <MongoPie {...otherProps} />;
+    }
+    case 'test': {
+      return <div>hello world</div>;
+    }
+    case 'button': {
+      return <MqttButtonTile {...otherProps} />;
+    }
+    case 'conditions': {
+      return <Conditions />;
+    }
+    case 'states': {
+      return <States />;
+    }
+    case 'actions': {
+      return <Actions />;
+    }
+    default : {
+      return <div>invalid tile</div>;
+    }
+  }
+};
+
 class Tile extends Component {
   render() {
-    const { tileName, ...otherProps } = this.props;
-    switch (tileName) {
-      case 'mqtt': {
-        return <MqttTile {...otherProps} />;
-      }
-      case 'dimmer': {
-        return <MqttSliderTile {...otherProps} />;
-      }
-      case 'mongo line': {
-        return <MongoLine {...otherProps} />;
-      }
-      case 'mongo pie': {
-        return <MongoPie {...otherProps} />;
-      }
-      case 'test': {
-        return <div>hello world</div>;
-      }
-      case 'button': {
-        return <MqttButtonTile {...otherProps} />;
-      }
-      case 'conditions': {
-        return <Conditions />;
-      }
-      case 'states': {
-        return <States />;
-      }
-      case 'actions': {
-        return <Actions />;
-      }
-      default : {
-        return <div>invalid tile</div>;
-      }
-    }
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          border: '1px solid rgba(87, 81, 81, 0.60)',
+        }}
+      >
+        {InnerTile(this.props)}
+      </div>
+    )
   }
 }
 
