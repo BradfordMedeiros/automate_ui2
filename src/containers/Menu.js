@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
-import RouterOptions from '../router_options/RouterOptions';
 import EventLog from '../event_log/EventLog';
 import { setContent, expandMenu, setGridIsOpen } from './grid/module';
 
@@ -9,7 +8,6 @@ const MenuContainer = (
   {
     setSSHContent,
     closeSSHContent,
-    setRouterOptions,
     setEventLog,
     closeMenu,
     menuIsExpanded,

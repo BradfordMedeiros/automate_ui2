@@ -70,7 +70,7 @@ class Tile extends Component {
       >
         {InnerTile(this.props)}
       </div>
-    )
+    );
   }
 }
 

@@ -23,7 +23,7 @@ const request = async () => {
 };
 
 
-class WithMongo extends Component {
+class WithEvents extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,13 +61,14 @@ class WithMongo extends Component {
     clearInterval(this.intervalHandle);
   }
   render() {
-    const { children } = this.props;
-    return (this.state.data && children) ? children({ data: this.state.data }) : null;
+    const { children, whileLoading } = this.props;
+    return (this.state.data && children) ? children({ data: this.state.data }) : (whileLoading ? whileLoading() : null);
   }
 }
 
-WithMongo.propTypes = {
+WithEvents.propTypes = {
   topic: PropTypes.string,
+  whileLoading: PropTypes.func,
 };
 
-export default WithMongo;
+export default WithEvents;

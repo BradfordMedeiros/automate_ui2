@@ -32,52 +32,54 @@ export default class TableExampleComplex extends React.Component {
     this.setState({ height: event.target.value });
   };
 
+  getContainer = content => (
+    <Table
+      height={this.state.height}
+      fixedHeader={this.state.fixedHeader}
+      fixedFooter={this.state.fixedFooter}
+      selectable={this.state.selectable}
+      multiSelectable={this.state.multiSelectable}
+    >
+      <TableHeader
+        displaySelectAll={this.state.showCheckboxes}
+        adjustForCheckbox={this.state.showCheckboxes}
+        enableSelectAll={this.state.enableSelectAll}
+      >
+        <TableRow>
+          <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: 'center' }}>
+            Events
+          </TableHeaderColumn>
+        </TableRow>
+        <TableRow>
+          <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
+          <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
+          <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody
+        displayRowCheckbox={this.state.showCheckboxes}
+        deselectOnClickaway={this.state.deselectOnClickaway}
+        showRowHover={this.state.showRowHover}
+        stripedRows={this.state.stripedRows}
+      >
+        {content && content.data.map((item, index) => (
+          <TableRow>
+            <TableRowColumn>{index}</TableRowColumn>
+            <TableRowColumn>{item.event}</TableRowColumn>
+            <TableRowColumn>{item.timestamp}</TableRowColumn>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  )
+
   render() {
     return (
       <div style={{ background: 'rgb(40,40,40)' }}>
-        <WithEvents>
-          {({ data }) =>
-            <Table
-              height={this.state.height}
-              fixedHeader={this.state.fixedHeader}
-              fixedFooter={this.state.fixedFooter}
-              selectable={this.state.selectable}
-              multiSelectable={this.state.multiSelectable}
-            >
-              <TableHeader
-                displaySelectAll={this.state.showCheckboxes}
-                adjustForCheckbox={this.state.showCheckboxes}
-                enableSelectAll={this.state.enableSelectAll}
-              >
-                <TableRow>
-                  <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: 'center' }}>
-                    Events
-                  </TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                  <TableHeaderColumn tooltip="The ID">Event Name</TableHeaderColumn>
-                  <TableHeaderColumn tooltip="The Status">Message</TableHeaderColumn>
-                  <TableHeaderColumn tooltip="The Name">Timestamp</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody
-                displayRowCheckbox={this.state.showCheckboxes}
-                deselectOnClickaway={this.state.deselectOnClickaway}
-                showRowHover={this.state.showRowHover}
-                stripedRows={this.state.stripedRows}
-              >
-                {data.map((item, index) => (
-                  <TableRow>
-                    <TableRowColumn>{index}</TableRowColumn>
-                    <TableRowColumn>{item.event}</TableRowColumn>
-                    <TableRowColumn>{item.timestamp}</TableRowColumn>
-                  </TableRow>
-                ))}
-
-              </TableBody>
-
-            </Table>
-          }
+        <WithEvents
+          whileLoading={this.getContainer}
+        >
+          {this.getContainer}
         </WithEvents>
       </div>
     );

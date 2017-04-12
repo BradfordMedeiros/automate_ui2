@@ -62,7 +62,7 @@ class Mongo extends Component {
                 }],
             };
             return (
-              <div style={{  height: '100%', overflow: 'hidden' }}>
+              <div style={{ height: '100%', overflow: 'hidden' }}>
                 <Line options={options} data={theData} />
               </div>
             );
