@@ -14,7 +14,7 @@ class MqttTile extends Component {
           {
               (stuff) => {
                 const value = stuff[savedContent];
-                return <div className="number" style={{ color: 'blue' }}>{JSON.stringify(value)}</div>;
+                return <div className="number" style={{ color: 'grey' }}>{JSON.stringify(value)}</div>;
               }
             }
         </WithMqtt>

@@ -1,6 +1,6 @@
 
 .menu {
-    background: linear-gradient(rgb(50,50,50),rgb(40,40,40));
+    background: linear-gradient(rgb(50,50,50),rgb(45,45,45));
     box-shadow: 0 0 4px 1px rgb(30,30,30) inset;
     overflow-y: auto;
 }
@@ -14,7 +14,7 @@
     top: 0;
     top: 55px;
     z-index:600;
-    background: linear-gradient(rgb(50,50,50),rgb(40,40,40));
+    background: linear-gradient(rgb(50,50,50),rgb(45,45,45));
     box-shadow: 0 0 4px 1px rgb(30,30,30) inset;
 }
 
