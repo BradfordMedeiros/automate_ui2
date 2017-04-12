@@ -1,0 +1,14 @@
+
+
+.mqtt_slider_overlay {
+    background: rgb(40, 40, 40);
+    height: 100%;
+    padding: 20%;
+}
+
+.mqtt_slider_overlay_text {
+    font-size: 120%;
+    position: fixed;
+    color: rgb(170,170,170);
+    font-family: Arial;
+}

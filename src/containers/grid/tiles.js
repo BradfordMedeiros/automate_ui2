@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { saveContent } from './module';
 
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
-import { tile as MqttSliderTile, overlay as MqttSliderOverlay } from './tiles/mqtt/slider/MqttSlider';
+import { tile as VerticalMqttSliderTile } from './tiles/mqtt/slider/VerticalSlider';
+import { tile as HorizontalMqttSliderTile } from './tiles/mqtt/slider/HorizontalSlider';
+import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSliderOverlay';
 import { tile as MqttButtonTile, overlay as MqttButtonOverlay } from './tiles/mqtt/button/button';
 
 import MongoLine from './tiles/mongo/line/mongoTile';
@@ -19,7 +21,7 @@ import StatesOverlay from './tiles/system/states/StatesOverlay';
 import Actions from './tiles/system/actions/Actions';
 import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
-export const tileNames = ['mqtt', 'dimmer', 'test', 'mongo line', 'mongo pie', 'button', 'states', 'actions', 'conditions'];
+export const tileNames = ['mqtt', 'dimmer', 'dimmer(h)', 'test', 'mongo line', 'mongo pie', 'button', 'states', 'actions', 'conditions'];
 
 const InnerTile = (props) => {
   const { tileName, ...otherProps } = props;
@@ -28,7 +30,10 @@ const InnerTile = (props) => {
       return <MqttTile {...otherProps} />;
     }
     case 'dimmer': {
-      return <MqttSliderTile {...otherProps} />;
+      return <VerticalMqttSliderTile {...otherProps} />;
+    }
+    case 'dimmer(h)': {
+      return <HorizontalMqttSliderTile {...otherProps} />
     }
     case 'mongo line': {
       return <MongoLine {...otherProps} />;
