@@ -37,6 +37,7 @@ class WithEvents extends Component {
   getMongoData() {
     const { refresh } = this.props;
 
+    clearInterval(this.intervalHandle);
     this.intervalHandle = setInterval(() => {
       request().then((response) => {
         response.reverse();
