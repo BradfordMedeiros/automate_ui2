@@ -109,31 +109,34 @@ class TileOverlay extends Component {
   render() {
     const { tileName, ...otherProps } = this.props;
     switch (tileName) {
-      case 'mqtt': {
+      case 'Display': {
         return <MqttOverlay {...otherProps} />;
       }
-      case 'dimmer': {
+      case 'Dimmer (Vertical)': {
         return <MqttSliderOverlay {...otherProps} />;
       }
-      case 'mongo line': {
+      case 'Dimmer (Horizontal)': {
+        return <MqttSliderOverlay {...otherProps} />;
+      }
+      case 'Line Chart': {
         return <MongoOverlay {...otherProps} />;
       }
-      case 'mongo pie': {
+      case 'Pie Chart': {
         return <MongoOverlay {...otherProps} />;
       }
-      case 'test': {
+      case 'Test': {
         return <div>test overlay</div>;
       }
-      case 'button': {
+      case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;
       }
-      case 'conditions' : {
+      case 'Conditions' : {
         return <ConditionsOverlay />;
       }
-      case 'states': {
+      case 'States': {
         return <StatesOverlay />;
       }
-      case 'actions': {
+      case 'Actions': {
         return <ActionsOvelray />;
       }
       default : {
