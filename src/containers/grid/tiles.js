@@ -21,39 +21,65 @@ import StatesOverlay from './tiles/system/states/StatesOverlay';
 import Actions from './tiles/system/actions/Actions';
 import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
-export const tileNames = ['mqtt', 'dimmer', 'dimmer(h)', 'test', 'mongo line', 'mongo pie', 'button', 'states', 'actions', 'conditions'];
+export const tileNames = [
+  {
+    label: 'Tools',
+    children: [
+      'Display',
+      'Button',
+      'Dimmer (Vertical)',
+      'Dimmer (Horizontal)',
+    ]
+  },
+  {
+    label: 'Graphs',
+    children: [
+      'Line Chart',
+      'Pie Chart',
+    ]
+  },
+  {
+    label: 'System',
+    children: [
+      'States',
+      'Actions',
+      'Conditions',
+    ]
+  },
+  'Test',
+];
 
 const InnerTile = (props) => {
   const { tileName, ...otherProps } = props;
   switch (tileName) {
-    case 'mqtt': {
+    case 'Display': {
       return <MqttTile {...otherProps} />;
     }
-    case 'dimmer': {
+    case 'Dimmer (Vertical)': {
       return <VerticalMqttSliderTile {...otherProps} />;
     }
-    case 'dimmer(h)': {
+    case 'Dimmer (Horizontal)': {
       return <HorizontalMqttSliderTile {...otherProps} />
     }
-    case 'mongo line': {
+    case 'Line Chart': {
       return <MongoLine {...otherProps} />;
     }
-    case 'mongo pie': {
+    case 'Pie Chart': {
       return <MongoPie {...otherProps} />;
     }
-    case 'test': {
+    case 'Test': {
       return <div>hello world</div>;
     }
-    case 'button': {
+    case 'Button': {
       return <MqttButtonTile {...otherProps} />;
     }
-    case 'conditions': {
+    case 'Conditions': {
       return <Conditions />;
     }
-    case 'states': {
+    case 'States': {
       return <States />;
     }
-    case 'actions': {
+    case 'Actions': {
       return <Actions />;
     }
     default : {

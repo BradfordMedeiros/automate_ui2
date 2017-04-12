@@ -14,7 +14,7 @@ const style = {
 
 class SelectionOverlay extends Component {
   render() {
-    const { isExpanded, left, right, Content } = this.props;   // @todo wo would be nice to add general support for style override
+    const { isExpanded, left, right, Content } = this.props;
     const overlay_style = isExpanded ? style.expanded : style.not_expanded;
     return (
       <div className="overlay" style={{ left, right, ...overlay_style }}>

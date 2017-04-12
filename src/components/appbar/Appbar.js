@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Toggle, Drawer, MenuItem, Subheader, Divider, IconButton } from 'material-ui';
+import { Toggle, Drawer, List, ListItem, Subheader, Divider, IconButton } from 'material-ui';
 import { NavigationMenu } from 'material-ui/svg-icons';
 import './style.css';
 
@@ -35,8 +35,30 @@ class Appbar extends Component {
       lockGrid(true);
     }
   };
+
+  renderTileAsMenuItem = tile => {
+    const { onTileClick } = this.props;
+    if (typeof(tile) === typeof({})){
+      return (
+        <ListItem
+          primaryText={tile.label}
+          primaryTogglesNestedList
+          nestedItems={!tile.children ? [] :  tile.children.map(this.renderTileAsMenuItem)}
+        />
+      );
+    }
+    return (
+      <ListItem
+        primaryText={tile}
+        onClick={() => {
+          this.setState({ open: false });
+          onTileClick(tile);
+        }}
+      />
+    )
+  }
   render() {
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onTileClick, onToggle, style, onHideMenu } = this.props;
+    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onToggle, style, onHideMenu } = this.props;
     const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     const { height, top, marginTop } = style;
@@ -54,12 +76,7 @@ class Appbar extends Component {
           <Divider />
           { (tileNames === undefined || tileNames.length === 0) ?
             <MenuItem>No tiles</MenuItem> :
-            tileNames.map(tile => <MenuItem
-              onClick={() => {
-                this.setState({ open: false });
-                onTileClick(tile);
-              }}
-            >{tile}</MenuItem>)
+            (<List>{tileNames.map(this.renderTileAsMenuItem)}</List>)
           }
         </Drawer>
         <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>

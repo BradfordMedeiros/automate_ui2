@@ -9,6 +9,8 @@ import { applyMiddleware, createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist-immutable';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 import createRoutes from './Routing';
 import Layout from './layout';
@@ -16,6 +18,8 @@ import logger from './util/logger';
 import reducer from './containers/grid/module';
 import connection from './containers/disconnected_overlay/module';
 import './style.css';
+
+injectTapEventPlugin();
 
 const reducers = combineReducers({ reducer, connection });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
