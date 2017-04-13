@@ -49,7 +49,6 @@ const generateData = (data, labels) => ({
 
 class Mongo extends Component {
   render() {
-    console.log('rendereing pie yo');
     const { savedContent } = this.props;
     if (!savedContent) {
       return <div><Subheader>No topic configured</Subheader></div>;
@@ -57,10 +56,9 @@ class Mongo extends Component {
     return (
       <WithMongo
         refresh={1000}
-        topic={['thing']}
+        topic={[savedContent]}
       >
         {({ data }) => {
-          const items = {};
           const frequency_map = data.reduce((acc, curr) => {
             if (acc[curr.message] === undefined) {
               acc[curr.message] = 0;
@@ -72,7 +70,18 @@ class Mongo extends Component {
           const dataLabels = Object.keys(frequency_map);
           const frequencies = dataLabels.map(label => frequency_map[label]);
 
-          return <Doughnut data={generateData(frequencies, dataLabels)} />;
+          return (
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+              width: '100%',
+              overflow: 'hidden',
+            }}>
+              <Doughnut data={generateData(frequencies, dataLabels)} />
+            </div>
+          );
         }}
       </WithMongo>
     );
