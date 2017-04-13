@@ -30,7 +30,7 @@ const options = {
 };
 
 
-const data = {
+const pieData = {
   labels: [
     'Red',
     'Green',
@@ -59,17 +59,30 @@ class Mongo extends Component {
       return <div><Subheader>No topic configured</Subheader></div>;
     }
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-          overflow: 'hidden',
-        }}
+      <WithMongo
+        refresh={1000}
+        topic={['humidity']}
       >
-        <Doughnut data={data} />
-      </div>
+        {({ data }) => {
+          console.log('rendering');
+          window.d = data;
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+            >
+              <Doughnut data={pieData} />
+            </div>
+          )
+        }}
+      </WithMongo>
+
+
 
     );
   }
