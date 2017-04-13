@@ -30,14 +30,10 @@ const options = {
 };
 
 
-const pieData = {
-  labels: [
-    'Red',
-    'Green',
-    'Yellow',
-  ],
+const generateData = (data, labels) => ({
+  labels,
   datasets: [{
-    data: [300, 50, 100],
+    data,
     backgroundColor: [
       '#FF6384',
       '#36A2EB',
@@ -49,7 +45,7 @@ const pieData = {
       '#FFCE56',
     ],
   }],
-};
+});
 
 class Mongo extends Component {
   render() {
@@ -61,29 +57,24 @@ class Mongo extends Component {
     return (
       <WithMongo
         refresh={1000}
-        topic={['humidity']}
+        topic={['thing']}
       >
         {({ data }) => {
-          console.log('rendering');
-          window.d = data;
-          return (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
-                overflow: 'hidden',
-              }}
-            >
-              <Doughnut data={pieData} />
-            </div>
-          )
+          const items = {};
+          const frequency_map = data.reduce((acc, curr) => {
+            if (acc[curr.message] === undefined) {
+              acc[curr.message] = 0;
+            }
+            acc[curr.message] = acc[curr.message] + 1;
+            return acc;
+          }, {});
+
+          const dataLabels = Object.keys(frequency_map);
+          const frequencies = dataLabels.map(label => frequency_map[label]);
+
+          return <Doughnut data={generateData(frequencies, dataLabels)} />;
         }}
       </WithMongo>
-
-
-
     );
   }
 }

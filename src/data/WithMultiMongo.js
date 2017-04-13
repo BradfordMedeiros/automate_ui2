@@ -9,12 +9,12 @@ const request = async (topics, limit) => {
       method: 'POST',
       mode: 'cors',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         query: {
-          '$or': topics.map(topic => ({ topic })),
+          $or: topics.map(topic => ({ topic })),
         },
         options: { limit: limit || undefined },
       }),
