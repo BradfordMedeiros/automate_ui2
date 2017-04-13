@@ -23,12 +23,11 @@ const styles = {
 
 class LightDimmerTile extends Component {
 
-  getStyle = axis => {
-    if (axis == 'y'){
+  getStyle = (axis) => {
+    if (axis == 'y') {
       return { height: '90%' };
-    }else{
-      return { width: '90%' };
     }
+    return { width: '90%' };
   }
   render() {
     const { savedContent, axis } = this.props;

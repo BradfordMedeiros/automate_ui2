@@ -79,7 +79,7 @@ export default class TableExampleComplex extends React.Component {
         <WithEvents
           whileLoading={this.getContainer}
         >
-          {(content) => this.getContainer(content)}
+          {content => this.getContainer(content)}
         </WithEvents>
       </div>
     );

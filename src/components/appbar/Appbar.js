@@ -36,14 +36,14 @@ class Appbar extends Component {
     }
   };
 
-  renderTileAsMenuItem = tile => {
+  renderTileAsMenuItem = (tile) => {
     const { onTileClick } = this.props;
-    if (typeof(tile) === typeof({})){
+    if (typeof (tile) === typeof ({})) {
       return (
         <ListItem
           primaryText={tile.label}
           primaryTogglesNestedList
-          nestedItems={!tile.children ? [] :  tile.children.map(this.renderTileAsMenuItem)}
+          nestedItems={!tile.children ? [] : tile.children.map(this.renderTileAsMenuItem)}
         />
       );
     }
@@ -55,7 +55,7 @@ class Appbar extends Component {
           onTileClick(tile);
         }}
       />
-    )
+    );
   }
   render() {
     const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onToggle, style, onHideMenu } = this.props;

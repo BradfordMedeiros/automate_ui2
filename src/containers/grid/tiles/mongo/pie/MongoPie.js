@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Subheader } from 'material-ui';
-import { Line } from 'react-chartjs-2';
-import WithMongo from '../../../../../data/WithMongo';
+import { Doughnut } from 'react-chartjs-2';
+import WithMongo from '../../../../../data/WithMultiMongo';
 
 
 const options = {
@@ -29,6 +29,28 @@ const options = {
   },
 };
 
+
+const data = {
+  labels: [
+    'Red',
+    'Green',
+    'Yellow',
+  ],
+  datasets: [{
+    data: [300, 50, 100],
+    backgroundColor: [
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
+    ],
+    hoverBackgroundColor: [
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
+    ],
+  }],
+};
+
 class Mongo extends Component {
   render() {
     console.log('rendereing pie yo');
@@ -37,51 +59,18 @@ class Mongo extends Component {
       return <div><Subheader>No topic configured</Subheader></div>;
     }
     return (
-      <WithMongo
-        topic={savedContent}
-        refresh={1000}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          overflow: 'hidden',
+        }}
       >
-        {
-          ({ data }) => {
-            if (data.length === 0) {
-              return <div>No Data for {savedContent}</div>;
-            }
-            const topic = data[0].topic;
-            const dataToRender = data.map(item => ({
-              x: new Date(item.timestamp),
-              y: Number(item.message),
-            }));
+        <Doughnut data={data} />
+      </div>
 
-            const theData = {
-              labels: data.map(item => item.timestamp),
-              datasets: [
-                {
-                  label: topic,
-                  data: dataToRender,
-                  backgroundColor: 'rgba(153,255,51,0.4)',
-                }],
-              scales: {
-                xAxes: [{
-                  type: 'time',
-                  display: true,
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'Date',
-                  },
-                }],
-                yAxes: [{
-                  display: true,
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'value',
-                  },
-                }],
-              },
-            };
-            return <Line options={options} data={theData} />;
-          }
-        }
-      </WithMongo>
     );
   }
 }

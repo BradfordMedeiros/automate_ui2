@@ -29,14 +29,14 @@ export const tileNames = [
       'Button',
       'Dimmer (Vertical)',
       'Dimmer (Horizontal)',
-    ]
+    ],
   },
   {
     label: 'Graphs',
     children: [
       'Line Chart',
       'Pie Chart',
-    ]
+    ],
   },
   {
     label: 'System',
@@ -44,7 +44,7 @@ export const tileNames = [
       'States',
       'Actions',
       'Conditions',
-    ]
+    ],
   },
   'Test',
 ];
@@ -59,7 +59,7 @@ const InnerTile = (props) => {
       return <VerticalMqttSliderTile {...otherProps} />;
     }
     case 'Dimmer (Horizontal)': {
-      return <HorizontalMqttSliderTile {...otherProps} />
+      return <HorizontalMqttSliderTile {...otherProps} />;
     }
     case 'Line Chart': {
       return <MongoLine {...otherProps} />;

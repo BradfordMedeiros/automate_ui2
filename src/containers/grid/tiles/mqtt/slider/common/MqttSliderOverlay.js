@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { TextField, RaisedButton } from 'material-ui';
-import  './overlayStyle.css';
+import './overlayStyle.css';
 
 class MqttOverlay extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class MqttOverlay extends Component {
           hintText={'max value'}
           defaultValue={this.state.maxValue}
         />
-        <div className="mqtt_slider_overlay_text" >saved content:                                                                                                                                                                                                                                                                                                                                            {savedContent && savedContent.topic}</div>
+        <div className="mqtt_slider_overlay_text" >saved content:                                                                                                                                                                                                                                                                                                                                                      {savedContent && savedContent.topic}</div>
         <RaisedButton
           onClick={() =>
             saveContent({
@@ -65,5 +65,4 @@ class MqttOverlay extends Component {
 }
 
 export const overlay = MqttOverlay;
-
 
