@@ -8,9 +8,11 @@ import { tile as HorizontalMqttSliderTile } from './tiles/mqtt/slider/Horizontal
 import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSliderOverlay';
 import { tile as MqttButtonTile, overlay as MqttButtonOverlay } from './tiles/mqtt/button/button';
 
-import MongoLine from './tiles/mongo/line/mongoTile';
-import MongoPie from './tiles/mongo/pie/MongoPie';
-import { overlay as MongoOverlay } from './tiles/mongo/line/mongoOverlay';
+import MongoLine from './tiles/graphs/line/mongoTile';
+import MongoPie from './tiles/graphs/pie/MongoPie';
+import MongoRadar from './tiles/graphs/radar/MongoRadar';
+import MongoBar from './tiles/graphs/bar/MongoBar';
+import { overlay as MongoOverlay } from './tiles/graphs/line/mongoOverlay';
 
 import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
@@ -34,8 +36,10 @@ export const tileNames = [
   {
     label: 'Graphs',
     children: [
+      'Bar Graph',
       'Line Chart',
       'Pie Chart',
+      'Radar Chart'
     ],
   },
   {
@@ -66,6 +70,12 @@ const InnerTile = (props) => {
     }
     case 'Pie Chart': {
       return <MongoPie {...otherProps} />;
+    }
+    case 'Radar Chart': {
+      return <MongoRadar {...otherProps} />
+    }
+    case 'Bar Graph': {
+      return <MongoBar {...otherProps} />
     }
     case 'Test': {
       return <div>hello world</div>;
@@ -124,6 +134,12 @@ class TileOverlay extends Component {
       case 'Pie Chart': {
         return <MongoOverlay {...otherProps} />;
       }
+      case 'Radar Chart': {
+        return <MongoOverlay {...otherProps} />
+      }
+      case 'Bar Graph': {
+        return <MongoOverlay {...otherProps} />
+      }
       case 'Test': {
         return <div>test overlay</div>;
       }
@@ -147,7 +163,6 @@ class TileOverlay extends Component {
 }
 
 const TileWrapper = ({ children, tileKey, savedContent, saveContent }) => {
-  console.log('tilekey ------- in tw ----  ', tileKey);
   const saveContentForTile = content => saveContent(tileKey, content);
   return children({ savedContent: savedContent.get(tileKey), saveContent: saveContentForTile });
 };
