@@ -105,7 +105,7 @@ class Tile extends Component {
         style={{
           width: '100%',
           height: '100%',
-          border: '1px solid rgba(30,30,30,0.8)',
+          border: '1px solid rgb(120, 110, 110)',
           boxShadow: 'rgba(55, 35, 35, 0.6) 0px 0px 5px 0.1px',
         }}
       >
