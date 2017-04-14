@@ -18,7 +18,7 @@ const MenuContainer = (
       {...otherProps} buttonLabels={
       [
         {
-          label: 'home',
+          label: 'Home',
           onClick: () => {
             if (menuIsExpanded) {
               closeMenu();
@@ -29,7 +29,12 @@ const MenuContainer = (
           },
         },
         {
-          label: 'events',
+          label: 'Add New',
+          onClick: () => { },
+        },
+
+        {
+          label: 'Events',
           onClick: () => {
             if (menuIsExpanded || addGridExpanded) {
               closeMenu();
@@ -40,7 +45,7 @@ const MenuContainer = (
           },
         },
         {
-          label: 'ssh',
+          label: 'SSH',
           onClick: () => {
             if (addGridExpanded || menuIsExpanded) {
               closeMenu();
@@ -49,8 +54,7 @@ const MenuContainer = (
               setSSHContent();
             }
           },
-        },
-        'disconnect']}
+        }]}
     />
 );
 

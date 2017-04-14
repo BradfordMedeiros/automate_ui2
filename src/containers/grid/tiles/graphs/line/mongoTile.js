@@ -59,6 +59,8 @@ class Mongo extends Component {
                   label: topic,
                   data: dataToRender,
                   backgroundColor: 'rgba(153,255,51,0.4)',
+                  width: '80%',
+                  marginLeft: '10%',
                 }],
             };
             return (

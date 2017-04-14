@@ -4,7 +4,7 @@ import { List } from 'immutable';
 import { ActionHome, ContentCreate, ActionStore, ActionSettingsPower } from 'material-ui/svg-icons';
 import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
-import { container as Grid } from './containers/grid/Grid';
+import { container as Grid } from './containers/grid/MultiGrid';
 import { container as SelectionOverlay } from './containers/Overlay';
 import { container as Menu } from './containers/Menu';
 import MinimalMenu from './components/menu/minimalMenu';
