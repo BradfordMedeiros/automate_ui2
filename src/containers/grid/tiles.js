@@ -40,7 +40,7 @@ export const tileNames = [
       'Bar Graph',
       'Line Chart',
       'Pie Chart',
-      'Radar Chart'
+      'Radar Chart',
     ],
   },
   {
@@ -56,8 +56,8 @@ export const tileNames = [
     children: [
       'Test',
       'IFrame',
-    ]
-  }
+    ],
+  },
 ];
 
 const InnerTile = (props) => {
@@ -79,16 +79,16 @@ const InnerTile = (props) => {
       return <MongoPie {...otherProps} />;
     }
     case 'Radar Chart': {
-      return <MongoRadar {...otherProps} />
+      return <MongoRadar {...otherProps} />;
     }
     case 'Bar Graph': {
-      return <MongoBar {...otherProps} />
+      return <MongoBar {...otherProps} />;
     }
     case 'Test': {
       return <div>hello world</div>;
     }
     case 'IFrame' : {
-      return <IFrameTile {...otherProps} />
+      return <IFrameTile {...otherProps} />;
     }
     case 'Button': {
       return <MqttButtonTile {...otherProps} />;
@@ -145,16 +145,16 @@ class TileOverlay extends Component {
         return <MongoOverlay {...otherProps} />;
       }
       case 'Radar Chart': {
-        return <MongoOverlay {...otherProps} />
+        return <MongoOverlay {...otherProps} />;
       }
       case 'Bar Graph': {
-        return <MongoOverlay {...otherProps} />
+        return <MongoOverlay {...otherProps} />;
       }
       case 'Test': {
         return <div>test overlay</div>;
       }
       case 'IFrame': {
-        return <MqttOverlay {...otherProps} />
+        return <MqttOverlay {...otherProps} />;
       }
       case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;

@@ -81,13 +81,7 @@ const reducer = (state = initialState, action) => {
     case REHYDRATE: {
       if (action.payload && action.payload.reducer) {
         const layout = action.payload.reducer.get('layout');
-        // const tileKeyToTileName = action.payload.reducer.get('tileKeyToTileName');
-
-        window.r = action.payload.reducer;
         return action.payload.reducer.set('layout', layout.map(fixTile));
-          // .set('tileKeyToTileName', action.payload.reducer.get('tileKeyToTileName'))
-          // .set('savedTileContent', action.payload.reducer.get('savedTileContent'))
-          // .set('content', action.payload.reducer.get('content'));
       }
       return state;
     }

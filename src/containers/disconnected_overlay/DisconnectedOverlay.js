@@ -46,7 +46,7 @@ class Disconnection extends Component {
           <Desktop><DisconnectedOverlay /></Desktop>
           <Mobile><DisconnectedOverlay headerStyle={{ fontSize: '250%' }} textStyle={{ fontSize: '150%' }} /></Mobile>
         </div>
-      )
+      );
     }
     return null;
   }

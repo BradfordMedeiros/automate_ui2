@@ -27,15 +27,6 @@ class Appbar extends Component {
       open: false,
     };
   }
-  toggleLock = () => {
-    const { isLocked, lockGrid } = this.props;
-    if (isLocked) {
-      lockGrid(false);
-    } else {
-      lockGrid(true);
-    }
-  };
-
   renderTileAsMenuItem = (tile) => {
     const { onTileClick } = this.props;
     if (typeof (tile) === typeof ({})) {

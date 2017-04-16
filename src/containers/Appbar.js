@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onRotatedAddIconClick: () => dispatch(expandMenu(false)),
-  lockGrid: lockState => dispatch(lock(lockState)),
   onTileClick: tileName => dispatch(addTile(tileName)),
   onToggle: (x, elementIsToggled) => dispatch(lock(!elementIsToggled)),
   onHideMenu: () => dispatch(setMenu()),

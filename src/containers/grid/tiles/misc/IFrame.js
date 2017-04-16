@@ -6,9 +6,9 @@ class IFrameTile extends Component {
     return savedContent ? (
       <iframe
         alt="Cannot load custom content"
-        src={ savedContent }
+        src={savedContent}
         allowFullScreen
-        style={{  border: '0 none', height: '100%', width: '100%', pointerEvents: isEditing ? 'none': undefined }}
+        style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: isEditing ? 'none' : undefined }}
       />) : <div>No Content</div>;
   }
 }

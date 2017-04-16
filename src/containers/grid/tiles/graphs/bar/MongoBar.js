@@ -75,15 +75,17 @@ class Mongo extends Component {
           const frequencies = dataLabels.map(label => frequency_map[label]);
 
           return (
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100%',
-              width: '90%',
-              overflow: 'hidden',
-              marginLeft: '5%',
-            }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+                width: '90%',
+                overflow: 'hidden',
+                marginLeft: '5%',
+              }}
+            >
               <Bar data={generateData(frequencies, dataLabels)} />
             </div>
           );

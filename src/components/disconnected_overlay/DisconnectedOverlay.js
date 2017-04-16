@@ -42,4 +42,3 @@ DisconnectedOverlay.defaultProps = {
 
 export default DisconnectedOverlay;
 
-
