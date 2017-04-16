@@ -7,6 +7,7 @@ import { tile as VerticalMqttSliderTile } from './tiles/mqtt/slider/VerticalSlid
 import { tile as HorizontalMqttSliderTile } from './tiles/mqtt/slider/HorizontalSlider';
 import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSliderOverlay';
 import { tile as MqttButtonTile, overlay as MqttButtonOverlay } from './tiles/mqtt/button/button';
+import { tile as IFrameTile } from './tiles/misc/IFrame';
 
 import MongoLine from './tiles/graphs/line/mongoTile';
 import MongoPie from './tiles/graphs/pie/MongoPie';
@@ -50,7 +51,13 @@ export const tileNames = [
       'Conditions',
     ],
   },
-  'Test',
+  {
+    label: 'Misc',
+    children: [
+      'Test',
+      'IFrame',
+    ]
+  }
 ];
 
 const InnerTile = (props) => {
@@ -79,6 +86,9 @@ const InnerTile = (props) => {
     }
     case 'Test': {
       return <div>hello world</div>;
+    }
+    case 'IFrame' : {
+      return <IFrameTile {...otherProps} />
     }
     case 'Button': {
       return <MqttButtonTile {...otherProps} />;
@@ -143,6 +153,9 @@ class TileOverlay extends Component {
       case 'Test': {
         return <div>test overlay</div>;
       }
+      case 'IFrame': {
+        return <MqttOverlay {...otherProps} />
+      }
       case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;
       }
@@ -183,12 +196,13 @@ const Wrapper = connect(mapStateToProps, mapDispatchToProps)(TileWrapper);
 
 
 export const tileNameToTile = {
-  get: (tileName, tileKey) => (
+  get: (tileName, tileKey, isEditing) => (
     <Wrapper
       tileKey={tileKey}
     >
       {({ savedContent, saveContent }) =>
         <Tile
+          isEditing={isEditing}
           tileName={tileName}
           saveContent={saveContent}
           savedContent={savedContent}
@@ -197,10 +211,11 @@ export const tileNameToTile = {
 };
 
 export const tileNameToContent = {
-  get: (tileName, tileKey) => (
+  get: (tileName, tileKey, isEditing) => (
     <Wrapper tileKey={tileKey}>
       {({ savedContent, saveContent }) => (
         <TileOverlay
+          isEditing={isEditing}
           saveContent={saveContent}
           savedContent={savedContent}
           tileName={tileName}

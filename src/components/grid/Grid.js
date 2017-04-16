@@ -47,7 +47,7 @@ class Grid extends Component {
                   onDoubleClick={() => onGridItemClick(tileKeyToTileName.get(key), key)}
                 >
                   <Paper zDepth={1} style={{ width: '100%', height: '100%', background: 'none' }}>
-                    {tileNameToTile.get(tileKeyToTileName.get(key), key)}
+                    {tileNameToTile.get(tileKeyToTileName.get(key), key, isEditable)}
                   </Paper>
                 </div>
                     ))}
@@ -66,6 +66,7 @@ Grid.PropTypes = {
   tileNameToTile: PropTypes.object.isRequired,
   tileKeyToTileName: PropTypes.object.isRequired,
   onLayoutChange: PropTypes.func,
+  isEditable: PropTypes.bool,
   layout: PropTypes.object.isRequired,
   style: PropTypes.object,
   opened: PropTypes.bool,
