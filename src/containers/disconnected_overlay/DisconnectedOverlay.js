@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import fetch from 'isomorphic-fetch';
 import DisconnectedOverlay from '../../components/disconnected_overlay/DisconnectedOverlay';
 import { setIsConnected, setIsDisconnected } from './module';
+import { Mobile, Desktop } from '../../util/ViewportSizing';
+
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const ACTIONS_URL = `${AUTOMATE_CORE_URL}/status`;
@@ -39,7 +41,12 @@ class Disconnection extends Component {
   render() {
     const { isDisconnected } = this.props;
     if (isDisconnected) {
-      return <DisconnectedOverlay />;
+      return (
+        <div>
+          <Desktop><DisconnectedOverlay /></Desktop>
+          <Mobile><DisconnectedOverlay headerStyle={{ fontSize: '250%' }} textStyle={{ fontSize: '150%' }} /></Mobile>
+        </div>
+      )
     }
     return null;
   }

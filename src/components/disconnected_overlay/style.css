@@ -4,7 +4,7 @@
     border-top: 1px solid #423e3e;
     background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 47px);
     z-index: 10000;
     top: 47px;
     left: 0px;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Subheader } from 'material-ui';
 import './style.css';
 
@@ -17,15 +17,29 @@ class DisconnectedOverlay extends Component {
     clearInterval(this.countHandle);
   }
   render() {
+    const { headerStyle, textStyle } = this.props;
     return (
       <div className="disconnected_overlay">
-        <Subheader style={{ fontSize: '150%' }}>Automate is disconnected</Subheader>
-        <Subheader style={{ fontSize: '100%' }}>
+        <Subheader style={headerStyle}>Automate is disconnected</Subheader>
+        <Subheader style={textStyle}>
           <div>Attempting to reconnect {Array(...Array(this.state.numDots)).map(x => '.')}</div>
         </Subheader>
+
       </div>
     );
   }
 }
 
+DisconnectedOverlay.propTypes = {
+  headerStyle: PropTypes.object,
+  textStyle: PropTypes.object,
+};
+
+DisconnectedOverlay.defaultProps = {
+  headerStyle: { fontSize: '150%' },
+  textStyle: { fontSize: '100%' },
+};
+
 export default DisconnectedOverlay;
+
+
