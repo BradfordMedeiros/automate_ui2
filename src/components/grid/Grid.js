@@ -14,7 +14,7 @@ class Grid extends Component {
 
     const gridStyle = isOpen ? { animation: 'grid_slide 0.1s linear forwards' } : { animation: 'grid_slide_out 0.1s linear forwards' };
 
-    const jsLayout = layout.toJS();
+    const jsLayout = layout ? layout.toJS() : [];
     const tileKeys = jsLayout.map(item => item.i);
 
     console.error('rendering grid');

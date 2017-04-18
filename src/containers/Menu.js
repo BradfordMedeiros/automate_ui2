@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
-import { setContent, expandMenu, setGridIsOpen } from './grid/module';
+import { expandMenu, setGridIsOpen } from './module';
+import { setContent } from './grid/module';
 
 const MenuContainer = (
   {

@@ -185,7 +185,7 @@ TileWrapper.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  savedContent: state.getIn(['reducer', 'savedTileContent']),
+  savedContent: state.getIn(['gridReducer', 'savedTileContent']),
 });
 
 const mapDispatchToProps = dispatch => ({

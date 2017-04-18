@@ -4,7 +4,7 @@ import Overlay from '../components/overlay/Overlay';
 
 const mapStateToProps = state => ({
   isExpanded: state.getIn(['reducer', 'menuExpanded']),
-  Content: state.getIn(['reducer', 'content']),
+  Content: state.getIn(['gridReducer', 'content']),
 });
 
 export const container = connect(mapStateToProps)(Overlay);

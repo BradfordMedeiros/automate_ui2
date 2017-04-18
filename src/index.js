@@ -10,23 +10,22 @@ import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist-immutable';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
-
 import createRoutes from './Routing';
 import Layout from './layout';
 import logger from './util/logger';
-import reducer from './containers/grid/module';
+import reducer from './containers/module';
 import connection from './containers/disconnected_overlay/module';
+import gridReducer from './containers/grid/module';
 import './style.css';
 
 injectTapEventPlugin();
 
-const reducers = combineReducers({ reducer, connection });
+const reducers = combineReducers({ reducer, connection, gridReducer });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
 
 persistStore(store,
   {
-    whitelist: ['reducer'],
+    whitelist: ['gridReducer'],
   });
 
 const App = () => (

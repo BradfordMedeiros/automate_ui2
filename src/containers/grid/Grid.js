@@ -2,17 +2,16 @@ import React from 'react';
 import { List } from 'immutable';
 import Grid from '../../components/grid/Grid';
 import { connect } from 'react-redux';
-import { expandMenu, setContent, setLayout } from './module';
-
 import { tileNameToContent } from './tiles';
-
+import { expandMenu } from '../module';
+import { setContent, setLayout } from './module';
 
 const TileToRender = ({ tileName, tileKey }) => tileNameToContent.get(tileName, tileKey);
 
 const mapStateToProps = state => ({
   isEditable: !state.getIn(['reducer', 'isLocked']),
-  layout: state.getIn(['reducer', 'layout']),
-  tileKeyToTileName: state.getIn(['reducer', 'tileKeyToTileName']),
+  layout: state.getIn(['gridReducer', 'layout']),
+  tileKeyToTileName: state.getIn(['gridReducer', 'tileKeyToTileName']),
   isOpen: state.getIn(['reducer', 'gridIsOpen']),
 });
 

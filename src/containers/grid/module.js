@@ -1,17 +1,11 @@
 import { fromJS } from 'immutable';
 import { REHYDRATE } from 'redux-persist-immutable/constants';
 
-
 const initialState = fromJS({
-  menuExpanded: false,
-  addGridExpanded: false,
-  isLocked: true,
   content: undefined,
   layout: [],
   tileKeyToTileName: {},
   savedTileContent: {}, // maps key to content
-  gridIsOpen: false,
-  menuIsHidden: false,
 });
 
 const getNextTile = (layout) => {
@@ -20,10 +14,6 @@ const getNextTile = (layout) => {
     { w: 6, h: 4, x: 0, y: 0, i: String(nextIndex), moved: false, static: false }
   );
 };
-
-export const setMenu = isOpen => ({
-  type: 'set_menu',
-});
 
 export const setContent = content => ({
   type: 'setContent',
@@ -40,28 +30,10 @@ export const setLayout = layout => ({
   type: 'setLayout',
   layout,
 });
-export const expandMenu = isExpanded => ({
-  type: 'expandMenu',
-  isExpanded,
-});
-export const expandAddGrid = isExpanded => ({
-  type: 'expandAddGrid',
-  isExpanded,
-});
-
-export const lock = isLocked => ({
-  type: 'lockGrid',
-  isLocked,
-});
 
 export const addTile = tileName => ({
   type: 'addTile',
   tileName,
-});
-
-export const setGridIsOpen = isOpen => ({
-  type: 'setGridIsOpen',
-  isOpen,
 });
 
 const fixTile = (tile) => {
@@ -76,7 +48,7 @@ const fixTile = (tile) => {
   }, { });
 };
 
-const reducer = (state = initialState, action) => {
+const gridReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE: {
       if (action.payload && action.payload.reducer) {
@@ -84,18 +56,6 @@ const reducer = (state = initialState, action) => {
         return action.payload.reducer.set('layout', layout.map(fixTile));
       }
       return state;
-    }
-    case 'set_menu': {
-      return state.set('menuIsHidden', !state.get('menuIsHidden'));
-    }
-    case 'expandMenu': {
-      return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
-    }
-    case 'lockGrid': {
-      return state.set('isLocked', action.isLocked);
-    }
-    case 'expandAddGrid': {
-      return state.set('addGridExpanded', action.isExpanded);
     }
     case 'setContent': {
       return state.set('content', action.content);
@@ -113,16 +73,10 @@ const reducer = (state = initialState, action) => {
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, action.tileName);
       return state.set('layout', layout).set('tileKeyToTileName', tileKeyToTileName);
     }
-    case 'setGridIsOpen': {
-      if (action.isOpen === undefined) {
-        return state.set('gridIsOpen', !state.get('gridIsOpen'));
-      }
-      return state.set('gridIsOpen', action.isOpen);
-    }
     default: {
       return state;
     }
   }
 };
 
-export default reducer;
+export default gridReducer;
