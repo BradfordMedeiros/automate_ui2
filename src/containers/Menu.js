@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
 import { expandMenu, setGridIsOpen } from './module';
-import { setContent } from './grid/module';
+import { setContent, setActiveGrid } from './grid/module';
 
 const MenuContainer = (
   {
@@ -13,6 +13,8 @@ const MenuContainer = (
     closeMenu,
     menuIsExpanded,
     addGridExpanded,
+    setActiveGridOne,
+    setActiveGridZero,
     ...otherProps
   }) => (
     <Menu
@@ -30,10 +32,17 @@ const MenuContainer = (
           },
         },
         {
-          label: 'Add New',
-          onClick: () => { },
+          label: 'Grid 0',
+          onClick: () => {
+            setActiveGridZero();
+          },
         },
-
+        {
+          label: 'Grid 1',
+          onClick: () => {
+            setActiveGridOne();
+          },
+        },
         {
           label: 'Events',
           onClick: () => {
@@ -77,6 +86,12 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
   closeMenu: () => {
     dispatch(expandMenu(false));
+  },
+  setActiveGridZero: () => {
+    dispatch(setActiveGrid('0'));
+  },
+  setActiveGridOne: () => {
+    dispatch(setActiveGrid('1'));
   },
 });
 
