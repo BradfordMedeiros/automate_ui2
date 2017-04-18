@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Paper } from 'material-ui';
-import { fromJS } from 'immutable';
-import { AutoSizer } from 'react-virtualized';
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
