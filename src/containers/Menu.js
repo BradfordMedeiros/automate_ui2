@@ -6,8 +6,8 @@ import EventLog from '../event_log/EventLog';
 import { expandMenu, setGridIsOpen } from './module';
 import { setContent, setActiveGrid, addGrid } from './grid/module';
 
-class  MenuContainer extends Component {
-  constructor(props){
+class MenuContainer extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       showAddDialog: false,
@@ -16,7 +16,7 @@ class  MenuContainer extends Component {
   }
   closeDialog = () => this.setState({ showAddDialog: false });
 
-  onGridClick = gridName => {
+  onGridClick = (gridName) => {
     const { setActiveGrid, menuIsExpanded, closeMenu, closeSSHContent, addGridExpanded } = this.props;
     if (menuIsExpanded) {
       closeMenu();
@@ -87,7 +87,7 @@ class  MenuContainer extends Component {
                 this.setState({
                   showAddDialog: true,
                   gridName: null,
-                })
+                });
               },
             },
             {
@@ -112,12 +112,12 @@ class  MenuContainer extends Component {
                 }
               },
             },
-            ]}
+          ]}
         />
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   menuIsExpanded: state.getIn(['reducer', 'menuExpanded']),
@@ -139,7 +139,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   closeMenu: () => {
     dispatch(expandMenu(false));
   },
-  addGrid: (gridName) => dispatch(addGrid(gridName)),
+  addGrid: gridName => dispatch(addGrid(gridName)),
   setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
 });
 
