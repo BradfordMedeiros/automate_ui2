@@ -48,12 +48,13 @@ class MenuContainer extends Component {
     return (
       <div>
         <Dialog
+          bodyStyle={{ backgroundColor: 'rgb(40, 40, 40)', border: '1px ridge rgba(255,255,255,0.1)' }}
           open={this.state.showAddDialog}
           onRequestClose={() => {
             this.setState({ showAddDialog: false });
           }}
         >
-          Set the name of the grid
+          <div style={{ display: 'inline', color: 'rgba(255,255,255,0.8)' }}>Set the name of the grid</div>
           <TextField
             style={{ paddingLeft: 20 }}
             hintText="Grid name"
@@ -82,7 +83,7 @@ class MenuContainer extends Component {
             },
             ...menuItems,
             {
-              label: 'Add Grid',
+              label: 'Add Grid +',
               onClick: () => {
                 this.setState({
                   showAddDialog: true,

@@ -7,7 +7,7 @@ import { AvMic, AvMicNone } from 'material-ui/svg-icons';
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions/special/speech_recognition`;
 
-const style = { zIndex: 2000, position: 'fixed', top: 0, right: 250, boxShadow: '0px 0px 3px 0.1px black inset' };
+const style = { zIndex: 200, position: 'fixed', top: 0, right: 250, boxShadow: '0px 0px 3px 0.1px black inset' };
 
 class SpeechRecognition extends Component {
   constructor(props) {
