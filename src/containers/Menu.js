@@ -1,76 +1,81 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dialog } from 'material-ui';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
 import { expandMenu, setGridIsOpen } from './module';
-import { setContent, setActiveGrid } from './grid/module';
+import { setContent, setActiveGrid, addGrid } from './grid/module';
 
 const MenuContainer = (
   {
+    grids,
     setSSHContent,
     closeSSHContent,
     setEventLog,
     closeMenu,
     menuIsExpanded,
     addGridExpanded,
-    setActiveGridOne,
-    setActiveGridZero,
+    addGrid,
+    setActiveGrid,
     ...otherProps
-  }) => (
-    <Menu
-      {...otherProps} buttonLabels={
-      [
-        {
-          label: 'Home',
-          onClick: () => {
-            if (menuIsExpanded) {
-              closeMenu();
-            }
-            if (addGridExpanded) {
-              closeSSHContent();
-            }
+  }) => {
+  const menuItems = grids.map(gridNumber => ({
+    label: gridNumber,
+    onClick: () => setActiveGrid(gridNumber),
+  })).toJS();
+
+  return (
+    <div>
+      <Menu
+        {...otherProps} buttonLabels={
+        [
+          {
+            label: 'Home',
+            onClick: () => {
+              if (menuIsExpanded) {
+                closeMenu();
+              }
+              if (addGridExpanded) {
+                closeSSHContent();
+              }
+            },
           },
-        },
-        {
-          label: 'Grid 0',
-          onClick: () => {
-            setActiveGridZero();
+          ...menuItems,
+          {
+            label: 'Add Grid',
+            onClick: addGrid,
           },
-        },
-        {
-          label: 'Grid 1',
-          onClick: () => {
-            setActiveGridOne();
+          {
+            label: 'Events',
+            onClick: () => {
+              if (menuIsExpanded || addGridExpanded) {
+                closeMenu();
+                closeSSHContent();
+              } else {
+                setEventLog();
+              }
+            },
           },
-        },
-        {
-          label: 'Events',
-          onClick: () => {
-            if (menuIsExpanded || addGridExpanded) {
-              closeMenu();
-              closeSSHContent();
-            } else {
-              setEventLog();
-            }
-          },
-        },
-        {
-          label: 'SSH',
-          onClick: () => {
-            if (addGridExpanded || menuIsExpanded) {
-              closeMenu();
-              closeSSHContent();
-            } else {
-              setSSHContent();
-            }
-          },
-        }]}
-    />
-);
+          {
+            label: 'SSH',
+            onClick: () => {
+              if (addGridExpanded || menuIsExpanded) {
+                closeMenu();
+                closeSSHContent();
+              } else {
+                setSSHContent();
+              }
+            },
+          }]}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   menuIsExpanded: state.getIn(['reducer', 'menuExpanded']),
   addGridExpanded: state.getIn(['reducer', 'gridIsOpen']),
+  grids: state.getIn(['gridReducer', 'grids']),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -87,12 +92,8 @@ const mapDispatchToProps = (dispatch, props) => ({
   closeMenu: () => {
     dispatch(expandMenu(false));
   },
-  setActiveGridZero: () => {
-    dispatch(setActiveGrid('0'));
-  },
-  setActiveGridOne: () => {
-    dispatch(setActiveGrid('1'));
-  },
+  addGrid: () => dispatch(addGrid()),
+  setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

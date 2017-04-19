@@ -7,6 +7,7 @@ const initialState = fromJS({
   tileKeyToTileName: {},
   savedTileContent: {}, // maps key to content
   activeGrid: '0',
+  grids: ['0', '1'],
 });
 
 const getNextTile = (layouts) => {
@@ -45,6 +46,10 @@ export const addTile = (tileName, gridNumber) => ({
   tileName,
 });
 
+export const addGrid = () => ({
+  type: 'addGrid',
+});
+
 const fixTile = (tile) => {
   console.log('fixing tile ', tile);
   return Object.keys(tile).reduce((ans, curr) => {
@@ -80,6 +85,9 @@ const gridReducer = (state = initialState, action) => {
     case 'setLayout': {
       const { layout, gridNumber } = action;
       return state.setIn(['layout', gridNumber], layout);
+    }
+    case 'addGrid': {
+      return state.set('grids', state.get('grids').push('default'));
     }
     case 'addTile': {
       const { tileName, gridNumber } = action;
