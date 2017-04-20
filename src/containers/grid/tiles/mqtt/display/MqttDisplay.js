@@ -14,7 +14,14 @@ class MqttTile extends Component {
           {
               (stuff) => {
                 const value = stuff[savedContent];
-                return <div className="number" style={{ color: 'grey' }}>{JSON.stringify(value)}</div>;
+                return (
+                  <div>
+                    <div className="title">{savedContent}</div>
+                    <div className="number" style={{ color: 'grey' }}>
+                      {JSON.stringify(value)}
+                    </div>
+                  </div>
+                );
               }
             }
         </WithMqtt>
@@ -57,7 +64,7 @@ class MqttOverlay extends Component {
           }}
           hintText={'mqtt topic'}
         />
-        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                {savedContent}</div>
+        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                          {savedContent}</div>
         <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
       </div>
     );

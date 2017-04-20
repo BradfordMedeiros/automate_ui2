@@ -1,20 +1,26 @@
+
 .tiles_thermometer{
+    position: absolute;
     height: 100%;
     width: 100%;
-    background: rgb(60,50,50);
-    border: 1px solid rgb(30,30,30);
-    overflow: hidden;
+    background: rgb(30,30,30);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0px 1px 4px black;
 
 }
 
 .number {
-    position: absolute;
-    top: 20%;
-    left: 30%;
-    font-size: 200%;
-    text-shadow: 1px 1px 2px black;
-    right: 30%;
-    color: rgb(80,80,80);
+    font-size: 250%;
+    font-color:#22598;
+}
+
+.title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 150%;
+    font-family: Helvetica;
 }
 
 
