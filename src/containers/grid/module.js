@@ -66,10 +66,25 @@ const fixTile = (tile) => {
 const gridReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE: {
-      /* if (action.payload && action.payload.reducer) {
-        const layout = action.payload.reducer.get('layout');
-        return action.payload.reducer.set('layout', layout.map(fixTile));
-      }*/
+       if (action.payload && action.payload.gridReducer) {
+        //const layout = action.payload.reducer.get('layout');
+        //return action.payload.reducer.set('layout', layout.map(fixTile));
+          const grids = action.payload.gridReducer.get('grids');
+          const savedTileContent = action.payload.gridReducer.get('savedTileContent');
+          const tileKeyToTileName = action.payload.gridReducer.get('tileKeyToTileName');
+
+          const layouts = action.payload.gridReducer.get('layout');
+          const fixedLayout = layouts.map(layout => layout.map(fixTile));
+
+          return (
+            state
+            .set('grids', grids)
+            .set('savedTileContent', savedTileContent)
+            .set('tileKeyToTileName', tileKeyToTileName)
+            .set('layout', fixedLayout)
+          );
+
+      }
       return state;
     }
     case 'setActiveGrid': {
