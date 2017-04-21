@@ -8,14 +8,29 @@ import { setContent, setLayout } from './module';
 
 const TileToRender = ({ tileName, tileKey }) => tileNameToContent.get(tileName, tileKey);
 
-const MultiGrid = ({ activeGrid, onLayoutChange, ...otherProps }) => (
-  <Grid
-    {...otherProps}
-    onLayoutChange={(newLayout) => {
-      onLayoutChange(newLayout, activeGrid);
-    }}
-  />
+const MultiGrid = ({ style, gridBackgroundUrl, activeGrid, onLayoutChange, ...otherProps }) => {
+
+  if (gridBackgroundUrl){
+    return (
+      <Grid
+        style={{...style, background: `url(${gridBackgroundUrl})`, backgroundSize: '100% 100%' }}
+        {...otherProps}
+        onLayoutChange={(newLayout) => {
+          onLayoutChange(newLayout, activeGrid);
+        }}
+      />
+    )
+  }
+  return (
+    <Grid
+      style={style}
+      {...otherProps}
+      onLayoutChange={(newLayout) => {
+        onLayoutChange(newLayout, activeGrid);
+      }}
+    />
   );
+}
 
 
 const mapStateToProps = state => ({
@@ -24,6 +39,7 @@ const mapStateToProps = state => ({
   layout: state.getIn(['gridReducer', 'layout', state.getIn(['gridReducer', 'activeGrid'])]),
   tileKeyToTileName: state.getIn(['gridReducer', 'tileKeyToTileName']),
   isOpen: state.getIn(['reducer', 'gridIsOpen']),
+  gridBackgroundUrl: state.getIn(['gridReducer', 'gridBackgroundUrl']),
 });
 
 const mapDispatchToProps = dispatch => ({

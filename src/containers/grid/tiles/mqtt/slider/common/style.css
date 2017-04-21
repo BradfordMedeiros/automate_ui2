@@ -1,6 +1,8 @@
 
 .slidertile {
-    height: 90%;
+    height: 100%;
     display: flex;
     justify-content: center;
+    background: rgba(120,120,120,0.6);
+    border: 3px ridge grey;
 }

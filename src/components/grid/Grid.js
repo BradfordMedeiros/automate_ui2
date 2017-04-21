@@ -18,11 +18,12 @@ class Grid extends Component {
     const tileKeys = jsLayout.map(item => item.i);
 
     console.error('rendering grid');
+
     return (
       <div>
         <div className="grid_background" style={style}><SSH /></div>
 
-        <div className="grid" style={{ ...style, ...gridStyle }}>
+        <div className="grid" style={{...gridStyle, ...style }}>
           <ReactGridLayout
             layouts={{ xxs: jsLayout, xs: jsLayout, sm: jsLayout, md: jsLayout, lg: jsLayout }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}

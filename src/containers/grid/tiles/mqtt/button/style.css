@@ -4,24 +4,11 @@
     height: 90%;
     width: 80%;
     margin-left: 10%;
-    border: 1px dotted black;
+    border: 1px ridge black;
     margin-top: 2%;
     position: fixed;
     border-radius: 50%;
-    box-shadow: 0px 1px 1px 0.5px rgba(8, 8, 45, 0.28);
+    box-shadow: 0px 5px 10px 5px rgba(8, 8, 45, 0.28);
 }
 
 
-.button_temp {
-    background: rgb(40, 40, 40);
-    height: 100%;
-    padding: 20%;
-}
-
-
-.button_mqtt_display {
-    font-size: 120%;
-    position: fixed;
-    color: rgb(170,170,170);
-    font-family: Arial;
-}

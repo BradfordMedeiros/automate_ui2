@@ -79,6 +79,7 @@ class Mongo extends Component {
                 height: '100%',
                 width: '100%',
                 overflow: 'hidden',
+                background: 'rgba(10,10,10,0.9)',
               }}
             >
               <Doughnut data={generateData(frequencies, dataLabels)} />

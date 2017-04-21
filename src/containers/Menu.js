@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Dialog, TextField, RaisedButton } from 'material-ui';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
+import InlineDialog from '../components/InlineDialog';
 import { expandMenu, setGridIsOpen } from './module';
-import { setContent, setActiveGrid, addGrid } from './grid/module';
+import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
+
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class MenuContainer extends Component {
     this.state = {
       showAddDialog: false,
       gridName: null,
+      showSetBackgroundDialog: false,
+      backgroundUrl: false,
     };
   }
   closeDialog = () => this.setState({ showAddDialog: false });
@@ -37,6 +41,7 @@ class MenuContainer extends Component {
       addGridExpanded,
       addGrid,
       setActiveGrid,
+      setGridBackground,
       ...otherProps
     } = this.props;
 
@@ -47,32 +52,24 @@ class MenuContainer extends Component {
 
     return (
       <div>
-        <Dialog
-          bodyStyle={{ backgroundColor: 'rgb(40, 40, 40)', border: '1px ridge rgba(255,255,255,0.1)' }}
+        <InlineDialog
           open={this.state.showAddDialog}
-          onRequestClose={() => {
-            this.setState({ showAddDialog: false });
+          closeDialog={this.closeDialog}
+          onChange={(_, gridName) => this.setState({ gridName })}
+          onOkClick={() => {
+            addGrid(this.state.gridName);
+            this.closeDialog();
           }}
-        >
-          <div style={{ display: 'inline', color: 'rgba(255,255,255,0.8)' }}>Set the name of the grid</div>
-          <TextField
-            style={{ paddingLeft: 20 }}
-            hintText="Grid name"
-            onChange={(_, value) => {
-              this.setState({ gridName: value });
-            }}
-          />
-          <RaisedButton onClick={this.closeDialog} style={{ marginLeft: 50 }} label="Cancel" />
-          <RaisedButton
-            onClick={() => {
-              addGrid(this.state.gridName);
-              this.closeDialog();
-            }}
-            style={{ marginLeft: 10 }}
-            label="OK"
-          />
-
-        </Dialog>
+        />
+        <InlineDialog
+          open={this.state.showSetBackgroundDialog}
+          closeDialog={() => { this.setState({ showSetBackgroundDialog: false }); }}
+          onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }) }}
+          onOkClick={() => {
+            setGridBackground(this.state.backgroundUrl);
+            this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
+          }}
+        />
         <Menu
           {...otherProps}
           buttonLabels={
@@ -113,6 +110,14 @@ class MenuContainer extends Component {
                 }
               },
             },
+            {
+              label: 'Set Background',
+              onClick: () => {
+                this.setState({
+                  showSetBackgroundDialog: true,
+                })
+              }
+            }
           ]}
         />
       </div>
@@ -142,6 +147,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
   addGrid: gridName => dispatch(addGrid(gridName)),
   setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
+  setGridBackground: backgroundUrl => dispatch(setBackground(backgroundUrl)),
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

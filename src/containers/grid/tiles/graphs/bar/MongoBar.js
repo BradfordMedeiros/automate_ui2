@@ -81,9 +81,10 @@ class Mongo extends Component {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100%',
-                width: '90%',
+                width: '100%',
                 overflow: 'hidden',
                 marginLeft: '5%',
+                background: 'rgba(10,10,10,0.9)',
               }}
             >
               <Bar data={generateData(frequencies, dataLabels)} />

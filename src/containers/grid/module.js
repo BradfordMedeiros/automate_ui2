@@ -8,6 +8,7 @@ const initialState = fromJS({
   savedTileContent: {}, // maps key to content
   activeGrid: 'Home',
   grids: [],
+  gridBackgroundUrl: 'https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg',
 });
 
 const getNextTile = (layouts) => {
@@ -17,6 +18,11 @@ const getNextTile = (layouts) => {
     { w: 6, h: 4, x: 0, y: 0, i: String(nextIndex), moved: false, static: false }
   );
 };
+
+export const setBackground = gridBackgroundUrl => ({
+  type: 'setBackground',
+  gridBackgroundUrl,
+});
 
 export const setActiveGrid = gridNumber => ({
   type: 'setActiveGrid',
@@ -52,7 +58,6 @@ export const addGrid = gridName => ({
 });
 
 const fixTile = (tile) => {
-  console.log('fixing tile ', tile);
   return Object.keys(tile).reduce((ans, curr) => {
     if (tile[curr] === null) {
       ans[curr] = undefined;
@@ -67,8 +72,7 @@ const gridReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE: {
        if (action.payload && action.payload.gridReducer) {
-        //const layout = action.payload.reducer.get('layout');
-        //return action.payload.reducer.set('layout', layout.map(fixTile));
+          const gridBackgroundUrl = action.payload.gridReducer.get('gridBackgroundUrl');
           const grids = action.payload.gridReducer.get('grids');
           const savedTileContent = action.payload.gridReducer.get('savedTileContent');
           const tileKeyToTileName = action.payload.gridReducer.get('tileKeyToTileName');
@@ -82,10 +86,14 @@ const gridReducer = (state = initialState, action) => {
             .set('savedTileContent', savedTileContent)
             .set('tileKeyToTileName', tileKeyToTileName)
             .set('layout', fixedLayout)
+            .set('gridBackgroundUrl', gridBackgroundUrl)
           );
-
       }
       return state;
+    }
+    case 'setBackground': {
+      const {  gridBackgroundUrl } = action;
+      return state.set('gridBackgroundUrl', gridBackgroundUrl);
     }
     case 'setActiveGrid': {
       const { gridNumber } = action;
