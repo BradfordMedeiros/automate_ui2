@@ -24,6 +24,8 @@ import StatesOverlay from './tiles/system/states/StatesOverlay';
 import Actions from './tiles/system/actions/Actions';
 import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
+import Sequences from './tiles/system/sequences/Sequences';
+
 export const tileNames = [
   {
     label: 'Tools',
@@ -49,6 +51,7 @@ export const tileNames = [
       'States',
       'Actions',
       'Conditions',
+      'Sequences',
     ],
   },
   {
@@ -96,6 +99,9 @@ const InnerTile = (props) => {
     case 'Conditions': {
       return <Conditions />;
     }
+    case 'Sequences': {
+      return <Sequences />;
+    }
     case 'States': {
       return <States />;
     }
@@ -115,9 +121,7 @@ class Tile extends Component {
         style={{
           width: '100%',
           height: '100%',
-          border: '1px solid rgb(120, 110, 110)',
           boxShadow: '0px 0px 10px 0.1px black',
-
         }}
       >
         {InnerTile(this.props)}
@@ -162,6 +166,9 @@ class TileOverlay extends Component {
       }
       case 'Conditions' : {
         return <ConditionsOverlay />;
+      }
+      case 'Sequences': {
+        return <div>no overlay available</div>
       }
       case 'States': {
         return <StatesOverlay />;

@@ -16,11 +16,16 @@
 }
 
 .system_conditions_inner {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background: rgb(30, 30, 30);
+}
+.system_conditions_outer {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 .play_toggle{

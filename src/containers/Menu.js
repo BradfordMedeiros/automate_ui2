@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Dialog, TextField, RaisedButton } from 'material-ui';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
-import InlineDialog from '../components/InlineDialog';
+import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu, setGridIsOpen } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
+import SequenceBuilder from './SequenceBuilder';
 
 
 class MenuContainer extends Component {
@@ -52,19 +53,23 @@ class MenuContainer extends Component {
 
     return (
       <div>
-        <InlineDialog
+        <InlineTextfieldDialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
           onChange={(_, gridName) => this.setState({ gridName })}
+          hintText={"grid name"}
+          text={"Set the name of the grid"}
           onOkClick={() => {
             addGrid(this.state.gridName);
             this.closeDialog();
           }}
         />
-        <InlineDialog
+        <InlineTextfieldDialog
           open={this.state.showSetBackgroundDialog}
           closeDialog={() => { this.setState({ showSetBackgroundDialog: false }); }}
           onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }) }}
+          hintText={"background url"}
+          text={"Set the url of a background image"}
           onOkClick={() => {
             setGridBackground(this.state.backgroundUrl);
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
@@ -117,6 +122,10 @@ class MenuContainer extends Component {
                   showSetBackgroundDialog: true,
                 })
               }
+            },
+            {
+              label: 'Sequence Builder',
+              onClick: this.props.showSequence,
             }
           ]}
         />
@@ -144,6 +153,10 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
   closeMenu: () => {
     dispatch(expandMenu(false));
+  },
+  showSequence: () => {
+    dispatch(setContent(() => <SequenceBuilder sequence={['seq0', 'seq1', 'seq2', 'seq3']} />));
+    dispatch(expandMenu(true));
   },
   addGrid: gridName => dispatch(addGrid(gridName)),
   setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
