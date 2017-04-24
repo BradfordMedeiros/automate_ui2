@@ -12,8 +12,9 @@ class SequenceInfo extends Component {
   render() {
     const { actions, availableActions, metaActions, sequenceName, deleteSequence, style } = this.props;
     return (
-      <div style={{  width: '50%' }}>
-        <Subheader>Sequence Name: {sequenceName} </Subheader>
+      <div style={{  width: '100%' }}>
+        <Subheader style={{ display: 'inline', width: '50%' }}>Sequence Name: {sequenceName} </Subheader>
+        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete</Subheader>
         <Table selectable={false}>
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x) } >
             {actions.map((action, index) => (
@@ -25,7 +26,7 @@ class SequenceInfo extends Component {
             ))}
             <TableRow>
               <TableRowColumn
-                onTouchTap={ () => this.setState({
+                onClick={ () => this.setState({
                   showAddDialog: true,
                 })}
                 style={{ cursor: 'pointer' }}

@@ -20,7 +20,7 @@ class  SequenceBuilder extends Component {
       onSequenceChange,
       onSequenceActionsChange,
       selectedName,
-      selectedIndex
+      selectedIndex,
     } = this.props;
 
     return (
@@ -44,7 +44,7 @@ class  SequenceBuilder extends Component {
             selectedIndex={selectedIndex}
             onSequenceSelected={onSequenceSelected}
             onSequenceChange={onSequenceChange}
-            style={{ width: '15%' }}
+            style={{ width: 250 }}
           />
           <div style={{ width: 0, height: '100%', border: '1px solid black' }} />
           <SequenceInfo
@@ -52,7 +52,11 @@ class  SequenceBuilder extends Component {
             availableActions={availableActions}
             metaActions={metaActions}
             sequenceName={selectedName}
-            style={{ width: '85%' }}
+            deleteSequence={() => {
+              const newSequences = sequences.slice().filter(sequence => sequence !== selectedName)
+              onSequenceChange(newSequences);
+            }}
+            style={{ width: 'calc(100% - 250px)' }}
           />
         </div>
       </div>
