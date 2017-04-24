@@ -19,6 +19,7 @@ InlineDialog.propTypes = {
   onChange: PropTypes.func.isRequired,
   onOkClick: PropTypes.func.isRequired,
   hintText: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default InlineDialog;

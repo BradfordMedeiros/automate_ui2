@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Subheader } from 'material-ui';
 
 class SequenceInfo extends Component {
   constructor(props) {
@@ -9,21 +10,11 @@ class SequenceInfo extends Component {
     };
   }
   render() {
-    const { actions, availableActions, metaActions, style } = this.props;
+    const { actions, availableActions, metaActions, sequenceName, deleteSequence, style } = this.props;
     return (
       <div style={{  width: '50%' }}>
+        <Subheader>Sequence Name: {sequenceName} </Subheader>
         <Table selectable={false}>
-          <TableHeader>
-            <TableHeaderColumn>
-              Type
-            </TableHeaderColumn>
-            <TableHeaderColumn>
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn>
-              Delete
-            </TableHeaderColumn>
-          </TableHeader>
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x) } >
             {actions.map((action, index) => (
               <TableRow key={index}>
@@ -54,6 +45,8 @@ SequenceInfo.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.string),
   availableActions: PropTypes.arrayOf(PropTypes.string),
   metaActions: PropTypes.arrayOf(PropTypes.string),
+  sequenceName: PropTypes.string,
+  deleteSequence: PropTypes.func,
 };
 
 export default SequenceInfo;

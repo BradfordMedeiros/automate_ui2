@@ -6,8 +6,6 @@ import EventLog from '../event_log/EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu, setGridIsOpen } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
-import SequenceBuilder from './SequenceBuilder';
-
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -122,10 +120,6 @@ class MenuContainer extends Component {
                   showSetBackgroundDialog: true,
                 })
               }
-            },
-            {
-              label: 'Sequence Builder',
-              onClick: this.props.showSequence,
             }
           ]}
         />

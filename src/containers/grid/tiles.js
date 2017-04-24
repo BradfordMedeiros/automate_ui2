@@ -25,6 +25,7 @@ import Actions from './tiles/system/actions/Actions';
 import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
 import Sequences from './tiles/system/sequences/Sequences';
+import SequenceBuilder from '../SequenceBuilder';
 
 export const tileNames = [
   {
@@ -165,10 +166,10 @@ class TileOverlay extends Component {
         return <MqttButtonOverlay {...otherProps} />;
       }
       case 'Conditions' : {
-        return <ConditionsOverlay />;
+        return <ConditionsOverlay {...otherProps} />;
       }
       case 'Sequences': {
-        return <div>no overlay available</div>
+        return <SequenceBuilder {...otherProps} />
       }
       case 'States': {
         return <StatesOverlay />;

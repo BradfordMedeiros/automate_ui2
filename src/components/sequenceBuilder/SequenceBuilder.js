@@ -11,7 +11,18 @@ class  SequenceBuilder extends Component {
     }
   }
   render() {
-    const { actions, availableActions, metaActions, sequences, onSequenceSelected, onSequenceChange, onSequenceActionsChange, selectedIndex } = this.props;
+    const {
+      actions,
+      availableActions,
+      metaActions,
+      sequences,
+      onSequenceSelected,
+      onSequenceChange,
+      onSequenceActionsChange,
+      selectedName,
+      selectedIndex
+    } = this.props;
+
     return (
       <div style={{height: '100%', background: '#282828'}}>
         <div style={{
@@ -32,6 +43,7 @@ class  SequenceBuilder extends Component {
             sequences={sequences}
             selectedIndex={selectedIndex}
             onSequenceSelected={onSequenceSelected}
+            onSequenceChange={onSequenceChange}
             style={{ width: '15%' }}
           />
           <div style={{ width: 0, height: '100%', border: '1px solid black' }} />
@@ -39,6 +51,7 @@ class  SequenceBuilder extends Component {
             actions={actions}
             availableActions={availableActions}
             metaActions={metaActions}
+            sequenceName={selectedName}
             style={{ width: '85%' }}
           />
         </div>
@@ -53,6 +66,7 @@ SequenceBuilder.propTypes = {
   sequences: PropTypes.arrayOf(PropTypes.string),
   onSequenceSelected: PropTypes.func,
   selectedIndex: PropTypes.number,
+  selectedName: PropTypes.string,
   metaActions: PropTypes.arrayOf(PropTypes.string),
   availableActions: PropTypes.arrayOf(PropTypes.string),
   onSequenceActionsChange: PropTypes.func,
