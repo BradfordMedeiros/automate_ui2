@@ -9,17 +9,16 @@ import { setContent, setLayout } from './module';
 const TileToRender = ({ tileName, tileKey }) => tileNameToContent.get(tileName, tileKey);
 
 const MultiGrid = ({ style, gridBackgroundUrl, activeGrid, onLayoutChange, ...otherProps }) => {
-
-  if (gridBackgroundUrl){
+  if (gridBackgroundUrl) {
     return (
       <Grid
-        style={{...style, background: `url(${gridBackgroundUrl})`, backgroundSize: '100% 100%' }}
+        style={{ ...style, background: `url(${gridBackgroundUrl})`, backgroundSize: '100% 100%' }}
         {...otherProps}
         onLayoutChange={(newLayout) => {
           onLayoutChange(newLayout, activeGrid);
         }}
       />
-    )
+    );
   }
   return (
     <Grid
@@ -30,7 +29,7 @@ const MultiGrid = ({ style, gridBackgroundUrl, activeGrid, onLayoutChange, ...ot
       }}
     />
   );
-}
+};
 
 
 const mapStateToProps = state => ({

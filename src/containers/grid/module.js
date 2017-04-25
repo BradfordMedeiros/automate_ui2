@@ -57,42 +57,40 @@ export const addGrid = gridName => ({
   gridName,
 });
 
-const fixTile = (tile) => {
-  return Object.keys(tile).reduce((ans, curr) => {
-    if (tile[curr] === null) {
-      ans[curr] = undefined;
-    } else {
-      ans[curr] = tile[curr];
-    }
-    return ans;
-  }, { });
-};
+const fixTile = tile => Object.keys(tile).reduce((ans, curr) => {
+  if (tile[curr] === null) {
+    ans[curr] = undefined;
+  } else {
+    ans[curr] = tile[curr];
+  }
+  return ans;
+}, { });
 
 const gridReducer = (state = initialState, action) => {
   switch (action.type) {
     case REHYDRATE: {
-       if (action.payload && action.payload.gridReducer) {
-          const gridBackgroundUrl = action.payload.gridReducer.get('gridBackgroundUrl');
-          const grids = action.payload.gridReducer.get('grids');
-          const savedTileContent = action.payload.gridReducer.get('savedTileContent');
-          const tileKeyToTileName = action.payload.gridReducer.get('tileKeyToTileName');
+      if (action.payload && action.payload.gridReducer) {
+        const gridBackgroundUrl = action.payload.gridReducer.get('gridBackgroundUrl');
+        const grids = action.payload.gridReducer.get('grids');
+        const savedTileContent = action.payload.gridReducer.get('savedTileContent');
+        const tileKeyToTileName = action.payload.gridReducer.get('tileKeyToTileName');
 
-          const layouts = action.payload.gridReducer.get('layout');
-          const fixedLayout = layouts.map(layout => layout.map(fixTile));
+        const layouts = action.payload.gridReducer.get('layout');
+        const fixedLayout = layouts.map(layout => layout.map(fixTile));
 
-          return (
+        return (
             state
             .set('grids', grids)
             .set('savedTileContent', savedTileContent)
             .set('tileKeyToTileName', tileKeyToTileName)
             .set('layout', fixedLayout)
             .set('gridBackgroundUrl', gridBackgroundUrl)
-          );
+        );
       }
       return state;
     }
     case 'setBackground': {
-      const {  gridBackgroundUrl } = action;
+      const { gridBackgroundUrl } = action;
       return state.set('gridBackgroundUrl', gridBackgroundUrl);
     }
     case 'setActiveGrid': {

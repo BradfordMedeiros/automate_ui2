@@ -55,8 +55,8 @@ class MenuContainer extends Component {
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
           onChange={(_, gridName) => this.setState({ gridName })}
-          hintText={"grid name"}
-          text={"Set the name of the grid"}
+          hintText={'grid name'}
+          text={'Set the name of the grid'}
           onOkClick={() => {
             addGrid(this.state.gridName);
             this.closeDialog();
@@ -65,9 +65,9 @@ class MenuContainer extends Component {
         <InlineTextfieldDialog
           open={this.state.showSetBackgroundDialog}
           closeDialog={() => { this.setState({ showSetBackgroundDialog: false }); }}
-          onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }) }}
-          hintText={"background url"}
-          text={"Set the url of a background image"}
+          onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }); }}
+          hintText={'background url'}
+          text={'Set the url of a background image'}
           onOkClick={() => {
             setGridBackground(this.state.backgroundUrl);
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
@@ -118,9 +118,9 @@ class MenuContainer extends Component {
               onClick: () => {
                 this.setState({
                   showSetBackgroundDialog: true,
-                })
-              }
-            }
+                });
+              },
+            },
           ]}
         />
       </div>

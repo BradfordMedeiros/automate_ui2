@@ -23,7 +23,7 @@ class Grid extends Component {
       <div>
         <div className="grid_background" style={style}><SSH /></div>
 
-        <div className="grid" style={{...gridStyle, ...style }}>
+        <div className="grid" style={{ ...gridStyle, ...style }}>
           <ReactGridLayout
             layouts={{ xxs: jsLayout, xs: jsLayout, sm: jsLayout, md: jsLayout, lg: jsLayout }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}

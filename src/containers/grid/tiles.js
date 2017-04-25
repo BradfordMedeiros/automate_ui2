@@ -169,7 +169,7 @@ class TileOverlay extends Component {
         return <ConditionsOverlay {...otherProps} />;
       }
       case 'Sequences': {
-        return <SequenceBuilder {...otherProps} />
+        return <SequenceBuilder {...otherProps} />;
       }
       case 'States': {
         return <StatesOverlay />;

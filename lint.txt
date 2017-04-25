@@ -1,0 +1,367 @@
+yarn lintfix v0.21.3
+$ eslint --fix src/ test/ 
+
+/home/brad/automate/automate_ui2/src/components/appbar/Appbar.js
+   15:7   error  'lockStyle' is assigned a value but never used                                            no-unused-vars
+   19:7   error  'unlockStyle' is assigned a value but never used                                          no-unused-vars
+   52:1   error  Line 52 exceeds the maximum line length of 100                                            max-len
+   52:51  error  'isLocked' is assigned a value but never used                                             no-unused-vars
+   55:21  error  'top' is assigned a value but never used                                                  no-unused-vars
+   69:14  error  'MenuItem' is not defined                                                                 react/jsx-no-undef
+   99:3   error  propType "style" is not required, but has no corresponding defaultProp declaration        react/require-default-props
+  103:3   error  propType "tileNames" is not required, but has no corresponding defaultProp declaration    react/require-default-props
+  104:3   error  propType "onTileClick" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  105:3   error  propType "onToggle" is not required, but has no corresponding defaultProp declaration     react/require-default-props
+  106:3   error  propType "onHideMenu" is not required, but has no corresponding defaultProp declaration   react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineDialogContainer.js
+   2:18  error  'TextField' is defined but never used                                                  no-unused-vars
+  30:3   error  propType "children" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  31:3   error  propType "text" is not required, but has no corresponding defaultProp declaration      react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineDropdownDialog/InlineDropdownDialog.js
+  16:48  error  'options' is missing in props validation                                             react/prop-types
+  41:56  error  Do not use Array index in keys                                                       react/no-array-index-key
+  63:14  error  'onOkClick' PropType is defined but prop is never used                               react/no-unused-prop-types
+  64:3   error  propType "items1" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  64:11  error  'items1' PropType is defined but prop is never used                                  react/no-unused-prop-types
+  65:3   error  propType "item2" is not required, but has no corresponding defaultProp declaration   react/require-default-props
+  65:10  error  'item2' PropType is defined but prop is never used                                   react/no-unused-prop-types
+  66:3   error  propType "text" is not required, but has no corresponding defaultProp declaration    react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineDropdownDialog/Transforms.js
+  5:23  error  'item' is missing in props validation      react/prop-types
+  5:29  error  'onChange' is missing in props validation  react/prop-types
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineDropdownDialog/transforms/NumericTextfield.js
+  1:17  error  'Component' is defined but never used      no-unused-vars
+  4:29  error  'onChange' is missing in props validation  react/prop-types
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineDropdownDialog/transforms/Options.js
+   4:20  error  'onChange' is missing in props validation       react/prop-types
+   4:30  error  'value' is missing in props validation          react/prop-types
+   7:23  error  'value' is already declared in the upper scope  no-shadow
+  11:55  error  Do not use Array index in keys                  react/no-array-index-key
+
+/home/brad/automate/automate_ui2/src/components/Dialog/InlineTextfieldDialog.js
+  21:3  error  propType "hintText" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  22:3  error  propType "text" is not required, but has no corresponding defaultProp declaration      react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/disconnected_overlay/DisconnectedOverlay.js
+  14:1   error  Line 14 exceeds the maximum line length of 100  max-len
+  25:81  error  'x' is defined but never used                   no-unused-vars
+
+/home/brad/automate/automate_ui2/src/components/grid/Grid.js
+   8:1    error    Expected empty line after import statement not followed by another import  import/newline-after-import
+  13:1    error    Line 13 exceeds the maximum line length of 100                             max-len
+  13:13   error    'layout' is missing in props validation                                    react/prop-types
+  13:21   error    'tileNameToTile' is missing in props validation                            react/prop-types
+  13:37   error    'tileKeyToTileName' is missing in props validation                         react/prop-types
+  13:56   error    'onGridItemClick' is missing in props validation                           react/prop-types
+  13:73   error    'isEditable' is missing in props validation                                react/prop-types
+  13:85   error    'onLayoutChange' is missing in props validation                            react/prop-types
+  13:101  error    'style' is missing in props validation                                     react/prop-types
+  13:108  error    'isOpen' is missing in props validation                                    react/prop-types
+  20:5    warning  Unexpected console statement                                               no-console
+  35:30   error    'layout' is already declared in the upper scope                            no-shadow
+  38:17   warning  Unexpected console statement                                               no-console
+  42:33   error    'index' is defined but never used                                          no-unused-vars
+
+/home/brad/automate/automate_ui2/src/components/menu/menu.js
+  40:3  error  propType "style" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/menu/minimalMenu.js
+  26:20  error  Do not use Array index in keys                                                      react/no-array-index-key
+  41:3   error  propType "style" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/overlay/Overlay.js
+   2:10  error  'connect' is defined but never used              no-unused-vars
+   3:10  error  'Paper' is defined but never used                no-unused-vars
+  17:13  error  'isExpanded' is missing in props validation      react/prop-types
+  17:25  error  'left' is missing in props validation            react/prop-types
+  17:31  error  'right' is missing in props validation           react/prop-types
+  17:38  error  'Content' is missing in props validation         react/prop-types
+  18:11  error  Identifier 'overlay_style' is not in camel case  camelcase
+  20:57  error  Identifier 'overlay_style' is not in camel case  camelcase
+
+/home/brad/automate/automate_ui2/src/components/sequenceBuilder/components/SequenceInfo.js
+   2:28  error    'TableHeader' is defined but never used                                                      no-unused-vars
+   2:41  error    'TableHeaderColumn' is defined but never used                                                no-unused-vars
+  24:49  error    'onChange' is missing in props validation                                                    react/prop-types
+  24:75  error    'style' is assigned a value but never used                                                   no-unused-vars
+  24:75  error    'style' is missing in props validation                                                       react/prop-types
+  37:67  warning  Unexpected console statement                                                                 no-console
+  39:30  error    Do not use Array index in keys                                                               react/no-array-index-key
+  62:3   error    propType "actions" is not required, but has no corresponding defaultProp declaration         react/require-default-props
+  63:3   error    propType "metaActions" is not required, but has no corresponding defaultProp declaration     react/require-default-props
+  64:3   error    propType "sequenceName" is not required, but has no corresponding defaultProp declaration    react/require-default-props
+  65:3   error    propType "deleteSequence" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+
+/home/brad/automate/automate_ui2/src/components/sequenceBuilder/components/SequenceSelection.js
+   2:26  error  'Subheader' is defined but never used                                                            no-unused-vars
+  18:62  error  'selectedIndex' is missing in props validation                                                   react/prop-types
+  18:77  error  'style' is missing in props validation                                                           react/prop-types
+  47:22  error  Do not use Array index in keys                                                                   react/no-array-index-key
+  72:3   error  propType "onSequenceSelected" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  73:3   error  propType "onSequenceChange" is not required, but has no corresponding defaultProp declaration    react/require-default-props
+  74:3   error  propType "onClick" is not required, but has no corresponding defaultProp declaration             react/require-default-props
+  74:12  error  'onClick' PropType is defined but prop is never used                                             react/no-unused-prop-types
+
+/home/brad/automate/automate_ui2/src/components/sequenceBuilder/SequenceBuilder.js
+  16:7  error  'availableActions' is assigned a value but never used                                                 no-unused-vars
+  71:3  error  propType "actions" is not required, but has no corresponding defaultProp declaration                  react/require-default-props
+  72:3  error  propType "sequences" is not required, but has no corresponding defaultProp declaration                react/require-default-props
+  73:3  error  propType "onSequenceSelected" is not required, but has no corresponding defaultProp declaration       react/require-default-props
+  74:3  error  propType "selectedIndex" is not required, but has no corresponding defaultProp declaration            react/require-default-props
+  75:3  error  propType "selectedName" is not required, but has no corresponding defaultProp declaration             react/require-default-props
+  76:3  error  propType "metaActions" is not required, but has no corresponding defaultProp declaration              react/require-default-props
+  77:3  error  propType "availableActions" is not required, but has no corresponding defaultProp declaration         react/require-default-props
+  78:3  error  propType "onSequenceActionsChange" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  79:3  error  propType "onSequenceChange" is not required, but has no corresponding defaultProp declaration         react/require-default-props
+
+/home/brad/automate/automate_ui2/src/containers/Appbar.js
+   4:43  error  Unexpected use of file extension "js" for "./module.js"  import/extensions
+   7:28  error  'activeGrid' is missing in props validation              react/prop-types
+   7:40  error  'onTileClick' is missing in props validation             react/prop-types
+  29:1   error  Prefer default export                                    import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/disconnected_overlay/DisconnectedOverlay.js
+   1:28  error  'PropTypes' is defined but never used                       no-unused-vars
+  14:3   error  handle should be placed after getData                       react/sort-comp
+  16:29  error  'setIsConnected' is already declared in the upper scope     no-shadow
+  16:45  error  'setIsDisconnected' is already declared in the upper scope  no-shadow
+  25:13  error  'states' is assigned a value but never used                 no-unused-vars
+  42:13  error  'isDisconnected' is missing in props validation             react/prop-types
+  64:1   error  Prefer default export                                       import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/module.js
+  15:1   error    Line 15 exceeds the maximum line length of 100                 max-len
+  15:62  error    Arrow function used ambiguously with a conditional expression  no-confusing-arrow
+  62:5   warning  Assignment to property of function parameter 'ans'             no-param-reassign
+  64:5   warning  Assignment to property of function parameter 'ans'             no-param-reassign
+
+/home/brad/automate/automate_ui2/src/containers/grid/MultiGrid.js
+   4:25  error  Absolute imports should come before relative imports  import/first
+  11:22  error  'style' is missing in props validation                react/prop-types
+  11:29  error  'gridBackgroundUrl' is missing in props validation    react/prop-types
+  11:48  error  'activeGrid' is missing in props validation           react/prop-types
+  11:60  error  'onLayoutChange' is missing in props validation       react/prop-types
+  54:1   error  Prefer default export                                 import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles.js
+   68:11  error  'tileName' is missing in props validation             react/prop-types
+  134:1   error  Declare only one React component per file             react/no-multi-comp
+  136:13  error  'tileName' is missing in props validation             react/prop-types
+  187:57  error  'saveContent' is already declared in the upper scope  no-shadow
+  212:25  error  'saveContent' is already declared in the upper scope  no-shadow
+  225:25  error  'saveContent' is already declared in the upper scope  no-shadow
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/graphs/bar/MongoBar.js
+   7:7   error  'options' is assigned a value but never used         no-unused-vars
+  56:13  error  'savedContent' is missing in props validation        react/prop-types
+  66:17  error  Identifier 'frequency_map' is not in camel case      camelcase
+  70:13  error  Assignment can be replaced with operator assignment  operator-assignment
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/graphs/line/mongoOverlay.js
+  12:13   error    'saveContent' is missing in props validation   react/prop-types
+  12:26   error    'savedContent' is missing in props validation  react/prop-types
+  13:5    warning  Unexpected console statement                   no-console
+  24:516  error    Multiple spaces found before '{'               no-multi-spaces
+  32:1    error    Prefer default export                          import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/graphs/line/mongoTile.js
+  34:5   warning  Unexpected console statement                   no-console
+  35:13  error    'savedContent' is missing in props validation  react/prop-types
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/graphs/pie/MongoPie.js
+   7:7   error  'options' is assigned a value but never used         no-unused-vars
+  52:13  error  'savedContent' is missing in props validation        react/prop-types
+  62:17  error  Identifier 'frequency_map' is not in camel case      camelcase
+  66:13  error  Assignment can be replaced with operator assignment  operator-assignment
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/graphs/radar/MongoRadar.js
+  30:13  error  'savedContent' is missing in props validation        react/prop-types
+  40:17  error  Identifier 'frequency_map' is not in camel case      camelcase
+  44:13  error  Assignment can be replaced with operator assignment  operator-assignment
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/misc/IFrame.js
+   5:27  error  'isEditing' is missing in props validation                                                 react/prop-types
+  17:3   error  propType "savedContent" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  20:1   error  Prefer default export                                                                      import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/button/button.js
+   9:13  error    'savedContent' is missing in props validation                                             react/prop-types
+  24:3   error    propType "temperature" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  24:16  error    'temperature' PropType is defined but prop is never used                                  react/no-unused-prop-types
+  27:7   error    'styles' is assigned a value but never used                                               no-unused-vars
+  36:1   error    Declare only one React component per file                                                 react/no-multi-comp
+  44:13  error    'saveContent' is missing in props validation                                              react/prop-types
+  44:26  error    'savedContent' is missing in props validation                                             react/prop-types
+  45:5   warning  Unexpected console statement                                                              no-console
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/display/MqttDisplay.js
+   9:13   error    'savedContent' is missing in props validation                                             react/prop-types
+  35:3    error    propType "temperature" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  35:16   error    'temperature' PropType is defined but prop is never used                                  react/no-unused-prop-types
+  38:7    error    'styles' is assigned a value but never used                                               no-unused-vars
+  47:1    error    Declare only one React component per file                                                 react/no-multi-comp
+  55:13   error    'saveContent' is missing in props validation                                              react/prop-types
+  55:26   error    'savedContent' is missing in props validation                                             react/prop-types
+  56:5    warning  Unexpected console statement                                                              no-console
+  67:516  error    Multiple spaces found before '{'                                                          no-multi-spaces
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/slider/common/MqttSlider.js
+   4:10  error  'TextField' is defined but never used                                                      no-unused-vars
+   4:21  error  'RaisedButton' is defined but never used                                                   no-unused-vars
+   8:7   error  'styles' is assigned a value but never used                                                no-unused-vars
+  27:14  error  Expected '===' and instead saw '=='                                                        eqeqeq
+  62:3   error  propType "savedContent" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  63:3   error  propType "axis" is not required, but has no corresponding defaultProp declaration          react/require-default-props
+  66:1   error  Prefer default export                                                                      import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/slider/common/MqttSliderOverlay.js
+   1:28   error    'PropTypes' is defined but never used             no-unused-vars
+  30:13   error    'temperature' is assigned a value but never used  no-unused-vars
+  30:13   error    'temperature' is missing in props validation      react/prop-types
+  30:26   error    'saveContent' is missing in props validation      react/prop-types
+  30:39   error    'savedContent' is missing in props validation     react/prop-types
+  31:5    warning  Unexpected console statement                      no-console
+  51:508  error    Multiple spaces found before '{'                  no-multi-spaces
+  67:1    error    Prefer default export                             import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/slider/HorizontalSlider.js
+  6:1  error  Prefer default export  import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/mqtt/slider/VerticalSlider.js
+  6:1  error  Prefer default export  import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/actions/Actions.js
+  10:3   error    actionToPerform should be placed after componentWillReceiveProps  react/sort-comp
+  13:5   warning  Unexpected console statement                                      no-console
+  14:13  error    'actionToPerform' is missing in props validation                  react/prop-types
+  16:7   warning  Unexpected console statement                                      no-console
+  21:5   warning  Unexpected console statement                                      no-console
+  29:17  warning  Unexpected console statement                                      no-console
+  39:28  error    Do not use Array index in keys                                    react/no-array-index-key
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/actions/ActionsOverlay.js
+  15:22  error    eval can be harmful                            no-eval
+  57:11  error    'newRoute' is assigned a value but never used  no-unused-vars
+  77:33  warning  Unexpected console statement                   no-console
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/conditions/ConditionOverlay.js
+  13:24  error    eval can be harmful                            no-eval
+  14:25  error    eval can be harmful                            no-eval
+  45:11  error    'newRoute' is assigned a value but never used  no-unused-vars
+  75:33  warning  Unexpected console statement                   no-console
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/conditions/Conditions.js
+   2:37  error    'Divider' is defined but never used               no-unused-vars
+   8:25  error    Identifier 'condition_name' is not in camel case  camelcase
+   8:74  error    Identifier 'condition_name' is not in camel case  camelcase
+  14:5   warning  Unexpected console statement                      no-console
+  15:5   warning  Unexpected console statement                      no-console
+  35:30  error    Do not use Array index in keys                    react/no-array-index-key
+  40:1   error    Line 40 exceeds the maximum line length of 100    max-len
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/sequences/Sequences.js
+  21:26  error  Do not use Array index in keys  react/no-array-index-key
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/states/States.js
+  23:26  error  Do not use Array index in keys  react/no-array-index-key
+
+/home/brad/automate/automate_ui2/src/containers/grid/tiles/system/states/StatesOverlay.js
+  15:22  error  eval can be harmful                            no-eval
+  57:11  error  'newRoute' is assigned a value but never used  no-unused-vars
+
+/home/brad/automate/automate_ui2/src/containers/Menu.js
+    3:10  error  'Dialog' is defined but never used                      no-unused-vars
+    3:18  error  'TextField' is defined but never used                   no-unused-vars
+    3:29  error  'RaisedButton' is defined but never used                no-unused-vars
+   20:3   error  closeDialog should be placed after onGridClick          react/sort-comp
+   23:1   error  Line 23 exceeds the maximum line length of 100          max-len
+   23:13  error  'setActiveGrid' is already declared in the upper scope  no-shadow
+   23:13  error  'setActiveGrid' is missing in props validation          react/prop-types
+   23:28  error  'menuIsExpanded' is missing in props validation         react/prop-types
+   23:44  error  'closeMenu' is missing in props validation              react/prop-types
+   23:55  error  'closeSSHContent' is missing in props validation        react/prop-types
+   23:72  error  'addGridExpanded' is missing in props validation        react/prop-types
+   34:7   error  'grids' is missing in props validation                  react/prop-types
+   35:7   error  'setSSHContent' is missing in props validation          react/prop-types
+   36:7   error  'closeSSHContent' is missing in props validation        react/prop-types
+   37:7   error  'setEventLog' is missing in props validation            react/prop-types
+   38:7   error  'closeMenu' is missing in props validation              react/prop-types
+   39:7   error  'menuIsExpanded' is missing in props validation         react/prop-types
+   40:7   error  'addGridExpanded' is missing in props validation        react/prop-types
+   41:7   error  'addGrid' is already declared in the upper scope        no-shadow
+   41:7   error  'addGrid' is missing in props validation                react/prop-types
+   42:7   error  'setActiveGrid' is missing in props validation          react/prop-types
+   42:7   error  'setActiveGrid' is already declared in the upper scope  no-shadow
+   43:7   error  'setGridBackground' is missing in props validation      react/prop-types
+  137:39  error  'props' is defined but never used                       no-unused-vars
+  152:32  error  'SequenceBuilder' is not defined                        react/jsx-no-undef
+  160:1   error  Prefer default export                                   import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/module.js
+  12:24  error  'isOpen' is defined but never used  no-unused-vars
+
+/home/brad/automate/automate_ui2/src/containers/Overlay.js
+   1:8  error  'React' is defined but never used  no-unused-vars
+  10:1  error  Prefer default export              import/prefer-default-export
+
+/home/brad/automate/automate_ui2/src/containers/SequenceBuilder.js
+   5:7   error    Identifier 'mock_action_map' is not in camel case  camelcase
+  22:5   error    Identifier 'mock_sequences' is not in camel case   camelcase
+  36:13  error    'sequences' is defined but never used              no-unused-vars
+  53:15  error    Identifier 'mock_sequences' is not in camel case   camelcase
+  57:15  warning  Unexpected console statement                       no-console
+  58:15  warning  Unexpected console statement                       no-console
+
+/home/brad/automate/automate_ui2/src/data/WithActions.js
+   1:8   error    'React' is defined but never used                    no-unused-vars
+   1:28  error    'PropTypes' is defined but never used                no-unused-vars
+  23:3   error    getData should be placed after componentWillUnmount  react/sort-comp
+  38:7   warning  Unexpected console statement                         no-console
+  50:13  error    'children' is missing in props validation            react/prop-types
+
+/home/brad/automate/automate_ui2/src/data/WithConditions.js
+   1:8   error    'React' is defined but never used                    no-unused-vars
+   1:28  error    'PropTypes' is defined but never used                no-unused-vars
+  16:3   error    getData should be placed after componentWillUnmount  react/sort-comp
+  31:7   warning  Unexpected console statement                         no-console
+  43:13  error    'children' is missing in props validation            react/prop-types
+
+/home/brad/automate/automate_ui2/src/data/WithEvents.js
+   1:8   error    'React' is defined but never used                                                          no-unused-vars
+  16:7   warning  Unexpected console statement                                                               no-console
+  17:7   warning  Unexpected console statement                                                               no-console
+  37:3   error    getMongoData should be placed after componentWillUnmount                                   react/sort-comp
+  38:13  error    'refresh' is assigned a value but never used                                               no-unused-vars
+  38:13  error    'refresh' is missing in props validation                                                   react/prop-types
+  52:3   error    componentWillReceiveProps should be placed after componentWillMount                        react/sort-comp
+  53:5   warning  Unexpected console statement                                                               no-console
+  57:5   warning  Unexpected console statement                                                               no-console
+  61:5   warning  Unexpected console statement                                                               no-console
+  65:13  error    'children' is missing in props validation                                                  react/prop-types
+  66:1   error    Line 66 exceeds the maximum line length of 100                                             max-len
+  66:12  error    Do not nest ternary expressions                                                            no-nested-ternary
+  71:3   error    propType "topic" is not required, but has no corresponding defaultProp declaration         react/require-default-props
+  71:10  error    'topic' PropType is defined but prop is never used                                         react/no-unused-prop-types
+  72:3   error    propType "whileLoading" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+
+/home/brad/automate/automate_ui2/src/data/WithMultiMongo.js
+  93:3   error  propType "limit" is not required, but has no corresponding defaultProp declaration  react/require-default-props
+  93:10  error  'limit' PropType is defined but prop is never used                                  react/no-unused-prop-types
+
+/home/brad/automate/automate_ui2/src/data/WithSequences.js
+   1:8   error    'React' is defined but never used                    no-unused-vars
+   1:28  error    'PropTypes' is defined but never used                no-unused-vars
+  22:3   error    getData should be placed after componentWillUnmount  react/sort-comp
+  37:7   warning  Unexpected console statement                         no-console
+  49:13  error    'children' is missing in props validation            react/prop-types
+
+/home/brad/automate/automate_ui2/src/event_log/EventLog.js
+  25:3  error  handleToggle should be placed after getContainer  react/sort-comp
+
+✖ 264 problems (236 errors, 28 warnings)
+
