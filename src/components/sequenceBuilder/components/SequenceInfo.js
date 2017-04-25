@@ -27,19 +27,30 @@ class SequenceInfo extends Component {
         <InlineDropdownDialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
-          onChange={onChange}
+          onChange={newAction => {
+            const newActions = actions.slice();
+            newActions.push(newAction);
+            onChange(newActions);
+          }}
           onOkClick={this.closeDialog}
           options={metaActions}
         />
         <Subheader style={{ display: 'inline', width: '50%' }}>Sequence Name: {sequenceName} </Subheader>
-        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete</Subheader>
+        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete yo</Subheader>
         <Table selectable={false}>
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x)} >
             {actions.map((action, index) => (
               <TableRow key={index}>
                 <TableRowColumn>{action.type}</TableRowColumn>
                 <TableRowColumn>{action.name}</TableRowColumn>
-                <TableRowColumn style={{ fontSize: 25, cursor: 'pointer' }}>&times;</TableRowColumn>
+                <TableRowColumn
+                  onTouchTap={() => {
+                    const newActions = actions.slice(0,Math.max(index, 0)).concat(actions.slice(index + 1))
+                    onChange(newActions);
+                  }}
+                  style={{ fontSize: 25, cursor: 'pointer' }}>
+                  &times;
+                </TableRowColumn>
               </TableRow>
             ))}
             <TableRow>

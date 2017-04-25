@@ -53,10 +53,10 @@ class SequenceBuilder extends Component {
               mock_sequences = restoredSequences;
             }}
 
-            onSequenceActionsChange={(newActions) => {
+            onSequenceActionsChange={newActions => {
               console.error('sequence: ', this.state.selectedName);
               console.error('new Actions: ', newActions);
-              mock_action_map[this.state.selectedName].push(newActions);
+              mock_action_map[this.state.selectedName] = newActions;
               this.forceUpdate();
             }}
           />
