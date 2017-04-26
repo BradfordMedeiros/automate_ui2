@@ -25,7 +25,7 @@ class SequenceTable extends Component {
             if (onSequenceChange) {
               const newSequences = sequences.slice();
               newSequences.push(this.state.sequenceToAdd);
-              onSequenceChange(newSequences);
+              onSequenceChange(newSequences, this.state.sequenceToAdd);
             }
             this.setState({
               sequenceToAdd: undefined,

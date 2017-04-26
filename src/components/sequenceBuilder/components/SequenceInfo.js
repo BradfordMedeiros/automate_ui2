@@ -30,7 +30,7 @@ class SequenceInfo extends Component {
           onChange={newAction => {
             const newActions = actions.slice();
             newActions.push(newAction);
-            onChange(newActions);
+            onChange(newActions, newAction);
           }}
           onOkClick={this.closeDialog}
           options={metaActions}
@@ -41,8 +41,8 @@ class SequenceInfo extends Component {
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x)} >
             {actions.map((action, index) => (
               <TableRow key={index}>
-                <TableRowColumn>{action.type}</TableRowColumn>
                 <TableRowColumn>{action.name}</TableRowColumn>
+                <TableRowColumn>{action.value}</TableRowColumn>
                 <TableRowColumn
                   onTouchTap={() => {
                     const newActions = actions.slice(0,Math.max(index, 0)).concat(actions.slice(index + 1))

@@ -45,8 +45,8 @@ class InlineDropdownDialog extends Component {
               onChange={(newAction) => {
                 this.setState({
                   newAction: ({
-                    name: newAction,
-                    type: items[this.state.leftItemSelected],
+                    value: newAction,
+                    name: items[this.state.leftItemSelected],
                   }),
                 });
               }}

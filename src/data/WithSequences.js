@@ -2,12 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const ACTIONS_URL = `${AUTOMATE_CORE_URL}/sequences`;
+const SEQUENCE_URL = `${AUTOMATE_CORE_URL}/sequences`;
 const REFRESH_RATE = 1000;
 
-const executeAction = (actionName) => {
-  fetch(`${ACTIONS_URL}/${actionName}`, {
+const addSequence = (sequenceName, actions) => {
+  fetch(`${SEQUENCE_URL}/modify/${sequenceName}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
     method: 'POST',
+    body: JSON.stringify({
+      actions,
+    })
   });
 };
 
@@ -21,7 +28,7 @@ class WithSequences extends Component {
   }
   getData = async () => {
     try {
-      const response = await fetch(ACTIONS_URL, {
+      const response = await fetch(SEQUENCE_URL, {
         mode: 'cors',
         method: 'GET',
         headers: {
@@ -48,7 +55,7 @@ class WithSequences extends Component {
   render() {
     const { children } = this.props;
     const { hasData, sequences } = this.state;
-    return (hasData && children) ? children({ sequences, executeAction }) : null;
+    return (hasData && children) ? children({ sequences, addSequence }) : null;
   }
 }
 

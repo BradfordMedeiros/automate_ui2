@@ -3,10 +3,10 @@ import SequenceBuilderComponent from '../components/sequenceBuilder/SequenceBuil
 import WithSequences from '../data/WithSequences';
 
 const mock_action_map = {
-  other: [{ name: 'wait', type: 'action' }, { name: 'other1', type: 'action' }],
-  test: [{ name: 'wow so cool', type: 'action' }],
+  other: [{ name: 'wait', value: 1000 }, { name: 'action', value: 'other1'}, {name: 'action', value: 'light on' }],
+  test: [{ value: 'wow so cool', name: 'action' }],
   test1: [],
-  lights: [{ name: 'man', type: 'action' }],
+  lights: [{ value: 'man', name: 'action' }],
 };
 
 const metaActionMap = {
@@ -33,10 +33,10 @@ class SequenceBuilder extends Component {
   render() {
     return (
       <WithSequences>
-        {({ sequences }) => (
+        {({ sequences, addSequence }) => (
           <SequenceBuilderComponent
             actions={mock_action_map[this.state.selectedName] || []}
-            sequences={mock_sequences.map(seq => seq.name)}
+            sequences={sequences.map(seq => seq.name)}
             onSequenceSelected={(selectedName, selectedIndex) => {
               this.setState({
                 selectedIndex,
@@ -46,18 +46,16 @@ class SequenceBuilder extends Component {
             selectedName={this.state.selectedName}
             selectedIndex={this.state.selectedIndex}
             metaActions={metaActionMap}
-            onSequenceChange={(newSequence) => {
-              const restoredSequences = newSequence.map(name => ({
-                name,
-              }));
-              mock_sequences = restoredSequences;
+            onSequenceChange={(newSequence, addedSequenceName, deletedSequenceName) => {
+              addSequence(addedSequenceName);
             }}
-
-            onSequenceActionsChange={newActions => {
-              console.error('sequence: ', this.state.selectedName);
+            onSequenceActionsChange={(newActions, addedActionName) => {
+              /*console.error('sequence: ', this.state.selectedName);
               console.error('new Actions: ', newActions);
               mock_action_map[this.state.selectedName] = newActions;
-              this.forceUpdate();
+              this.forceUpdate();*/
+              console.log('sequence:  ', this.state.selectedName, ' action: ', addedActionName);
+              addSequence(this.state.selectedName, [addedActionName]);
             }}
           />
         )}
