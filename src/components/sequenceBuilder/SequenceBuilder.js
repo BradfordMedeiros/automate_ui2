@@ -56,7 +56,7 @@ class SequenceBuilder extends Component {
             onChange={onSequenceActionsChange}
             deleteSequence={() => {
               const newSequences = sequences.slice().filter(sequence => sequence !== selectedName);
-              onSequenceChange(newSequences);
+              onSequenceChange(newSequences, undefined, selectedName);
             }}
             style={{ width: 'calc(100% - 250px)' }}
           />

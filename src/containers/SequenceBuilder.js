@@ -33,7 +33,7 @@ class SequenceBuilder extends Component {
   render() {
     return (
       <WithSequences>
-        {({ sequences, addSequence }) => (
+        {({ sequences, addSequence, deleteSequence }) => (
           <SequenceBuilderComponent
             actions={mock_action_map[this.state.selectedName] || []}
             sequences={sequences.map(seq => seq.name)}
@@ -47,7 +47,15 @@ class SequenceBuilder extends Component {
             selectedIndex={this.state.selectedIndex}
             metaActions={metaActionMap}
             onSequenceChange={(newSequence, addedSequenceName, deletedSequenceName) => {
-              addSequence(addedSequenceName);
+              console.error('on sequence changed called');
+              if (addedSequenceName && deletedSequenceName){
+                throw (new Error('cannot simulataneously add and delete a sequence'));
+              }
+              if (addedSequenceName){
+                addSequence(addedSequenceName);
+              }else if(deletedSequenceName){
+                deleteSequence(deletedSequenceName);
+              }
             }}
             onSequenceActionsChange={(newActions, addedActionName) => {
               /*console.error('sequence: ', this.state.selectedName);

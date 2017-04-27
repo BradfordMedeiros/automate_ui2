@@ -36,7 +36,7 @@ class SequenceInfo extends Component {
           options={metaActions}
         />
         <Subheader style={{ display: 'inline', width: '50%' }}>Sequence Name: {sequenceName} </Subheader>
-        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete yo</Subheader>
+        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete</Subheader>
         <Table selectable={false}>
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x)} >
             {actions.map((action, index) => (

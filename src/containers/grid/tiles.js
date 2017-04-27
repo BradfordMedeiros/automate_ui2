@@ -122,7 +122,8 @@ class Tile extends Component {
         style={{
           width: '100%',
           height: '100%',
-          boxShadow: '0px 0px 10px 0.1px black',
+          //boxShadow: '0px 0px 10px 0.1px black',
+          border: '1px solid rgb(30,30,30)',
         }}
       >
         {InnerTile(this.props)}
