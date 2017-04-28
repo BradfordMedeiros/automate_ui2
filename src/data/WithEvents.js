@@ -34,20 +34,21 @@ class WithEvents extends Component {
     this.lastTopic = undefined;
   }
 
+  makeEventRequest = () => {
+    request().then((response) => {
+      response.reverse();
+      this.setState({
+        data: response,
+      });
+    }).catch({
+      error: true,
+    });
+  }
   getMongoData() {
     const { refresh } = this.props;
-
     clearInterval(this.intervalHandle);
-    this.intervalHandle = setInterval(() => {
-      request().then((response) => {
-        response.reverse();
-        this.setState({
-          data: response,
-        });
-      }).catch({
-        error: true,
-      });
-    }, 1000);
+    this.intervalHandle = setInterval(this.makeEventRequest, 1000);
+    this.makeEventRequest();
   }
   componentWillReceiveProps() {
     console.error('receiving props');

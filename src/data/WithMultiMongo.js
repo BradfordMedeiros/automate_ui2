@@ -55,21 +55,25 @@ class WithMongo extends Component {
   componentWillUnmount() {
     clearInterval(this.intervalHandle);
   }
+
+  getData = topic => {
+    request(topic).then((response) => {
+      response.reverse();
+      this.setState({
+        data: response,
+      });
+    }).catch({
+      error: true,
+    });
+  }
+
   getMongoData() {
     const { topic, refresh } = this.props;
     if (topic !== this.lastTopic) {
       clearInterval(this.intervalHandle);
       if (refresh) {
-        this.intervalHandle = setInterval(() => {
-          request(topic).then((response) => {
-            response.reverse();
-            this.setState({
-              data: response,
-            });
-          }).catch({
-            error: true,
-          });
-        }, refresh);
+        this.intervalHandle = setInterval(() => this.getData(topic), refresh);
+        this.getData(topic);
       } else {
         request(topic).then((response) => {
           response.reverse();

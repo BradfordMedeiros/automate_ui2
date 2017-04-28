@@ -52,6 +52,7 @@ class WithSequences extends Component {
   }
 
   componentWillMount() {
+    this.getData();
     this.handle = setInterval(this.getData, REFRESH_RATE);
   }
   componentWillUnmount() {

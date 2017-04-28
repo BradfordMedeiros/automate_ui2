@@ -14,6 +14,7 @@ class WithStates extends Component {
     this.handle = undefined;
   }
   componentWillMount() {
+    this.getData();
     this.handle = setInterval(this.getData, REFRESH_RATE);
   }
   componentWillUnmount() {
