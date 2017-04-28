@@ -3,7 +3,7 @@ import SequenceBuilderComponent from '../components/sequenceBuilder/SequenceBuil
 import WithSequences from '../data/WithSequences';
 
 const mock_action_map = {
-  other: [{ name: 'wait', value: 1000 }, { name: 'action', value: 'other1'}, {name: 'action', value: 'light on' }],
+  other: [{ name: 'wait', value: 1000 }, { name: 'action', value: 'other1' }, { name: 'action', value: 'light on' }],
   test: [{ value: 'wow so cool', name: 'action' }],
   test1: [],
   lights: [{ value: 'man', name: 'action' }],
@@ -19,8 +19,6 @@ const metaActionMap = {
   },
 };
 
-let mock_sequences = [{ name: 'other' }, { name: 'test' }, { name: 'test1' }, { name: 'lights' }];
-
 
 class SequenceBuilder extends Component {
   constructor(props) {
@@ -33,40 +31,38 @@ class SequenceBuilder extends Component {
   render() {
     return (
       <WithSequences>
-        {({ sequences, addSequence, deleteSequence }) => (
-          <SequenceBuilderComponent
-            actions={mock_action_map[this.state.selectedName] || []}
-            sequences={sequences.map(seq => seq.name)}
-            onSequenceSelected={(selectedName, selectedIndex) => {
-              this.setState({
-                selectedIndex,
-                selectedName,
-              });
-            }}
-            selectedName={this.state.selectedName}
-            selectedIndex={this.state.selectedIndex}
-            metaActions={metaActionMap}
-            onSequenceChange={(newSequence, addedSequenceName, deletedSequenceName) => {
-              console.error('on sequence changed called');
-              if (addedSequenceName && deletedSequenceName){
-                throw (new Error('cannot simulataneously add and delete a sequence'));
-              }
-              if (addedSequenceName){
-                addSequence(addedSequenceName);
-              }else if(deletedSequenceName){
-                deleteSequence(deletedSequenceName);
-              }
-            }}
-            onSequenceActionsChange={(newActions, addedActionName) => {
-              /*console.error('sequence: ', this.state.selectedName);
-              console.error('new Actions: ', newActions);
-              mock_action_map[this.state.selectedName] = newActions;
-              this.forceUpdate();*/
-              console.log('sequence:  ', this.state.selectedName, ' action: ', addedActionName);
-              addSequence(this.state.selectedName, [addedActionName]);
-            }}
-          />
-        )}
+        {({ sequences, addSequence, deleteSequence }) => {
+          const sequenceActions = sequences.filter(sequence => sequence.name == this.state.selectedName);
+          const actions = sequenceActions.length > 0 ? (sequenceActions[0].actions || []) : [];
+
+          return (
+            <SequenceBuilderComponent
+              actions={actions}
+              sequences={sequences.map(seq => seq.name)}
+              onSequenceSelected={(selectedName, selectedIndex) => {
+                this.setState({
+                  selectedIndex,
+                  selectedName,
+                });
+              }}
+              selectedName={this.state.selectedName}
+              selectedIndex={this.state.selectedIndex}
+              metaActions={metaActionMap}
+              onSequenceChange={(newSequence, addedSequenceName, deletedSequenceName) => {
+                console.error('on sequence changed called');
+                if (addedSequenceName && deletedSequenceName) {
+                  throw (new Error('cannot simulataneously add and delete a sequence'));
+                }
+                if (addedSequenceName) {
+                  addSequence(addedSequenceName);
+                } else if (deletedSequenceName) {
+                  deleteSequence(deletedSequenceName);
+                }
+              }}
+              onSequenceActionsChange={(newActions, addedActionName) => { addSequence(this.state.selectedName, newActions); }}
+            />
+          );
+        }}
       </WithSequences>
     );
   }

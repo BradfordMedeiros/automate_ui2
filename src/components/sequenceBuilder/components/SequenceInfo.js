@@ -27,7 +27,7 @@ class SequenceInfo extends Component {
         <InlineDropdownDialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
-          onChange={newAction => {
+          onChange={(newAction) => {
             const newActions = actions.slice();
             newActions.push(newAction);
             onChange(newActions, newAction);
@@ -45,10 +45,11 @@ class SequenceInfo extends Component {
                 <TableRowColumn>{action.value}</TableRowColumn>
                 <TableRowColumn
                   onTouchTap={() => {
-                    const newActions = actions.slice(0,Math.max(index, 0)).concat(actions.slice(index + 1))
+                    const newActions = actions.slice(0, Math.max(index, 0)).concat(actions.slice(index + 1));
                     onChange(newActions);
                   }}
-                  style={{ fontSize: 25, cursor: 'pointer' }}>
+                  style={{ fontSize: 25, cursor: 'pointer' }}
+                >
                   &times;
                 </TableRowColumn>
               </TableRow>

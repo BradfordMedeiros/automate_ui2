@@ -14,11 +14,11 @@ const addSequence = (sequenceName, actions) => {
     method: 'POST',
     body: JSON.stringify({
       actions,
-    })
+    }),
   });
 };
 
-const deleteSequence = sequenceName => {
+const deleteSequence = (sequenceName) => {
   fetch(`${SEQUENCE_URL}/${sequenceName}`, {
     method: 'DELETE',
   });

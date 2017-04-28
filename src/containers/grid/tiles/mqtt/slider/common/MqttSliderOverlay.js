@@ -48,7 +48,7 @@ class MqttOverlay extends Component {
           hintText={'max value'}
           defaultValue={this.state.maxValue}
         />
-        <div className="mqtt_slider_overlay_text" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                    {savedContent && savedContent.topic}</div>
+        <div className="mqtt_slider_overlay_text" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {savedContent && savedContent.topic}</div>
         <RaisedButton
           onClick={() =>
             saveContent({
