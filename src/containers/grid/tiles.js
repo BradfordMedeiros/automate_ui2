@@ -58,7 +58,6 @@ export const tileNames = [
   {
     label: 'Misc',
     children: [
-      'Test',
       'IFrame',
     ],
   },
@@ -155,9 +154,6 @@ class TileOverlay extends Component {
       }
       case 'Bar Graph': {
         return <MongoOverlay {...otherProps} />;
-      }
-      case 'Test': {
-        return <div>test overlay</div>;
       }
       case 'IFrame': {
         return <MqttOverlay {...otherProps} />;
