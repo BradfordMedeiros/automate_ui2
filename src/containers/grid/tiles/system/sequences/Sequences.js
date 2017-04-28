@@ -12,7 +12,7 @@ class Sequences extends Component {
         </div>
         <div className="system_sequences_inner">
           <WithSequences>
-            {({ sequences }) => (
+            {({ sequences, executeSequence }) => (
               <List>
                 {sequences.map((sequence, index) =>
                   <ListItem
@@ -20,6 +20,9 @@ class Sequences extends Component {
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                     key={index}
                     primaryText={<Subheader>{sequence.name}</Subheader>}
+                    onTouchTap={() => {
+                      executeSequence(sequence.name)
+                    }}
                   />,
                 )}
               </List>

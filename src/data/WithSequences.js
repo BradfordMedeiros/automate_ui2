@@ -18,9 +18,16 @@ const addSequence = (sequenceName, actions) => {
   });
 };
 
-const deleteSequence = (sequenceName) => {
+const deleteSequence = sequenceName => {
   fetch(`${SEQUENCE_URL}/${sequenceName}`, {
     method: 'DELETE',
+  });
+};
+
+
+const executeSequence = sequenceName => {
+  fetch(`${SEQUENCE_URL}/${sequenceName}`, {
+    method: 'POST',
   });
 };
 
@@ -62,7 +69,7 @@ class WithSequences extends Component {
   render() {
     const { children } = this.props;
     const { hasData, sequences } = this.state;
-    return (hasData && children) ? children({ sequences, addSequence, deleteSequence }) : null;
+    return (hasData && children) ? children({ sequences, addSequence, deleteSequence, executeSequence }) : null;
   }
 }
 
