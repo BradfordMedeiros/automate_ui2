@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
       return state.set('menuIsHidden', !state.get('menuIsHidden'));
     }
     case 'expandMenu': {
-      return state.set('menuExpanded', action.isExpanded).set('isLocked', true);
+      return state.set('menuExpanded', action.isExpanded);
     }
     case 'lockGrid': {
       return state.set('isLocked', action.isLocked);
