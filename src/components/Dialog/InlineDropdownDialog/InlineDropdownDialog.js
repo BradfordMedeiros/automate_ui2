@@ -14,8 +14,8 @@ class InlineDropdownDialog extends Component {
   }
   render() {
     const { open, closeDialog, onChange, text, options } = this.props;
-
     const items = Object.keys(options);
+
     return (
       <DialogContainer
         text={text}
@@ -38,10 +38,11 @@ class InlineDropdownDialog extends Component {
             }}
             style={{ width: 200 }}
           >
-            {items.map((item, index) => <MenuItem key={index}>{item}</MenuItem>)}
+            {items.map((item, index) => <MenuItem primaryText={item} value={item}  key={index} />)}
           </DropDownMenu>
           <div style={{ display: 'inline-block' }}>
             <Transforms
+              selectedValue={this.state.newAction ? this.state.newAction.value : undefined}
               onChange={(newAction) => {
                 this.setState({
                   newAction: ({
