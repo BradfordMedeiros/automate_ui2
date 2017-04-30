@@ -1,0 +1,14 @@
+
+.codeEditorOuter {
+    height: 100%;
+    background: grey;
+    padding: 50px;
+}
+
+.codeEditor {
+    background: black;
+    color: white;
+    height: 70%;
+    overflow: auto;
+    padding: 32px;
+}

@@ -27,6 +27,8 @@ import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 import Sequences from './tiles/system/sequences/Sequences';
 import SequenceBuilder from '../SequenceBuilder';
 
+import ActionBuilder from '../ActionsBuilder';
+
 export const tileNames = [
   {
     label: 'Tools',
@@ -168,10 +170,12 @@ class TileOverlay extends Component {
         return <SequenceBuilder {...otherProps} />;
       }
       case 'States': {
-        return <StatesOverlay />;
+        //return <AxiomBuilder title={"States"} {...otherProps} />
+        return <div>hello</div>
       }
       case 'Actions': {
-        return <ActionsOvelray />;
+        //return <AxiomBuilder title={"Actions"} {...otherProps} />
+        return <ActionBuilder />
       }
       default : {
         return <div>invalid tile</div>;

@@ -4,55 +4,55 @@ import InlineTextfieldDialog from '../../Dialog/InlineTextfieldDialog';
 
 const SelectableList = makeSelectable(List);
 
-class SequenceTable extends Component {
+class AxiomSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dialogOpen: false,
-      sequenceToAdd: undefined,
+      axiomToAdd: undefined,
     };
   }
   closeDialog = () => this.setState({ dialogOpen: false });
 
   render() {
-    const { sequences, onSequenceSelected, onSequenceChange, selectedIndex, style } = this.props;
+    const { axioms, onAxiomSelected, onAxiomChange, selectedIndex, style } = this.props;
     return (
       <div style={style}>
         <InlineTextfieldDialog
           open={this.state.dialogOpen}
           closeDialog={this.closeDialog}
           onOkClick={() => {
-            if (onSequenceChange) {
-              const newSequences = sequences.slice();
-              newSequences.push(this.state.sequenceToAdd);
-              onSequenceChange(newSequences, this.state.sequenceToAdd);
+            if (onAxiomChange) {
+              const newAxioms  = axioms.slice();
+              newAxioms.push(this.state.axiomToAdd);
+              onAxiomChange(newAxioms, this.state.axiomToAdd);
             }
             this.setState({
-              sequenceToAdd: undefined,
+              axiomToAdd: undefined,
             });
             this.closeDialog();
           }}
-          onChange={(_, sequenceName) => {
+          onChange={(_, axiomName) => {
             this.setState({
-              sequenceToAdd: sequenceName,
+              axiomToAdd: axiomName,
             });
           }}
-          hintText={'sequence name'}
-          text={'Sequence to add'}
+          hintText={'axiom name'}
+          text={'Axiom to add'}
         />
         <SelectableList value={selectedIndex}>
-          {sequences.map(
-            (sequence, index) =>
+          {axioms.map(
+            (axiom, index) =>
               <ListItem
                 key={index}
                 value={index}
                 onTouchTap={() => {
-                  if (onSequenceSelected) {
-                    onSequenceSelected(sequence, index);
+                  if (onAxiomSelected) {
+                    onAxiomSelected(axiom, index);
                   }
                 }}
               >
-                {sequence}
+                {axiom}
               </ListItem>,
           )}
           <ListItem
@@ -67,11 +67,11 @@ class SequenceTable extends Component {
   }
 }
 
-SequenceTable.propTypes = {
-  sequences: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onSequenceSelected: PropTypes.func,
-  onSequenceChange: PropTypes.func,
+AxiomSelection.propTypes = {
+  axioms: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onAxiomSelected: PropTypes.func,
+  onAxiomChange: PropTypes.func,
   onClick: PropTypes.number,
 };
 
-export default SequenceTable;
+export default AxiomSelection;
