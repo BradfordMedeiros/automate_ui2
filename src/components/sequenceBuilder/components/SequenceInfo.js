@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import { Subheader } from 'material-ui';
+import AxiomHeader from '../../axiomBuilder/AxiomHeader';
 import InlineDropdownDialog from '../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
 
 class SequenceInfo extends Component {
@@ -35,8 +35,11 @@ class SequenceInfo extends Component {
           onOkClick={this.closeDialog}
           options={metaActions}
         />
-        <Subheader style={{ display: 'inline', width: '50%' }}>Sequence Name: {sequenceName} </Subheader>
-        <Subheader onTouchTap={deleteSequence} style={{ display: 'inline', width: '50%', paddingLeft: 60, cursor: 'pointer' }} >Delete</Subheader>
+        <AxiomHeader
+          deleteSequence={deleteSequence}
+          axiomName="Sequence"
+          axiomNameValue={sequenceName}
+        />
         <Table selectable={false}>
           <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x)} >
             {actions.map((action, index) => (

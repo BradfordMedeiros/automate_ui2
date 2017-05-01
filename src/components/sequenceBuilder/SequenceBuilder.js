@@ -6,7 +6,6 @@ class SequenceBuilder extends Component {
   render() {
     const {
       actions,
-      availableActions,
       metaActions,
       sequences,
       onSequenceSelected,
@@ -48,7 +47,6 @@ SequenceBuilder.propTypes = {
   selectedIndex: PropTypes.number,
   selectedName: PropTypes.string,
   metaActions: PropTypes.arrayOf(PropTypes.string),
-  availableActions: PropTypes.arrayOf(PropTypes.string),
   onSequenceActionsChange: PropTypes.func,
   onSequenceChange: PropTypes.func,
 };
