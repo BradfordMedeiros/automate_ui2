@@ -6,9 +6,15 @@ const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions`;
 const REFRESH_RATE = 1000;
 
 
-const executeAction = (actionName) => {
+const executeAction = actionName => {
   fetch(`${ACTIONS_URL}/${actionName}`, {
     method: 'POST',
+  });
+};
+
+const deleteAction = actionName => {
+  fetch(`${ACTIONS_URL}/${actionName}`, {
+    method: 'DELETE',
   });
 };
 

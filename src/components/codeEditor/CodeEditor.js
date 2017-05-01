@@ -15,43 +15,26 @@ class CodeEditor extends Component {
     }
   }
   render() {
+    const {initialText, onTextChange, style} = this.props;
     return (
-      <div>
-        <div
-          style={{ color: 'white', background: 'grey' }}
-          contentEditable
-          onInput={(x,y)=> {
-            this.setState({
-              html: x.target.innerText
-            })
-          }}
-        />
+      <div
+        style={{...style, overflow: 'auto', padding: 16, border: '1px solid black', color: 'white', height: '100%', marginLeft: 20, marginRight: 20  }}
+        contentEditable
+        onInput={(x, y) => onTextChange(x.target.innerText)}
+      >
+        {initialText}
       </div>
+
     )
   }
 }
 
 CodeEditor.propTypes = {
   style: PropTypes.object,
+  initialText: PropTypes.string,
+  onTextChange: PropTypes.func,
 };
 
 export default CodeEditor;
 
-/*
 
- getInitialState: function(){
- return {html: "<b>Hello <i>World</i></b>"};
- },
-
- handleChange: function(evt){
- this.setState({html: evt.target.value});
- },
-
- render: function(){
- return <ContentEditable
- html={this.state.html} // innerHTML of the editable div
- disabled={false}       // use true to disable edition
- onChange={this.handleChange} // handle innerHTML change
- />
- }
- */
