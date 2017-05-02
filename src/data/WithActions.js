@@ -5,6 +5,35 @@ const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions`;
 const REFRESH_RATE = 1000;
 
+// need to send a stringified version of the function to send to the server
+// The function must return the state as a json string via stdout
+const createStateFromSimpleFunction = (evalLogicString) => {
+  const isFunction = eval(`(${evalLogicString})`); // kind of dangerous but frontend anyway so who really cares
+  if (typeof (isFunction) !== typeof (() => {
+    })) {
+    throw (new Error('must be a function'));
+  }
+  const stringToSend = `() => {
+    const value = ((${evalLogicString}))(); 
+    console.log('"' + value + '"');
+  }`;
+  return stringToSend;
+};
+
+const saveAction = (actionName, evalLogic ) => {
+  const actionEval = createStateFromSimpleFunction(evalLogic);
+
+  fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
+    body: JSON.stringify({
+      actionEval,
+    }),
+    method: 'POST',
+  });
+};
 
 const executeAction = actionName => {
   fetch(`${ACTIONS_URL}/${actionName}`, {
@@ -23,6 +52,8 @@ const addAction = actionName => {
     method: 'POST',
   });
 };
+
+
 
 class WithStates extends Component {
   constructor(props) {
@@ -62,7 +93,7 @@ class WithStates extends Component {
   render() {
     const { children } = this.props;
     const { hasData, actions } = this.state;
-    return (hasData && children) ? children({ actions, addAction, deleteAction, executeAction }) : null;
+    return (hasData && children) ? children({ actions, addAction, deleteAction, saveAction, executeAction }) : null;
   }
 }
 

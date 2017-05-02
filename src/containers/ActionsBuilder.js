@@ -18,7 +18,7 @@ class ActionsBuilder extends Component {
   render() {
     return (
       <WithActions>
-        {({ actions, addAction, deleteAction }) => (
+        {({ actions, addAction, deleteAction, saveAction }) => (
           <ActionBuilder
             actions={actions.map(action => action.name)}
             actionName={actions[this.state.selectedIndex].name}
@@ -37,6 +37,10 @@ class ActionsBuilder extends Component {
               this.setState({selectedIndex})
             }}
             actionCode={this.state.actionCode[this.state.actions[this.state.selectedIndex]]}
+            onUpload={code => {
+              console.log('uploading: ', code);
+              saveAction(actions[this.state.selectedIndex].name, code)
+            }}
           />
         )}
       </WithActions>

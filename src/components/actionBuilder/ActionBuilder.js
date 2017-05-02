@@ -5,14 +5,15 @@ import ActionInfo from './components/ActionInfo';
 import { RaisedButton } from 'material-ui';
 
 class ActionBuilder extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
-      codeEditorText: 'hello',
-    };
+      code: undefined,
+    }
   }
+
   render() {
-    const {actions, actionCode, selectedIndex, onActionChange, onActionSelected, actionName} = this.props;
+    const {actions, actionCode, selectedIndex, onActionChange, onActionSelected, actionName, onUpload} = this.props;
     return (
       <AxiomBuilder
         title="Actions"
@@ -31,16 +32,15 @@ class ActionBuilder extends Component {
           />
           <div style={{display: 'flex', height: '50%', flexDirection: 'column'}}>
             <CodeEditor
-              onTextChange={codeEditorText => {
-                console.error('on text change ', codeEditorText)
+              onTextChange={ code => {
                 this.setState({
-                  codeEditorText,
+                  code,
                 })
               }}
               style={{height: '100%', background: '#303030'}}
               initialText={actionCode}
             />
-            <RaisedButton primary label="Upload" />
+            <RaisedButton primary label="Upload" onTouchTap={() => onUpload(this.state.code)} />
           </div>
         </div>
       </AxiomBuilder>
@@ -55,6 +55,8 @@ ActionBuilder.propTypes = {
   onActionSelected: PropTypes.func.isRequired,
   actionName: PropTypes.string.isRequired,
   actionCode: PropTypes.string.isRequired,
+  onCodeChange: PropTypes.func.isRequired,
+  onUpload: PropTypes.func.isRequired,
 };
 
 export default ActionBuilder;
