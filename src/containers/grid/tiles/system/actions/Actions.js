@@ -18,7 +18,6 @@ class Actions extends Component {
     }
   }
   render() {
-    console.error('render called');
     return (
       <div className="system_actions_outer">
         <div className="system_actions_title"><Subheader>Actions </Subheader></div>

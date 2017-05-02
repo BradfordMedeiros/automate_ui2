@@ -18,11 +18,8 @@ import { overlay as MongoOverlay } from './tiles/graphs/line/mongoOverlay';
 import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
-import States from './tiles/system/states/States';
-import StatesOverlay from './tiles/system/states/StatesOverlay';
-
+import States from './tiles/system/states/States'
 import Actions from './tiles/system/actions/Actions';
-import ActionsOvelray from './tiles/system/actions/ActionsOverlay';
 
 import Sequences from './tiles/system/sequences/Sequences';
 import SequenceBuilder from '../SequenceBuilder';
