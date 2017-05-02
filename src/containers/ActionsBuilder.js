@@ -18,13 +18,20 @@ class ActionsBuilder extends Component {
   render() {
     return (
       <WithActions>
-        {({ actions }) => (
+        {({ actions, addAction, deleteAction }) => (
           <ActionBuilder
             actions={actions.map(action => action.name)}
             actionName={actions[this.state.selectedIndex].name}
             selectedIndex={this.state.selectedIndex}
-            onActionChange={actions => {
-              this.setState({actions})
+            onActionChange={(newActions, addedActionName, deletedActionName) => {
+              console.error('new action is : ', addedActionName);
+              console.error('deleted action is: ', deletedActionName);
+              if (addedActionName){
+                addAction(addedActionName);
+              }
+              if (deletedActionName){
+                deleteAction(deletedActionName);
+              }
             }}
             onActionSelected={(_, selectedIndex) => {
               this.setState({selectedIndex})

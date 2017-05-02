@@ -18,6 +18,12 @@ const deleteAction = actionName => {
   });
 };
 
+const addAction = actionName => {
+  fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+    method: 'POST',
+  });
+};
+
 class WithStates extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +62,7 @@ class WithStates extends Component {
   render() {
     const { children } = this.props;
     const { hasData, actions } = this.state;
-    return (hasData && children) ? children({ actions, executeAction }) : null;
+    return (hasData && children) ? children({ actions, addAction, deleteAction, executeAction }) : null;
   }
 }
 

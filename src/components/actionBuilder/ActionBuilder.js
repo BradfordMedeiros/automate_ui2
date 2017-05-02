@@ -24,6 +24,10 @@ class ActionBuilder extends Component {
         <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column'}}>
           <ActionInfo
             actionName={actionName}
+            deleteAction={() => {
+              const newActions = actions.slice().filter((action, index) =>  index !== selectedIndex);
+              onActionChange(newActions, undefined, actionName);
+            }}
           />
           <div style={{display: 'flex', height: '50%', flexDirection: 'column'}}>
             <CodeEditor

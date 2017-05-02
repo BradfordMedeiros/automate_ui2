@@ -3,10 +3,10 @@ import AxiomHeader from '../../axiomBuilder/AxiomHeader';
 
 class ActionInfo extends Component {
   render() {
-    const { actionName } = this.props;
+    const { actionName, deleteAction } = this.props;
     return (
       <AxiomHeader
-        deleteSequence={() => { }}
+        deleteSequence={deleteAction}
         axiomName="Action"
         axiomNameValue={actionName}
       />
@@ -16,6 +16,7 @@ class ActionInfo extends Component {
 
 ActionInfo.propTypes = {
   actionName: PropTypes.string,
+  deleteAction: PropTypes.func.isRequired,
 };
 
 export default ActionInfo;
