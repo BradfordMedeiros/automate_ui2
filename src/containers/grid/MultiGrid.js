@@ -37,7 +37,6 @@ const mapStateToProps = state => ({
   isEditable: !state.getIn(['reducer', 'isLocked']),
   layout: state.getIn(['gridReducer', 'layout', state.getIn(['gridReducer', 'activeGrid'])]),
   tileKeyToTileName: state.getIn(['gridReducer', 'tileKeyToTileName']),
-  isOpen: state.getIn(['reducer', 'gridIsOpen']),
   gridBackgroundUrl: state.getIn(['gridReducer', 'gridBackgroundUrl']),
 });
 

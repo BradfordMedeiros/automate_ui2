@@ -18,7 +18,7 @@ class CodeEditor extends Component {
     const {initialText, onTextChange, style} = this.props;
     return (
       <div
-        style={{...style, overflow: 'auto', padding: 16, border: '1px solid black', color: 'white', height: '100%', marginLeft: 20, marginRight: 20  }}
+        style={{...style, overflow: 'auto', padding: 24, border: '1px solid black', color: 'white', height: '100%', marginLeft: 20, marginRight: 20  }}
         contentEditable
         onInput={(x, y) => onTextChange(x.target.innerText)}
       >

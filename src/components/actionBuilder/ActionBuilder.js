@@ -31,6 +31,19 @@ class ActionBuilder extends Component {
             }}
           />
           <div style={{display: 'flex', height: '50%', flexDirection: 'column'}}>
+            <div style={{
+              boxShadow: '0px 0px 2px 0.1px black',
+              margin: 20,
+            }} >
+            <div style={{
+              height: 50,
+              fontSize: 35,
+              color: '#7e7979',
+              margin: 10,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>Editor</div>
             <CodeEditor
               onTextChange={ code => {
                 this.setState({
@@ -40,7 +53,14 @@ class ActionBuilder extends Component {
               style={{height: '100%', background: '#303030'}}
               initialText={actionCode}
             />
-            <RaisedButton primary label="Upload" onTouchTap={() => onUpload(this.state.code)} />
+            </div>
+            <RaisedButton
+              style={{ margin: 42, marginTop: -15, background: 'red' }}
+              buttonStyle={{ background: '#303030' }}
+              label="Upload"
+              labelColor='rgb(126, 121, 121)'
+              onTouchTap={() => onUpload(this.state.code)}
+            />
           </div>
         </div>
       </AxiomBuilder>

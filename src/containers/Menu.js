@@ -4,9 +4,10 @@ import { Dialog, TextField, RaisedButton } from 'material-ui';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
-import { expandMenu, setGridIsOpen } from './module';
+import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
 import CodeEditor from '../components/codeEditor/CodeEditor';
+import SSH from '../ssh/SSH';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -21,12 +22,9 @@ class MenuContainer extends Component {
   closeDialog = () => this.setState({ showAddDialog: false });
 
   onGridClick = (gridName) => {
-    const { setActiveGrid, menuIsExpanded, closeMenu, closeSSHContent, addGridExpanded } = this.props;
+    const { setActiveGrid, menuIsExpanded, closeMenu } = this.props;
     if (menuIsExpanded) {
       closeMenu();
-    }
-    if (addGridExpanded) {
-      closeSSHContent();
     }
     setActiveGrid(gridName);
   };
@@ -34,11 +32,9 @@ class MenuContainer extends Component {
     const {
       grids,
       setSSHContent,
-      closeSSHContent,
       setEventLog,
       closeMenu,
       menuIsExpanded,
-      addGridExpanded,
       addGrid,
       setActiveGrid,
       setGridBackground,
@@ -95,10 +91,9 @@ class MenuContainer extends Component {
             {
               label: 'SSH',
               onClick: () => {
-                if (addGridExpanded || menuIsExpanded) {
+                if (menuIsExpanded) {
                   closeMenu();
-                  closeSSHContent();
-                } else {
+                }else{
                   setSSHContent();
                 }
               },
@@ -106,9 +101,8 @@ class MenuContainer extends Component {
             {
               label: 'Events',
               onClick: () => {
-                if (menuIsExpanded || addGridExpanded) {
+                if (menuIsExpanded) {
                   closeMenu();
-                  closeSSHContent();
                 } else {
                   setEventLog();
                 }
@@ -137,16 +131,13 @@ class MenuContainer extends Component {
 
 const mapStateToProps = state => ({
   menuIsExpanded: state.getIn(['reducer', 'menuExpanded']),
-  addGridExpanded: state.getIn(['reducer', 'gridIsOpen']),
   grids: state.getIn(['gridReducer', 'grids']),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
   setSSHContent: () => {
-    dispatch(setGridIsOpen(true));
-  },
-  closeSSHContent: () => {
-    dispatch(setGridIsOpen(false));
+    dispatch(setContent(() => <SSH />));
+    dispatch(expandMenu(true))
   },
   setEventLog: () => {
     dispatch(setContent(() => <EventLog />));

@@ -25,7 +25,7 @@ class SequenceBuilder extends Component {
             paddingLeft: 30,
             paddingTop: 20,
             color: 'rgb(160,160,160)',
-            borderBottom: '1px solid black',
+            borderBottom: '1px solid rgba(0,0,0,0.3)',
             display: 'inline-block',
           }}
         >
@@ -39,7 +39,7 @@ class SequenceBuilder extends Component {
             onAxiomChange={onAxiomChange}
             style={{ width: 250 }}
           />
-          <div style={{ width: 0, height: '100%', border: '1px solid black' }} />
+          <div style={{ width: 0, height: '100%', border: '1px solid rgba(0,0,0,0.3)' }} />
           {children}
         </div>
       </div>

@@ -5,25 +5,19 @@ import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import './style.css';
 
-import SSH from '../../ssh/SSH';
 const ReactGridLayout = WidthProvider(Responsive);
 
 class Grid extends Component {
   render() {
-    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style, isOpen } = this.props;
+    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
 
-    const gridStyle = isOpen ? { animation: 'grid_slide 0.1s linear forwards' } : { animation: 'grid_slide_out 0.1s linear forwards' };
 
     const jsLayout = layout ? layout.toJS() : [];
     const tileKeys = jsLayout.map(item => item.i);
 
-    console.error('rendering grid');
-
     return (
       <div>
-        <div className="grid_background" style={style}><SSH /></div>
-
-        <div className="grid" style={{ ...gridStyle, ...style }}>
+        <div className="grid" style={style}>
           <ReactGridLayout
             layouts={{ xxs: jsLayout, xs: jsLayout, sm: jsLayout, md: jsLayout, lg: jsLayout }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
