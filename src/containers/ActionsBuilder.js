@@ -36,7 +36,7 @@ class ActionsBuilder extends Component {
             onActionSelected={(_, selectedIndex) => {
               this.setState({selectedIndex})
             }}
-            actionCode={this.state.actionCode[this.state.actions[this.state.selectedIndex]]}
+            actionCode={actions[this.state.selectedIndex].content}
             onUpload={code => {
               console.log('uploading: ', code);
               saveAction(actions[this.state.selectedIndex].name, code)

@@ -20,40 +20,48 @@ const createStateFromSimpleFunction = (evalLogicString) => {
   return stringToSend;
 };
 
-const saveAction = (actionName, evalLogic ) => {
+
+const addAction = async actionName => {
+  return (
+    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+      method: 'POST',
+    })
+  );
+};
+
+const saveAction = async (actionName, evalLogic ) => {
   const actionEval = createStateFromSimpleFunction(evalLogic);
 
-  fetch(`${ACTIONS_URL}/modify/${actionName}`, {
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-    body: JSON.stringify({
-      actionEval,
-    }),
+  return (
+    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+       actionEval,
+     }),
+      method: 'POST',
+    })
+  );
+};
+
+const deleteAction = async actionName => {
+  return (
+    fetch(`${ACTIONS_URL}/${actionName}`, {
+     method: 'DELETE',
+    })
+  );
+};
+
+
+const executeAction = async actionName => {
+  return (
+    fetch(`${ACTIONS_URL}/${actionName}`, {
     method: 'POST',
-  });
+    })
+  );
 };
-
-const executeAction = actionName => {
-  fetch(`${ACTIONS_URL}/${actionName}`, {
-    method: 'POST',
-  });
-};
-
-const deleteAction = actionName => {
-  fetch(`${ACTIONS_URL}/${actionName}`, {
-    method: 'DELETE',
-  });
-};
-
-const addAction = actionName => {
-  fetch(`${ACTIONS_URL}/modify/${actionName}`, {
-    method: 'POST',
-  });
-};
-
-
 
 class WithStates extends Component {
   constructor(props) {
