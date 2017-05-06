@@ -6,7 +6,6 @@ import EventLog from '../event_log/EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
-import CodeEditor from '../components/codeEditor/CodeEditor';
 import SSH from '../ssh/SSH';
 
 class MenuContainer extends Component {
@@ -116,12 +115,6 @@ class MenuContainer extends Component {
                 });
               },
             },
-            {
-              label: 'Code Editor',
-              onClick: () => {
-                this.props.openCodeEditor();
-              }
-            }
           ]}
         />
       </div>
@@ -153,11 +146,6 @@ const mapDispatchToProps = (dispatch, props) => ({
   addGrid: gridName => dispatch(addGrid(gridName)),
   setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
   setGridBackground: backgroundUrl => dispatch(setBackground(backgroundUrl)),
-
-  openCodeEditor: () => {
-    dispatch(setContent(()=> <CodeEditor />));
-    dispatch(expandMenu(true));
-  },
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import Wrapper from './TileWrapper';
 import { saveContent } from './module';
 
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
@@ -167,11 +167,9 @@ class TileOverlay extends Component {
         return <SequenceBuilder {...otherProps} />;
       }
       case 'States': {
-        //return <AxiomBuilder title={"States"} {...otherProps} />
         return <div>hello</div>
       }
       case 'Actions': {
-        //return <AxiomBuilder title={"Actions"} {...otherProps} />
         return <ActionBuilder />
       }
       default : {
@@ -181,24 +179,6 @@ class TileOverlay extends Component {
   }
 }
 
-const TileWrapper = ({ children, tileKey, savedContent, saveContent }) => {
-  const saveContentForTile = content => saveContent(tileKey, content);
-  return children({ savedContent: savedContent.get(tileKey), saveContent: saveContentForTile });
-};
-TileWrapper.propTypes = {
-  savedContent: PropTypes.object,
-  saveContent: PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-  savedContent: state.getIn(['gridReducer', 'savedTileContent']),
-});
-
-const mapDispatchToProps = dispatch => ({
-  saveContent: (tileKey, content) => dispatch(saveContent(tileKey, content)),
-});
-
-const Wrapper = connect(mapStateToProps, mapDispatchToProps)(TileWrapper);
 
 
 export const tileNameToTile = {

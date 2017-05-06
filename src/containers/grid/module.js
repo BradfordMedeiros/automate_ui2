@@ -5,6 +5,7 @@ const initialState = fromJS({
   content: undefined,
   layout: {},
   tileKeyToTileName: {},
+  tileKeyToTileGrid: { },
   savedTileContent: {}, // maps key to content
   activeGrid: 'Home',
   grids: [],
@@ -52,6 +53,11 @@ export const addTile = (tileName, gridNumber) => ({
   tileName,
 });
 
+export const deleteTile = tileKey => ({
+  type: 'deleteTile',
+  tileKey,
+});
+
 export const addGrid = gridName => ({
   type: 'addGrid',
   gridName,
@@ -74,6 +80,7 @@ const gridReducer = (state = initialState, action) => {
         const grids = action.payload.gridReducer.get('grids');
         const savedTileContent = action.payload.gridReducer.get('savedTileContent');
         const tileKeyToTileName = action.payload.gridReducer.get('tileKeyToTileName');
+        const tileKeyToTileGrid = action.payload.gridReducer.get('tileKeyToTileGrid');
 
         const layouts = action.payload.gridReducer.get('layout');
         const fixedLayout = layouts.map(layout => layout.map(fixTile));
@@ -85,6 +92,7 @@ const gridReducer = (state = initialState, action) => {
             .set('tileKeyToTileName', tileKeyToTileName)
             .set('layout', fixedLayout)
             .set('gridBackgroundUrl', gridBackgroundUrl)
+            .set('tileKeyToTileGrid', tileKeyToTileGrid)
         );
       }
       return state;
@@ -117,7 +125,23 @@ const gridReducer = (state = initialState, action) => {
       const tile = getNextTile(state.get('layout'));
       const layout = (state.getIn(['layout', gridNumber]) || fromJS([])).push(tile);
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, tileName);
-      return state.setIn(['layout', gridNumber], layout).set('tileKeyToTileName', tileKeyToTileName);
+      return (state
+        .setIn(['layout', gridNumber], layout)
+        .set('tileKeyToTileName', tileKeyToTileName)
+        .setIn(['tileKeyToTileGrid', tile.i], gridNumber )
+      );
+    }
+    case 'deleteTile':  {
+      console.error('deleting tile');
+      const { tileKey } = action;
+      const gridNumber = state.getIn(['tileKeyToTileGrid', tileKey]);
+      const layout = state.getIn(['layout', gridNumber]).filter(tile => tile.i !== tileKey);
+
+      return (
+        state.setIn(['layout', gridNumber], layout)
+        .deleteIn(['tileKeyToTileName', tileKey])
+        .deleteIn(['tileKeyToTileGrid', tileKey])
+      );
     }
     default: {
       return state;
