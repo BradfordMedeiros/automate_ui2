@@ -7,6 +7,7 @@ import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
 import SSH from '../ssh/SSH';
+import DeviceInfo from '../components/device/DeviceInfo';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class MenuContainer extends Component {
       addGrid,
       setActiveGrid,
       setGridBackground,
+      setDeviceInfo,
       ...otherProps
     } = this.props;
 
@@ -115,6 +117,16 @@ class MenuContainer extends Component {
                 });
               },
             },
+            {
+              label: 'Device Info',
+              onClick: () => {
+                if (menuIsExpanded) {
+                  closeMenu();
+                } else {
+                  setDeviceInfo();
+                }
+              },
+            }
           ]}
         />
       </div>
@@ -131,6 +143,10 @@ const mapDispatchToProps = (dispatch, props) => ({
   setSSHContent: () => {
     dispatch(setContent(() => <SSH />));
     dispatch(expandMenu(true))
+  },
+  setDeviceInfo: () => {
+    dispatch(setContent(() => <DeviceInfo ipAddress="127.0.0.1" macAddress="00-14-22-01-23-45" />));
+    dispatch(expandMenu(true));
   },
   setEventLog: () => {
     dispatch(setContent(() => <EventLog />));

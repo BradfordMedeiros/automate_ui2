@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomSelection from './components/AxiomSelection';
-//import SequenceInfo from './components/SequenceInfo';
-
+import GenericOverlay from '../overlay/GenericOverlay';
 
 class SequenceBuilder extends Component {
   render() {
@@ -15,22 +14,7 @@ class SequenceBuilder extends Component {
     } = this.props;
 
     return (
-      <div style={{ height: '100%', background: '#282828' }}>
-        <div
-          style={{
-            width: '100%',
-            background: 'rgb(40,40,40)',
-            height: 60,
-            fontSize: '140%',
-            paddingLeft: 30,
-            paddingTop: 20,
-            color: 'rgb(160,160,160)',
-            borderBottom: '1px solid rgba(0,0,0,0.3)',
-            display: 'inline-block',
-          }}
-        >
-          <div style={{ display: 'inline', cursor: 'pointer', paddingRight: 120 }}>{title}</div>
-        </div>
+      <GenericOverlay title={title}>
         <div style={{ display: 'flex' }}>
           <AxiomSelection
             axioms={axioms}
@@ -42,7 +26,7 @@ class SequenceBuilder extends Component {
           <div style={{ width: 0, height: '100%', border: '1px solid rgba(0,0,0,0.3)' }} />
           {children}
         </div>
-      </div>
+      </GenericOverlay>
     );
   }
 }

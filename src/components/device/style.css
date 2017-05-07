@@ -1,0 +1,26 @@
+.ip_container {
+    margin: 30px;
+    border:1px solid black;
+    padding: 20px;
+    background: rgb(45,45,45);
+}
+
+.ip_address {
+    font-size: 30px;
+    margin-left: 20px;
+    color: rgb(197, 187, 187);
+}
+
+.mac_container {
+    margin: 30px;
+    border:1px solid black;
+    padding: 20px;
+    background: rgb(45,45,45);
+}
+
+.mac_address {
+    font-size: 30px;
+    margin-left: 20px;
+    color: rgb(197, 187, 187);
+}
+
