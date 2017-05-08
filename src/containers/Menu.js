@@ -7,7 +7,7 @@ import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
 import SSH from '../ssh/SSH';
-import DeviceInfo from '../components/device/DeviceInfo';
+import DeviceInfo from './DeviceInfo';
 
 class MenuContainer extends Component {
   constructor(props) {
