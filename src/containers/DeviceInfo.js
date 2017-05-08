@@ -3,11 +3,14 @@ import WithSystemInfo from '../data/WithSystemInfo';
 import DeviceInfoComponent from '../components/device/DeviceInfo';
 
 const DeviceInfo = () => (
-  <WithSystemInfo>
-    {({ ipAddress, macAddress }) => (
+  <WithSystemInfo
+    injectLoading
+  >
+    {({ public_ip_address, mac_address }) => (
       <DeviceInfoComponent
-        ipAddress={ipAddress}
-        macAddress={macAddress}/>
+        ipAddress={public_ip_address}
+        macAddress={mac_address}
+      />
     )}
   </WithSystemInfo>
 )

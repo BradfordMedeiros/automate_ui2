@@ -5,8 +5,7 @@ const SYSTEM_INFO  = `${AUTOMATE_CORE_URL}/info`;
 class WithSystemInfo extends Component {
   state = {
     hasData: false,
-    macAddress: undefined,
-    ipAddress: undefined,
+    info: undefined,
   }
   getData = async () => {
     try {
@@ -20,8 +19,7 @@ class WithSystemInfo extends Component {
       const info = await response.json();
       this.setState({
         hasData: true,
-        ipAddress: info.ipAddress,
-        macAddress: info.macAddress,
+        info,
       });
     } catch (err) {
       console.error('error while fetching ', err);
@@ -31,18 +29,19 @@ class WithSystemInfo extends Component {
     this.getData();
   }
   render() {
-    const { children } = this.props;
+    const { children, injectLoading } = this.props;
 
     return (
       this.state.hasData ?
-        children({ macAddress: this.state.macAddress, ipAddress: this.state.ipAddress }) :
-        null
+        children({ ...this.state.info }) :
+        injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null
     );
   }
 }
 
 WithSystemInfo.propTypes = {
   children: PropTypes.node.isRequired,
+  injectLoading: PropTypes.bool,
 }
 
 export default WithSystemInfo;
