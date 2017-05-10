@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import { REHYDRATE } from 'redux-persist-immutable/constants';
+import extraProps from './extraProps';
 
 const initialState = fromJS({
   content: undefined,
@@ -12,11 +13,29 @@ const initialState = fromJS({
   gridBackgroundUrl: 'https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg',
 });
 
-const getNextTile = (layouts) => {
+
+const getNextTile = (layouts, tileName) => {
   const nextIndexMaxes = layouts.map(layout => layout.reduce((answer, value) => answer > Number(value.i) ? answer : Number(value.i) + 1, 0));
   const nextIndex = nextIndexMaxes.size === 0 ? '0' : nextIndexMaxes.max();
+  const extraPropForTile = extraProps[tileName];
+
+  let width = 6;
+  if (width > extraPropForTile.maxW){
+    width = extraPropForTile.maxW;
+  }
+  if (width < extraPropForTile.minW){
+    width = extraPropForTile.minW;
+  }
+
+  let height = 4;
+  if (height > extraPropForTile.maxH){
+    height = extraPropForTile.maxH;
+  }
+  if (width < extraPropForTile.minH){
+    height = extraPropForTile.minH;
+  }
   return (
-    { w: 6, h: 4, x: 0, y: 0, i: String(nextIndex), moved: false, static: false }
+    { w: width, h: height, x: 0, y: 0, i: String(nextIndex), moved: false, static: false, ...extraPropForTile }
   );
 };
 
@@ -122,7 +141,7 @@ const gridReducer = (state = initialState, action) => {
     }
     case 'addTile': {
       const { tileName, gridNumber } = action;
-      const tile = getNextTile(state.get('layout'));
+      const tile = getNextTile(state.get('layout'), tileName);
       const layout = (state.getIn(['layout', gridNumber]) || fromJS([])).push(tile);
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, tileName);
       return (state
