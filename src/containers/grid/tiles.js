@@ -3,10 +3,14 @@ import Wrapper from './TileWrapper';
 import { saveContent } from './module';
 
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
+
 import { tile as VerticalMqttSliderTile } from './tiles/mqtt/slider/VerticalSlider';
 import { tile as HorizontalMqttSliderTile } from './tiles/mqtt/slider/HorizontalSlider';
 import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSliderOverlay';
-import { tile as MqttButtonTile, overlay as MqttButtonOverlay } from './tiles/mqtt/button/button';
+
+import { tile as MqttButtonTile } from './tiles/mqtt/button/button';
+import { overlay as MqttButtonOverlay } from './tiles/mqtt/button/buttonOverlay';
+
 import { tile as IFrameTile } from './tiles/misc/IFrame';
 
 import MongoLine from './tiles/graphs/line/mongoTile';

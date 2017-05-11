@@ -27,19 +27,21 @@ class Appbar extends Component {
       open: false,
     };
   }
-  renderTileAsMenuItem = (tile) => {
+  renderTileAsMenuItem = (tile, index, path) => {
     const { onTileClick } = this.props;
     if (typeof (tile) === typeof ({})) {
       return (
         <ListItem
+          key={path}
           primaryText={tile.label}
           primaryTogglesNestedList
-          nestedItems={!tile.children ? [] : tile.children.map(this.renderTileAsMenuItem)}
+          nestedItems={!tile.children ? [] : tile.children.map((value, index) => this.renderTileAsMenuItem(value, index, path +'/'+index))}
         />
       );
     }
     return (
       <ListItem
+        key={path}
         primaryText={tile}
         onClick={() => {
           this.setState({ open: false });
@@ -67,7 +69,7 @@ class Appbar extends Component {
           <Divider />
           { (tileNames === undefined || tileNames.length === 0) ?
             <MenuItem>No tiles</MenuItem> :
-            (<List>{tileNames.map(this.renderTileAsMenuItem)}</List>)
+            (<List>{tileNames.map((value, index) =>this.renderTileAsMenuItem(value, index, index))}</List>)
           }
         </Drawer>
         <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>

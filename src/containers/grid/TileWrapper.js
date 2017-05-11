@@ -23,7 +23,7 @@ class TileWrapper extends Component {
 TileWrapper.propTypes = {
   savedContent: PropTypes.object,
   saveContent: PropTypes.func,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
