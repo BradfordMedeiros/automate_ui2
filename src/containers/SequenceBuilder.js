@@ -33,7 +33,7 @@ class SequenceBuilder extends Component {
     return (
       <WithActions>
         {({ actions }) =>
-          <WithSequences>
+          (<WithSequences>
             {({ sequences, addSequence, deleteSequence }) => {
               const sequenceActions = sequences.filter(sequence => sequence.name == this.state.selectedName);
               const sequenceAction = sequenceActions.length > 0 ? (sequenceActions[0].actions || []) : [];
@@ -68,7 +68,7 @@ class SequenceBuilder extends Component {
                 />
               );
             }}
-          </WithSequences>
+          </WithSequences>)
         }
       </WithActions>
     );

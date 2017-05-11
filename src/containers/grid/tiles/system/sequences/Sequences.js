@@ -15,7 +15,7 @@ class Sequences extends Component {
             {({ sequences, executeSequence }) => (
               <List>
                 {sequences.map((sequence, index) =>
-                  <ListItem
+                  (<ListItem
                     primaryTogglesNestedList={false}
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                     key={index}
@@ -23,7 +23,7 @@ class Sequences extends Component {
                     onTouchTap={() => {
                       executeSequence(sequence.name);
                     }}
-                  />,
+                  />),
                 )}
               </List>
             )}

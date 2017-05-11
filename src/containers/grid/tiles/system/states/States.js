@@ -17,12 +17,12 @@ class States extends Component {
             {({ states }) => (
               <List>
                 {states.map((state, index) =>
-                  <ListItem
+                  (<ListItem
                     primaryTogglesNestedList={false}
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                     key={index}
                     primaryText={<Subheader>{state.name}</Subheader>}
-                  />,
+                  />),
               )}
               </List>
           )}

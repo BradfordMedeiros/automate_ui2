@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
@@ -39,6 +39,10 @@ class WithSequences extends Component {
     };
     this.handle = undefined;
   }
+  componentWillMount() {
+    this.getData();
+    this.handle = setInterval(this.getData, REFRESH_RATE);
+  }
   getData = async () => {
     try {
       const response = await fetch(SEQUENCE_URL, {
@@ -57,11 +61,6 @@ class WithSequences extends Component {
       console.error('error while fetching ', err);
     }
   }
-
-  componentWillMount() {
-    this.getData();
-    this.handle = setInterval(this.getData, REFRESH_RATE);
-  }
   componentWillUnmount() {
     clearInterval(this.handle);
   }
@@ -72,6 +71,10 @@ class WithSequences extends Component {
     return (hasData && children) ? children({ sequences, addSequence, deleteSequence, executeSequence }) : null;
   }
 }
+
+WithSequences.propTypes = {
+  children: PropTypes.func,
+};
 
 
 export default WithSequences;

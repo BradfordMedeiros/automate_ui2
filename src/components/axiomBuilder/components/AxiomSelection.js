@@ -43,7 +43,7 @@ class AxiomSelection extends Component {
         <SelectableList value={selectedIndex}>
           {axioms.map(
             (axiom, index) =>
-              <ListItem
+              (<ListItem
                 key={index}
                 value={index}
                 onTouchTap={() => {
@@ -53,7 +53,7 @@ class AxiomSelection extends Component {
                 }}
               >
                 {axiom}
-              </ListItem>,
+              </ListItem>),
           )}
           <ListItem
             onTouchTap={() => this.setState({ dialogOpen: true })}

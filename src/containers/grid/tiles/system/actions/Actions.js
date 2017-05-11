@@ -32,13 +32,13 @@ class Actions extends Component {
               return (
                 <List>
                   {actions.map((action, index) =>
-                    <ListItem
+                    (<ListItem
                       primaryTogglesNestedList={false}
                       style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                       key={index}
                       onClick={() => executeAction(action.name)}
                       primaryText={<Subheader>{action.name}</Subheader>}
-                    />,
+                    />),
                   )}
                 </List>
               );

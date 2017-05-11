@@ -20,18 +20,18 @@ const getNextTile = (layouts, tileName) => {
   const extraPropForTile = extraProps[tileName];
 
   let width = 6;
-  if (width > extraPropForTile.maxW) {
+  if (extraPropForTile && extraPropForTile.maxW && (width > extraPropForTile.maxW)) {
     width = extraPropForTile.maxW;
   }
-  if (width < extraPropForTile.minW) {
+  if (extraPropForTile && extraPropForTile.minW && (width < extraPropForTile.minW)) {
     width = extraPropForTile.minW;
   }
 
   let height = 4;
-  if (height > extraPropForTile.maxH) {
+  if (extraPropForTile && extraPropForTile.maxH && (height > extraPropForTile.maxH)) {
     height = extraPropForTile.maxH;
   }
-  if (width < extraPropForTile.minH) {
+  if (extraPropForTile  && extraPropForTile.minH && (width < extraPropForTile.minH)) {
     height = extraPropForTile.minH;
   }
   return (

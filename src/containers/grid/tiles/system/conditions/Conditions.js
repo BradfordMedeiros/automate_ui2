@@ -24,12 +24,12 @@ class Conditions extends Component {
         <div className="system_conditions_inner">
           <WithConditions>
             {({ conditions }) =>
-              <WithMqtt>
+              (<WithMqtt>
                 {(stuff, publish) => (
                   <List>
                     {conditions.map(
                     (condition, index) =>
-                      <ListItem
+                      (<ListItem
                         primaryTogglesNestedList={false}
                         style={{ borderBottom: '1px solid rgb(40,40,40)' }}
                         key={index}
@@ -42,11 +42,11 @@ class Conditions extends Component {
                             {condition.state === 'active' ? <AvPause /> : <AvPlayArrow />}
                           </IconButton>
                         </div>
-                      </ListItem>,
+                      </ListItem>),
                   )}
                   </List>
               )}
-              </WithMqtt>
+              </WithMqtt>)
           }
           </WithConditions>
         </div>

@@ -94,7 +94,6 @@ class WithMongo extends Component {
 
 WithMongo.propTypes = {
   topic: PropTypes.string.isRequired,
-  limit: PropTypes.number,
   refresh: PropTypes.number,
   children: PropTypes.node,
 };
