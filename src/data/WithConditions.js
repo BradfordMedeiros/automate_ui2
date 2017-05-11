@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
@@ -12,6 +12,13 @@ class WithConditions extends Component {
       hasData: false,
     };
     this.handle = undefined;
+  }
+  componentWillMount() {
+    this.getData();
+    this.handle = setInterval(this.getData, REFRESH_RATE);
+  }
+  componentWillUnmount() {
+    clearInterval(this.handle);
   }
   getData = async () => {
     try {
@@ -28,24 +35,19 @@ class WithConditions extends Component {
         conditions: conditions.conditions,
       });
     } catch (err) {
-      console.error('error while fetching ', err);
+      // what to do?
     }
   }
-
-  componentWillMount() {
-    this.getData();
-    this.handle = setInterval(this.getData, REFRESH_RATE);
-  }
-  componentWillUnmount() {
-    clearInterval(this.handle);
-  }
-
   render() {
     const { children } = this.props;
     const { hasData, conditions } = this.state;
     return (hasData && children) ? children({ conditions }) : null;
   }
 }
+
+WithConditions.propTypes = {
+  children: PropTypes.func,
+};
 
 
 export default WithConditions;

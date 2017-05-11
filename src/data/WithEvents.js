@@ -58,7 +58,7 @@ class WithEvents extends Component {
   }
   render() {
     const { children, whileLoading } = this.props;
-    if (this.state.data) {
+    if (!this.state.data) {
       return whileLoading ? whileLoading() : null;
     }
     return children ? children({ data: this.state.data }) : null;
