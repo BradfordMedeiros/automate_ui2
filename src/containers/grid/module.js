@@ -31,7 +31,7 @@ const getNextTile = (layouts, tileName) => {
   if (extraPropForTile && extraPropForTile.maxH && (height > extraPropForTile.maxH)) {
     height = extraPropForTile.maxH;
   }
-  if (extraPropForTile  && extraPropForTile.minH && (width < extraPropForTile.minH)) {
+  if (extraPropForTile && extraPropForTile.minH && (width < extraPropForTile.minH)) {
     height = extraPropForTile.minH;
   }
   return (

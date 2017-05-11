@@ -202,7 +202,7 @@ export const tileNameToTile = {
 export const tileNameToContent = {
   get: (tileName, tileKey, isEditing) => (
     <Wrapper tileKey={tileKey}>
-      {({savedContent, saveContent}) => (
+      {({ savedContent, saveContent }) => (
         <TileOverlay
           isEditing={isEditing}
           saveContent={saveContent}

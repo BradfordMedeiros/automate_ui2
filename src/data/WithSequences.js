@@ -43,6 +43,9 @@ class WithSequences extends Component {
     this.getData();
     this.handle = setInterval(this.getData, REFRESH_RATE);
   }
+  componentWillUnmount() {
+    clearInterval(this.handle);
+  }
   getData = async () => {
     try {
       const response = await fetch(SEQUENCE_URL, {
@@ -58,17 +61,16 @@ class WithSequences extends Component {
         sequences: states.sequences,
       });
     } catch (err) {
-      console.error('error while fetching ', err);
+      // what to do here?
     }
   }
-  componentWillUnmount() {
-    clearInterval(this.handle);
-  }
-
   render() {
     const { children } = this.props;
     const { hasData, sequences } = this.state;
-    return (hasData && children) ? children({ sequences, addSequence, deleteSequence, executeSequence }) : null;
+    return ((hasData && children) ?
+      children({ sequences, addSequence, deleteSequence, executeSequence }) :
+      null
+    );
   }
 }
 
