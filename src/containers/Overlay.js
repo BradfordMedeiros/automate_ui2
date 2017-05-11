@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Overlay from '../components/overlay/Overlay';
 
@@ -7,5 +6,5 @@ const mapStateToProps = state => ({
   Content: state.getIn(['gridReducer', 'content']),
 });
 
-export const container = connect(mapStateToProps)(Overlay);
+export const container = connect(mapStateToProps)(Overlay); // eslint-disable-line
 

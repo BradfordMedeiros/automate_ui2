@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Dialog, TextField, RaisedButton } from 'material-ui';
 import Menu from '../components/menu/menu';
 import EventLog from '../event_log/EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
@@ -19,26 +18,26 @@ class MenuContainer extends Component {
       backgroundUrl: false,
     };
   }
-  closeDialog = () => this.setState({ showAddDialog: false });
+  onCloseDialog = () => this.setState({ showAddDialog: false });
 
   onGridClick = (gridName) => {
-    const { setActiveGrid, menuIsExpanded, closeMenu } = this.props;
+    const { onSetActiveGrid, menuIsExpanded, onCloseMenu } = this.props;
     if (menuIsExpanded) {
-      closeMenu();
+      onCloseMenu();
     }
-    setActiveGrid(gridName);
+    onSetActiveGrid(gridName);
   };
   render() {
     const {
       grids,
-      setSSHContent,
-      setEventLog,
-      closeMenu,
+      onSetSSHContent,
+      onSetEventLog,
+      onCloseMenu,
       menuIsExpanded,
-      addGrid,
-      setActiveGrid,
-      setGridBackground,
-      setDeviceInfo,
+      onAddGrid,
+      onSetActiveGrid,
+      onSetGridBackground,
+      onSetDeviceInfo,
       ...otherProps
     } = this.props;
 
@@ -50,13 +49,13 @@ class MenuContainer extends Component {
     return (
       <div>
         <InlineTextfieldDialog
-          open={this.state.showAddDialog}
-          closeDialog={this.closeDialog}
+          open={this.state.onShowAddDialog}
+          closeDialog={this.onCloseDialog}
           onChange={(_, gridName) => this.setState({ gridName })}
           hintText={'grid name'}
           text={'Set the name of the grid'}
           onOkClick={() => {
-            addGrid(this.state.gridName);
+            onAddGrid(this.state.gridName);
             this.closeDialog();
           }}
         />
@@ -67,7 +66,7 @@ class MenuContainer extends Component {
           hintText={'background url'}
           text={'Set the url of a background image'}
           onOkClick={() => {
-            setGridBackground(this.state.backgroundUrl);
+            onSetGridBackground(this.state.backgroundUrl);
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
           }}
         />
@@ -93,9 +92,9 @@ class MenuContainer extends Component {
               label: 'SSH',
               onClick: () => {
                 if (menuIsExpanded) {
-                  closeMenu();
+                  onCloseMenu();
                 } else {
-                  setSSHContent();
+                  onSetSSHContent();
                 }
               },
             },
@@ -103,9 +102,9 @@ class MenuContainer extends Component {
               label: 'Events',
               onClick: () => {
                 if (menuIsExpanded) {
-                  closeMenu();
+                  onCloseMenu();
                 } else {
-                  setEventLog();
+                  onSetEventLog();
                 }
               },
             },
@@ -121,9 +120,9 @@ class MenuContainer extends Component {
               label: 'Device Info',
               onClick: () => {
                 if (menuIsExpanded) {
-                  closeMenu();
+                  onCloseMenu();
                 } else {
-                  setDeviceInfo();
+                  onSetDeviceInfo();
                 }
               },
             },
@@ -134,34 +133,42 @@ class MenuContainer extends Component {
   }
 }
 
+MenuContainer.propTypes = {
+  grids: PropTypes.object.isRequired,
+  menuIsExpanded: PropTypes.bool.isRequired,
+  onCloseMenu: PropTypes.func.isRequired,
+  onAddGrid: PropTypes.func.isRequired,
+  onSetEventLog: PropTypes.func.isRequired,
+  onSetActiveGrid: PropTypes.func.isRequired,
+  onSetSSHContent: PropTypes.func.isRequired,
+  onSetDeviceInfo: PropTypes.func.isRequired,
+  onSetGridBackground: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   menuIsExpanded: state.getIn(['reducer', 'menuExpanded']),
   grids: state.getIn(['gridReducer', 'grids']),
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
-  setSSHContent: () => {
+const mapDispatchToProps = dispatch => ({
+  onSetSSHContent: () => {
     dispatch(setContent(() => <SSH />));
     dispatch(expandMenu(true));
   },
-  setDeviceInfo: () => {
+  onSetDeviceInfo: () => {
     dispatch(setContent(() => <DeviceInfo ipAddress="127.0.0.1" macAddress="00-14-22-01-23-45" />));
     dispatch(expandMenu(true));
   },
-  setEventLog: () => {
+  onSetEventLog: () => {
     dispatch(setContent(() => <EventLog />));
     dispatch(expandMenu(true));
   },
-  closeMenu: () => {
+  onCloseMenu: () => {
     dispatch(expandMenu(false));
   },
-  showSequence: () => {
-    dispatch(setContent(() => <SequenceBuilder sequence={['seq0', 'seq1', 'seq2', 'seq3']} />));
-    dispatch(expandMenu(true));
-  },
-  addGrid: gridName => dispatch(addGrid(gridName)),
-  setActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
-  setGridBackground: backgroundUrl => dispatch(setBackground(backgroundUrl)),
+  onAddGrid: gridName => dispatch(addGrid(gridName)),
+  onSetActiveGrid: gridNumber => dispatch(setActiveGrid(gridNumber)),
+  onSetGridBackground: backgroundUrl => dispatch(setBackground(backgroundUrl)),
 });
 
-export const container = connect(mapStateToProps, mapDispatchToProps)(MenuContainer);
+export const container = connect(mapStateToProps, mapDispatchToProps)(MenuContainer); //eslint-disable-line

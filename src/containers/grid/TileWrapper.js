@@ -6,12 +6,12 @@ class TileWrapper extends Component {
   handleContextMenu = (event) => {
     event.preventDefault();
     if (this.props.isEditable) {
-      this.props.deleteTile(this.props.tileKey);
+      this.props.deleteTile();
     }
   };
   render() {
-    const { children, tileKey, savedContent, saveContent } = this.props;
-    const saveContentForTile = content => saveContent(tileKey, content);
+    const { children, tileKey, savedContent, onSaveContent } = this.props;
+    const saveContentForTile = content => onSaveContent(content);
     return (
       <div onContextMenu={this.handleContextMenu}>
         {children({ savedContent: savedContent.get(tileKey), saveContent: saveContentForTile })}
@@ -21,8 +21,11 @@ class TileWrapper extends Component {
 }
 
 TileWrapper.propTypes = {
+  isEditable: PropTypes.bool.isRequired,
+  tileKey: PropTypes.string.isRequired,
+  deleteTile: PropTypes.func.isRequired,
   savedContent: PropTypes.object,
-  saveContent: PropTypes.func,
+  onSaveContent: PropTypes.func,
   children: PropTypes.func.isRequired,
 };
 
@@ -32,8 +35,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  saveContent: (tileKey, content) => dispatch(saveContent(tileKey, content)),
-  deleteTile: tileKey => dispatch(deleteTile(ownProps.tileKey)),
+  onSaveContent: content => dispatch(saveContent(ownProps.tileKey, content)),
+  deleteTile: () => dispatch(deleteTile(ownProps.tileKey)),
 });
 
 const Wrapper = connect(mapStateToProps, mapDispatchToProps)(TileWrapper);

@@ -9,7 +9,7 @@ const initialState = fromJS({
 });
 
 
-export const setMenu = isOpen => ({
+export const setMenu = () => ({
   type: 'set_menu',
 });
 
