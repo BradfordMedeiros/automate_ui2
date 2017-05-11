@@ -66,4 +66,3 @@ WithMqtt.defaultProps = {
 };
 
 export default WithMqtt;
-

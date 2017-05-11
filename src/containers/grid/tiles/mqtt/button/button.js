@@ -12,7 +12,7 @@ class MqttTile extends Component {
         {
         (stuff, publish) => (
           <div onClick={() => publish(savedContent.topic, savedContent.value)} className="mqtt_button" />
-            )
+        )
       }
       </WithMqtt>
     );
