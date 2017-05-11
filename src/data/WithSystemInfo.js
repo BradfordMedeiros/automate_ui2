@@ -31,12 +31,10 @@ class WithSystemInfo extends Component {
   }
   render() {
     const { children, injectLoading } = this.props;
-
-    return (
-      this.state.hasData ?
-        children({ ...this.state.info }) :
-        (injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null)
-    );
+    if (!this.state.hasData) {
+      return injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null;
+    }
+    return children({ ...this.state.info });
   }
 }
 

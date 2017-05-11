@@ -47,7 +47,7 @@ class WithEvents extends Component {
   getMongoData() {
     const { refresh } = this.props;
     clearInterval(this.intervalHandle);
-    this.intervalHandle = setInterval(this.makeEventRequest, 1000);
+    this.intervalHandle = setInterval(this.makeEventRequest, refresh);
     this.makeEventRequest();
   }
   componentWillReceiveProps() {
@@ -69,7 +69,6 @@ class WithEvents extends Component {
 }
 
 WithEvents.propTypes = {
-  topic: PropTypes.string,
   whileLoading: PropTypes.func,
 };
 

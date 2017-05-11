@@ -72,6 +72,7 @@ export default class TableExampleComplex extends React.Component {
       <div style={{ background: 'rgb(40,40,40)' }}>
         <WithEvents
           whileLoading={this.getContainer}
+          refresh={1000}
         >
           {content => this.getContainer(content)}
         </WithEvents>
