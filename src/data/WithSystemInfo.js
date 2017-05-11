@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
+
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const SYSTEM_INFO = `${AUTOMATE_CORE_URL}/info`;
 
@@ -6,6 +7,9 @@ class WithSystemInfo extends Component {
   state = {
     hasData: false,
     info: undefined,
+  }
+  componentWillMount() {
+    this.getData();
   }
   getData = async () => {
     try {
@@ -22,11 +26,8 @@ class WithSystemInfo extends Component {
         info,
       });
     } catch (err) {
-      console.error('error while fetching ', err);
+      // better error handling?
     }
-  }
-  componentWillMount() {
-    this.getData();
   }
   render() {
     const { children, injectLoading } = this.props;
@@ -34,7 +35,7 @@ class WithSystemInfo extends Component {
     return (
       this.state.hasData ?
         children({ ...this.state.info }) :
-        injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null
+        (injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null)
     );
   }
 }
