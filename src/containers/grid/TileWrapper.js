@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { deleteTile } from './module';
+import { saveContent, deleteTile } from './module';
 
 class TileWrapper extends Component {
   handleContextMenu = event => {
