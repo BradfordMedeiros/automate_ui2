@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
@@ -8,7 +8,8 @@ const REFRESH_RATE = 1000;
 // need to send a stringified version of the function to send to the server
 // The function must return the state as a json string via stdout
 const createStateFromSimpleFunction = (evalLogicString) => {
-  const isFunction = eval(`(${evalLogicString})`); // kind of dangerous but frontend anyway so who really cares
+  // kind of dangerous but frontend anyway so who really cares
+  const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
   if (typeof (isFunction) !== typeof (() => {
   })) {
     throw (new Error('must be a function'));
@@ -65,6 +66,13 @@ class WithStates extends Component {
     };
     this.handle = undefined;
   }
+  componentWillMount() {
+    this.handle = setInterval(this.getData, REFRESH_RATE);
+    this.getData();
+  }
+  componentWillUnmount() {
+    clearInterval(this.handle);
+  }
   getData = async () => {
     try {
       const response = await fetch(ACTIONS_URL, {
@@ -80,24 +88,23 @@ class WithStates extends Component {
         actions: states.actions,
       });
     } catch (err) {
-      console.error('error while fetching ', err);
+      // what to do
     }
   }
-
-  componentWillMount() {
-    this.handle = setInterval(this.getData, REFRESH_RATE);
-    this.getData();
-  }
-  componentWillUnmount() {
-    clearInterval(this.handle);
-  }
-
   render() {
     const { children } = this.props;
     const { hasData, actions } = this.state;
-    return (hasData && children) ? children({ actions, addAction, deleteAction, saveAction, executeAction }) : null;
+    return (
+      (hasData && children) ?
+        children({ actions, addAction, deleteAction, saveAction, executeAction }) :
+        null
+    );
   }
 }
+
+WithStates.propTypes = {
+  children: PropTypes.func.isRequired,
+};
 
 
 export default WithStates;
