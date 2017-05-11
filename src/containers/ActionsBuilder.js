@@ -3,7 +3,7 @@ import ActionBuilder from '../components/actionBuilder/ActionBuilder';
 import WithActions from '../data/WithActions';
 
 class ActionsBuilder extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       selectedIndex: 0,
@@ -11,9 +11,9 @@ class ActionsBuilder extends Component {
       actionCode: {
         one: 'function() { return 1 }',
         'two action': 'function() { return 2 } ',
-        'three action': 'function() { return 3 } '
-      }
-    }
+        'three action': 'function() { return 3 } ',
+      },
+    };
   }
   render() {
     return (
@@ -26,25 +26,25 @@ class ActionsBuilder extends Component {
             onActionChange={(newActions, addedActionName, deletedActionName) => {
               console.error('new action is : ', addedActionName);
               console.error('deleted action is: ', deletedActionName);
-              if (addedActionName){
+              if (addedActionName) {
                 addAction(addedActionName);
               }
-              if (deletedActionName){
+              if (deletedActionName) {
                 deleteAction(deletedActionName);
               }
             }}
             onActionSelected={(_, selectedIndex) => {
-              this.setState({selectedIndex})
+              this.setState({ selectedIndex });
             }}
             actionCode={actions[this.state.selectedIndex].content}
-            onUpload={code => {
+            onUpload={(code) => {
               console.log('uploading: ', code);
-              saveAction(actions[this.state.selectedIndex].name, code)
+              saveAction(actions[this.state.selectedIndex].name, code);
             }}
           />
         )}
       </WithActions>
-    )
+    );
   }
 }
 

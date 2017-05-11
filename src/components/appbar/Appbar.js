@@ -35,7 +35,7 @@ class Appbar extends Component {
           key={path}
           primaryText={tile.label}
           primaryTogglesNestedList
-          nestedItems={!tile.children ? [] : tile.children.map((value, index) => this.renderTileAsMenuItem(value, index, path +'/'+index))}
+          nestedItems={!tile.children ? [] : tile.children.map((value, index) => this.renderTileAsMenuItem(value, index, `${path}/${index}`))}
         />
       );
     }
@@ -69,7 +69,7 @@ class Appbar extends Component {
           <Divider />
           { (tileNames === undefined || tileNames.length === 0) ?
             <MenuItem>No tiles</MenuItem> :
-            (<List>{tileNames.map((value, index) =>this.renderTileAsMenuItem(value, index, index))}</List>)
+            (<List>{tileNames.map((value, index) => this.renderTileAsMenuItem(value, index, index))}</List>)
           }
         </Drawer>
         <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>

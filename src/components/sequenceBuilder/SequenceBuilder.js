@@ -22,7 +22,7 @@ class SequenceBuilder extends Component {
         selectedIndex={selectedIndex}
         onAxiomSelected={onSequenceSelected}
         onAxiomChange={onSequenceChange}
-     >
+      >
         <SequenceInfo
           actions={actions}
           metaActions={metaActions}
@@ -35,7 +35,7 @@ class SequenceBuilder extends Component {
           style={{ width: 'calc(100% - 250px)' }}
         />
       </AxiomBuilder>
-    )
+    );
   }
 }
 

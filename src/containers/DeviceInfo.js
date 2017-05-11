@@ -13,6 +13,6 @@ const DeviceInfo = () => (
       />
     )}
   </WithSystemInfo>
-)
+);
 
 export default DeviceInfo;

@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import WithEvents from '../data/WithEvents';
 
 export default class TableExampleComplex extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -21,17 +19,6 @@ export default class TableExampleComplex extends React.Component {
       height: '100%',
     };
   }
-
-  handleToggle = (event, toggled) => {
-    this.setState({
-      [event.target.name]: toggled,
-    });
-  };
-
-  handleChange = (event) => {
-    this.setState({ height: event.target.value });
-  };
-
   getContainer = content => (
     <Table
       height={this.state.height}
@@ -72,7 +59,14 @@ export default class TableExampleComplex extends React.Component {
       </TableBody>
     </Table>
   )
-
+  handleToggle = (event, toggled) => {
+    this.setState({
+      [event.target.name]: toggled,
+    });
+  };
+  handleChange = (event) => {
+    this.setState({ height: event.target.value });
+  };
   render() {
     return (
       <div style={{ background: 'rgb(40,40,40)' }}>

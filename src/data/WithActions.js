@@ -10,7 +10,7 @@ const REFRESH_RATE = 1000;
 const createStateFromSimpleFunction = (evalLogicString) => {
   const isFunction = eval(`(${evalLogicString})`); // kind of dangerous but frontend anyway so who really cares
   if (typeof (isFunction) !== typeof (() => {
-    })) {
+  })) {
     throw (new Error('must be a function'));
   }
   const stringToSend = `() => {
@@ -21,15 +21,13 @@ const createStateFromSimpleFunction = (evalLogicString) => {
 };
 
 
-const addAction = async actionName => {
-  return (
+const addAction = async actionName => (
     fetch(`${ACTIONS_URL}/modify/${actionName}`, {
       method: 'POST',
     })
   );
-};
 
-const saveAction = async (actionName, evalLogic ) => {
+const saveAction = async (actionName, evalLogic) => {
   const actionEval = createStateFromSimpleFunction(evalLogic);
 
   return (
@@ -39,29 +37,25 @@ const saveAction = async (actionName, evalLogic ) => {
         Accept: 'application/json',
       }),
       body: JSON.stringify({
-       actionEval,
-     }),
+        actionEval,
+      }),
       method: 'POST',
     })
   );
 };
 
-const deleteAction = async actionName => {
-  return (
+const deleteAction = async actionName => (
     fetch(`${ACTIONS_URL}/${actionName}`, {
-     method: 'DELETE',
+      method: 'DELETE',
     })
   );
-};
 
 
-const executeAction = async actionName => {
-  return (
+const executeAction = async actionName => (
     fetch(`${ACTIONS_URL}/${actionName}`, {
-    method: 'POST',
+      method: 'POST',
     })
   );
-};
 
 class WithStates extends Component {
   constructor(props) {

@@ -20,18 +20,18 @@ const getNextTile = (layouts, tileName) => {
   const extraPropForTile = extraProps[tileName];
 
   let width = 6;
-  if (width > extraPropForTile.maxW){
+  if (width > extraPropForTile.maxW) {
     width = extraPropForTile.maxW;
   }
-  if (width < extraPropForTile.minW){
+  if (width < extraPropForTile.minW) {
     width = extraPropForTile.minW;
   }
 
   let height = 4;
-  if (height > extraPropForTile.maxH){
+  if (height > extraPropForTile.maxH) {
     height = extraPropForTile.maxH;
   }
-  if (width < extraPropForTile.minH){
+  if (width < extraPropForTile.minH) {
     height = extraPropForTile.minH;
   }
   return (
@@ -147,10 +147,10 @@ const gridReducer = (state = initialState, action) => {
       return (state
         .setIn(['layout', gridNumber], layout)
         .set('tileKeyToTileName', tileKeyToTileName)
-        .setIn(['tileKeyToTileGrid', tile.i], gridNumber )
+        .setIn(['tileKeyToTileGrid', tile.i], gridNumber)
       );
     }
-    case 'deleteTile':  {
+    case 'deleteTile': {
       console.error('deleting tile');
       const { tileKey } = action;
       const gridNumber = state.getIn(['tileKeyToTileGrid', tileKey]);

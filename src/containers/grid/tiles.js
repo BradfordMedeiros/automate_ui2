@@ -22,7 +22,7 @@ import { overlay as MongoOverlay } from './tiles/graphs/line/mongoOverlay';
 import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
-import States from './tiles/system/states/States'
+import States from './tiles/system/states/States';
 import Actions from './tiles/system/actions/Actions';
 
 import Sequences from './tiles/system/sequences/Sequences';
@@ -171,10 +171,10 @@ class TileOverlay extends Component {
         return <SequenceBuilder {...otherProps} />;
       }
       case 'States': {
-        return <div>hello</div>
+        return <div>hello</div>;
       }
       case 'Actions': {
-        return <ActionBuilder />
+        return <ActionBuilder />;
       }
       default : {
         return <div>invalid tile</div>;
@@ -182,7 +182,6 @@ class TileOverlay extends Component {
     }
   }
 }
-
 
 
 export const tileNameToTile = {

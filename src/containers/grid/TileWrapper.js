@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { saveContent, deleteTile } from './module';
 
 class TileWrapper extends Component {
-  handleContextMenu = event => {
+  handleContextMenu = (event) => {
     event.preventDefault();
-    if (this.props.isEditable){
-      this.props.deleteTile(this.props.tileKey)
+    if (this.props.isEditable) {
+      this.props.deleteTile(this.props.tileKey);
     }
   };
   render() {
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   saveContent: (tileKey, content) => dispatch(saveContent(tileKey, content)),
-  deleteTile: (tileKey) => dispatch(deleteTile(ownProps.tileKey)),
+  deleteTile: tileKey => dispatch(deleteTile(ownProps.tileKey)),
 });
 
 const Wrapper = connect(mapStateToProps, mapDispatchToProps)(TileWrapper);

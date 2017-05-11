@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const SYSTEM_INFO  = `${AUTOMATE_CORE_URL}/info`;
+const SYSTEM_INFO = `${AUTOMATE_CORE_URL}/info`;
 
 class WithSystemInfo extends Component {
   state = {
@@ -42,6 +42,6 @@ class WithSystemInfo extends Component {
 WithSystemInfo.propTypes = {
   children: PropTypes.node.isRequired,
   injectLoading: PropTypes.bool,
-}
+};
 
 export default WithSystemInfo;

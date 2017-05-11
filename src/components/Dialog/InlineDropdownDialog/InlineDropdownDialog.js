@@ -38,7 +38,7 @@ class InlineDropdownDialog extends Component {
             }}
             style={{ width: 200 }}
           >
-            {items.map((item, index) => <MenuItem primaryText={item} value={item}  key={index} />)}
+            {items.map((item, index) => <MenuItem primaryText={item} value={item} key={index} />)}
           </DropDownMenu>
           <div style={{ display: 'inline-block' }}>
             <Transforms

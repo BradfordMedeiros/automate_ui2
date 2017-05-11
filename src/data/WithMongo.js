@@ -44,7 +44,7 @@ class WithMongo extends Component {
   componentWillUnmount() {
     clearInterval(this.intervalHandle);
   }
-  getData = topic => {
+  getData = (topic) => {
     request(topic).then((response) => {
       response.reverse();
       this.setState({

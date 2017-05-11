@@ -18,14 +18,14 @@ const addSequence = (sequenceName, actions) => {
   });
 };
 
-const deleteSequence = sequenceName => {
+const deleteSequence = (sequenceName) => {
   fetch(`${SEQUENCE_URL}/${sequenceName}`, {
     method: 'DELETE',
   });
 };
 
 
-const executeSequence = sequenceName => {
+const executeSequence = (sequenceName) => {
   fetch(`${SEQUENCE_URL}/${sequenceName}`, {
     method: 'POST',
   });

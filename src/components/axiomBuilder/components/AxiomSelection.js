@@ -23,7 +23,7 @@ class AxiomSelection extends Component {
           closeDialog={this.closeDialog}
           onOkClick={() => {
             if (onAxiomChange) {
-              const newAxioms  = axioms.slice();
+              const newAxioms = axioms.slice();
               newAxioms.push(this.state.axiomToAdd);
               onAxiomChange(newAxioms, this.state.axiomToAdd);
             }

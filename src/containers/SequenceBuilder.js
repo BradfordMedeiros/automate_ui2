@@ -10,7 +10,7 @@ const mock_action_map = {
   lights: [{ value: 'man', name: 'action' }],
 };
 
-const generateMetaActionMap = actions =>  ({
+const generateMetaActionMap = actions => ({
   action: {
     type: 'options',
     value: actions.map(action => action.name),
@@ -34,7 +34,7 @@ class SequenceBuilder extends Component {
       <WithActions>
         {({ actions }) =>
           <WithSequences>
-            {({sequences, addSequence, deleteSequence}) => {
+            {({ sequences, addSequence, deleteSequence }) => {
               const sequenceActions = sequences.filter(sequence => sequence.name == this.state.selectedName);
               const sequenceAction = sequenceActions.length > 0 ? (sequenceActions[0].actions || []) : [];
 

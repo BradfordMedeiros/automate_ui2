@@ -94,7 +94,7 @@ class MenuContainer extends Component {
               onClick: () => {
                 if (menuIsExpanded) {
                   closeMenu();
-                }else{
+                } else {
                   setSSHContent();
                 }
               },
@@ -126,7 +126,7 @@ class MenuContainer extends Component {
                   setDeviceInfo();
                 }
               },
-            }
+            },
           ]}
         />
       </div>
@@ -142,7 +142,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, props) => ({
   setSSHContent: () => {
     dispatch(setContent(() => <SSH />));
-    dispatch(expandMenu(true))
+    dispatch(expandMenu(true));
   },
   setDeviceInfo: () => {
     dispatch(setContent(() => <DeviceInfo ipAddress="127.0.0.1" macAddress="00-14-22-01-23-45" />));

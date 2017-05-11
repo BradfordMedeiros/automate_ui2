@@ -21,7 +21,7 @@ class Sequences extends Component {
                     key={index}
                     primaryText={<Subheader>{sequence.name}</Subheader>}
                     onTouchTap={() => {
-                      executeSequence(sequence.name)
+                      executeSequence(sequence.name);
                     }}
                   />,
                 )}
