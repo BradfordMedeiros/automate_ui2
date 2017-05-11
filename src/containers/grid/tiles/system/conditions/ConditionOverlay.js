@@ -10,8 +10,8 @@ const createConditionRoute = conditionName => ENDPOINT + conditionName;
 // do this without calling eval
 const submitCondition = ({ conditionName, actions, states, evalLogic }) => {
   const newCondition = { };
-  newCondition.state = eval(states);
-  newCondition.action = eval(actions);
+  newCondition.state = eval(states); //eslint-disable-line
+  newCondition.action = eval(actions);  //eslint-disable-line
   newCondition.eval = evalLogic;
 
   const messageBody = JSON.stringify(newCondition);
@@ -42,7 +42,6 @@ class ConditionOverlay extends Component {
     });
   };
   submitDataToServer = () => {
-    const newRoute = createConditionRoute(this.state.conditionName);
     submitCondition(this.state);
   };
   handleTextFieldStateChange = (x, states) => {
@@ -72,7 +71,6 @@ class ConditionOverlay extends Component {
           title="Select a name for the condition"
           modal={false}
           open={this.state.showModal}
-          onRequestClose={() => console.log('closing')}
           actions={[
             <FlatButton
               onClick={() => {

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import { List, ListItem, Subheader, Divider, IconButton } from 'material-ui';
+import { List, ListItem, Subheader, IconButton } from 'material-ui';
 import { AvPlayArrow, AvPause } from 'material-ui/svg-icons';
 import WithConditions from '../../../../../data/WithConditions';
 import WithMqtt from '../../../../../data/WithMqtt';
 import './style.css';
 
-const createMqttTopic = condition_name => `/automate_sys/req/condtions/${condition_name}`;
+const createMqttTopic = conditionName => `/automate_sys/req/condtions/${conditionName}`;
 
 class Conditions extends Component {
   handleOnTouchTap = (publish, conditionName, conditionState) => {
     const topicName = createMqttTopic(conditionName);
     const newState = conditionState === 'active' ? 'off' : 'on';
-    console.error('publishing ', topicName);
-    console.error('value ', newState);
     publish(topicName, newState);
   };
   render() {
@@ -37,7 +35,8 @@ class Conditions extends Component {
                       >
                         <div className="play_toggle">
                           <IconButton
-                            onClick={() => this.handleOnTouchTap(publish, condition.name, condition.state)}
+                            onClick={() =>
+                              this.handleOnTouchTap(publish, condition.name, condition.state)}
                           >
                             {condition.state === 'active' ? <AvPause /> : <AvPlayArrow />}
                           </IconButton>

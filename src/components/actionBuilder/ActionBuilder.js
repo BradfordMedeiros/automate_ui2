@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { RaisedButton } from 'material-ui';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
 import CodeEditor from '../codeEditor/CodeEditor';
 import ActionInfo from './components/ActionInfo';
-import { RaisedButton } from 'material-ui';
 
 class ActionBuilder extends Component {
   constructor(props) {
@@ -13,7 +13,16 @@ class ActionBuilder extends Component {
   }
 
   render() {
-    const { actions, actionCode, selectedIndex, onActionChange, onActionSelected, actionName, onUpload } = this.props;
+    const {
+      actions,
+      actionCode,
+      selectedIndex,
+      onActionChange,
+      onActionSelected,
+      actionName,
+      onUpload,
+    } = this.props;
+
     return (
       <AxiomBuilder
         title="Actions"
@@ -79,7 +88,6 @@ ActionBuilder.propTypes = {
   onActionSelected: PropTypes.func.isRequired,
   actionName: PropTypes.string.isRequired,
   actionCode: PropTypes.string.isRequired,
-  onCodeChange: PropTypes.func.isRequired,
   onUpload: PropTypes.func.isRequired,
 };
 

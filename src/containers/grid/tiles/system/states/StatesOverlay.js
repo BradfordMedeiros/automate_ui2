@@ -12,7 +12,7 @@ const createStateRoute = stateName => ENDPOINT + stateName;
 // need to send a stringified version of the function to send to the server
 // The function must return the state as a json string via stdout
 const createStateFromSimpleFunction = (evalLogicString) => {
-  const isFunction = eval(`(${evalLogicString})`); // kind of dangerous but frontend anyway so who really cares
+  const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
   if (typeof (isFunction) !== typeof (() => {
   })) {
     throw (new Error('must be a function'));
@@ -54,7 +54,6 @@ class StatesOverlay extends Component {
     });
   };
   submitDataToServer = () => {
-    const newRoute = createStateRoute(this.state.stateName);
     submitState(this.state);
   };
   handleTextFieldLogicChange = (x, evalLogic) => {
