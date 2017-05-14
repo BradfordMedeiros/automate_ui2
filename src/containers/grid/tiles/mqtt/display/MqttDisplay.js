@@ -32,17 +32,9 @@ class MqttTile extends Component {
 }
 
 MqttTile.propTypes = {
-  temperature: PropTypes.number,
+  savedContent: PropTypes.any,
 };
 
-const styles = {
-  block: {
-    maxWidth: 250,
-  },
-  radioButton: {
-    marginBottom: 16,
-  },
-};
 
 class MqttOverlay extends Component {
   constructor(props) {
@@ -64,12 +56,17 @@ class MqttOverlay extends Component {
           }}
           hintText={'mqtt topic'}
         />
-        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {savedContent}</div>
+        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {savedContent}</div>
         <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
       </div>
     );
   }
 }
+
+MqttOverlay.propTypes = {
+  saveContent: PropTypes.func.isRequired,
+  savedContent: PropTypes.any,
+};
 
 
 export const tile = MqttTile;

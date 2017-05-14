@@ -49,14 +49,14 @@ class MenuContainer extends Component {
     return (
       <div>
         <InlineTextfieldDialog
-          open={this.state.onShowAddDialog}
+          open={this.state.showAddDialog}
           closeDialog={this.onCloseDialog}
           onChange={(_, gridName) => this.setState({ gridName })}
           hintText={'grid name'}
           text={'Set the name of the grid'}
           onOkClick={() => {
             onAddGrid(this.state.gridName);
-            this.closeDialog();
+            this.onCloseDialog();
           }}
         />
         <InlineTextfieldDialog

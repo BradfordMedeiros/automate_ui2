@@ -27,8 +27,7 @@ class MqttOverlay extends Component {
     });
   }
   render() {
-    const { temperature, saveContent, savedContent } = this.props;
-    console.log('in overlay ', saveContent);
+    const { saveContent, savedContent } = this.props;
     return (
       <div className="mqtt_slider_overlay" >
         <TextField
@@ -48,7 +47,8 @@ class MqttOverlay extends Component {
           hintText={'max value'}
           defaultValue={this.state.maxValue}
         />
-        <div className="mqtt_slider_overlay_text" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {savedContent && savedContent.topic}</div>
+        <div className="mqtt_slider_overlay_text">
+          saved content: {savedContent && savedContent.topic}</div>
         <RaisedButton
           onClick={() =>
             saveContent({
@@ -63,6 +63,11 @@ class MqttOverlay extends Component {
     );
   }
 }
+
+MqttOverlay.propTypes = {
+  saveContent: PropTypes.func.isRequired,
+  savedContent: PropTypes.any,
+};
 
 export const overlay = MqttOverlay;
 
