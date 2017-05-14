@@ -26,11 +26,11 @@ class Conditions extends Component {
                 {(stuff, publish) => (
                   <List>
                     {conditions.map(
-                    (condition, index) =>
+                    condition =>
                       (<ListItem
                         primaryTogglesNestedList={false}
                         style={{ borderBottom: '1px solid rgb(40,40,40)' }}
-                        key={index}
+                        key={condition.name}
                         primaryText={<Subheader>{condition.name}</Subheader>}
                       >
                         <div className="play_toggle">

@@ -14,11 +14,11 @@ class Sequences extends Component {
           <WithSequences>
             {({ sequences, executeSequence }) => (
               <List>
-                {sequences.map((sequence, index) =>
+                {sequences.map(sequence =>
                   (<ListItem
                     primaryTogglesNestedList={false}
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
-                    key={index}
+                    key={sequence.name}
                     primaryText={<Subheader>{sequence.name}</Subheader>}
                     onTouchTap={() => {
                       executeSequence(sequence.name);

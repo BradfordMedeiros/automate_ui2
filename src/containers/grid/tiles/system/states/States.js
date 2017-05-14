@@ -16,11 +16,11 @@ class States extends Component {
           <WithStates>
             {({ states }) => (
               <List>
-                {states.map((state, index) =>
+                {states.map(state =>
                   (<ListItem
                     primaryTogglesNestedList={false}
                     style={{ borderBottom: '1px solid rgb(40,40,40)' }}
-                    key={index}
+                    key={state.name}
                     primaryText={<Subheader>{state.name}</Subheader>}
                   />),
               )}

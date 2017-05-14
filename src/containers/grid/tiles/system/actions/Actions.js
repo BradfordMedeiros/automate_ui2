@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Subheader } from 'material-ui';
 import WithActions from '../../../../../data/WithActions';
@@ -7,16 +6,13 @@ import './style.css';
 
 
 class Actions extends Component {
-  actionToPerform = undefined;
-
   componentWillReceiveProps(props) {
-    console.error('receive props called');
     const { actionToPerform } = props;
     if (actionToPerform) {
-      console.error('should perform ', actionToPerform);
       this.actionToPerform = actionToPerform;
     }
   }
+  actionToPerform = undefined;
   render() {
     return (
       <div className="system_actions_outer">
@@ -25,17 +21,16 @@ class Actions extends Component {
           <WithActions>
             {({ actions, executeAction }) => {
               if (this.actionToPerform) {
-                console.log('executing ', this.actionToPerform);
                 executeAction(this.actionToPerform);
                 this.actionToPerform = undefined;
               }
               return (
                 <List>
-                  {actions.map((action, index) =>
+                  {actions.map(action =>
                     (<ListItem
                       primaryTogglesNestedList={false}
                       style={{ borderBottom: '1px solid rgb(40,40,40)' }}
-                      key={index}
+                      key={action.name}
                       onClick={() => executeAction(action.name)}
                       primaryText={<Subheader>{action.name}</Subheader>}
                     />),
@@ -50,6 +45,9 @@ class Actions extends Component {
   }
 }
 
+Actions.propTypes = {
+  actionToPerform: PropTypes.string,
+};
 
 const mapStateToProps = state => ({
   actionToPerform: state.getIn(['actionReducer', 'action']),
