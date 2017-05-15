@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import NumericTextfield from './transforms/NumericTextfield';
 import Options from './transforms/Options';
 
@@ -17,6 +17,12 @@ const Transforms = ({ item, onChange, selectedValue }) => {
       throw (new Error('Invalid transform type ', type));
     }
   }
+};
+
+Transforms.propTypes = {
+  onChange: PropTypes.func,
+  selectedValue: PropTypes.string,
+  item: PropTypes.object,
 };
 
 export default Transforms;

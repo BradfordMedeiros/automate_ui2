@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { TextField } from 'material-ui';
 
 const NumericTextfield = ({ onChange }) => (
@@ -8,4 +8,9 @@ const NumericTextfield = ({ onChange }) => (
     }}
   />
 );
+
+NumericTextfield.propTypes = {
+  onChange: PropTypes.func,
+};
+
 export default NumericTextfield;

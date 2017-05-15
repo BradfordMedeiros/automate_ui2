@@ -38,7 +38,7 @@ class InlineDropdownDialog extends Component {
             }}
             style={{ width: 200 }}
           >
-            {items.map((item, index) => <MenuItem primaryText={item} value={item} key={index} />)}
+            {items.map((item, index) => <MenuItem primaryText={item} value={item} key={index} />)} {/*eslint-disable-line */}
           </DropDownMenu>
           <div style={{ display: 'inline-block' }}>
             <Transforms
@@ -61,13 +61,11 @@ class InlineDropdownDialog extends Component {
 }
 
 InlineDropdownDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  closeDialog: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onOkClick: PropTypes.func.isRequired,
-  items1: PropTypes.arrayOf(PropTypes.string),
-  item2: PropTypes.arrayOf(PropTypes.string),
+  open: PropTypes.bool,
+  closeDialog: PropTypes.func,
+  onChange: PropTypes.func,
   text: PropTypes.string,
+  options: PropTypes.array,
 };
 
 export default InlineDropdownDialog;
