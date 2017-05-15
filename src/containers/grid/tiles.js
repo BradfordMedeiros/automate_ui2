@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Wrapper from './TileWrapper';
-import { saveContent } from './module';
 
 import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/MqttDisplay';
 
@@ -117,6 +116,10 @@ const InnerTile = (props) => {
   }
 };
 
+InnerTile.propTypes = {
+  tileName: PropTypes.string.isRequired,
+};
+
 class Tile extends Component {
   render() {
     return (
@@ -135,7 +138,7 @@ class Tile extends Component {
 
 class TileOverlay extends Component {
   render() {
-    const {tileName, ...otherProps} = this.props;
+    const { tileName, ...otherProps } = this.props;
     switch (tileName) {
       case 'Display': {
         return <MqttOverlay {...otherProps} />;

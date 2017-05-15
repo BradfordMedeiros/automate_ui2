@@ -15,7 +15,11 @@ const initialState = fromJS({
 
 
 const getNextTile = (layouts, tileName) => {
-  const nextIndexMaxes = layouts.map(layout => layout.reduce((answer, value) => answer > Number(value.i) ? answer : Number(value.i) + 1, 0));
+  const nextIndexMaxes = layouts.map(
+    layout => layout.reduce(
+      (answer, value) => (answer > Number(value.i) ? answer : Number(value.i) + 1), 0),
+  );
+
   const nextIndex = nextIndexMaxes.size === 0 ? '0' : nextIndexMaxes.max();
   const extraPropForTile = extraProps[tileName];
 
@@ -35,7 +39,16 @@ const getNextTile = (layouts, tileName) => {
     height = extraPropForTile.minH;
   }
   return (
-    { w: width, h: height, x: 0, y: 0, i: String(nextIndex), moved: false, static: false, ...extraPropForTile }
+  {
+    w: width,
+    h: height,
+    x: 0,
+    y: 0,
+    i: String(nextIndex),
+    moved: false,
+    static: false,
+    ...extraPropForTile,
+  }
   );
 };
 
@@ -84,9 +97,9 @@ export const addGrid = gridName => ({
 
 const fixTile = tile => Object.keys(tile).reduce((ans, curr) => {
   if (tile[curr] === null) {
-    ans[curr] = undefined;
+    ans[curr] = undefined; // eslint-disable-line
   } else {
-    ans[curr] = tile[curr];
+    ans[curr] = tile[curr]; // eslint-disable-line
   }
   return ans;
 }, { });
@@ -151,7 +164,6 @@ const gridReducer = (state = initialState, action) => {
       );
     }
     case 'deleteTile': {
-      console.error('deleting tile');
       const { tileKey } = action;
       const gridNumber = state.getIn(['tileKeyToTileGrid', tileKey]);
       const layout = state.getIn(['layout', gridNumber]).filter(tile => tile.i !== tileKey);

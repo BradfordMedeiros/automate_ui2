@@ -7,37 +7,38 @@ import { Mobile, Desktop } from '../../util/ViewportSizing';
 
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const ACTIONS_URL = `${AUTOMATE_CORE_URL}/status`;
+const STATUS_URL = `${AUTOMATE_CORE_URL}/status`;
 const REFRESH_RATE = 1000;
 
 class Disconnection extends Component {
-  handle = undefined;
-  getData = async () => {
-    const { isDisconnected, setIsConnected, setIsDisconnected } = this.props;
-    try {
-      const response = await fetch(ACTIONS_URL, {
-        mode: 'cors',
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-      const states = await response.json();
-      if (isDisconnected) {
-        setIsConnected();
-      }
-    } catch (err) {
-      if (!isDisconnected) {
-        setIsDisconnected();
-      }
-    }
-  }
   componentWillMount() {
     this.handle = setInterval(this.getData, REFRESH_RATE);
   }
   componentWillUnmount() {
     clearInterval(this.handle);
   }
+  getData = async () => {
+    const { isDisconnected, onSetIsConnected, onSetIsDisconnected } = this.props;
+    try {
+      const response = await fetch(STATUS_URL, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      const status = await response.json();
+      window.s = status;
+      if (isDisconnected) {
+        onSetIsConnected();
+      }
+    } catch (err) {
+      if (!isDisconnected) {
+        onSetIsDisconnected();
+      }
+    }
+  }
+  handle = undefined;
   render() {
     const { isDisconnected } = this.props;
     if (isDisconnected) {
@@ -52,13 +53,19 @@ class Disconnection extends Component {
   }
 }
 
+Disconnection.propTypes = {
+  isDisconnected: PropTypes.bool.isRequired,
+  onSetIsConnected: PropTypes.func.isRequired,
+  onSetIsDisconnected: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   isDisconnected: !state.getIn(['connection', 'isConnected']),
 });
 
 const mapDispatchToProps = dispatch => ({
-  setIsConnected: () => dispatch(setIsConnected()),
-  setIsDisconnected: () => dispatch(setIsDisconnected()),
+  onSetIsConnected: () => dispatch(setIsConnected()),
+  onSetIsDisconnected: () => dispatch(setIsDisconnected()),
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(Disconnection);

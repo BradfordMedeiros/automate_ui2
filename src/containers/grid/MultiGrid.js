@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { List } from 'immutable';
 import Grid from '../../components/grid/Grid';
-import { connect } from 'react-redux';
 import { tileNameToContent } from './tiles';
 import { expandMenu } from '../module';
 import { setContent, setLayout } from './module';
@@ -31,6 +31,13 @@ const MultiGrid = ({ style, gridBackgroundUrl, activeGrid, onLayoutChange, ...ot
   );
 };
 
+
+MultiGrid.propTypes = {
+  activeGrid: PropTypes.string.isRequired,
+  gridBackgroundUrl: PropTypes.string.isRequired,
+  onLayoutChange: PropTypes.func.isRequired,
+  style: PropTypes.object,
+};
 
 const mapStateToProps = state => ({
   activeGrid: state.getIn(['gridReducer', 'activeGrid']),
