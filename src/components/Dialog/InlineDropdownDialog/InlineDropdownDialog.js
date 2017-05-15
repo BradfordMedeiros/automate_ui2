@@ -38,7 +38,13 @@ class InlineDropdownDialog extends Component {
             }}
             style={{ width: 200 }}
           >
-            {items.map((item, index) => <MenuItem primaryText={item} value={item} key={index} />)} {/*eslint-disable-line */}
+            {items.map((item, index) => (
+              <MenuItem
+                primaryText={item}
+                value={item}
+                key={index} // eslint-disable-line
+              />),
+            )}
           </DropDownMenu>
           <div style={{ display: 'inline-block' }}>
             <Transforms

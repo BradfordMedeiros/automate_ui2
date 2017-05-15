@@ -10,7 +10,6 @@ const AxiomHeader = ({ deleteSequence, axiomName, axiomNameValue }) => (
 
 AxiomHeader.propTypes = {
   deleteSequence: PropTypes.func.isRequired,
-  sequenceName: PropTypes.string.isRequired,
   axiomName: PropTypes.string.isRequired,
   axiomNameValue: PropTypes.string.isRequired,
 };

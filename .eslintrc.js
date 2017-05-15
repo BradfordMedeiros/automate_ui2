@@ -24,6 +24,7 @@ module.exports = {
     'react/require-default-props': 0,
     'react/no-multi-comp': 0,
     'operator-assignment': 0,
+    'react/jsx-space-before-closing': 0,
     'react/jsx-filename-extension': [
       1,
       {

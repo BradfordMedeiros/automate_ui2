@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Toggle, Drawer, List, ListItem, Subheader, Divider, IconButton } from 'material-ui';
+import { Toggle, Drawer, List, ListItem, Subheader, Divider, MenuItem, IconButton } from 'material-ui';
 import { NavigationMenu } from 'material-ui/svg-icons';
 import './style.css';
 
@@ -10,14 +10,6 @@ const styles = {
   not_expanded: {
     animation: 'turn_out_x 0.1s forwards',
   },
-};
-
-const lockStyle = {
-  animation: 'lock 0.1s forwards',
-};
-
-const unlockStyle = {
-  animation: 'unlock 0.1s forwards',
 };
 
 class Appbar extends Component {
@@ -35,7 +27,7 @@ class Appbar extends Component {
           key={path}
           primaryText={tile.label}
           primaryTogglesNestedList
-          nestedItems={!tile.children ? [] : tile.children.map((value, index) => this.renderTileAsMenuItem(value, index, `${path}/${index}`))}
+          nestedItems={!tile.children ? [] : tile.children.map((value, tileIndex) => this.renderTileAsMenuItem(value, tileIndex, `${path}/${tileIndex}`))}
         />
       );
     }
@@ -51,10 +43,18 @@ class Appbar extends Component {
     );
   }
   render() {
-    const { rotateAddIcon, onRotatedAddIconClick, isLocked, tileNames, onToggle, style, onHideMenu } = this.props;
+    const {
+      rotateAddIcon,
+      onRotatedAddIconClick,
+      tileNames,
+      onToggle,
+      onHideMenu,
+      style,
+    } = this.props;
+
     const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
-    const { height, top, marginTop } = style;
+    const { height, marginTop } = style;
     return (
       <div className="titlebar" style={style}>
         <Drawer
@@ -69,7 +69,10 @@ class Appbar extends Component {
           <Divider />
           { (tileNames === undefined || tileNames.length === 0) ?
             <MenuItem>No tiles</MenuItem> :
-            (<List>{tileNames.map((value, index) => this.renderTileAsMenuItem(value, index, index))}</List>)
+            (<List>{tileNames.map(
+              (value, index) => this.renderTileAsMenuItem(value, index, index))}
+            </List>
+            )
           }
         </Drawer>
         <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>
@@ -99,7 +102,6 @@ class Appbar extends Component {
 
 Appbar.propTypes = {
   style: PropTypes.object,
-  isLocked: PropTypes.bool,
   rotateAddIcon: PropTypes.bool,
   onRotatedAddIconClick: PropTypes.func,
   tileNames: PropTypes.array,
@@ -109,7 +111,6 @@ Appbar.propTypes = {
 };
 
 Appbar.defaultProps = {
-  isLocked: false,
   rotateAddIcon: false,
   onRotatedAddIconClick: () => {},
 };

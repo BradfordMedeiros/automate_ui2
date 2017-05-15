@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { List, ListItem, Subheader, makeSelectable } from 'material-ui';
+import { List, ListItem, makeSelectable } from 'material-ui';
 import InlineTextfieldDialog from '../../Dialog/InlineTextfieldDialog';
 
 const SelectableList = makeSelectable(List);
@@ -44,7 +44,7 @@ class AxiomSelection extends Component {
           {axioms.map(
             (axiom, index) =>
               (<ListItem
-                key={index}
+                key={index} //eslint-disable-line
                 value={index}
                 onTouchTap={() => {
                   if (onAxiomSelected) {
@@ -71,7 +71,8 @@ AxiomSelection.propTypes = {
   axioms: PropTypes.arrayOf(PropTypes.string).isRequired,
   onAxiomSelected: PropTypes.func,
   onAxiomChange: PropTypes.func,
-  onClick: PropTypes.number,
+  selectedIndex: PropTypes.number,
+  style: PropTypes.object,
 };
 
 export default AxiomSelection;

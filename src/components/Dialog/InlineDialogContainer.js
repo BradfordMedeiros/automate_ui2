@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Dialog, TextField, RaisedButton } from 'material-ui';
+import { Dialog, RaisedButton } from 'material-ui';
 
 
 const InlineDialog = ({ open, closeDialog, onOkClick, text, children }) => (
