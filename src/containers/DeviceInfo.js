@@ -6,10 +6,10 @@ const DeviceInfo = () => (
   <WithSystemInfo
     injectLoading
   >
-    {({ public_ip_address, mac_address }) => (
+    {({ public_ip_address, mac_address }) => ( // eslint-disable-line
       <DeviceInfoComponent
-        ipAddress={public_ip_address}
-        macAddress={mac_address}
+        ipAddress={public_ip_address} // eslint-disable-line
+        macAddress={mac_address}  // eslint-disable-line
       />
     )}
   </WithSystemInfo>

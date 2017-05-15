@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
 import AxiomHeader from '../../axiomBuilder/AxiomHeader';
 import InlineDropdownDialog from '../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
 
@@ -21,7 +21,7 @@ class SequenceInfo extends Component {
     });
   }
   render() {
-    const { actions, metaActions, sequenceName, onChange, deleteSequence, style } = this.props;
+    const { actions, metaActions, sequenceName, onChange, deleteSequence } = this.props;
     return (
       <div style={{ width: '100%' }}>
         <InlineDropdownDialog
@@ -41,14 +41,17 @@ class SequenceInfo extends Component {
           axiomNameValue={sequenceName}
         />
         <Table selectable={false}>
-          <TableBody displayRowCheckbox={false} onCellClick={x => console.error(x)} >
+          <TableBody displayRowCheckbox={false} >
             {actions.map((action, index) => (
-              <TableRow key={index}>
+              <TableRow key={index.toString()}>
                 <TableRowColumn>{action.name}</TableRowColumn>
                 <TableRowColumn>{action.value}</TableRowColumn>
                 <TableRowColumn
                   onTouchTap={() => {
-                    const newActions = actions.slice(0, Math.max(index, 0)).concat(actions.slice(index + 1));
+                    const newActions = (actions
+                      .slice(0, Math.max(index, 0))
+                      .concat(actions.slice(index + 1))
+                    );
                     onChange(newActions);
                   }}
                   style={{ fontSize: 25, cursor: 'pointer' }}
@@ -78,6 +81,7 @@ SequenceInfo.propTypes = {
   metaActions: PropTypes.arrayOf(PropTypes.string),
   sequenceName: PropTypes.string,
   deleteSequence: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 export default SequenceInfo;
