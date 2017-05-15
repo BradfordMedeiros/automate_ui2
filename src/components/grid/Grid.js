@@ -9,8 +9,15 @@ const ReactGridLayout = WidthProvider(Responsive);
 
 class Grid extends Component {
   render() {
-    const { layout, tileNameToTile, tileKeyToTileName, onGridItemClick, isEditable, onLayoutChange, style } = this.props;
-
+    const {
+      layout,
+      tileNameToTile,
+      tileKeyToTileName,
+      onGridItemClick,
+      isEditable,
+      onLayoutChange,
+      style,
+    } = this.props;
 
     const jsLayout = layout ? layout.toJS() : [];
     const tileKeys = jsLayout.map(item => item.i);
@@ -26,14 +33,13 @@ class Grid extends Component {
             verticalCompact
             isDraggable={isEditable}
             isResizable={isEditable}
-            onLayoutChange={(layout) => {
+            onLayoutChange={(newLayout) => {
               if (isEditable && onLayoutChange) {
-                onLayoutChange(layout);
-                console.log('layout changing');
+                onLayoutChange(newLayout);
               }
             }}
           >
-            {tileKeys.map((key, index) => (
+            {tileKeys.map(key => (
               <div
                 key={key}
                 style={{ width: '100%', height: '100%' }}
@@ -51,7 +57,7 @@ class Grid extends Component {
   }
 }
 
-Grid.PropTypes = {
+Grid.propTypes = {
   onGridItemClick: PropTypes.func,
   tileNameToTile: PropTypes.object.isRequired,
   tileKeyToTileName: PropTypes.object.isRequired,
@@ -59,7 +65,6 @@ Grid.PropTypes = {
   isEditable: PropTypes.bool,
   layout: PropTypes.object.isRequired,
   style: PropTypes.object,
-  opened: PropTypes.bool,
 };
 
 export default Grid;

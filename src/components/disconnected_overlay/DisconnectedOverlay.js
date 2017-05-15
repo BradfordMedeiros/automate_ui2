@@ -11,7 +11,9 @@ class DisconnectedOverlay extends Component {
     this.countHandle = undefined;
   }
   componentWillMount() {
-    this.countHandle = setInterval(() => this.setState({ numDots: (this.state.numDots + 1) % 5 }), 1000);
+    this.countHandle = setInterval(() => {
+      this.setState({ numDots: (this.state.numDots + 1) % 5 });
+    }, 1000);
   }
   componentWillUnmount() {
     clearInterval(this.countHandle);
@@ -22,7 +24,7 @@ class DisconnectedOverlay extends Component {
       <div className="disconnected_overlay">
         <Subheader style={headerStyle}>Automate is disconnected</Subheader>
         <Subheader style={textStyle}>
-          <div>Attempting to reconnect {Array(...Array(this.state.numDots)).map(x => '.')}</div>
+          <div>Attempting to reconnect {Array(...Array(this.state.numDots)).map(() => '.')}</div>
         </Subheader>
 
       </div>

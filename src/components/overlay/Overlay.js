@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Paper } from 'material-ui';
 import './style.css';
 
 const style = {
@@ -15,21 +13,20 @@ const style = {
 class SelectionOverlay extends Component {
   render() {
     const { isExpanded, left, right, Content } = this.props;
-    const overlay_style = isExpanded ? style.expanded : style.not_expanded;
+    const overlayStyle = isExpanded ? style.expanded : style.not_expanded;
     return (
-      <div className="overlay" style={{ left, right, ...overlay_style }}>
+      <div className="overlay" style={{ left, right, ...overlayStyle }}>
         {Content ? <Content /> : null}
       </div>
     );
   }
 }
 
-
-SelectionOverlay.PropTypes = {
+SelectionOverlay.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
+  left: PropTypes.object,
+  right: PropTypes.object,
   Content: PropTypes.node,
-  left: PropTypes.any,
-  right: PropTypes.any,
 };
 
 export default SelectionOverlay;

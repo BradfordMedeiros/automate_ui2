@@ -23,10 +23,10 @@ class MinimalMenu extends Component {
         <div className="innerContainer">
           {buttonIcons.map((icon, index) => (
             <IconMenu
-              key={index}
+              key={index} //eslint-disable-line
               open={false}
               onTouchTap={this.handleClick(index)}
-              iconButtonElement={<IconButton iconStyle={iconStyle} >{icon}</IconButton>}
+              iconButtonElement={<IconButton iconStyle={iconStyle}>{icon}</IconButton>}
             />
         ))}
         </div>
