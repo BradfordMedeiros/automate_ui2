@@ -9,27 +9,16 @@ class MqttTile extends Component {
     const content = (savedContent && savedContent.topic) ? List([savedContent.topic]) : List();
     return (
       <WithMqtt topics={content} >
-        {
-        (stuff, publish) => (
+        {(stuff, publish) => (
           <div onClick={() => publish(savedContent.topic, savedContent.value)} className="mqtt_button" />
-        )
-      }
+        )}
       </WithMqtt>
     );
   }
 }
 
 MqttTile.propTypes = {
-  temperature: PropTypes.number,
-};
-
-const styles = {
-  block: {
-    maxWidth: 250,
-  },
-  radioButton: {
-    marginBottom: 16,
-  },
+  savedContent: PropTypes.any,
 };
 
 export const tile = MqttTile;

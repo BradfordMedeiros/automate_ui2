@@ -15,6 +15,7 @@ class IFrameTile extends Component {
 
 IFrameTile.propTypes = {
   savedContent: PropTypes.any,
+  isEditing: PropTypes.bool,
 };
 
 export const tile = IFrameTile;

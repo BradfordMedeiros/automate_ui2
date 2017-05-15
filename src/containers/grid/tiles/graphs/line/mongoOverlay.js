@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { TextField, RaisedButton } from 'material-ui';
 
 class MongoOverlay extends Component {
@@ -10,7 +10,6 @@ class MongoOverlay extends Component {
   }
   render() {
     const { saveContent, savedContent } = this.props;
-    console.log('in overlay ', saveContent);
     return (
       <div className="temp" >
         <TextField
@@ -21,13 +20,18 @@ class MongoOverlay extends Component {
           }}
           hintText={'mqtt topic'}
         />
-        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {savedContent}</div>
+        <div className="mqtt_display" >
+          saved content: {savedContent}</div>
         <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
       </div>
     );
   }
 }
 
+MongoOverlay.propTypes = {
+  saveContent: PropTypes.func.isRequired,
+  savedContent: PropTypes.any,
+};
 
 export const overlay = MongoOverlay;
 

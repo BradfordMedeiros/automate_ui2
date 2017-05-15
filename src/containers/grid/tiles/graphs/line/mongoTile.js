@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Subheader } from 'material-ui';
 import { Line } from 'react-chartjs-2';
 import WithMongo from '../../../../../data/WithMongo';
-
 
 const options = {
   responsive: true,
@@ -31,7 +30,6 @@ const options = {
 
 class Mongo extends Component {
   render() {
-    console.log('rendereing pie yo');
     const { savedContent } = this.props;
     if (!savedContent) {
       return <div><Subheader>No topic configured</Subheader></div>;
@@ -74,5 +72,9 @@ class Mongo extends Component {
     );
   }
 }
+
+Mongo.propTypes = {
+  savedContent: PropTypes.any,
+};
 
 export default Mongo;

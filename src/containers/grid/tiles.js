@@ -135,7 +135,7 @@ class Tile extends Component {
 
 class TileOverlay extends Component {
   render() {
-    const { tileName, ...otherProps } = this.props;
+    const {tileName, ...otherProps} = this.props;
     switch (tileName) {
       case 'Display': {
         return <MqttOverlay {...otherProps} />;
@@ -182,6 +182,11 @@ class TileOverlay extends Component {
     }
   }
 }
+
+TileOverlay.propTypes = {
+  tileName: PropTypes.string.isRequired,
+  saveContent: PropTypes.func.isRequired,
+};
 
 
 export const tileNameToTile = {

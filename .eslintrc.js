@@ -18,9 +18,12 @@ module.exports = {
     'newline-per-chained-call': 1,
     'no-mixed-operators': 0,
     'no-param-reassign': 1,
+    'import/prefer-default-export': 0,
     'radix': 1,
     'react/forbid-prop-types': 0,
     'react/require-default-props': 0,
+    'react/no-multi-comp': 0,
+    'operator-assignment': 0,
     'react/jsx-filename-extension': [
       1,
       {

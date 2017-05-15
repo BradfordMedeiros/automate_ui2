@@ -48,4 +48,9 @@ class MqttOverlay extends Component {
   }
 }
 
+MqttOverlay.propTypes = {
+  saveContent: PropTypes.func.isRequired,
+  savedContent: PropTypes.any,
+};
+
 export const overlay = MqttOverlay;

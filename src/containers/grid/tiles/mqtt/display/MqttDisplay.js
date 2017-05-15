@@ -25,7 +25,6 @@ class MqttTile extends Component {
               }
             }
         </WithMqtt>
-
       </div>
     );
   }
@@ -45,7 +44,6 @@ class MqttOverlay extends Component {
   }
   render() {
     const { saveContent, savedContent } = this.props;
-    console.log('in overlay ', saveContent);
     return (
       <div className="temp" >
         <TextField
@@ -56,7 +54,8 @@ class MqttOverlay extends Component {
           }}
           hintText={'mqtt topic'}
         />
-        <div className="mqtt_display" >saved content:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {savedContent}</div>
+        <div className="mqtt_display" >
+          saved content: {savedContent}</div>
         <RaisedButton className="mqtt_display_button" onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
       </div>
     );
