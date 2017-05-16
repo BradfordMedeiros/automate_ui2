@@ -11,7 +11,9 @@ class ActionsBuilder extends Component {
       <WithActions>
         {({ actions, addAction, deleteAction, saveAction }) => (
           <ActionBuilder
-            actions={actions.map(action => action.name)}
+            actions={actions.map(action => ({
+              name: action.name,
+            }))}
             actionName={actions[this.state.selectedIndex].name}
             selectedIndex={this.state.selectedIndex}
             onActionChange={(newActions, addedActionName, deletedActionName) => {

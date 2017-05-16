@@ -1,17 +1,36 @@
 import React, { Component, PropTypes } from 'react';
-import { RaisedButton } from 'material-ui';
+import { Subheader } from 'material-ui';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
-import CodeEditor from '../codeEditor/CodeEditor';
 import ActionInfo from './components/ActionInfo';
+import Editor from './Editor';
+import { RaisedButton } from 'material-ui';
 
 class ActionBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       code: undefined,
+      editMode: false,
     };
   }
 
+  renderCell = (content, style) => {
+    return (
+      <div
+      className="actionField"
+      style={{
+        fontSize: 18,
+        padding: 18,
+        paddingLeft: 24,
+        borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
+        color: 'rgb(210,210,210)',
+        ...style,
+      }}
+    >
+        {content}
+      </div>
+    )
+  };
   render() {
     const {
       actions,
@@ -26,12 +45,12 @@ class ActionBuilder extends Component {
     return (
       <AxiomBuilder
         title="Actions"
-        axioms={actions}
+        axioms={actions.map(action => action.name)}
         selectedIndex={selectedIndex}
         onAxiomChange={onActionChange}
         onAxiomSelected={onActionSelected}
       >
-        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '100%', height: '100%' }}>
           <ActionInfo
             actionName={actionName}
             deleteAction={() => {
@@ -39,41 +58,60 @@ class ActionBuilder extends Component {
               onActionChange(newActions, undefined, actionName);
             }}
           />
-          <div style={{ display: 'flex', height: '50%', flexDirection: 'column' }}>
-            <div
-              style={{
-                boxShadow: '0px 0px 2px 0.1px black',
-                margin: 20,
-              }}
-            >
-              <div
-                style={{
-                  height: 50,
-                  fontSize: 35,
-                  color: '#7e7979',
-                  margin: 10,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >Editor</div>
-              <CodeEditor
-                onTextChange={(code) => {
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {this.renderCell([
+              <div style={{ display: 'inline', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="typeLabel" style={{ display: 'inline' }}>Type: </div>
+                <div className="typeValue" style={{ display: 'inline', color: 'white', paddingLeft: 20 }}>JavaScript</div>
+              </div>,
+            ], { background: 'rgb(150, 30, 20)' })}
+
+            {this.renderCell(
+              [<div>
+                <div
+                  style={{ display: 'inline', cursor: 'pointer' }}
+                  onClick={() => {
+                      this.setState({editMode: !this.state.editMode})
+                  }}>
+                  {this.state.editMode ? 'Hide Script ' : 'View Script'}
+                </div>
+                <RaisedButton
+                  label="Upload"
+                  style={{ marginLeft: 40 }}
+                  onClick={() => {
+                    onUpload(this.state.code);
+                  }}
+                />
+                <RaisedButton
+                  label="Download"
+                />
+              </div>,
+              ]
+            )}
+
+            {this.state.editMode && this.renderCell(
+              <Editor
+                initialText={actionCode}
+                onTextChange={code => {
                   this.setState({
                     code,
                   });
                 }}
-                style={{ height: '100%', background: '#303030' }}
-                initialText={actionCode}
+                style={{
+                  height: '60%',
+                  width: '100%',
+                  border: '1px solid black',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  display: 'flex',
+                }}
               />
-            </div>
-            <RaisedButton
-              style={{ margin: 42, marginTop: -15, background: 'red' }}
-              buttonStyle={{ background: '#303030' }}
-              label="Upload"
-              labelColor="rgb(126, 121, 121)"
-              onTouchTap={() => onUpload(this.state.code)}
-            />
+            )}
           </div>
         </div>
       </AxiomBuilder>
