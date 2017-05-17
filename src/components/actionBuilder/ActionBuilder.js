@@ -1,36 +1,29 @@
 import React, { Component, PropTypes } from 'react';
-import { Subheader } from 'material-ui';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
 import ActionInfo from './components/ActionInfo';
-import Editor from './Editor';
-import { RaisedButton } from 'material-ui';
+import ActionHeader from './components/ActionHeader';
+import Editor from './components/Editor';
+import EditorControls from './components/EditorControls';
+import ItemWrapper from './components/ItemWrapper';
+
+const styles = {
+  editor: {
+    height: '60%',
+    width: '100%',
+    border: '1px solid black',
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  },
+};
 
 class ActionBuilder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: undefined,
-      editMode: false,
-    };
-  }
+  state = {
+    editMode: false,
+    code: undefined,
+    editorKey: Math.random(),
 
-  renderCell = (content, style) => {
-    return (
-      <div
-      className="actionField"
-      style={{
-        fontSize: 18,
-        padding: 18,
-        paddingLeft: 24,
-        borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
-        color: 'rgb(210,210,210)',
-        ...style,
-      }}
-    >
-        {content}
-      </div>
-    )
-  };
+  }
   render() {
     const {
       actions,
@@ -58,59 +51,34 @@ class ActionBuilder extends Component {
               onActionChange(newActions, undefined, actionName);
             }}
           />
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            {this.renderCell([
-              <div style={{ display: 'inline', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="typeLabel" style={{ display: 'inline' }}>Type: </div>
-                <div className="typeValue" style={{ display: 'inline', color: 'white', paddingLeft: 20 }}>JavaScript</div>
-              </div>,
-            ], { background: 'rgb(150, 30, 20)' })}
-
-            {this.renderCell(
-              [<div>
-                <div
-                  style={{ display: 'inline', cursor: 'pointer' }}
-                  onClick={() => {
-                      this.setState({editMode: !this.state.editMode})
-                  }}>
-                  {this.state.editMode ? 'Hide Script ' : 'View Script'}
-                </div>
-                <RaisedButton
-                  label="Upload"
-                  style={{ marginLeft: 40 }}
-                  onClick={() => {
-                    onUpload(this.state.code);
-                  }}
-                />
-                <RaisedButton
-                  label="Download"
-                />
-              </div>,
-              ]
-            )}
-
-            {this.state.editMode && this.renderCell(
-              <Editor
-                initialText={actionCode}
-                onTextChange={code => {
+          <div style={{ width: '100%', height: '100%' }}>
+            <ActionHeader actionType={'javascript'} />
+            <ItemWrapper>
+              <EditorControls
+                editModeEnabled={this.state.editMode}
+                onEditModeClicked={() => { this.setState({ editMode: !this.state.editMode }); }}
+                onUploadClicked={() => { onUpload(this.state.code); }}
+                onRevertClicked={() => {
                   this.setState({
-                    code,
+                    code: actionCode,
+                    editorKey: Math.random(),
                   });
                 }}
-                style={{
-                  height: '60%',
-                  width: '100%',
-                  border: '1px solid black',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  display: 'flex',
-                }}
               />
+            </ItemWrapper>
+            {this.state.editMode && (
+              <ItemWrapper>
+                <Editor
+                  key={this.state.editorKey}
+                  initialText={actionCode}
+                  onTextChange={(code) => {
+                    this.setState({
+                      code,
+                    });
+                  }}
+                  style={styles.editor}
+                />
+              </ItemWrapper>
             )}
           </div>
         </div>

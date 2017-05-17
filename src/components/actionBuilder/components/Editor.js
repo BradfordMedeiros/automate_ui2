@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import CodeEditor from '../codeEditor/CodeEditor';
+import CodeEditor from '../../codeEditor/CodeEditor';
 
-const Editor =  ({ initialText, onTextChange, style }) => (
+const Editor = ({ initialText, onTextChange, style }) => (
   <div style={style}>
     <div
       style={{

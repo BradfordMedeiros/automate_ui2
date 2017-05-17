@@ -26,11 +26,11 @@ class Actions extends Component {
               }
               return (
                 <List>
-                  {actions.map(action =>
+                  {actions.map((action, key) =>
                     (<ListItem
                       primaryTogglesNestedList={false}
                       style={{ borderBottom: '1px solid rgb(40,40,40)' }}
-                      key={action.name}
+                      key={key} // eslint-disable-line
                       onClick={() => executeAction(action.name)}
                       primaryText={<Subheader>{action.name}</Subheader>}
                     />),
