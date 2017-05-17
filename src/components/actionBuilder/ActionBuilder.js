@@ -5,6 +5,8 @@ import ActionHeader from './components/ActionHeader';
 import Editor from './components/Editor';
 import EditorControls from './components/EditorControls';
 import ItemWrapper from './components/ItemWrapper';
+import MqttValue from './components/mqtt/MqttValue';
+import PublishMqttValue from './components/mqtt/PublishMqttValue';
 
 const styles = {
   editor: {
@@ -52,7 +54,13 @@ class ActionBuilder extends Component {
             }}
           />
           <div style={{ width: '100%', height: '100%' }}>
-            <ActionHeader actionType={'javascript'} />
+            <ActionHeader actionType={'mqtt'} />
+            <ItemWrapper>
+              <MqttValue topic={'humidity'} />
+            </ItemWrapper>
+            <ItemWrapper>
+              <PublishMqttValue topic={'humidity'} />
+            </ItemWrapper>
             <ItemWrapper>
               <EditorControls
                 editModeEnabled={this.state.editMode}
