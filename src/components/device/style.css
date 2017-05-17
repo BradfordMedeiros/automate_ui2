@@ -1,8 +1,7 @@
 .ip_container {
     margin: 30px;
-    border:1px solid black;
+    border:1px solid rgba(0,0,0,0.3);
     padding: 20px;
-    background: rgb(45,45,45);
 }
 
 .ip_address {
@@ -13,9 +12,8 @@
 
 .mac_container {
     margin: 30px;
-    border:1px solid black;
+    border:1px solid rgba(0,0,0,0.3);
     padding: 20px;
-    background: rgb(45,45,45);
 }
 
 .mac_address {

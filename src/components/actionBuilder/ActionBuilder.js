@@ -61,7 +61,8 @@ class ActionBuilder extends Component {
             <ItemWrapper>
               <PublishMqttValue topic={'humidity'} />
             </ItemWrapper>
-            <ItemWrapper>
+
+            {/*<ItemWrapper>
               <EditorControls
                 editModeEnabled={this.state.editMode}
                 onEditModeClicked={() => { this.setState({ editMode: !this.state.editMode }); }}
@@ -86,7 +87,7 @@ class ActionBuilder extends Component {
                   }}
                   style={styles.editor}
                 />
-              </ItemWrapper>
+              </ItemWrapper>*/}
             )}
           </div>
         </div>
