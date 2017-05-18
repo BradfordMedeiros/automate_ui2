@@ -2,22 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
 import ActionInfo from './components/common/ActionInfo';
 import ActionHeader from './components/common/ActionHeader';
-import Editor from './components/javascripts/Editor';
-import EditorControls from './components/javascripts/EditorControls';
+import Editor from './components/javascripts/components/Editor';
+import EditorControls from './components/javascripts/components/EditorControls';
 import ItemWrapper from './components/common/ItemWrapper';
-import MqttValue from './components/mqtt/components/MqttValue';
-import PublishMqttValue from './components/mqtt/components/PublishMqttValue';
+import MqttFields from './components/mqtt/MqttFields';
+import JavascriptsFields from './components/javascripts/JavascriptsFields';
 
-const styles = {
-  editor: {
-    height: '60%',
-    width: '100%',
-    border: '1px solid black',
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-  },
-};
 
 class ActionBuilder extends Component {
   state = {
@@ -38,7 +28,6 @@ class ActionBuilder extends Component {
       onUpload,
     } = this.props;
 
-    window.t = actionType;
     return (
       <AxiomBuilder
         title="Actions"
@@ -58,48 +47,17 @@ class ActionBuilder extends Component {
           <div style={{ width: '100%', height: '100%' }}>
             <ActionHeader actionType={actionType} />
 
-
             {(actionType === 'mqtt') && (
-              <div>
-              <ItemWrapper>
-                <MqttValue topic={'humidity'} />
-              </ItemWrapper>
-              <ItemWrapper>
-                <PublishMqttValue topic={'humidity'} />
-              </ItemWrapper>
-              </div>
+              <MqttFields
+                topic="humidity"
+              />
             )}
 
             {(actionType === 'javascript') && (
-              <div>
-              <ItemWrapper>
-                <EditorControls
-                  editModeEnabled={this.state.editMode}
-                  onEditModeClicked={() => { this.setState({ editMode: !this.state.editMode }); }}
-                  onUploadClicked={() => { onUpload(this.state.code); }}
-                  onRevertClicked={() => {
-                    this.setState({
-                      code: actionCode,
-                      editorKey: Math.random(),
-                    });
-                  }}
-                />
-              </ItemWrapper>
-              {this.state.editMode && (
-                <ItemWrapper>
-                  <Editor
-                    key={this.state.editorKey}
-                    initialText={actionCode}
-                    onTextChange={(code) => {
-                      this.setState({
-                       code,
-                      });
-                    }}
-                    style={styles.editor}
-                  />
-                </ItemWrapper>
-              )}
-              </div>
+              <JavascriptsFields
+                initialText={actionCode}
+                upload={onUpload}
+              />
             )}
           </div>
         </div>
