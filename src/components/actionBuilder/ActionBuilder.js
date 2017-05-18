@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
-import ActionInfo from './components/ActionInfo';
-import ActionHeader from './components/ActionHeader';
-import Editor from './components/Editor';
-import EditorControls from './components/EditorControls';
-import ItemWrapper from './components/ItemWrapper';
-import MqttValue from './components/mqtt/MqttValue';
-import PublishMqttValue from './components/mqtt/PublishMqttValue';
+import ActionInfo from './components/common/ActionInfo';
+import ActionHeader from './components/common/ActionHeader';
+import Editor from './components/javascripts/Editor';
+import EditorControls from './components/javascripts/EditorControls';
+import ItemWrapper from './components/common/ItemWrapper';
+import MqttValue from './components/mqtt/components/MqttValue';
+import PublishMqttValue from './components/mqtt/components/PublishMqttValue';
 
 const styles = {
   editor: {
@@ -34,9 +34,11 @@ class ActionBuilder extends Component {
       onActionChange,
       onActionSelected,
       actionName,
+      actionType,
       onUpload,
     } = this.props;
 
+    window.t = actionType;
     return (
       <AxiomBuilder
         title="Actions"
@@ -54,40 +56,50 @@ class ActionBuilder extends Component {
             }}
           />
           <div style={{ width: '100%', height: '100%' }}>
-            <ActionHeader actionType={'mqtt'} />
-            <ItemWrapper>
-              <MqttValue topic={'humidity'} />
-            </ItemWrapper>
-            <ItemWrapper>
-              <PublishMqttValue topic={'humidity'} />
-            </ItemWrapper>
+            <ActionHeader actionType={actionType} />
 
-            {/*<ItemWrapper>
-              <EditorControls
-                editModeEnabled={this.state.editMode}
-                onEditModeClicked={() => { this.setState({ editMode: !this.state.editMode }); }}
-                onUploadClicked={() => { onUpload(this.state.code); }}
-                onRevertClicked={() => {
-                  this.setState({
-                    code: actionCode,
-                    editorKey: Math.random(),
-                  });
-                }}
-              />
-            </ItemWrapper>
-            {this.state.editMode && (
+
+            {(actionType === 'mqtt') && (
+              <div>
               <ItemWrapper>
-                <Editor
-                  key={this.state.editorKey}
-                  initialText={actionCode}
-                  onTextChange={(code) => {
+                <MqttValue topic={'humidity'} />
+              </ItemWrapper>
+              <ItemWrapper>
+                <PublishMqttValue topic={'humidity'} />
+              </ItemWrapper>
+              </div>
+            )}
+
+            {(actionType === 'javascript') && (
+              <div>
+              <ItemWrapper>
+                <EditorControls
+                  editModeEnabled={this.state.editMode}
+                  onEditModeClicked={() => { this.setState({ editMode: !this.state.editMode }); }}
+                  onUploadClicked={() => { onUpload(this.state.code); }}
+                  onRevertClicked={() => {
                     this.setState({
-                      code,
+                      code: actionCode,
+                      editorKey: Math.random(),
                     });
                   }}
-                  style={styles.editor}
                 />
-              </ItemWrapper>*/}
+              </ItemWrapper>
+              {this.state.editMode && (
+                <ItemWrapper>
+                  <Editor
+                    key={this.state.editorKey}
+                    initialText={actionCode}
+                    onTextChange={(code) => {
+                      this.setState({
+                       code,
+                      });
+                    }}
+                    style={styles.editor}
+                  />
+                </ItemWrapper>
+              )}
+              </div>
             )}
           </div>
         </div>
@@ -103,6 +115,7 @@ ActionBuilder.propTypes = {
   onActionSelected: PropTypes.func.isRequired,
   actionName: PropTypes.string.isRequired,
   actionCode: PropTypes.string.isRequired,
+  actionType: PropTypes.string.isRequired,
   onUpload: PropTypes.func.isRequired,
 };
 

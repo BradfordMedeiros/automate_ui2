@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AxiomHeader from '../../axiomBuilder/AxiomHeader';
+import AxiomHeader from '../../../axiomBuilder/AxiomHeader';
 
 class ActionInfo extends Component {
   render() {
