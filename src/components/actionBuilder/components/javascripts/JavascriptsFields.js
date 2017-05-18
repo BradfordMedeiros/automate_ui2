@@ -26,6 +26,7 @@ class JavascriptsFields extends Component {
       <div>
         <ItemWrapper>
           <EditorControls
+            disableRevert={!this.state.editEnabled || (initialText === this.state.code)}
             editModeEnabled={this.state.editEnabled}
             onEditModeClicked={() => {
               this.setState({

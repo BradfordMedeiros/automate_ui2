@@ -59,6 +59,14 @@ class ActionBuilder extends Component {
                 upload={onUpload}
               />
             )}
+
+            {(actionType === 'executable') && (
+              <div
+                style={{ color: 'white' }}
+              >
+                Need to get info for executables
+              </div>
+            )}
           </div>
         </div>
       </AxiomBuilder>
