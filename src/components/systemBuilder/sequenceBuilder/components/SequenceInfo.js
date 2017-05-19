@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
-import AxiomHeader from '../../axiomBuilder/AxiomHeader';
-import InlineDropdownDialog from '../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
+import AxiomHeader from '../../../axiomBuilder/AxiomHeader';
+import InlineDropdownDialog from '../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
 
 class SequenceInfo extends Component {
   constructor(props) {

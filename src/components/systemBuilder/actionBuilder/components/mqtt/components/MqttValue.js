@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import WithMqtt from '../../../../../data/WithMqtt';
+import WithMqtt from '../../../../../../data/WithMqtt';
 import { fromJS } from 'immutable';
 
 const MqttValue = ({ topic }) => (
