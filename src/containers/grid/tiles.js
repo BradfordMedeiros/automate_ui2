@@ -25,9 +25,10 @@ import States from './tiles/system/states/States';
 import Actions from './tiles/system/actions/Actions';
 
 import Sequences from './tiles/system/sequences/Sequences';
-import SequenceBuilder from '../SequenceBuilder';
+import SequenceBuilder from '../system/SequenceBuilder';
 
-import ActionBuilder from '../ActionsBuilder';
+import ActionBuilder from '../system/ActionsBuilder';
+import StateBuilder from '../system/StateBuilder';
 
 export const tileNames = [
   {
@@ -171,10 +172,10 @@ class TileOverlay extends Component {
         return <ConditionsOverlay {...otherProps} />;
       }
       case 'Sequences': {
-        return <SequenceBuilder {...otherProps} />;
+        return <SequenceBuilder />;
       }
       case 'States': {
-        return <div>hello</div>;
+        return <StateBuilder />
       }
       case 'Actions': {
         return <ActionBuilder />;

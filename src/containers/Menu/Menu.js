@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Menu from '../components/menu/menu';
-import EventLog from '../event_log/EventLog';
-import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
-import { expandMenu } from './module';
-import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
-import SSH from '../ssh/SSH';
-import DeviceInfo from './DeviceInfo';
+import Menu from '../../components/menu/menu';
+import EventLog from '../EventLog';
+import InlineTextfieldDialog from '../../components/Dialog/InlineTextfieldDialog';
+import { expandMenu } from '../module';
+import { setContent, setActiveGrid, addGrid, setBackground } from '../grid/module';
+import SSH from '../SSH';
+import DeviceInfo from '../DeviceInfo';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -27,17 +27,21 @@ class MenuContainer extends Component {
     }
     onSetActiveGrid(gridName);
   };
+
+  openContent = (content) => {
+    const { onCloseMenu, onSetContent, menuIsExpanded } = this.props;
+    if (menuIsExpanded){
+      onCloseMenu();
+    }else{
+      onSetContent(content);
+    }
+  }
   render() {
     const {
       grids,
-      onSetSSHContent,
-      onSetEventLog,
-      onCloseMenu,
-      menuIsExpanded,
       onAddGrid,
-      onSetActiveGrid,
       onSetGridBackground,
-      onSetDeviceInfo,
+      onSetContent,
       ...otherProps
     } = this.props;
 
@@ -90,23 +94,11 @@ class MenuContainer extends Component {
             },
             {
               label: 'SSH',
-              onClick: () => {
-                if (menuIsExpanded) {
-                  onCloseMenu();
-                } else {
-                  onSetSSHContent();
-                }
-              },
+              onClick: () => this.openContent(<SSH />),
             },
             {
               label: 'Events',
-              onClick: () => {
-                if (menuIsExpanded) {
-                  onCloseMenu();
-                } else {
-                  onSetEventLog();
-                }
-              },
+              onClick: () => this.openContent(<EventLog />),
             },
             {
               label: 'Set Background',
@@ -118,13 +110,7 @@ class MenuContainer extends Component {
             },
             {
               label: 'Device Info',
-              onClick: () => {
-                if (menuIsExpanded) {
-                  onCloseMenu();
-                } else {
-                  onSetDeviceInfo();
-                }
-              },
+              onClick: () => this.openContent(<DeviceInfo />),
             },
           ]}
         />
@@ -138,11 +124,9 @@ MenuContainer.propTypes = {
   menuIsExpanded: PropTypes.bool.isRequired,
   onCloseMenu: PropTypes.func.isRequired,
   onAddGrid: PropTypes.func.isRequired,
-  onSetEventLog: PropTypes.func.isRequired,
   onSetActiveGrid: PropTypes.func.isRequired,
-  onSetSSHContent: PropTypes.func.isRequired,
-  onSetDeviceInfo: PropTypes.func.isRequired,
   onSetGridBackground: PropTypes.func.isRequired,
+  onSetContent: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -150,17 +134,9 @@ const mapStateToProps = state => ({
   grids: state.getIn(['gridReducer', 'grids']),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSetSSHContent: () => {
-    dispatch(setContent(() => <SSH />));
-    dispatch(expandMenu(true));
-  },
-  onSetDeviceInfo: () => {
-    dispatch(setContent(() => <DeviceInfo ipAddress="127.0.0.1" macAddress="00-14-22-01-23-45" />));
-    dispatch(expandMenu(true));
-  },
-  onSetEventLog: () => {
-    dispatch(setContent(() => <EventLog />));
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onSetContent: reactNode => {
+    dispatch(setContent(() => reactNode));
     dispatch(expandMenu(true));
   },
   onCloseMenu: () => {

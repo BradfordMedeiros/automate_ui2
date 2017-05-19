@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import WithEvents from '../data/WithEvents';
 
-export default class TableExampleComplex extends React.Component {
+class EventLog extends React.Component {
   constructor(props) {
     super(props);
 
@@ -80,3 +80,5 @@ export default class TableExampleComplex extends React.Component {
     );
   }
 }
+
+export default EventLog;

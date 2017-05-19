@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ActionBuilder from '../components/systemBuilder/actionBuilder/ActionBuilder';
-import WithActions from '../data/WithActions';
+import ActionBuilder from '../../components/systemBuilder/actionBuilder/ActionBuilder';
+import WithActions from '../../data/WithActions';
 
 class ActionsBuilder extends Component {
   state = {

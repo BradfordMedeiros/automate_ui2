@@ -6,7 +6,7 @@ import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/grid/MultiGrid';
 import { container as SelectionOverlay } from './containers/Overlay';
-import { container as Menu } from './containers/Menu';
+import { container as Menu } from './containers/Menu/Menu';
 import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 
