@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
 import ActionInfo from './components/common/ActionInfo';
-import ActionHeader from './components/common/ActionHeader';
+import ActionHeader from '../common/AxiomHeader';
 import MqttFields from './components/mqtt/MqttFields';
 import JavascriptsFields from './components/javascripts/JavascriptsFields';
 import ExecutableFields from './components/executables/ExecutableFields';

@@ -17,7 +17,7 @@ const getStyle = (actionType, style) => ({
   ...style,
 });
 
-const ActionHeader = ({ actionType, style }) => {
+const AxiomHeader = ({ actionType, style }) => {
   if (Object.keys(colorMap).indexOf(actionType) < 0) {
     console.error('action type not supported: ', actionType);
   }
@@ -32,9 +32,9 @@ const ActionHeader = ({ actionType, style }) => {
   return null;
 };
 
-ActionHeader.propTypes = {
+AxiomHeader.propTypes = {
   actionType: PropTypes.string.isRequired,
   style: PropTypes.object,
 };
 
-export default ActionHeader;
+export default AxiomHeader;
