@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
+import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
 import ActionInfo from './components/common/ActionInfo';
 import ActionHeader from './components/common/ActionHeader';
 import MqttFields from './components/mqtt/MqttFields';

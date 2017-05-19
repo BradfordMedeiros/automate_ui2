@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SequenceBuilderComponent from '../components/sequenceBuilder/SequenceBuilder';
+import SequenceBuilderComponent from '../components/systemBuilder/sequenceBuilder/SequenceBuilder';
 import WithSequences from '../data/WithSequences';
 import WithActions from '../data/WithActions';
 

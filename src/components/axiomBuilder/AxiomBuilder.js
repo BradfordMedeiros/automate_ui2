@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import AxiomSelection from './components/AxiomSelection';
 import GenericOverlay from '../overlay/GenericOverlay';
 
-class SequenceBuilder extends Component {
+class AxiomBuilder extends Component {
   render() {
     const {
       axioms,
@@ -32,7 +32,7 @@ class SequenceBuilder extends Component {
 }
 
 
-SequenceBuilder.propTypes = {
+AxiomBuilder.propTypes = {
   axioms: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
   selectedIndex: PropTypes.number.isRequired,
@@ -41,4 +41,4 @@ SequenceBuilder.propTypes = {
   children: PropTypes.node,
 };
 
-export default SequenceBuilder;
+export default AxiomBuilder;

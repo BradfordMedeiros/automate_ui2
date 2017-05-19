@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ActionBuilder from '../components/actionBuilder/ActionBuilder';
+import ActionBuilder from '../components/systemBuilder/actionBuilder/ActionBuilder';
 import WithActions from '../data/WithActions';
 
 class ActionsBuilder extends Component {
