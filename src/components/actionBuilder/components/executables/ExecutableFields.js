@@ -17,8 +17,6 @@ const styles = {
 class JavascriptsFields extends Component {
   state = {
     editEnabled: false,
-    editorKey: Math.random(),
-    code: '',
   }
   render() {
     const { initialText, upload } = this.props;
@@ -31,22 +29,12 @@ class JavascriptsFields extends Component {
           }}
         >
           <EditorControls
-            disableRevert={!this.state.editEnabled || (initialText === this.state.code)}
+            hideUpload={true}
+            hideRevert={true}
             editModeEnabled={this.state.editEnabled}
             onEditModeClicked={() => {
               this.setState({
                 editEnabled: !this.state.editEnabled,
-              });
-            }}
-            onUploadClicked={() => {
-              if (upload) {
-                upload(this.state.code);
-              }
-            }}
-            onRevertClicked={() => {
-              this.setState({
-                code: initialText,
-                editorKey: Math.random(),
               });
             }}
           />
@@ -54,13 +42,8 @@ class JavascriptsFields extends Component {
         {this.state.editEnabled && (
           <ItemWrapper>
             <Editor
-              key={this.state.editorKey}
               initialText={initialText}
-              onTextChange={(code) => {
-                this.setState({
-                  code,
-                });
-              }}
+              readOnly={true}
               style={styles.editor}
             />
           </ItemWrapper>

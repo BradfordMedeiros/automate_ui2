@@ -6,7 +6,7 @@ const colorMap = {
   executable: 'rgba(170, 170, 130, 0.9)',
 };
 
-const getStyle = actionType => ({
+const getStyle = (actionType, style) => ({
   padding: 18,
   paddingLeft: 24,
   borderBottom: '1px solid rgba(0,0,0,0.3)',
@@ -14,15 +14,16 @@ const getStyle = actionType => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  ...style,
 });
 
-const ActionHeader = ({ actionType }) => {
+const ActionHeader = ({ actionType, style }) => {
   if (Object.keys(colorMap).indexOf(actionType) < 0) {
     console.error('action type not supported: ', actionType);
   }
   return (
     <div
-      style={getStyle(actionType)}
+      style={getStyle(actionType, style)}
     >
       <div className="typeLabel" style={{ display: 'inline' }}>Type:</div>
       <div className="typeValue" style={{ display: 'inline', color: 'white', paddingLeft: 20 }}>{actionType}</div>
@@ -33,6 +34,7 @@ const ActionHeader = ({ actionType }) => {
 
 ActionHeader.propTypes = {
   actionType: PropTypes.string.isRequired,
+  style: PropTypes.object,
 };
 
 export default ActionHeader;

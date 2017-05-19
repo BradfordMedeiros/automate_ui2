@@ -2,12 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../axiomBuilder/AxiomBuilder';
 import ActionInfo from './components/common/ActionInfo';
 import ActionHeader from './components/common/ActionHeader';
-import Editor from './components/javascripts/components/Editor';
-import EditorControls from './components/javascripts/components/EditorControls';
-import ItemWrapper from './components/common/ItemWrapper';
 import MqttFields from './components/mqtt/MqttFields';
 import JavascriptsFields from './components/javascripts/JavascriptsFields';
-
+import ExecutableFields from './components/executables/ExecutableFields';
 
 class ActionBuilder extends Component {
   state = {
@@ -61,11 +58,10 @@ class ActionBuilder extends Component {
             )}
 
             {(actionType === 'executable') && (
-              <div
-                style={{ color: 'white' }}
-              >
-                Need to get info for executables
-              </div>
+              <ExecutableFields
+                initialText={actionCode}
+                upload={onUpload}
+              />
             )}
           </div>
         </div>

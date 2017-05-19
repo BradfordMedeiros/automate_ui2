@@ -8,6 +8,8 @@ const EditorControls = ({
   onEditModeClicked,
   codeHasChanged,
   disableRevert,
+  hideUpload,
+  hideRevert,
 }) => (
   <div>
     <div
@@ -20,7 +22,7 @@ const EditorControls = ({
     >
       {editModeEnabled ? 'Hide Script ' : 'View Script'}
     </div>
-    <RaisedButton
+    {!hideUpload && <RaisedButton
       label="Upload"
       disabled={!editModeEnabled}
       style={{ marginLeft: 40 }}
@@ -29,8 +31,8 @@ const EditorControls = ({
           onUploadClicked();
         }
       }}
-    />
-    <RaisedButton
+    />}
+    {!hideRevert && <RaisedButton
       label="Revert"
       disabled={disableRevert}
       onClick={() => {
@@ -38,7 +40,7 @@ const EditorControls = ({
           onRevertClicked();
         }
       }}
-    />
+    />}
   </div>
 );
 
@@ -48,6 +50,8 @@ EditorControls.propTypes = {
   onRevertClicked: PropTypes.func,
   editModeEnabled: PropTypes.bool,
   disableRevert: PropTypes.bool,
+  hideUpload: PropTypes.bool,
+  hideRevert: PropTypes.bool,
 };
 
 export default EditorControls;
