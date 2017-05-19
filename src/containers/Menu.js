@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Menu from '../../components/menu/menu';
-import EventLog from '../EventLog';
-import InlineTextfieldDialog from '../../components/Dialog/InlineTextfieldDialog';
-import { expandMenu } from '../module';
-import { setContent, setActiveGrid, addGrid, setBackground } from '../grid/module';
-import SSH from '../SSH';
-import DeviceInfo from '../DeviceInfo';
+import Menu from '../components/menu/menu';
+import EventLog from './EventLog';
+import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
+import { expandMenu } from './module';
+import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
+import SSH from './SSH';
+import DeviceInfo from './DeviceInfo';
+import ActionBuilder from './system/ActionsBuilder';
+import StateBuilder from './system/StateBuilder';
+import SequenceBuilder from './system/SequenceBuilder';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -30,9 +33,9 @@ class MenuContainer extends Component {
 
   openContent = (content) => {
     const { onCloseMenu, onSetContent, menuIsExpanded } = this.props;
-    if (menuIsExpanded){
+    if (menuIsExpanded) {
       onCloseMenu();
-    }else{
+    } else {
       onSetContent(content);
     }
   }
@@ -82,7 +85,10 @@ class MenuContainer extends Component {
               label: 'Home',
               onClick: () => this.onGridClick('Home'),
             },
-            ...menuItems,
+            {
+              label: 'My Grids',
+              children: [...menuItems],
+            },
             {
               label: 'Add Grid +',
               onClick: () => {
@@ -91,6 +97,23 @@ class MenuContainer extends Component {
                   gridName: null,
                 });
               },
+            },
+            {
+              label: 'System',
+              children: [
+                {
+                  label: 'States',
+                  onClick: () => this.openContent(<StateBuilder />),
+                },
+                {
+                  label: 'Actions',
+                  onClick: () => this.openContent(<ActionBuilder />),
+                },
+                {
+                  label: 'Sequences',
+                  onClick: () => this.openContent(<SequenceBuilder />),
+                },
+              ],
             },
             {
               label: 'SSH',
@@ -135,7 +158,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSetContent: reactNode => {
+  onSetContent: (reactNode) => {
     dispatch(setContent(() => reactNode));
     dispatch(expandMenu(true));
   },

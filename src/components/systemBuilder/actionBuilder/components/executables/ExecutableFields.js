@@ -29,8 +29,8 @@ class JavascriptsFields extends Component {
           }}
         >
           <EditorControls
-            hideUpload={true}
-            hideRevert={true}
+            hideUpload
+            hideRevert
             editModeEnabled={this.state.editEnabled}
             onEditModeClicked={() => {
               this.setState({
@@ -43,7 +43,7 @@ class JavascriptsFields extends Component {
           <ItemWrapper>
             <Editor
               initialText={initialText}
-              readOnly={true}
+              readOnly
               style={styles.editor}
             />
           </ItemWrapper>

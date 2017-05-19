@@ -175,7 +175,7 @@ class TileOverlay extends Component {
         return <SequenceBuilder />;
       }
       case 'States': {
-        return <StateBuilder />
+        return <StateBuilder />;
       }
       case 'Actions': {
         return <ActionBuilder />;
