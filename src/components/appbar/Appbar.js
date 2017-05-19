@@ -49,6 +49,7 @@ class Appbar extends Component {
       tileNames,
       onToggle,
       onHideMenu,
+      title,
       style,
     } = this.props;
 
@@ -93,7 +94,7 @@ class Appbar extends Component {
           >&times;</div>
         </div>
 
-        <div className="app_title"><h1>automate</h1></div>
+        <div className="app_title"><h1>{title}</h1></div>
 
       </div>
     );
@@ -108,6 +109,7 @@ Appbar.propTypes = {
   onTileClick: PropTypes.func,
   onToggle: PropTypes.func,
   onHideMenu: PropTypes.func,
+  title: PropTypes.string,
 };
 
 Appbar.defaultProps = {
