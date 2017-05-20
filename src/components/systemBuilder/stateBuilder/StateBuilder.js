@@ -1,38 +1,46 @@
 import React, { Component, PropTypes } from 'react';
-import AxiomHeader from '../common/AxiomHeader';
-import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
-import StateInfo from './components/common/StateInfo';
+import GenericBuilder from '../common/GenericBuilder';
 
 class StateBuilder extends Component {
   render() {
-    const { stateType } = this.props;
-    return (
-      <AxiomBuilder
-        title="States"
-        axioms={[{ name: 'hello' }].map(action => action.name)}
-        selectedIndex={0}
-        onAxiomChange={() => { }}
-        onAxiomSelected={() => { }}
-      >
-        <div style={{ width: '100%', height: '100%' }}>
-          <StateInfo
-            actionName={'test name'}
-            deleteAction={() => {
+    const {
+      states,
+      stateCode,
+      selectedIndex,
+      onStateChange,
+      onStateSelected,
+      stateName,
+      stateType,
+      onUpload,
+    } = this.props;
 
-            }}
-          />
-          <div style={{ width: '100%', height: '100%' }}>
-            <AxiomHeader actionType={'javascript'} />
-          </div>
+    return (
+      <GenericBuilder
+        axiomClass={'States'}
+        axioms={states}
+        onAxiomChange={onStateChange}
+        selectedIndex={selectedIndex}
+        onAxiomSelected={onStateSelected}
+        axiomName={stateName}
+        axiomType={stateType}
+      >
+        <div>
+          stuff
         </div>
-      </AxiomBuilder>
-    )
+      </GenericBuilder>
+    );
   }
 }
 
 StateBuilder.propTypes = {
-  stateType: PropTypes.string,
+  states: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedIndex: PropTypes.number.isRequired,
+  onStateChange: PropTypes.func.isRequired,
+  onStateSelected: PropTypes.func.isRequired,
+  stateName: PropTypes.string.isRequired,
+  stateCode: PropTypes.string.isRequired,
+  stateType: PropTypes.string.isRequired,
+  onUpload: PropTypes.func.isRequired,
 };
-
 
 export default StateBuilder;

@@ -11,7 +11,27 @@ class ActionsBuilder extends Component {
       <WithActions>
         {({ actions, addAction, deleteAction, saveAction }) => (
           <StateBuilder
-            stateType={'javascript'}
+            states={actions.map(action => ({
+              name: action.name,
+            }))}
+            stateName={actions[this.state.selectedIndex].name}
+            selectedIndex={this.state.selectedIndex}
+            onStateChange={(newActions, addedActionName, deletedActionName) => {
+              if (addedActionName) {
+                addAction(addedActionName);
+              }
+              if (deletedActionName) {
+                deleteAction(deletedActionName);
+              }
+            }}
+            onStateSelected={(_, selectedIndex) => {
+              this.setState({ selectedIndex });
+            }}
+            stateType={actions[this.state.selectedIndex].type}
+            stateCode={actions[this.state.selectedIndex].content}
+            onUpload={(code) => {
+              saveAction(actions[this.state.selectedIndex].name, code);
+            }}
           />
         )}
       </WithActions>
@@ -21,30 +41,3 @@ class ActionsBuilder extends Component {
 
 export default ActionsBuilder;
 
-
-/*
-
- <ActionBuilder
-    actions={actions.map(action => ({
-      name: action.name,
-    }))}
-    actionName={actions[this.state.selectedIndex].name}
-    selectedIndex={this.state.selectedIndex}
-    onActionChange={(newActions, addedActionName, deletedActionName) => {
-    if (addedActionName) {
-      addAction(addedActionName);
-    }
-    if (deletedActionName) {
-      deleteAction(deletedActionName);
-     }
-    }}
-    onActionSelected={(_, selectedIndex) => {
-      this.setState({ selectedIndex });
-    }}
-   actionType={actions[this.state.selectedIndex].type}
-   actionCode={actions[this.state.selectedIndex].content}
-   onUpload={(code) => {
-   saveAction(actions[this.state.selectedIndex].name, code);
-  }}
- />
- */

@@ -1,18 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
-import ActionInfo from './components/common/ActionInfo';
-import ActionHeader from '../common/AxiomHeader';
-import MqttFields from './components/mqtt/MqttFields';
-import JavascriptsFields from './components/javascripts/JavascriptsFields';
+import GenericBuilder from '../common/GenericBuilder';
 import ExecutableFields from './components/executables/ExecutableFields';
+import JavascriptsFields from './components/javascripts/JavascriptsFields';
+import MqttFields from './components/mqtt/MqttFields';
 
 class ActionBuilder extends Component {
-  state = {
-    editMode: false,
-    code: undefined,
-    editorKey: Math.random(),
-
-  }
   render() {
     const {
       actions,
@@ -26,46 +18,35 @@ class ActionBuilder extends Component {
     } = this.props;
 
     return (
-      <AxiomBuilder
-        title="Actions"
-        axioms={actions.map(action => action.name)}
-        selectedIndex={selectedIndex}
+      <GenericBuilder
+        axiomClass={'Actions'}
+        axioms={actions}
         onAxiomChange={onActionChange}
+        selectedIndex={selectedIndex}
         onAxiomSelected={onActionSelected}
+        axiomName={actionName}
+        axiomType={actionType}
       >
-        <div style={{ width: '100%', height: '100%' }}>
-          <ActionInfo
-            actionName={actionName}
-            deleteAction={() => {
-              const newActions = actions.slice().filter((action, index) => index !== selectedIndex);
-              onActionChange(newActions, undefined, actionName);
-            }}
-          />
-          <div style={{ width: '100%', height: '100%' }}>
-            <ActionHeader actionType={actionType} />
-
-            {(actionType === 'mqtt') && (
-              <MqttFields
-                topic="humidity"
-              />
-            )}
-
-            {(actionType === 'javascript') && (
-              <JavascriptsFields
-                initialText={actionCode}
-                upload={onUpload}
-              />
-            )}
-
-            {(actionType === 'executable') && (
-              <ExecutableFields
-                initialText={actionCode}
-                upload={onUpload}
-              />
-            )}
-          </div>
+        <div>
+          {(actionType === 'executable') && (
+            <ExecutableFields
+              initialText={actionCode}
+              upload={onUpload}
+            />
+          )}
+          {(actionType === 'javascript') && (
+            <JavascriptsFields
+              initialText={actionCode}
+              upload={onUpload}
+            />
+          )}
+          {(actionType === 'mqtt') && (
+            <MqttFields
+              topic="humidity"
+            />
+          )}
         </div>
-      </AxiomBuilder>
+      </GenericBuilder>
     );
   }
 }
