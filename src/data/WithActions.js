@@ -5,6 +5,7 @@ const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
 const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions`;
 const REFRESH_RATE = 1000;
 
+
 // need to send a stringified version of the function to send to the server
 // The function must return the state as a json string via stdout
 const createStateFromSimpleFunction = (evalLogicString) => {
