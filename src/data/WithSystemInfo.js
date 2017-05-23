@@ -32,7 +32,11 @@ class WithSystemInfo extends Component {
   render() {
     const { children, injectLoading } = this.props;
     if (!this.state.hasData) {
-      return injectLoading ? children({ public_ip_address: 'Loading', mac_address: 'Loading' }) : null;
+      return injectLoading ? children({
+        public_ip_address: 'Loading',
+        mac_address: 'Loading',
+        automate_core_version: 'loading',
+      }) : null;
     }
     return children({ ...this.state.info });
   }

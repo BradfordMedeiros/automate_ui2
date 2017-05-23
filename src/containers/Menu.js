@@ -8,8 +8,9 @@ import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module
 import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
 import ActionBuilder from './system/ActionsBuilder';
-import StateBuilder from './system/StateBuilder';
-import SequenceBuilder from './system/SequenceBuilder';
+import StateBuilder from './system/StatesBuilder';
+import SequenceBuilder from './system/SequencesBuilder';
+import ConditionBuilder from './system/ConditionsBuilder';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -112,6 +113,10 @@ class MenuContainer extends Component {
                 {
                   label: 'Sequences',
                   onClick: () => this.openContent(<SequenceBuilder />),
+                },
+                {
+                  label: 'Conditions',
+                  onClick: () => this.openContent(<ConditionBuilder />)
                 },
               ],
             },

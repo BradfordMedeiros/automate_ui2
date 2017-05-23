@@ -3,10 +3,17 @@ import { Subheader } from 'material-ui';
 import GenericOverlay from '../overlay/GenericOverlay';
 import './style.css';
 
-const DeviceInfo = ({ ipAddress, macAddress }) => (
+const renderField = (title, value) => (
+  <div className="device_info_container">
+    <Subheader>{title}: </Subheader>
+    <div className="device_info_value" >{value}</div>
+  </div>
+)
+const DeviceInfo = ({ ipAddress, macAddress, automateCoreVersion }) => (
   <GenericOverlay title="Automate Core Info">
-    <div className="ip_container"><Subheader>IP Address: </Subheader> <div className="ip_address" >{ipAddress} </div></div>
-    <div className="mac_container"> <Subheader>Mac Address: </Subheader> <div className="mac_address">{macAddress} </div></div>
+    {renderField('IP Address', ipAddress)}
+    {renderField('Mac Address', macAddress)}
+    {renderField('Core Version', automateCoreVersion)}
   </GenericOverlay>
 );
 

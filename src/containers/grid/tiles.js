@@ -25,10 +25,10 @@ import States from './tiles/system/states/States';
 import Actions from './tiles/system/actions/Actions';
 
 import Sequences from './tiles/system/sequences/Sequences';
-import SequenceBuilder from '../system/SequenceBuilder';
+import SequenceBuilder from '../system/SequencesBuilder';
 
 import ActionBuilder from '../system/ActionsBuilder';
-import StateBuilder from '../system/StateBuilder';
+import StateBuilder from '../system/StatesBuilder';
 
 export const tileNames = [
   {

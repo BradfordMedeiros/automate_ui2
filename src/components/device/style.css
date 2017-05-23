@@ -1,22 +1,10 @@
-.ip_container {
+.device_info_container {
     margin: 30px;
     border:1px solid rgba(0,0,0,0.3);
     padding: 20px;
 }
 
-.ip_address {
-    font-size: 30px;
-    margin-left: 20px;
-    color: rgb(197, 187, 187);
-}
-
-.mac_container {
-    margin: 30px;
-    border:1px solid rgba(0,0,0,0.3);
-    padding: 20px;
-}
-
-.mac_address {
+.device_info_value {
     font-size: 30px;
     margin-left: 20px;
     color: rgb(197, 187, 187);
