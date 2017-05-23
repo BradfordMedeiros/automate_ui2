@@ -5,7 +5,7 @@ const CleanPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const env = require('./env');
+const env = require('./env-prod');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],

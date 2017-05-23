@@ -39,11 +39,11 @@ module.exports = {
     root: path.join(__dirname, 'node_modules'),
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
     new webpack.DefinePlugin({
       'process.env': env,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
     }),
   ],
 };

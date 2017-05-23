@@ -7,7 +7,7 @@ import { addTile } from './grid/module';
 const ConnectedAppbar = ({ activeGrid, onTileClick, ...otherProps }) => (
   <Appbar
     {...otherProps}
-    title={'amp'}
+    title={'automate'}
     onTileClick={(tileName) => {
       onTileClick(tileName, activeGrid);
     }}
