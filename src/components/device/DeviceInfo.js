@@ -8,7 +8,7 @@ const renderField = (title, value) => (
     <Subheader>{title}: </Subheader>
     <div className="device_info_value" >{value}</div>
   </div>
-)
+);
 const DeviceInfo = ({ ipAddress, macAddress, automateCoreVersion }) => (
   <GenericOverlay title="Automate Core Info">
     {renderField('IP Address', ipAddress)}

@@ -91,15 +91,6 @@ class MenuContainer extends Component {
               children: [...menuItems],
             },
             {
-              label: 'Add Grid +',
-              onClick: () => {
-                this.setState({
-                  showAddDialog: true,
-                  gridName: null,
-                });
-              },
-            },
-            {
               label: 'System',
               children: [
                 {
@@ -111,35 +102,58 @@ class MenuContainer extends Component {
                   onClick: () => this.openContent(<ActionBuilder />),
                 },
                 {
-                  label: 'Sequences',
-                  onClick: () => this.openContent(<SequenceBuilder />),
-                },
-                {
                   label: 'Conditions',
-                  onClick: () => this.openContent(<ConditionBuilder />)
+                  onClick: () => this.openContent(<ConditionBuilder />),
                 },
               ],
             },
             {
-              label: 'SSH',
-              onClick: () => this.openContent(<SSH />),
+              label: 'Engines',
+              children: [
+                {
+                  label: 'Sequences',
+                  onClick: () => this.openContent(<SequenceBuilder />),
+                },
+                {
+                  label: 'Logic',
+                  onClick: () => this.openContent(<ConditionBuilder />),
+                },
+              ],
             },
             {
               label: 'Events',
               onClick: () => this.openContent(<EventLog />),
             },
             {
+              label: 'Device',
+              children: [
+                {
+                  label: 'Device Info',
+                  onClick: () => this.openContent(<DeviceInfo />),
+                },
+                {
+                  label: 'SSH',
+                  onClick: () => this.openContent(<SSH />),
+                },
+              ],
+            },
+            /*{
               label: 'Set Background',
               onClick: () => {
                 this.setState({
                   showSetBackgroundDialog: true,
                 });
               },
-            },
-            {
-              label: 'Device Info',
-              onClick: () => this.openContent(<DeviceInfo />),
-            },
+            },*/
+            /*{
+              label: 'Add Grid +',
+              onClick: () => {
+                this.setState({
+                  showAddDialog: true,
+                  gridName: null,
+                });
+              },
+            },*/
           ]}
         />
       </div>

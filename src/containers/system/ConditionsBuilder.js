@@ -13,11 +13,12 @@ class ConditionsBuilder extends Component {
           justifyContent: 'center',
           alignItems: 'center',
           color: 'white',
-        }}>
-          <div style={{ marginTop: -150 }}>Coming In 0.2</div>
+        }}
+      >
+        <div style={{ marginTop: -150 }}>Coming In 0.2</div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default ConditionsBuilder;
