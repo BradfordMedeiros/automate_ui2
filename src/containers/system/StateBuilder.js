@@ -9,33 +9,31 @@ class ActionsBuilder extends Component {
   render() {
     return (
       <WithStates>
-        {({ states, addState, deleteState }) => {
-          return (
-            <StateBuilder
-              states={states.map(state => ({
-                name: state.name,
-              }))}
-              stateName={states[this.state.selectedIndex].name}
-              selectedIndex={this.state.selectedIndex}
-              onStateChange={(newActions, addedActionName, deletedActionName) => {
-                if (addedActionName) {
-                  addState(addedActionName);
-                 }
-                 if (deletedActionName) {
-                  deleteState(deletedActionName);
-                 }
-              }}
-              onStateSelected={(_, selectedIndex) => {
-                this.setState({ selectedIndex });
-              }}
-              stateType={states[this.state.selectedIndex].type}
-              stateCode={states[this.state.selectedIndex].content}
-              onUpload={(code) => {
-                //saveAction(actions[this.state.selectedIndex].name, code);
-              }}
-            />
-          )
-        }}
+        {({ states, addState, deleteState }) => (
+          <StateBuilder
+            states={states.map(state => ({
+              name: state.name,
+            }))}
+            stateName={states[this.state.selectedIndex].name}
+            selectedIndex={this.state.selectedIndex}
+            onStateChange={(newActions, addedActionName, deletedActionName) => {
+              if (addedActionName) {
+                addState(addedActionName);
+              }
+              if (deletedActionName) {
+                deleteState(deletedActionName);
+              }
+            }}
+            onStateSelected={(_, selectedIndex) => {
+              this.setState({ selectedIndex });
+            }}
+            stateType={states[this.state.selectedIndex].type}
+            stateCode={states[this.state.selectedIndex].content}
+            onUpload={(code) => {
+                // saveAction(actions[this.state.selectedIndex].name, code);
+            }}
+          />
+          )}
       </WithStates>
     );
   }
