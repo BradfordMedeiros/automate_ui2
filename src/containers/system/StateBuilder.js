@@ -9,8 +9,7 @@ class ActionsBuilder extends Component {
   render() {
     return (
       <WithStates>
-        {({ states }) => {
-          window.ss = states;
+        {({ states, addState, deleteState }) => {
           return (
             <StateBuilder
               states={states.map(state => ({
@@ -19,20 +18,18 @@ class ActionsBuilder extends Component {
               stateName={states[this.state.selectedIndex].name}
               selectedIndex={this.state.selectedIndex}
               onStateChange={(newActions, addedActionName, deletedActionName) => {
-                /*if (addedActionName) {
-                 addAction(addedActionName);
+                if (addedActionName) {
+                  addState(addedActionName);
                  }
                  if (deletedActionName) {
-                 deleteAction(deletedActionName);
-                 }*/
+                  deleteState(deletedActionName);
+                 }
               }}
               onStateSelected={(_, selectedIndex) => {
                 this.setState({ selectedIndex });
               }}
-              //stateType={actions[this.state.selectedIndex].type}
-              stateType={'javascript'}
-              //stateCode={actions[this.state.selectedIndex].content}
-              stateCode={''}
+              stateType={states[this.state.selectedIndex].type}
+              stateCode={states[this.state.selectedIndex].content}
               onUpload={(code) => {
                 //saveAction(actions[this.state.selectedIndex].name, code);
               }}

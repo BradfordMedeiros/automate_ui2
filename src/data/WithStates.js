@@ -2,8 +2,21 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const AUTOMATE_CORE_URL = 'http://127.0.0.1:9000';
-const CONDITIONS_URL = `${AUTOMATE_CORE_URL}/states`;
+const STATES_URL = `${AUTOMATE_CORE_URL}/states`;
 const REFRESH_RATE = 1000;
+
+const deleteState = async stateName => (
+  fetch(`${STATES_URL}/${stateName}`, {
+    method: 'DELETE',
+  })
+);
+
+const addState = async stateName => (
+  fetch(`${STATES_URL}/modify/${stateName}`, {
+    method: 'POST',
+  })
+);
+
 
 class WithStates extends Component {
   constructor(props) {
@@ -23,7 +36,7 @@ class WithStates extends Component {
 
   getData = async () => {
     try {
-      const response = await fetch(CONDITIONS_URL, {
+      const response = await fetch(STATES_URL, {
         mode: 'cors',
         method: 'GET',
         headers: {
@@ -31,6 +44,7 @@ class WithStates extends Component {
         },
       });
       const states = await response.json();
+
       this.setState({
         hasData: true,
         states: states.states,
@@ -43,7 +57,7 @@ class WithStates extends Component {
   render() {
     const { children } = this.props;
     const { hasData, states } = this.state;
-    return (hasData && children) ? children({ states }) : null;
+    return (hasData && children) ? children({ states, addState, deleteState }) : null;
   }
 }
 

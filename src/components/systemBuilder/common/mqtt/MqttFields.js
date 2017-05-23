@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import ItemWrapper from '../common/ItemWrapper';
+import ItemWrapper from '../components/ItemWrapper';
 import MqttValue from './components/MqttValue';
 import PublishMqttValue from './components/PublishMqttValue';
 

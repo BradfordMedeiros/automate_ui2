@@ -6,7 +6,7 @@ class ActionInfo extends Component {
     const { axiomName, deleteAxiom } = this.props;
     return (
       <AxiomHeader
-        axiomName="Action"
+        axiomName={axiomName}
         axiomNameValue={axiomName}
         deleteSequence={deleteAxiom}
       />

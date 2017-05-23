@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ItemWrapper from '../common/ItemWrapper';
-import EditorControls from '../common/EditorControls';
-import Editor from '../common/Editor';
+import ItemWrapper from '../components/ItemWrapper';
+import EditorControls from '../components/EditorControls';
+import Editor from '../components/Editor';
 
 const styles = {
   editor: {

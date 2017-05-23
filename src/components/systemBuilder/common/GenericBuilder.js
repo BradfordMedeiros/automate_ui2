@@ -26,7 +26,7 @@ class GenericBuilder extends Component {
       >
         <div style={{ width: '100%', height: '100%' }}>
           <AxiomInfo
-            axiomName={axiomName}
+            axiomName={axiomClass}
             deleteAxiom={() => {
               const newActions = axioms.slice().filter((action, index) => index !== selectedIndex);
               onAxiomChange(newActions, undefined, axiomName);

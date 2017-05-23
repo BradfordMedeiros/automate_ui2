@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GenericBuilder from '../common/GenericBuilder';
+import GenericBuilderWithFields from '../common/GenericBuilderWithFields';
 
 class StateBuilder extends Component {
   render() {
@@ -15,19 +15,17 @@ class StateBuilder extends Component {
     } = this.props;
 
     return (
-      <GenericBuilder
+      <GenericBuilderWithFields
         axiomClass={'States'}
-        axioms={states}
-        onAxiomChange={onStateChange}
+        actions={states}
         selectedIndex={selectedIndex}
-        onAxiomSelected={onStateSelected}
-        axiomName={stateName}
-        axiomType={stateType}
-      >
-        <div>
-          stuff
-        </div>
-      </GenericBuilder>
+        onActionChange={onStateChange}
+        onActionSelected={onStateSelected}
+        actionName={stateName}
+        actionCode={stateCode}
+        actionType={stateType}
+        onUpload={onUpload}
+      />
     );
   }
 }
@@ -44,3 +42,4 @@ StateBuilder.propTypes = {
 };
 
 export default StateBuilder;
+

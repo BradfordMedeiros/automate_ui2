@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GenericBuilder from '../common/GenericBuilder';
-import ExecutableFields from './components/executables/ExecutableFields';
-import JavascriptsFields from './components/javascripts/JavascriptsFields';
-import MqttFields from './components/mqtt/MqttFields';
+import GenericBuilderWithFields from '../common/GenericBuilderWithFields';
 
 class ActionBuilder extends Component {
   render() {
@@ -18,35 +15,17 @@ class ActionBuilder extends Component {
     } = this.props;
 
     return (
-      <GenericBuilder
+      <GenericBuilderWithFields
         axiomClass={'Actions'}
-        axioms={actions}
-        onAxiomChange={onActionChange}
+        actions={actions}
         selectedIndex={selectedIndex}
-        onAxiomSelected={onActionSelected}
-        axiomName={actionName}
-        axiomType={actionType}
-      >
-        <div>
-          {(actionType === 'executable') && (
-            <ExecutableFields
-              initialText={actionCode}
-              upload={onUpload}
-            />
-          )}
-          {(actionType === 'javascript') && (
-            <JavascriptsFields
-              initialText={actionCode}
-              upload={onUpload}
-            />
-          )}
-          {(actionType === 'mqtt') && (
-            <MqttFields
-              topic="humidity"
-            />
-          )}
-        </div>
-      </GenericBuilder>
+        onActionChange={onActionChange}
+        onActionSelected={onActionSelected}
+        actionName={actionName}
+        actionCode={actionCode}
+        actionType={actionType}
+        onUpload={onUpload}
+      />
     );
   }
 }
