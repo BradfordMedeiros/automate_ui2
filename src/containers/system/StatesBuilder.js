@@ -9,7 +9,7 @@ class ActionsBuilder extends Component {
   render() {
     return (
       <WithStates>
-        {({ states, addState, deleteState }) => (
+        {({ states, addState, deleteState, saveState }) => (
           <StateBuilder
             states={states.map(state => ({
               name: state.name,
@@ -30,7 +30,7 @@ class ActionsBuilder extends Component {
             stateType={states[this.state.selectedIndex].type}
             stateCode={states[this.state.selectedIndex].content}
             onUpload={(code) => {
-                // saveAction(actions[this.state.selectedIndex].name, code);
+                saveState(states[this.state.selectedIndex].name, code);
             }}
           />
           )}

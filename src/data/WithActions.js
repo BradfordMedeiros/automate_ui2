@@ -22,13 +22,6 @@ const createStateFromSimpleFunction = (evalLogicString) => {
   return stringToSend;
 };
 
-
-const addAction = async actionName => (
-    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
-      method: 'POST',
-    })
-  );
-
 const saveAction = async (actionName, evalLogic) => {
   const actionEval = createStateFromSimpleFunction(evalLogic);
 
@@ -45,6 +38,13 @@ const saveAction = async (actionName, evalLogic) => {
     })
   );
 };
+
+
+const addAction = async actionName => (
+    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+      method: 'POST',
+    })
+  );
 
 const deleteAction = async actionName => (
     fetch(`${ACTIONS_URL}/${actionName}`, {

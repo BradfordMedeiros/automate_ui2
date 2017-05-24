@@ -17,6 +17,40 @@ const addState = async stateName => (
   })
 );
 
+// need to send a stringified version of the function to send to the server
+// The function must return the state as a json string via stdout
+const createStateFromSimpleFunction = (evalLogicString) => {
+  // kind of dangerous but frontend anyway so who really cares
+  const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
+  if (typeof (isFunction) !== typeof (() => {
+    })) {
+    throw (new Error('must be a function'));
+  }
+  const stringToSend = `() => {
+    const value = ((${evalLogicString}))(); 
+    console.log('"' + value + '"');
+  }`;
+  return stringToSend;
+};
+
+const saveState= async (stateName, evalLogic) => {
+  const stateEval = createStateFromSimpleFunction(evalLogic);
+
+  return (
+    fetch(`${STATES_URL}/modify/${stateName}`, {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        stateEval,
+      }),
+      method: 'POST',
+    })
+  );
+};
+
+
 
 class WithStates extends Component {
   constructor(props) {
@@ -57,7 +91,7 @@ class WithStates extends Component {
   render() {
     const { children } = this.props;
     const { hasData, states } = this.state;
-    return (hasData && children) ? children({ states, addState, deleteState }) : null;
+    return (hasData && children) ? children({ states, addState, deleteState, saveState }) : null;
   }
 }
 
