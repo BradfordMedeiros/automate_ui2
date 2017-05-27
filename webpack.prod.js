@@ -1,17 +1,13 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const webpack = require('webpack');
-const CleanPlugin = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const env = require('./env-prod');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
-  devtool: 'eval-source-map',
+  devtool: 'eval',
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
-    filename: 'build/bundle.js'
+    path: path.join(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/static/',
   },
   module: {
     loaders: [
@@ -28,36 +24,17 @@ module.exports = {
 
         }
       },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
     ],
   },
-  resolve: {
-    alias: {
-      react: path.resolve('./node_modules/react'),
-    },
-  },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
-  },
   plugins: [
-    new CleanPlugin('build/'),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new UglifyJsPlugin({ minimize: true, compress: { warnings: false } }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env.NODE_ENV': '"production"'
     }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    new webpack.NoErrorsPlugin(),
   ],
 };
-
