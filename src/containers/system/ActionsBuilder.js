@@ -14,7 +14,7 @@ class ActionsBuilder extends Component {
             actions={actions.map(action => ({
               name: action.name,
             }))}
-            actionName={actions[this.state.selectedIndex].name}
+            actionName={actions.length > 0 ? actions[this.state.selectedIndex].name : 'No Actions'}
             selectedIndex={this.state.selectedIndex}
             onActionChange={(newActions, addedActionName, deletedActionName) => {
               if (addedActionName) {
@@ -27,8 +27,8 @@ class ActionsBuilder extends Component {
             onActionSelected={(_, selectedIndex) => {
               this.setState({ selectedIndex });
             }}
-            actionType={actions[this.state.selectedIndex].type}
-            actionCode={actions[this.state.selectedIndex].content}
+            actionType={actions.length > 0 ? actions[this.state.selectedIndex].type : ''}
+            actionCode={actions.lenght > 0 ? actions[this.state.selectedIndex].content : ''}
             onUpload={(code) => {
               saveAction(actions[this.state.selectedIndex].name, code);
             }}
