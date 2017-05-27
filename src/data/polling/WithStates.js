@@ -88,14 +88,21 @@ class WithStates extends Component {
     }
   }
   render() {
-    const { children } = this.props;
+    const { children, renderWhileLoading } = this.props;
     const { hasData, states } = this.state;
-    return (hasData && children) ? children({ states, addState, deleteState, saveState }) : null;
+
+    if (hasData && children){
+      return children({ states, addState, deleteState, saveState });
+    }else if (children && renderWhileLoading){
+      return children({ states: [], addState, deleteState, saveState });
+    }
+    return null;
   }
 }
 
 WithStates.propTypes = {
   children: PropTypes.node,
+  renderWhileLoading: PropTypes.bool,
 };
 
 WithStates.defaultProps = {

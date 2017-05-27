@@ -8,7 +8,9 @@ class ActionsBuilder extends Component {
   };
   render() {
     return (
-      <WithActions>
+      <WithActions
+        renderWhileLoading
+      >
         {({ actions, addAction, deleteAction, saveAction }) => (
           <ActionBuilder
             actions={actions.map(action => ({

@@ -93,20 +93,22 @@ class WithStates extends Component {
     }
   }
   render() {
-    const { children } = this.props;
+    const { children, renderWhileLoading } = this.props;
     const { hasData, actions } = this.state;
-    return (
-      (hasData && children) ?
-        children({ actions, addAction, deleteAction, saveAction, executeAction }) :
-        null
-    );
+
+    if (hasData && children){
+      return children({ actions, addAction, deleteAction, saveAction, executeAction });
+    }else if (children && renderWhileLoading){
+      return children({ actions: [ ], addAction, deleteAction, saveAction, executeAction });
+    }
+    return null;
   }
 }
 
 WithStates.propTypes = {
   children: PropTypes.func.isRequired,
+  renderWhileLoading: PropTypes.bool,
 };
-
 
 export default WithStates;
 

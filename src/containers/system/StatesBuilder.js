@@ -8,7 +8,9 @@ class ActionsBuilder extends Component {
   };
   render() {
     return (
-      <WithStates>
+      <WithStates
+        renderWhileLoading
+      >
         {({ states, addState, deleteState, saveState }) => (
           <StateBuilder
             states={states.map(state => ({
