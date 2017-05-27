@@ -4539,10 +4539,6 @@ react-chartjs-2@^2.0.0:
   dependencies:
     lodash.isequal "^4.4.0"
 
-react-contenteditable@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-contenteditable/-/react-contenteditable-2.0.2.tgz#0acf68920931c227d1c9c85ae429981920f8fd92"
-
 react-docgen@^2.12.1:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-2.14.0.tgz#3c822f539edc93d4683fb2cde93804062b7deb05"
