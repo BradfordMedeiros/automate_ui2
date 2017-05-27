@@ -1,11 +1,10 @@
 import React from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import WithEvents from '../data/WithEvents';
+import WithEvents from '../data/polling/WithEvents';
 
 class EventLog extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       fixedHeader: true,
       fixedFooter: true,

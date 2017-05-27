@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { Subheader } from 'material-ui';
 import { Line } from 'react-chartjs-2';
-import WithMongo from '../../../../../data/WithMongo';
+import WithMongo from '../../../../../data/polling/WithMongo';
 
 const options = {
   responsive: true,

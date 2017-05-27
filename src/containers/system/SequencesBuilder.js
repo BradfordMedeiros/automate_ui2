@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SequenceBuilderComponent from '../../components/systemBuilder/sequenceBuilder/SequenceBuilder';
-import WithSequences from '../../data/WithSequences';
-import WithActions from '../../data/WithActions';
+import WithSequences from '../../data/polling/WithSequences';
+import WithActions from '../../data/polling/WithActions';
 
 const generateMetaActionMap = actions => ({
   action: {

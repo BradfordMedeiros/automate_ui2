@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'material-ui/Slider';
 import { List } from 'immutable';
-import WithMqtt from '../../../../../../data/WithMqtt';
+import WithMqtt from '../../../../../../data/pubsub/WithMqtt';
 import './style.css';
 
 class LightDimmerTile extends Component {

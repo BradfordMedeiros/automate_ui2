@@ -1,5 +1,5 @@
 import React from 'react';
-import WithSystemInfo from '../data/WithSystemInfo';
+import WithSystemInfo from '../data/polling/WithSystemInfo';
 import DeviceInfoComponent from '../components/device/DeviceInfo';
 
 const DeviceInfo = () => (

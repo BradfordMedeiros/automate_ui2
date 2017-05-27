@@ -178,6 +178,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onSetContent: (reactNode) => {
+    window.d = dispatch;
     dispatch(setContent(() => reactNode));
     dispatch(expandMenu(true));
   },

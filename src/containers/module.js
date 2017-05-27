@@ -27,6 +27,7 @@ export const lock = isLocked => ({
   isLocked,
 });
 
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'set_menu': {

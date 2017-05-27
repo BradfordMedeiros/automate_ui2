@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithSequences from '../../../../../data/WithSequences';
+import WithSequences from '../../../../../data/polling/WithSequences';
 import './style.css';
 
 class Sequences extends Component {

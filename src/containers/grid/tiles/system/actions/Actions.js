@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithActions from '../../../../../data/WithActions';
+import WithActions from '../../../../../data/polling/WithActions';
 import './style.css';
 
 

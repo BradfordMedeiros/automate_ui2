@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { List, ListItem, Subheader, IconButton } from 'material-ui';
 import { AvPlayArrow, AvPause } from 'material-ui/svg-icons';
-import WithConditions from '../../../../../data/WithConditions';
-import WithMqtt from '../../../../../data/WithMqtt';
+import WithConditions from '../../../../../data/polling/WithConditions';
+import WithMqtt from '../../../../../data/pubsub/WithMqtt';
 import './style.css';
 
 const createMqttTopic = conditionName => `/automate_sys/req/condtions/${conditionName}`;

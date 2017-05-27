@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithStates from '../../../../../data/WithStates';
+import WithStates from '../../../../../data/polling/WithStates';
 import './style.css';
 
 

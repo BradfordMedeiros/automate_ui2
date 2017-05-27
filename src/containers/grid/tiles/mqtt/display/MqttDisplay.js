@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { TextField, RaisedButton } from 'material-ui';
 import { List } from 'immutable';
 import './style.css';
-import WithMqtt from '../../../../../data/WithMqtt';
+import WithMqtt from '../../../../../data/pubsub/WithMqtt';
 
 class MqttTile extends Component {
   render() {
@@ -13,6 +13,7 @@ class MqttTile extends Component {
         <WithMqtt topics={content} >
           {
               (stuff) => {
+                console.log('with mqtt display');
                 const value = stuff[savedContent];
                 return (
                   <div>

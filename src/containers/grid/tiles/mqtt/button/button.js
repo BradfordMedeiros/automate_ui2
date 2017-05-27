@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { List } from 'immutable';
 import './style.css';
-import WithMqtt from '../../../../../data/WithMqtt';
+import WithMqtt from '../../../../../data/pubsub/WithMqtt';
 
 class MqttTile extends Component {
   render() {

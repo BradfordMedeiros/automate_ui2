@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Subheader } from 'material-ui';
 import { Radar } from 'react-chartjs-2';
-import WithMongo from '../../../../../data/WithMultiMongo';
+import WithMongo from '../../../../../data/polling/WithMultiMongo';
 
 const options = {
   title: {
