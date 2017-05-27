@@ -88,7 +88,26 @@ class MenuContainer extends Component {
             },
             {
               label: 'My Grids',
-              children: [...menuItems],
+              children: [
+                {
+                  label: 'Add Grid +',
+                  onClick: () => {
+                    this.setState({
+                      showAddDialog: true,
+                      gridName: null,
+                    });
+                  },
+                },
+                {
+                  label: 'Set Background',
+                  onClick: () => {
+                    this.setState({
+                      showSetBackgroundDialog: true,
+                    });
+                  },
+                },
+                ...menuItems,
+              ],
             },
             {
               label: 'System',
@@ -137,23 +156,6 @@ class MenuContainer extends Component {
                 },
               ],
             },
-            /*{
-              label: 'Set Background',
-              onClick: () => {
-                this.setState({
-                  showSetBackgroundDialog: true,
-                });
-              },
-            },*/
-            /*{
-              label: 'Add Grid +',
-              onClick: () => {
-                this.setState({
-                  showAddDialog: true,
-                  gridName: null,
-                });
-              },
-            },*/
           ]}
         />
       </div>
