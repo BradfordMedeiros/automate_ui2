@@ -7,7 +7,7 @@ class Alert extends Component {
     showNotification: false,
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.message === nextProps.message) {
+    if (this.props.topic === nextProps.topic) {
       this.setState({
         showNotification: true,
         numberOfItems: this.state.numberOfItems + 1,
@@ -20,13 +20,13 @@ class Alert extends Component {
     }
   }
   render() {
-    const { message } = this.props;
+    const { message, topic } = this.props;
     const numberString = (this.state.numberOfItems > 1) ? `(${this.state.numberOfItems})` : '';
     return (
       <div>
         <Snackbar
           open={this.state.showNotification}
-          message={`${message} ${numberString}`}
+          message={`topic: ${topic} message: ${message} ${numberString}`}
           autoHideDuration={4000}
           onRequestClose={() => {
             this.setState({
@@ -42,7 +42,8 @@ class Alert extends Component {
   }
 }
 
-Notification.propTypes = {
+Alert.propTypes = {
+  topic: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
 };
 export default Alert;

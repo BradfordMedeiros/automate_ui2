@@ -14,6 +14,7 @@ class WithMqtt extends Component {
     this.state = {
       client: connect(MQTT_URL),
       topics: fromJS({}),
+      newTopic: undefined,
     };
   }
   componentWillMount() {
@@ -22,7 +23,7 @@ class WithMqtt extends Component {
       try {
         const parsedMessage = message.toString();
         const newTopic = this.state.topics.set(topic, parsedMessage);
-        this.setState({ topics: newTopic });
+        this.setState({ topics: newTopic, newTopic: { topic, message: parsedMessage } });
       } catch (error) {
         console.error('error ', error); // eslint-disable-line no-console
       }
@@ -51,7 +52,7 @@ class WithMqtt extends Component {
 
     const publish = (topic, message, options, callback) => this.state.client.publish(
       topic, message, (options || DEFAULT_MQTT_PUBLISH_OPTIONS), callback);
-    return children ? children(topicProps, publish) : null;
+    return children ? children(topicProps, publish, this.state.newTopic) : null;
   }
 }
 

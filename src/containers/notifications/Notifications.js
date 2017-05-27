@@ -1,32 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import WithEvents from '../../data/pubsub/WithEvents';
 import Alert from './Alert';
 
-class Notifications extends Component {
-  render() {
-    const { text, popText } = this.props;
-    return (
-      <div>
-        <WithEvents>
-          {({ event }) => {
-            console.log('got new event');
-            return (
-              <Alert
-                message={event}
-              />
-            );
-          }}
-        </WithEvents>
-
-      </div>
-    );
-  }
-}
-
-Notification.propTypes = {
-  text: PropTypes.string,
-  popText: PropTypes.func.isRequired,
-};
+const Notifications = () => (
+  <div>
+    <WithEvents>
+      {({ events, newEvent }) => {
+        if (!newEvent) {
+          return null;
+        }
+        return (
+          <Alert
+            topic={newEvent.topic}
+            message={newEvent.message}
+          />
+        );
+      }}
+    </WithEvents>
+  </div>
+);
 
 export const container = Notifications; //eslint-disable-line
 
