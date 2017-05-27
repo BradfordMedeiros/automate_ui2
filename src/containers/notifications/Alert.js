@@ -11,17 +11,17 @@ class Alert extends Component {
       this.setState({
         showNotification: true,
         numberOfItems: this.state.numberOfItems + 1,
-      })
-    }else{
+      });
+    } else {
       this.setState({
         showNotification: true,
         numberOfItems: 1,
-      })
+      });
     }
   }
   render() {
     const { message } = this.props;
-    const numberString  = (this.state.numberOfItems > 1) ? `(${this.state.numberOfItems})` : '';
+    const numberString = (this.state.numberOfItems > 1) ? `(${this.state.numberOfItems})` : '';
     return (
       <div>
         <Snackbar
@@ -32,7 +32,7 @@ class Alert extends Component {
             this.setState({
               numberOfItems: 1,
               showNotification: false,
-            })
+            });
           }}
         />
         )

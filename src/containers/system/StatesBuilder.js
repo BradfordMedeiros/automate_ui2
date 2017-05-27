@@ -30,7 +30,7 @@ class ActionsBuilder extends Component {
             stateType={states[this.state.selectedIndex].type}
             stateCode={states[this.state.selectedIndex].content}
             onUpload={(code) => {
-                saveState(states[this.state.selectedIndex].name, code);
+              saveState(states[this.state.selectedIndex].name, code);
             }}
           />
           )}

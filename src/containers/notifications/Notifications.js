@@ -10,11 +10,11 @@ class Notifications extends Component {
         <WithEvents>
           {({ event }) => {
             console.log('got new event');
-            return(
+            return (
               <Alert
                 message={event}
               />
-            )
+            );
           }}
         </WithEvents>
 
@@ -29,5 +29,4 @@ Notification.propTypes = {
 };
 
 export const container = Notifications; //eslint-disable-line
-
 

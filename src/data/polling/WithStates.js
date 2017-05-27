@@ -23,7 +23,7 @@ const createStateFromSimpleFunction = (evalLogicString) => {
   // kind of dangerous but frontend anyway so who really cares
   const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
   if (typeof (isFunction) !== typeof (() => {
-    })) {
+  })) {
     throw (new Error('must be a function'));
   }
   const stringToSend = `() => {
@@ -33,7 +33,7 @@ const createStateFromSimpleFunction = (evalLogicString) => {
   return stringToSend;
 };
 
-const saveState= async (stateName, evalLogic) => {
+const saveState = async (stateName, evalLogic) => {
   const stateEval = createStateFromSimpleFunction(evalLogic);
 
   return (
@@ -49,7 +49,6 @@ const saveState= async (stateName, evalLogic) => {
     })
   );
 };
-
 
 
 class WithStates extends Component {
