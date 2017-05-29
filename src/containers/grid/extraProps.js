@@ -1,10 +1,10 @@
 
 const extraPropMapping = {
   Display: {
-    maxW: 6,
+    maxW: 4,
     maxH: 6,
-    minH: 2,
-    minW: 2,
+    minH: 6,
+    minW: 4,
   },
   Button: {
     maxW: 2,
@@ -14,13 +14,13 @@ const extraPropMapping = {
   },
   'Dimmer (Vertical)': {
     minW: 1,
-    maxW: 5,
+    maxW: 1,
     minH: 8,
   },
   'Dimmer (Horizontal)': {
-    minH: 1,
-    maxH: 5,
-    minW: 8,
+    minH: 2,
+    maxH: 2,
+    minW: 4,
   },
 };
 

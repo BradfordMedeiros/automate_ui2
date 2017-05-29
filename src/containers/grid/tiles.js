@@ -32,7 +32,16 @@ import StateBuilder from '../system/StatesBuilder';
 
 export const tileNames = [
   {
-    label: 'Tools',
+    label: 'Core',
+    children: [
+      'System - States',
+      'System - Actions',
+      //'System - Conditions',
+      'Engines - Sequences',
+    ],
+  },
+  {
+    label: 'Controls',
     children: [
       'Display',
       'Button',
@@ -47,15 +56,6 @@ export const tileNames = [
       'Line Chart',
       'Pie Chart',
       'Radar Chart',
-    ],
-  },
-  {
-    label: 'System',
-    children: [
-      'States',
-      'Actions',
-      'Conditions',
-      'Sequences',
     ],
   },
   {
