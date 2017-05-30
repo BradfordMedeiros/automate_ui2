@@ -2,9 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
 class Alert extends Component {
-  state = {
-    numberOfItems: 1,
-    showNotification: false,
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      numberOfItems: 1,
+      showNotification: false,
+    };
+    if (props.message) {
+      this.state.showNotification = true;
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.topic === nextProps.topic) {
@@ -21,6 +28,8 @@ class Alert extends Component {
   }
   render() {
     const { message, topic } = this.props;
+    console.log('rendering: ', topic, ' message: ', message);
+
     const numberString = (this.state.numberOfItems > 1) ? `(${this.state.numberOfItems})` : '';
     return (
       <div>

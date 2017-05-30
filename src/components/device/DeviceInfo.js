@@ -18,6 +18,7 @@ const DeviceInfo = ({ ipAddress, macAddress, automateCoreVersion }) => (
 );
 
 DeviceInfo.propTypes = {
+  automateCoreVersion: PropTypes.string.isRequired,
   ipAddress: PropTypes.string.isRequired,
   macAddress: PropTypes.string.isRequired,
 };

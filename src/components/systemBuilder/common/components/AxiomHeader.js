@@ -19,7 +19,8 @@ const getStyle = (actionType, style) => ({
 
 const AxiomHeader = ({ actionType, style }) => {
   if (Object.keys(colorMap).indexOf(actionType) < 0) {
-    console.error('action type not supported: ', actionType);
+    console.error('action type not supported: ', actionType); // eslint-disable-line
+    return null;
   }
   return (
     <div
@@ -29,7 +30,6 @@ const AxiomHeader = ({ actionType, style }) => {
       <div className="typeValue" style={{ display: 'inline', color: 'white', paddingLeft: 20 }}>{actionType}</div>
     </div>
   );
-  return null;
 };
 
 AxiomHeader.propTypes = {

@@ -9,7 +9,7 @@ const liStyle = {
 };
 
 class Menu extends Component {
-  renderItem = (item, index) => {
+  renderItem = (item) => {
     if (typeof (item) === 'string') {
       return (
         <ListItem style={liStyle}>
@@ -21,7 +21,7 @@ class Menu extends Component {
       return (
         <ListItem
           primaryTogglesNestedList
-          nestedItems={item.children.map(item => this.renderItem(item))}
+          nestedItems={item.children.map(childItem => this.renderItem(childItem))}
           style={liStyle}
         >
           <div className="liname">{item.label}</div>

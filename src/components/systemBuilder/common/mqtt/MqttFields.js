@@ -14,7 +14,7 @@ const MqttFields = ({ topic }) => (
   </div>
 );
 
-MqttValue.propTypes = {
+MqttFields.propTypes = {
   topic: PropTypes.string.isRequired,
 };
 

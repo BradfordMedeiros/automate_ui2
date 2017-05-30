@@ -19,7 +19,7 @@ class JavascriptsFields extends Component {
     editEnabled: false,
   }
   render() {
-    const { initialText, upload } = this.props;
+    const { initialText } = this.props;
     return (
       <div>
         <ItemWrapper
@@ -56,7 +56,6 @@ class JavascriptsFields extends Component {
 
 JavascriptsFields.propTypes = {
   initialText: PropTypes.string,
-  upload: PropTypes.func,
 };
 
 export default JavascriptsFields;

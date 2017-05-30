@@ -10,7 +10,7 @@ const DeviceInfo = () => (
       <DeviceInfoComponent
         ipAddress={public_ip_address} // eslint-disable-line
         macAddress={mac_address}  // eslint-disable-line
-        automateCoreVersion={automate_core_version}
+        automateCoreVersion={automate_core_version} // eslint-disable-line
       />
     )}
   </WithSystemInfo>

@@ -6,7 +6,6 @@ const EditorControls = ({
   onUploadClicked,
   onRevertClicked,
   onEditModeClicked,
-  codeHasChanged,
   disableRevert,
   hideUpload,
   hideRevert,
