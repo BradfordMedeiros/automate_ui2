@@ -17,7 +17,6 @@ import MongoLine from './tiles/graphs/line/mongoTile';
 import MongoPie from './tiles/graphs/pie/MongoPie';
 import MongoRadar from './tiles/graphs/radar/MongoRadar';
 import MongoBar from './tiles/graphs/bar/MongoBar';
-import { overlay as MongoOverlay } from './tiles/graphs/line/mongoOverlay';
 
 import Conditions from './tiles/system/conditions/Conditions';
 import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';

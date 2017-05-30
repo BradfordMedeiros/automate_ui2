@@ -14,7 +14,6 @@ import Footer from './components/footer/footer';
 
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
-import SpeechRecognition from './SpeechRecognition';
 import { container as DisconnectedOverlay } from './containers/disconnected_overlay/DisconnectedOverlay';
 
 const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0, overflow: 'hidden' };

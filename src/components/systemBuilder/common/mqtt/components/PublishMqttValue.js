@@ -30,7 +30,6 @@ class PublishMqttValue extends Component {
                 label="Publish"
                 style={{ marginRight: 60 }}
                 onClick={() => {
-                  console.error('want to publish topic: ', topic, ' with value: ', this.state.topicValue.toString());
                   publish(topic, this.state.topicValue.toString());
                 }}
               />

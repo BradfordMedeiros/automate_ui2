@@ -3,8 +3,11 @@ import { List } from 'immutable';
 import WithMqtt from './WithMqtt';
 
 const WithEvents = ({ children }) => (
-  <WithMqtt topics={List(['event/#'])}>
-    {(topics, publish, newTopic) => children ? children({ events: topics, newEvent: newTopic }) : null}
+  <WithMqtt topics={List(['/event/#'])}>
+    {(topics, publish, newTopic) => {
+      console.log('got newTopic: ', newTopic);
+      return children ? children({ events: topics, newEvent: newTopic }) : null
+    }}
   </WithMqtt>
 );
 

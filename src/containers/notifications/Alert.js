@@ -43,9 +43,7 @@ class Alert extends Component {
               showNotification: false,
             });
           }}
-        />
-        )
-
+        />)
       </div>
     );
   }
