@@ -28,7 +28,6 @@ class Alert extends Component {
   }
   render() {
     const { message, topic } = this.props;
-    console.log('rendering: ', topic, ' message: ', message);
 
     const numberString = (this.state.numberOfItems > 1) ? `(${this.state.numberOfItems})` : '';
     return (

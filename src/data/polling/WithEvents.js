@@ -20,7 +20,6 @@ const request = async () => {
   }
 };
 
-
 class WithEvents extends Component {
   constructor(props) {
     super(props);

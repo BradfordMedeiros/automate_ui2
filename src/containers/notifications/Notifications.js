@@ -5,7 +5,7 @@ import Alert from './Alert';
 const Notifications = () => (
   <div>
     <WithEvents>
-      {({ events, newEvent }) => {
+      {({ newEvent }) => {
         if (!newEvent) {
           return null;
         }

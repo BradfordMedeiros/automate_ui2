@@ -178,9 +178,8 @@ const mapStateToProps = state => ({
   grids: state.getIn(['gridReducer', 'grids']),
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   onSetContent: (reactNode) => {
-    window.d = dispatch;
     dispatch(setContent(() => reactNode));
     dispatch(expandMenu(true));
   },

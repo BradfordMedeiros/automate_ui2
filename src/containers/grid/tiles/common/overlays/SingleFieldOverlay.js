@@ -30,7 +30,7 @@ class MqttOverlay extends Component {
           onChange={(x) => {
             this.setState({
               topic: x.target.value,
-            }); 7;
+            });
           }}
           hintText={fieldName}
         />

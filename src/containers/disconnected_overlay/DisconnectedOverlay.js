@@ -27,8 +27,7 @@ class Disconnection extends Component {
           Accept: 'application/json',
         },
       });
-      const status = await response.json();
-      window.s = status;
+      await response.json();
       if (isDisconnected) {
         onSetIsConnected();
       }

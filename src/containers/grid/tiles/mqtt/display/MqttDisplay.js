@@ -13,7 +13,6 @@ class MqttTile extends Component {
         <WithMqtt topics={content} >
           {
               (stuff) => {
-                console.log('with mqtt display');
                 const value = stuff[savedContent];
                 return (
                   <div>
