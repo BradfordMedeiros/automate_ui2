@@ -14,7 +14,7 @@ class Alert extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.topic === nextProps.topic) {
+    if ((this.props.topic === nextProps.topic) && (this.props.message === nextProps.message)) {
       this.setState({
         showNotification: true,
         numberOfItems: this.state.numberOfItems + 1,
