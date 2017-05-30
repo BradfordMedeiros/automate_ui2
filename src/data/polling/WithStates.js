@@ -66,7 +66,6 @@ class WithStates extends Component {
   componentWillUnmount() {
     clearInterval(this.handle);
   }
-
   getData = async () => {
     try {
       const response = await fetch(STATES_URL, {
