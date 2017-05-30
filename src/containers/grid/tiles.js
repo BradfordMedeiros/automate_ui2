@@ -104,13 +104,13 @@ const InnerTile = (props) => {
     case 'Conditions': {
       return <Conditions />;
     }
-    case 'Sequences': {
+    case 'Engines - Sequences': {
       return <Sequences />;
     }
-    case 'States': {
+    case 'System - States': {
       return <States />;
     }
-    case 'Actions': {
+    case 'System - Actions': {
       return <Actions />;
     }
     default : {
@@ -173,13 +173,13 @@ class TileOverlay extends Component {
       case 'Conditions' : {
         return <ConditionsOverlay {...otherProps} />;
       }
-      case 'Sequences': {
+      case 'Engines - Sequences': {
         return <SequenceBuilder />;
       }
-      case 'States': {
+      case 'System - States': {
         return <StateBuilder />;
       }
-      case 'Actions': {
+      case 'System - Actions': {
         return <ActionBuilder />;
       }
       default : {

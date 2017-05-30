@@ -30,7 +30,7 @@ persistStore(store,
 
 const App = () => (
   <div>
-    <Helmet title="Automate" />
+    <Helmet title="automate" />
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Provider store={store} >
         <div>
