@@ -96,10 +96,10 @@ class WithStates extends Component {
     const { children, renderWhileLoading } = this.props;
     const { hasData, actions } = this.state;
 
-    if (hasData && children){
+    if (hasData && children) {
       return children({ actions, addAction, deleteAction, saveAction, executeAction });
-    }else if (children && renderWhileLoading){
-      return children({ actions: [ ], addAction, deleteAction, saveAction, executeAction });
+    } else if (children && renderWhileLoading) {
+      return children({ actions: [], addAction, deleteAction, saveAction, executeAction });
     }
     return null;
   }

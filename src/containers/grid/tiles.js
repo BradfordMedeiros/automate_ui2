@@ -11,6 +11,7 @@ import { tile as MqttButtonTile } from './tiles/mqtt/button/button';
 import { overlay as MqttButtonOverlay } from './tiles/mqtt/button/buttonOverlay';
 
 import { tile as IFrameTile } from './tiles/misc/IFrame';
+import { overlay as IFrameOverlay } from './tiles/misc/IFrameOverlay';
 
 import MongoLine from './tiles/graphs/line/mongoTile';
 import MongoPie from './tiles/graphs/pie/MongoPie';
@@ -30,13 +31,15 @@ import SequenceBuilder from '../system/SequencesBuilder';
 import ActionBuilder from '../system/ActionsBuilder';
 import StateBuilder from '../system/StatesBuilder';
 
+import SingleFieldOverlay from './tiles/common/overlays/SingleFieldOverlay';
+
 export const tileNames = [
   {
     label: 'Core',
     children: [
       'System - States',
       'System - Actions',
-      //'System - Conditions',
+      // 'System - Conditions',
       'Engines - Sequences',
     ],
   },
@@ -151,19 +154,19 @@ class TileOverlay extends Component {
         return <MqttSliderOverlay {...otherProps} />;
       }
       case 'Line Chart': {
-        return <MongoOverlay {...otherProps} />;
+        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
       }
       case 'Pie Chart': {
-        return <MongoOverlay {...otherProps} />;
+        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
       }
       case 'Radar Chart': {
-        return <MongoOverlay {...otherProps} />;
+        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
       }
       case 'Bar Graph': {
-        return <MongoOverlay {...otherProps} />;
+        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
       }
       case 'IFrame': {
-        return <MqttOverlay {...otherProps} />;
+        return <IFrameOverlay {...otherProps} />;
       }
       case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;

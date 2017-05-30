@@ -51,7 +51,7 @@ class Layout extends Component {
             right={desktopStyles.overlay(hideMenu).right}
           />
           <Footer />
-          {/*<SpeechRecognition /> */}
+          {/* <SpeechRecognition /> */}
           <DisconnectedOverlay />
           <Notifications />
         </Desktop>
@@ -74,7 +74,7 @@ class Layout extends Component {
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
           <Footer />
-          {/*<SpeechRecognition /> */}
+          {/* <SpeechRecognition /> */}
           <DisconnectedOverlay />
           <Notifications />
         </Mobile>

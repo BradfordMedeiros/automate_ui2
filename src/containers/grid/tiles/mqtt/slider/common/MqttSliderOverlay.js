@@ -50,6 +50,7 @@ class MqttOverlay extends Component {
         <div className="mqtt_slider_overlay_text">
           saved content: {savedContent && savedContent.topic}</div>
         <RaisedButton
+          style={{ margin: 10 }}
           onClick={() =>
             saveContent({
               topic: this.state.topic,
