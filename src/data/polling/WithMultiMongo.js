@@ -1,4 +1,3 @@
-
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
