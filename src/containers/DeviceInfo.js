@@ -1,6 +1,8 @@
 import React from 'react';
-import WithSystemInfo from '../data/polling/WithSystemInfo';
+import WithData from '../data/WithData';
 import DeviceInfoComponent from '../components/device/DeviceInfo';
+
+const WithSystemInfo = WithData.polling.WithSystemInfo;
 
 const DeviceInfo = () => (
   <WithSystemInfo

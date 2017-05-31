@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 const REFRESH_RATE = 1000;
 
-const getWithSequences = AUTOMATE_CORE_URL => {
+const getWithSequences = (AUTOMATE_CORE_URL) => {
   const SEQUENCE_URL = `${AUTOMATE_CORE_URL}/sequences`;
 
   const addSequence = (sequenceName, actions) => {
@@ -81,5 +81,5 @@ const getWithSequences = AUTOMATE_CORE_URL => {
   return WithSequences;
 };
 
-export default getWithSequences('http://127.0.0.1:9000');
+export default getWithSequences;
 

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { List } from 'immutable';
-import WithMqtt from '../../../../../data/pubsub/WithMqtt';
 import MqttOverlay from '../../common/overlays/SingleFieldOverlay';
+import WithData from '../../../../../data/WithData';
 import './style.css';
+
+const WithMqtt = WithData.pubsub.WithMqtt;
 
 class MqttTile extends Component {
   render() {

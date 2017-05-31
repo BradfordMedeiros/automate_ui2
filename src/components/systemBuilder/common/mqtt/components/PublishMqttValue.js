@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 import { fromJS } from 'immutable';
-import WithMqtt from '../../../../../data/pubsub/WithMqtt';
+import WithData from '../../../../../data/WithData';
+
+const WithMqtt = WithData.pubsub.WithMqtt;
 
 class PublishMqttValue extends Component {
   state = {

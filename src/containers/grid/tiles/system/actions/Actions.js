@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithActions from '../../../../../data/polling/WithActions';
+import WithData from '../../../../../data/WithData';
 import './style.css';
 
 
+const WithActions = WithData.polling.WithActions;
 class Actions extends Component {
   componentWillReceiveProps(props) {
     const { actionToPerform } = props;

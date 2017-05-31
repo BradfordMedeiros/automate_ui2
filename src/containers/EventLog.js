@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import WithEvents from '../data/polling/WithEvents';
+import WithData from '../data/WithData';
+
+const WithEvents = WithData.polling.WithEvents;
 
 class EventLog extends React.Component {
   constructor(props) {

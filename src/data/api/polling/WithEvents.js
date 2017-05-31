@@ -1,8 +1,8 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
-const getWithEvents = AUTOMATE_CORE_URL => {
-  const url  = `${AUTOMATE_CORE_URL}/events`;
+const getWithEvents = (AUTOMATE_CORE_URL) => {
+  const url = `${AUTOMATE_CORE_URL}/events`;
   const request = async () => {
     try {
       const response = await fetch(url, {
@@ -75,4 +75,4 @@ const getWithEvents = AUTOMATE_CORE_URL => {
 };
 
 
-export default getWithEvents('http://localhost:9000');
+export default getWithEvents;

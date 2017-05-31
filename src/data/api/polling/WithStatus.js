@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 
 const REFRESH_RATE = 1000;
 
-const getWithStatus = AUTOMATE_CORE_URL => {
+const getWithStatus = (AUTOMATE_CORE_URL) => {
   const STATUS_INFO = `${AUTOMATE_CORE_URL}/status`;
 
   class WithStatus extends Component {

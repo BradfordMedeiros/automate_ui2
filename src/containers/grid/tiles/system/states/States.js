@@ -1,9 +1,9 @@
-
 import React, { Component } from 'react';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithStates from '../../../../../data/polling/WithStates';
+import WithData from '../../../../../data/WithData';
 import './style.css';
 
+const WithStates = WithData.polling.WithStates;
 
 class States extends Component {
   render() {

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { List, ListItem, Subheader } from 'material-ui';
-import WithSequences from '../../../../../data/polling/WithSequences';
+import WithData from '../../../../../data/WithData';
 import './style.css';
+
+const WithSequences = WithData.polling.WithSequences;
 
 class Sequences extends Component {
   render() {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ActionBuilder from '../../components/systemBuilder/actionBuilder/ActionBuilder';
-import WithActions from '../../data/polling/WithActions';
+import WithData from '../../data/WithData';
+
+const WithActions = WithData.polling.WithActions;
 
 class ActionsBuilder extends Component {
   state = {

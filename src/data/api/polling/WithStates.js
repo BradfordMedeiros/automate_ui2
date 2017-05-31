@@ -1,18 +1,30 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
+
 const REFRESH_RATE = 1000;
 
-const getWithActions = AUTOMATE_CORE_URL => {
+const getWithStates = (AUTOMATE_CORE_URL) => {
+  const STATES_URL = `${AUTOMATE_CORE_URL}/states`;
 
-  const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions`;
+  const deleteState = async stateName => (
+    fetch(`${STATES_URL}/${stateName}`, {
+      method: 'DELETE',
+    })
+  );
 
-  // need to send a stringified version of the function to send to the server
-  // The function must return the state as a json string via stdout
+  const addState = async stateName => (
+    fetch(`${STATES_URL}/modify/${stateName}`, {
+      method: 'POST',
+    })
+  );
+
+// need to send a stringified version of the function to send to the server
+// The function must return the state as a json string via stdout
   const createStateFromSimpleFunction = (evalLogicString) => {
     // kind of dangerous but frontend anyway so who really cares
     const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
     if (typeof (isFunction) !== typeof (() => {
-      })) {
+    })) {
       throw (new Error('must be a function'));
     }
     const stringToSend = `() => {
@@ -22,17 +34,17 @@ const getWithActions = AUTOMATE_CORE_URL => {
     return stringToSend;
   };
 
-  const saveAction = async (actionName, evalLogic) => {
-    const actionEval = createStateFromSimpleFunction(evalLogic);
+  const saveState = async (stateName, evalLogic) => {
+    const stateEval = createStateFromSimpleFunction(evalLogic);
 
     return (
-      fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+      fetch(`${STATES_URL}/modify/${stateName}`, {
         headers: new Headers({
           'Content-Type': 'application/json',
           Accept: 'application/json',
         }),
         body: JSON.stringify({
-          actionEval,
+          stateEval,
         }),
         method: 'POST',
       })
@@ -40,26 +52,7 @@ const getWithActions = AUTOMATE_CORE_URL => {
   };
 
 
-  const addAction = async actionName => (
-    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
-      method: 'POST',
-    })
-  );
-
-  const deleteAction = async actionName => (
-    fetch(`${ACTIONS_URL}/${actionName}`, {
-      method: 'DELETE',
-    })
-  );
-
-
-  const executeAction = async actionName => (
-    fetch(`${ACTIONS_URL}/${actionName}`, {
-      method: 'POST',
-    })
-  );
-
-  class WithActions extends Component {
+  class WithStates extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -68,15 +61,15 @@ const getWithActions = AUTOMATE_CORE_URL => {
       this.handle = undefined;
     }
     componentWillMount() {
-      this.handle = setInterval(this.getData, REFRESH_RATE);
       this.getData();
+      this.handle = setInterval(this.getData, REFRESH_RATE);
     }
     componentWillUnmount() {
       clearInterval(this.handle);
     }
     getData = async () => {
       try {
-        const response = await fetch(ACTIONS_URL, {
+        const response = await fetch(STATES_URL, {
           mode: 'cors',
           method: 'GET',
           headers: {
@@ -84,33 +77,39 @@ const getWithActions = AUTOMATE_CORE_URL => {
           },
         });
         const states = await response.json();
+
         this.setState({
           hasData: true,
-          actions: states.actions,
+          states: states.states,
         });
       } catch (err) {
-        // what to do
+        /* eslint-disable no-console */
+        console.error('error while fetching ', err);
       }
     }
     render() {
       const { children, renderWhileLoading } = this.props;
-      const { hasData, actions } = this.state;
+      const { hasData, states } = this.state;
 
       if (hasData && children) {
-        return children({ actions, addAction, deleteAction, saveAction, executeAction });
+        return children({ states, addState, deleteState, saveState });
       } else if (children && renderWhileLoading) {
-        return children({ actions: [], addAction, deleteAction, saveAction, executeAction });
+        return children({ states: [], addState, deleteState, saveState });
       }
       return null;
     }
   }
 
-  WithActions.propTypes = {
-    children: PropTypes.func.isRequired,
+  WithStates.propTypes = {
+    children: PropTypes.node,
     renderWhileLoading: PropTypes.bool,
   };
 
-  return WithActions;
+  WithStates.defaultProps = {
+    children: undefined,
+  };
+
+  return WithStates;
 };
 
-export default getWithActions('http://127.0.0.1:9000');
+export default getWithStates;

@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 
-const getWithSystemInfo = AUTOMATE_CORE_URL => {
+const getWithSystemInfo = (AUTOMATE_CORE_URL) => {
   const SYSTEM_INFO = `${AUTOMATE_CORE_URL}/info`;
 
   class WithSystemInfo extends Component {
@@ -50,4 +50,4 @@ const getWithSystemInfo = AUTOMATE_CORE_URL => {
 };
 
 
-export default getWithSystemInfo('http://127.0.0.1:9000');
+export default getWithSystemInfo;

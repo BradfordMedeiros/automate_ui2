@@ -1,6 +1,8 @@
 import React from 'react';
-import WithEvents from '../../data/pubsub/WithEvents';
+import WithData from '../../data/WithData';
 import Alert from './Alert';
+
+const WithEvents = WithData.pubsub.WithEvents;
 
 const Notifications = () => (
   <div>

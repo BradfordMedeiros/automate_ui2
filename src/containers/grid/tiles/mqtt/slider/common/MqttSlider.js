@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'material-ui/Slider';
 import { List } from 'immutable';
-import WithMqtt from '../../../../../../data/pubsub/WithMqtt';
+import WithData from '../../../../../../data/WithData';
 import './style.css';
+
+const WithMqtt = WithData.pubsub.WithMqtt;
 
 class LightDimmerTile extends Component {
   getStyle = (axis) => {

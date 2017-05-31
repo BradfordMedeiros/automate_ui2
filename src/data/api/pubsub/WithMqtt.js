@@ -6,7 +6,7 @@ const DEFAULT_MQTT_PUBLISH_OPTIONS = {
   retain: true,
 };
 
-const getWithMqtt = mqttUrl => {
+const getWithMqtt = (mqttUrl) => {
   class WithMqtt extends Component {
     constructor(props) {
       super(props);
@@ -23,7 +23,7 @@ const getWithMqtt = mqttUrl => {
         try {
           const parsedMessage = message.toString();
           const newTopic = this.state.topics.set(topic, parsedMessage);
-          this.setState({topics: newTopic, newTopic: {topic, message: parsedMessage}});
+          this.setState({ topics: newTopic, newTopic: { topic, message: parsedMessage } });
         } catch (error) {
           console.error('error ', error); // eslint-disable-line no-console
         }
@@ -37,7 +37,7 @@ const getWithMqtt = mqttUrl => {
         }
         this.state.client.subscribe(props.topics.toJS());
         this.state.topics = fromJS({});
-        this.setState({topics: this.state.topics});
+        this.setState({ topics: this.state.topics });
       }
     }
 
@@ -46,7 +46,7 @@ const getWithMqtt = mqttUrl => {
     }
 
     render() {
-      const {children} = this.props;
+      const { children } = this.props;
 
       const topicProps = this.state.topics.reduce((theMap, topicValue, topic) => {
         theMap[topic] = topicValue; // eslint-disable-line no-param-reassign
@@ -72,6 +72,5 @@ const getWithMqtt = mqttUrl => {
 };
 
 
-
-const WithMqtt = getWithMqtt('http://127.0.0.1:4000');
+const WithMqtt = getWithMqtt;
 export default WithMqtt;
