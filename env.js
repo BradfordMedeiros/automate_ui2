@@ -1,6 +1,5 @@
 
-const env = {
-  AUTOMATE_CORE_URL: 'http://127.0.0.1:9000',
-};
-
-module.exports = JSON.stringify(env);
+exports.default = ({
+  NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+  IS_PRODUCTION: true,
+});

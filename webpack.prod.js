@@ -1,5 +1,7 @@
 const path = require('path');
+const process = require('process');
 const webpack = require('webpack');
+const env = require('./env').default;
 
 module.exports = {
   devtool: 'eval',
@@ -28,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+      'process.env': env,
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({

@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback -d --hot --inline --port 3000 --host 0.0.0.0",
-    "build": "set NODE_ENV=production && webpack --progress -p --config ./webpack.prod.js",
+    "build": "set NODE_ENV=production && set IS_PRODUCTION=true && webpack --progress -p --config ./webpack.prod.js",
     "lint": "eslint -c .eslintrc.js src/",
     "lintfix": "eslint --fix -c .eslintrc.js src/",
     "test": "echo \"Error: no test specified\" && exit 1",
