@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Subheader } from 'material-ui';
 import { Bar } from 'react-chartjs-2';
-import WithMongo from '../../../../../data/polling/WithMultiMongo';
+import WithData from '../../../../../data/WithData';
+
+const WithMongo = WithData.polling.WithMongo;
 
 const generateData = (data, labels) => ({
   labels,

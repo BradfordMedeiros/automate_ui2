@@ -3,6 +3,7 @@ import getWithStates from './polling/WithStates';
 import getWithActions from './polling/WithActions';
 import getWithSequences from './polling/WithSequences';
 import getWithSystemInfo from './polling/WithSystemInfo';
+import getWithMongo from './polling/WithMongo';
 
 import getWithMqtt from './pubsub/WithMqtt';
 import getWithPubsubEvents from './pubsub/WithEvents';
@@ -15,6 +16,7 @@ const generateHooks = ({ automateUrl, mqttBroker }) => {
       WithEvents: getWithPollingEvents(automateUrl),
       WithSequences: getWithSequences(automateUrl),
       WithSystemInfo: getWithSystemInfo(automateUrl),
+      WithMongo: getWithMongo(automateUrl),
     },
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),
