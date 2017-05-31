@@ -10,8 +10,8 @@ import getWithStatus from './polling/getWithStatus';
 import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
 
-const generateHooks = ({ automateUrl, mqttBroker }) => {
-  const withDataHooks = {
+const generateWithData = ({ automateUrl, mqttBroker }) => {
+  const withData = {
     polling: {
       WithActions: getWithActions(automateUrl),
       WithStates: getWithStates(automateUrl),
@@ -27,8 +27,8 @@ const generateHooks = ({ automateUrl, mqttBroker }) => {
       WithEvents: getWithPubsubEvents(mqttBroker),
     },
   };
-  return withDataHooks;
+  return withData;
 };
 
-export default generateHooks;
+export default generateWithData;
 
