@@ -1,12 +1,14 @@
-import getWithPollingEvents from './polling/WithEvents';
-import getWithStates from './polling/WithStates';
-import getWithActions from './polling/WithActions';
-import getWithSequences from './polling/WithSequences';
-import getWithSystemInfo from './polling/WithSystemInfo';
-import getWithMongo from './polling/WithMongo';
+import getWithPollingEvents from './polling/getWithEvents';
+import getWithStates from './polling/getWithStates';
+import getWithActions from './polling/getWithActions';
+import getWithSequences from './polling/getWithSequences';
+import getWithSystemInfo from './polling/getWithSystemInfo';
+import getWithMongo from './polling/getWithMongo';
+import getWithConditions from './polling/getWithConditions';
+import getWithStatus from './polling/getWithStatus';
 
-import getWithMqtt from './pubsub/WithMqtt';
-import getWithPubsubEvents from './pubsub/WithEvents';
+import getWithMqtt from './pubsub/getWithMqtt';
+import getWithPubsubEvents from './pubsub/getWithEvents';
 
 const generateHooks = ({ automateUrl, mqttBroker }) => {
   const withDataHooks = {
@@ -17,6 +19,8 @@ const generateHooks = ({ automateUrl, mqttBroker }) => {
       WithSequences: getWithSequences(automateUrl),
       WithSystemInfo: getWithSystemInfo(automateUrl),
       WithMongo: getWithMongo(automateUrl),
+      WithConditions: getWithConditions(automateUrl),
+      WithStatus: getWithStatus(automateUrl),
     },
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),

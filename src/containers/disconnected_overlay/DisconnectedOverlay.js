@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import DisconnectedOverlay from '../../components/disconnected_overlay/DisconnectedOverlay';
 import { setIsConnected, setIsDisconnected } from './module';
 import { Mobile, Desktop } from '../../util/ViewportSizing';
-import WithStatus from '../../data/api/polling/WithStatus';
+import WithData from '../../data/WithData';
+
+const WithStatus = WithData.polling.WithStatus;
 
 class Disconnection extends Component {
   render() {

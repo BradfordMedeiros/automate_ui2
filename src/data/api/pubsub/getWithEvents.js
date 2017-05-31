@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
-import getWithMqtt from './WithMqtt';
+import getWithMqtt from './getWithMqtt';
 
 const getWithEvents = (automateUrl) => {
   const WithMqtt = getWithMqtt(automateUrl);

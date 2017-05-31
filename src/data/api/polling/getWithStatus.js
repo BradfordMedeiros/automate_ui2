@@ -71,4 +71,4 @@ const getWithStatus = (AUTOMATE_CORE_URL) => {
 };
 
 
-export default getWithStatus('http://127.0.0.1:9000');
+export default getWithStatus;
