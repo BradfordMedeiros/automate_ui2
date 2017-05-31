@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
+
 const REFRESH_RATE = 1000;
 
 const getWithActions = (AUTOMATE_CORE_URL) => {

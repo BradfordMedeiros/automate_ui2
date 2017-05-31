@@ -1,8 +1,9 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
+
 const REFRESH_RATE = 1000;
 
-const getWithConditions = automateUrl => {
+const getWithConditions = (automateUrl) => {
   const CONDITIONS_URL = `${automateUrl}/conditions`;
 
   class WithConditions extends Component {
@@ -50,7 +51,7 @@ const getWithConditions = automateUrl => {
   };
 
   return WithConditions;
-}
+};
 
 
 export default getWithConditions;

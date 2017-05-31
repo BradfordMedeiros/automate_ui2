@@ -3,7 +3,7 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 
-const getWithMongo = automateURL => {
+const getWithMongo = (automateURL) => {
   const url = `${automateURL}/topics/`;
 
   const request = async (topic) => {
@@ -94,7 +94,6 @@ const getWithMongo = automateURL => {
 
   return WithMongo;
 };
-
 
 
 export default getWithMongo;
