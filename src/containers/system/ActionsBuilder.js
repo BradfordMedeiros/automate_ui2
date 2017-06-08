@@ -32,7 +32,7 @@ class ActionsBuilder extends Component {
               this.setState({ selectedIndex });
             }}
             actionType={actions.length > 0 ? actions[this.state.selectedIndex].type : ''}
-            actionCode={actions.lenght > 0 ? actions[this.state.selectedIndex].content : ''}
+            actionCode={actions.length > 0 ? actions[this.state.selectedIndex].content : ''}
             onUpload={(code) => {
               saveAction(actions[this.state.selectedIndex].name, code);
             }}

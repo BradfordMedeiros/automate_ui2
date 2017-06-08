@@ -43,7 +43,7 @@ class ActionBuilder extends Component {
           )}
           {(actionType === 'mqtt') && (
             <MqttFields
-              topic="humidity"
+              topic={actionName}
             />
           )}
         </div>
