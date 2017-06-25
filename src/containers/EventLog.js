@@ -53,7 +53,7 @@ class EventLog extends React.Component {
         {content && content.data.map((item, index) => (
           <TableRow>
             <TableRowColumn>{index}</TableRowColumn>
-            <TableRowColumn>{item.event}</TableRowColumn>
+            <TableRowColumn>{item.topic}</TableRowColumn>
             <TableRowColumn>{item.timestamp}</TableRowColumn>
           </TableRow>
         ))}
