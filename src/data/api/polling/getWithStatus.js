@@ -10,6 +10,7 @@ const getWithStatus = (AUTOMATE_CORE_URL) => {
       super(props);
       this.state = {
         hasData: false,
+        isConnected: true,
       };
       this.handle = undefined;
     }
@@ -45,12 +46,14 @@ const getWithStatus = (AUTOMATE_CORE_URL) => {
           this.setState({
             hasData: true,
             isConnected: false,
-          });
-          if (onSetIsDisconnected) {
-            onSetIsDisconnected();
-          }
+          })
+        }
+        if (onSetIsDisconnected) {
+          console.error('----------on is disconnected')
+          onSetIsDisconnected();
         }
       }
+
     }
     render() {
       const { children } = this.props;
