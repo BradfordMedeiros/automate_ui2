@@ -5,7 +5,7 @@ import getWithMqtt from './getWithMqtt';
 const getWithEvents = (automateUrl) => {
   const WithMqtt = getWithMqtt(automateUrl);
   const WithEvents = ({ children }) => (
-    <WithMqtt topics={List(['/event/#', 'event/#'])}>
+    <WithMqtt topics={List(['events/#'])}>
       {(topics, publish, newTopic) => (
         children ?
           children({ events: topics, newEvent: newTopic }) :
