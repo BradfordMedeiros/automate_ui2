@@ -25,7 +25,7 @@ const getWithActions = (AUTOMATE_CORE_URL) => {
 
 
   const addAction = async actionName => (
-    fetch(`${ACTIONS_URL}/modify/${actionName}`, {
+    fetch(`${ACTIONS_URL}/modify/actions/${actionName}`, {
       method: 'POST',
     })
   );
