@@ -6,24 +6,8 @@ const REFRESH_RATE = 1000;
 const getWithActions = (AUTOMATE_CORE_URL) => {
   const ACTIONS_URL = `${AUTOMATE_CORE_URL}/actions`;
 
-  // need to send a stringified version of the function to send to the server
-  // The function must return the state as a json string via stdout
-  const createStateFromSimpleFunction = (evalLogicString) => {
-    // kind of dangerous but frontend anyway so who really cares
-    const isFunction = eval(`(${evalLogicString})`); // eslint-disable-line
-    if (typeof (isFunction) !== typeof (() => {
-    })) {
-      throw (new Error('must be a function'));
-    }
-    const stringToSend = `() => {
-    const value = ((${evalLogicString}))(); 
-    console.log('"' + value + '"');
-  }`;
-    return stringToSend;
-  };
-
   const saveAction = async (actionName, evalLogic) => {
-    const actionEval = createStateFromSimpleFunction(evalLogic);
+    const actionEval = evalLogic;
 
     return (
       fetch(`${ACTIONS_URL}/modify/${actionName}`, {
