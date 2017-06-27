@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import NumericTextfield from './transforms/NumericTextfield';
-import Options from './transforms/Options';
+import MqttTopicValue from './transforms/MqttTopicValue/MqttTopicValue';
 
 const Transforms = ({ item, onChange, selectedValue }) => {
   const { type, ...otherProps } = item;
@@ -8,7 +8,7 @@ const Transforms = ({ item, onChange, selectedValue }) => {
   const newProps = { ...otherProps, selectedValue, onChange };
   switch (type) {
     case 'options': {
-      return <Options {...newProps} />;
+      return <MqttTopicValue {...newProps} />;
     }
     case 'text': {
       return <NumericTextfield {...newProps} />;

@@ -44,8 +44,8 @@ class SequenceInfo extends Component {
           <TableBody displayRowCheckbox={false} >
             {actions.map((action, index) => (
               <TableRow key={index.toString()}>
-                <TableRowColumn>{action.name}</TableRowColumn>
-                <TableRowColumn>{action.value}</TableRowColumn>
+                <TableRowColumn>{action.type}</TableRowColumn>
+                <TableRowColumn>{action.options}</TableRowColumn>
                 <TableRowColumn
                   onTouchTap={() => {
                     const newActions = (actions

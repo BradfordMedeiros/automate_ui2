@@ -7,6 +7,7 @@ const getWithSequences = (AUTOMATE_CORE_URL) => {
   const SEQUENCE_URL = `${AUTOMATE_CORE_URL}/sequences`;
 
   const addSequence = (sequenceName, actions) => {
+    console.error('-a----added sequence');
     fetch(`${SEQUENCE_URL}/modify/sequences/${sequenceName}`, {
       headers: new Headers({
         'Content-Type': 'application/json',

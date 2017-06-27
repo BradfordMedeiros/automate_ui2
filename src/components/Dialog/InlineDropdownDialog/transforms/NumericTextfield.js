@@ -3,6 +3,8 @@ import { TextField } from 'material-ui';
 
 const NumericTextfield = ({ onChange }) => (
   <TextField
+    floatingLabelText="ms"
+    hintText="time to wait"
     onChange={(_, value) => {
       onChange(value);
     }}
