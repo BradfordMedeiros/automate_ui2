@@ -7,7 +7,7 @@ const getWithSequences = (AUTOMATE_CORE_URL) => {
   const SEQUENCE_URL = `${AUTOMATE_CORE_URL}/sequences`;
 
   const addSequence = (sequenceName, actions) => {
-    fetch(`${SEQUENCE_URL}/modify/${sequenceName}`, {
+    fetch(`${SEQUENCE_URL}/modify/sequences/${sequenceName}`, {
       headers: new Headers({
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -20,7 +20,7 @@ const getWithSequences = (AUTOMATE_CORE_URL) => {
   };
 
   const deleteSequence = (sequenceName) => {
-    fetch(`${SEQUENCE_URL}/${sequenceName}`, {
+    fetch(`${SEQUENCE_URL}/sequences/${sequenceName}`, {
       method: 'DELETE',
     });
   };
