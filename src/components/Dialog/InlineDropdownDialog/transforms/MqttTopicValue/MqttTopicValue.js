@@ -2,10 +2,37 @@
 import React, { Component } from 'react';
 import MqttTopicValueComponent from './components/MqttTopicValueComponent';
 
+const createMqttTopicOptions = ({ mqttTopic, mqttValue }) => {
+  return ({
+    topic: mqttTopic,
+    value: mqttValue,
+  });
+};
+
 class MqttTopicValue extends Component {
-  render() {
+  mqttTopic = '';
+  mqttValue = '';
+  handleChange = () => {
     const { onChange } = this.props;
-    return <MqttTopicValueComponent onChange={onChange} />
+    const value = createMqttTopicOptions({
+      mqttTopic: this.mqttTopic,
+      mqttValue: this.mqttValue
+    });
+    onChange(value);
+  };
+  render() {
+    return (
+      <MqttTopicValueComponent
+        onTopicChange={mqttTopic => {
+          this.mqttTopic = mqttTopic;
+          this.handleChange({});
+        }}
+        onValueChange={mqttValue => {
+          this.mqttValue = mqttValue;
+          this.handleChange();
+        }}
+      />
+    )
   }
 }
 

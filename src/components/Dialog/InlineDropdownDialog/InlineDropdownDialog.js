@@ -50,6 +50,7 @@ class InlineDropdownDialog extends Component {
             <Transforms
               selectedValue={this.state.newAction ? this.state.newAction.value : undefined}
               onChange={(newAction) => {
+                window.na = newAction;
                 this.setState({
                   newAction: ({
                     options: newAction,

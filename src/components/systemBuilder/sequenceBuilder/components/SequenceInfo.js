@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
 import AxiomHeader from '../../../axiomBuilder/AxiomHeader';
 import InlineDropdownDialog from '../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
+import SequenceUnit from './components/sequenceUnit/SequenceUnit';
 
 class SequenceInfo extends Component {
   constructor(props) {
@@ -43,22 +44,17 @@ class SequenceInfo extends Component {
         <Table selectable={false}>
           <TableBody displayRowCheckbox={false} >
             {actions.map((action, index) => (
-              <TableRow key={index.toString()}>
-                <TableRowColumn>{action.type}</TableRowColumn>
-                <TableRowColumn>{action.options}</TableRowColumn>
-                <TableRowColumn
-                  onTouchTap={() => {
-                    const newActions = (actions
+              <SequenceUnit
+                type={action.type}
+                options={action.options}
+                deleteSelf={() => {
+                  const newActions = (actions
                       .slice(0, Math.max(index, 0))
                       .concat(actions.slice(index + 1))
-                    );
-                    onChange(newActions);
-                  }}
-                  style={{ fontSize: 25, cursor: 'pointer' }}
-                >
-                  &times;
-                </TableRowColumn>
-              </TableRow>
+                  );
+                  onChange(newActions);
+                }}
+              />
             ))}
             <TableRow>
               <TableRowColumn

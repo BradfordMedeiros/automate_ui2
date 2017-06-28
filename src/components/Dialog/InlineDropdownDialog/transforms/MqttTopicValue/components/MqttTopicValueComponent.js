@@ -1,27 +1,32 @@
 import React, { PropTypes } from 'react';
 import { TextField } from 'material-ui';
 
-const MqttTopcicValue = ({ onChange }) => (
+const MqttTopicValue = ({
+  onTopicChange,
+  onValueChange
+}) => (
   <div>
     <TextField
       hintText="mqtt topic"
       floatingLabelText="mqtt"
       onChange={(_, value) => {
-        onChange(value);
+        onTopicChange(value);
       }}
     />
     <TextField
       hintText="mqtt value"
       floatingLabelText="value"
       onChange={(_, value) => {
-        onChange(value);
+        onValueChange(value);
       }}
     />
   </div>
 );
 
-MqttTopcicValue.propTypes = {
-  onChange: PropTypes.func,
+MqttTopicValue.propTypes = {
+  onTopicChange: PropTypes.func,
+  onValueChange: PropTypes.func,
 };
 
-export default MqttTopcicValue;
+export default MqttTopicValue;
+
