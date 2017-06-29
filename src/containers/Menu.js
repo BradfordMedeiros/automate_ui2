@@ -9,8 +9,9 @@ import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
 import ActionBuilder from './system/ActionsBuilder';
 import StateBuilder from './system/StatesBuilder';
-import SequenceBuilder from './system/SequencesBuilder';
 import ConditionBuilder from './system/ConditionsBuilder';
+import SequenceBuilder from './system/SequencesBuilder';
+import ComingSoon from './system/ComingSoon';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -135,7 +136,7 @@ class MenuContainer extends Component {
                 },
                 {
                   label: 'Logic',
-                  onClick: () => this.openContent(<ConditionBuilder />),
+                  onClick: () => this.openContent(<ComingSoon />),
                 },
               ],
             },

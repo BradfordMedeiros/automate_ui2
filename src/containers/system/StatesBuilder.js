@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import StateBuilder from '../../components/systemBuilder/stateBuilder/StateBuilder';
+import StateBuilderComponent from '../../components/systemBuilder/stateBuilder/StateBuilder';
 import WithData from '../../data/WithData';
 
 const WithStates = WithData.polling.WithStates;
 
-class ActionsBuilder extends Component {
+class StateBuilder extends Component {
   state = {
     selectedIndex: 0,
   };
@@ -14,7 +14,7 @@ class ActionsBuilder extends Component {
         renderWhileLoading
       >
         {({ states, addState, deleteState, saveState }) => (
-          <StateBuilder
+          <StateBuilderComponent
             states={states.map(state => ({
               name: state.name,
             }))}
@@ -43,5 +43,5 @@ class ActionsBuilder extends Component {
   }
 }
 
-export default ActionsBuilder;
+export default StateBuilder;
 

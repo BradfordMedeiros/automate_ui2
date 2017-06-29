@@ -1,24 +1,47 @@
 import React, { Component } from 'react';
+import ConditionBuilderComponent from '../../components/systemBuilder/conditionBuilder/ConditionBuilder';
+import WithData from '../../data/WithData';
 
-class ConditionsBuilder extends Component {
+const WithConditions = WithData.polling.WithConditions;
+
+class ActionsBuilder extends Component {
+  state = {
+    selectedIndex: 0,
+  };
   render() {
     return (
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          fontSize: 32,
-          background: 'rgba(0,0,0,0.8)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          color: 'white',
-        }}
+      <WithConditions
+        renderWhileLoading
       >
-        <div style={{ marginTop: -150 }}>Coming In 0.2</div>
-      </div>
+        {({ conditions, addCondition, deleteCondition, saveCondition }) => (
+          <ConditionBuilderComponent
+            conditions={conditions.map(condition => ({
+              name: condition.name,
+            }))}
+            conditionName={conditions.length > 0 ? conditions[this.state.selectedIndex].name : 'No conditions'}
+            selectedIndex={this.state.selectedIndex}
+            onConditionChange={(newConditions, addedConditionName, deletedConditionName) => {
+              if (addedConditionName) {
+                addCondition(addedConditionName);
+              }
+              if (deletedConditionName) {
+                deleteCondition(deletedConditionName);
+              }
+            }}
+            onConditionSelected={(_, selectedIndex) => {
+              this.setState({ selectedIndex });
+            }}
+            conditionType={conditions.length > 0 ? conditions[this.state.selectedIndex].type : ''}
+            conditionCode={conditions.length > 0 ? conditions[this.state.selectedIndex].content : ''}
+            onUpload={(code) => {
+              saveCondition(conditions[this.state.selectedIndex].name, code);
+            }}
+          />
+        )}
+      </WithConditions>
     );
   }
 }
 
-export default ConditionsBuilder;
+export default ActionsBuilder;
+

@@ -6,6 +6,37 @@ const REFRESH_RATE = 1000;
 const getWithConditions = (automateUrl) => {
   const CONDITIONS_URL = `${automateUrl}/conditions`;
 
+  const deleteCondition = async conditionName => (
+    fetch(`${CONDITIONS_URL}/${conditionName}`, {
+      method: 'DELETE',
+    })
+  );
+
+  const addCondition = async conditionName => (
+    fetch(`${CONDITIONS_URL}/modify/conditions/${conditionName}`, {
+      method: 'POST',
+    })
+  );
+
+
+  const saveCondition = async (conditionName, evalLogic) => {
+    const conditionEval = evalLogic;
+
+    return (
+      fetch(`${CONDITIONS_URL}/modify/conditions/${conditionName}`, {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        body: JSON.stringify({
+          conditionEval,
+        }),
+        method: 'POST',
+      })
+    );
+  };
+
+
   class WithConditions extends Component {
     constructor(props) {
       super(props);
@@ -42,7 +73,7 @@ const getWithConditions = (automateUrl) => {
     render() {
       const { children } = this.props;
       const { hasData, conditions } = this.state;
-      return (hasData && children) ? children({ conditions }) : null;
+      return (hasData && children) ? children({ conditions, addCondition, saveCondition, deleteCondition }) : null;
     }
   }
 
