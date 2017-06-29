@@ -16,7 +16,7 @@ class ConditionBuilder extends Component {
 
     return (
       <GenericBuilderWithFields
-        axiomClass={'States'}
+        axiomClass={'Conditions'}
         actions={conditions}
         selectedIndex={selectedIndex}
         onActionChange={onConditionChange}
