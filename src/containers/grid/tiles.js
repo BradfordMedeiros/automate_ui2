@@ -25,10 +25,10 @@ import States from './tiles/system/states/States';
 import Actions from './tiles/system/actions/Actions';
 
 import Sequences from './tiles/system/sequences/Sequences';
-import SequenceBuilder from '../system/SequencesBuilder';
+import SequenceBuilder from '../system/engines/SequencesBuilder';
 
-import ActionBuilder from '../system/ActionsBuilder';
-import StateBuilder from '../system/StatesBuilder';
+import ActionBuilder from '../system/base/ActionsBuilder';
+import StateBuilder from '../system/base/StatesBuilder';
 
 import SingleFieldOverlay from './tiles/common/overlays/SingleFieldOverlay';
 

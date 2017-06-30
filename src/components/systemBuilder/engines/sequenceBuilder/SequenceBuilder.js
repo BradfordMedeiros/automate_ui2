@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import SequenceInfo from './components/SequenceInfo';
-import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
+import AxiomBuilder from '../.././../axiomBuilder/AxiomBuilder';
 
 class SequenceBuilder extends Component {
   render() {

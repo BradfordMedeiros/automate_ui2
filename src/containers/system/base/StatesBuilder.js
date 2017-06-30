@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import StateBuilderComponent from '../../components/systemBuilder/stateBuilder/StateBuilder';
-import WithData from '../../data/WithData';
+import StateBuilderComponent from '../../../components/systemBuilder/base/stateBuilder/StateBuilder';
+import WithData from '../../../data/WithData';
 
 const WithStates = WithData.polling.WithStates;
 

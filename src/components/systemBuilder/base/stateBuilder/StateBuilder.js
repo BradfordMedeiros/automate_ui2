@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GenericBuilderWithFields from '../common/GenericBuilderWithFields';
+import GenericBuilderWithFields from '../../common/GenericBuilderWithFields';
 
 class StateBuilder extends Component {
   render() {

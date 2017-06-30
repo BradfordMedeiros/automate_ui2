@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SequenceBuilderComponent from '../../components/systemBuilder/sequenceBuilder/SequenceBuilder';
-import WithData from '../../data/WithData';
+import SequenceBuilderComponent from '../../../components/systemBuilder/engines/sequenceBuilder/SequenceBuilder';
+import WithData from '../../../data/WithData';
 
 const WithActions = WithData.polling.WithActions;
 const WithSequences = WithData.polling.WithSequences;

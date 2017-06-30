@@ -7,10 +7,11 @@ import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
 import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
-import ActionBuilder from './system/ActionsBuilder';
-import StateBuilder from './system/StatesBuilder';
-import ConditionBuilder from './system/ConditionsBuilder';
-import SequenceBuilder from './system/SequencesBuilder';
+import ActionBuilder from './system/base/ActionsBuilder';
+import StateBuilder from './system/base/StatesBuilder';
+import ConditionBuilder from './system/base/ConditionsBuilder';
+import SequenceBuilder from './system/engines/SequencesBuilder';
+import ScheduleBuilder from './system/engines/ScheduleBuilder';
 import ComingSoon from './system/ComingSoon';
 
 class MenuContainer extends Component {
@@ -138,6 +139,10 @@ class MenuContainer extends Component {
                   label: 'Logic',
                   onClick: () => this.openContent(<ComingSoon />),
                 },
+                {
+                  label: 'Scheduler',
+                  onClick: () => this.openContent(<ScheduleBuilder />),
+                }
               ],
             },
             {

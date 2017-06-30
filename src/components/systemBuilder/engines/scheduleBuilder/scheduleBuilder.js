@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GenericBuilderWithFields from '../common/GenericBuilderWithFields';
+import GenericBuilderWithFields from '../../common/GenericBuilderWithFields';
 
 class ConditionBuilder extends Component {
   render() {
@@ -16,7 +16,7 @@ class ConditionBuilder extends Component {
 
     return (
       <GenericBuilderWithFields
-        axiomClass={'Conditions'}
+        axiomClass={'Scheduler'}
         actions={conditions}
         selectedIndex={selectedIndex}
         onActionChange={onConditionChange}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ActionBuilder from '../../components/systemBuilder/actionBuilder/ActionBuilder';
-import WithData from '../../data/WithData';
+import ActionBuilder from '../../../components/systemBuilder/base/actionBuilder/ActionBuilder';
+import WithData from '../../../data/WithData';
 
 const WithActions = WithData.polling.WithActions;
 

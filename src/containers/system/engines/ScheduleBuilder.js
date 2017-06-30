@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ConditionBuilderComponent from '../../components/systemBuilder/conditionBuilder/ConditionBuilder';
-import WithData from '../../data/WithData';
+import ConditionBuilderComponent from '../../../components/systemBuilder/engines/scheduleBuilder/scheduleBuilder';
+import WithData from '../../../data/WithData';
 
 const WithConditions = WithData.polling.WithConditions;
 
