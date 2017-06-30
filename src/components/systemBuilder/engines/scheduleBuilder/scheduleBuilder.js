@@ -1,40 +1,41 @@
 import React, { Component, PropTypes } from 'react';
-import GenericBuilderWithFields from '../../common/GenericBuilderWithFields';
+import AxiomBuilder from '../.././../axiomBuilder/AxiomBuilder';
 
 class ConditionBuilder extends Component {
   render() {
     const {
-      conditions,
+      schedules,
       conditionCode,
       selectedIndex,
       onConditionChange,
-      onConditionSelected,
-      conditionName,
+      onScheduleSelected,
+      scheduleName,
       conditionType,
       onUpload,
     } = this.props;
 
     return (
-      <GenericBuilderWithFields
-        axiomClass={'Scheduler'}
-        actions={conditions}
+      <AxiomBuilder
+        title="Schedules"
+        axioms={schedules}
         selectedIndex={selectedIndex}
-        onActionChange={onConditionChange}
-        onActionSelected={onConditionSelected}
-        actionName={conditionName}
-        actionCode={conditionCode}
-        actionType={conditionType}
-        onUpload={onUpload}
-      />
+        onAxiomSelected={onScheduleSelected}
+        onAxiomChange={() => { }}
+      >
+        <div>
+          <div>{scheduleName}</div>
+          <div>{schedules[selectedIndex]}</div>
+        </div>
+      </AxiomBuilder>
     );
   }
 }
 
 ConditionBuilder.propTypes = {
-  conditions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  schedules: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedIndex: PropTypes.number.isRequired,
   onConditionChange: PropTypes.func.isRequired,
-  onConditionSelected: PropTypes.func.isRequired,
+  onScheduleSelected: PropTypes.func.isRequired,
   conditionName: PropTypes.string.isRequired,
   conditionCode: PropTypes.string.isRequired,
   conditionType: PropTypes.string.isRequired,
