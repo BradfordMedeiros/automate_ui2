@@ -6,14 +6,14 @@ const REFRESH_RATE = 1000;
 const getWithSchedules = (automateUrl) => {
   const SCHEDULES_URL = `${automateUrl}/schedules`;
 
-  const deleteSchedule = async conditionName => (
-    fetch(`${SCHEDULES_URL}/${conditionName}`, {
+  const deleteSchedule = async scheduleName => (
+    fetch(`${SCHEDULES_URL}/${scheduleName}`, {
       method: 'DELETE',
     })
   );
 
-  const addSchedule = async conditionName => (
-    fetch(`${SCHEDULES_URL}/modify/conditions/${conditionName}`, {
+  const addSchedule = async scheduleName => (
+    fetch(`${SCHEDULES_URL}/modify/schedules/${scheduleName}`, {
       method: 'POST',
     })
   );
@@ -86,5 +86,4 @@ const getWithSchedules = (automateUrl) => {
 
 
 export default getWithSchedules;
-
 

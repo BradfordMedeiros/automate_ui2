@@ -3,7 +3,7 @@ import { TextField } from 'material-ui';
 
 const MqttTopicValue = ({
   onTopicChange,
-  onValueChange
+  onValueChange,
 }) => (
   <div>
     <TextField

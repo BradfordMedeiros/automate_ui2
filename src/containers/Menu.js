@@ -142,7 +142,7 @@ class MenuContainer extends Component {
                 {
                   label: 'Scheduler',
                   onClick: () => this.openContent(<ScheduleBuilder />),
-                }
+                },
               ],
             },
             {

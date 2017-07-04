@@ -16,8 +16,8 @@ class ActionsBuilder extends Component {
         renderWhileLoading
       >
         {({ schedules, addSchedule, deleteSchedule, saveSchedule }) => {
-
           window.s = schedules;
+          window.ds = deleteSchedule;
           return (
             <ScheduleBuilderComponent
               schedules={schedules.map(schedule => schedule.name)}
@@ -29,24 +29,28 @@ class ActionsBuilder extends Component {
                 });
               }}
               scheduleName={schedules.length > 0 ? schedules[this.state.selectedIndex].name : 'No schedules'}
+              onScheduleChange={(newSchedules, addedScheduleName, deletedScheduleName) => {
+                if (addedScheduleName) {
+                  console.error('added:--- ', addedScheduleName);
+                  addSchedule(addedScheduleName);
+                }
+                if (deletedScheduleName) {
+                  console.error('delete:--- ', deletedScheduleName);
+                  deleteSchedule(deletedScheduleName);
+                }
+                console.log('new schedules: ', newSchedules);
+              }}
 
-              //conditionName={conditions.length > 0 ? conditions[this.state.selectedIndex].name : 'No conditions'}
-              /*onConditionChange={(newConditions, addedConditionName, deletedConditionName) => {
-               if (addedConditionName) {
-               addCondition(addedConditionName);
-               }
-               if (deletedConditionName) {
-               deleteCondition(deletedConditionName);
-               }
-               }}*/
+              // conditionName={conditions.length > 0 ? conditions[this.state.selectedIndex].name : 'No conditions'}
+              /**/
 
-              //conditionType={conditions.length > 0 ? conditions[this.state.selectedIndex].type : ''}
-              //conditionCode={conditions.length > 0 ? conditions[this.state.selectedIndex].content : ''}
-              /*onUpload={(code) => {
+              // conditionType={conditions.length > 0 ? conditions[this.state.selectedIndex].type : ''}
+              // conditionCode={conditions.length > 0 ? conditions[this.state.selectedIndex].content : ''}
+              /* onUpload={(code) => {
                saveCondition(conditions[this.state.selectedIndex].name, code);
                }}*/
             />
-          )
+          );
         }}
       </WithSchedules>
     );

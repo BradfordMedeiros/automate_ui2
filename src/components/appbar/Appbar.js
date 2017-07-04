@@ -82,7 +82,9 @@ class Appbar extends Component {
         </div>
         <div className="xBorderBox">
           <div
-            className="xIcon" style={xStyle} onClick={() => {
+            className="xIcon"
+            style={xStyle}
+            onClick={() => {
               if (rotateAddIcon) {
                 onRotatedAddIconClick();
               } else {

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../.././../axiomBuilder/AxiomBuilder';
+import ScheduleInfo from './components/ScheduleInfo';
 
 class ConditionBuilder extends Component {
   render() {
@@ -7,7 +8,7 @@ class ConditionBuilder extends Component {
       schedules,
       conditionCode,
       selectedIndex,
-      onConditionChange,
+      onScheduleChange,
       onScheduleSelected,
       scheduleName,
       conditionType,
@@ -20,12 +21,16 @@ class ConditionBuilder extends Component {
         axioms={schedules}
         selectedIndex={selectedIndex}
         onAxiomSelected={onScheduleSelected}
-        onAxiomChange={() => { }}
+        onAxiomChange={onScheduleChange}
       >
-        <div>
-          <div>{scheduleName}</div>
-          <div>{schedules[selectedIndex]}</div>
-        </div>
+        <ScheduleInfo
+          scheduleName={scheduleName}
+          deleteSchedule={() => {
+            console.log('want to delete schedule name: ', scheduleName);
+            const newSchedules = schedules.slice().filter(schedule => schedule !== scheduleName);
+            onScheduleChange(newSchedules, undefined, scheduleName);
+          }}
+        />
       </AxiomBuilder>
     );
   }

@@ -27,7 +27,7 @@ class SequenceBuilder extends Component {
     return (
       (
         <WithSequences>
-          {({sequences, addSequence, deleteSequence}) => {
+          {({ sequences, addSequence, deleteSequence }) => {
             const sequenceActions = sequences.filter(
               sequence => sequence.name === this.state.selectedName,
             );

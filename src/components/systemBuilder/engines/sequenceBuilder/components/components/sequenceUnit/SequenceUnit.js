@@ -4,7 +4,7 @@ import Action from './components/Action';
 import Wait from './components/Wait';
 
 const SequenceUnit = ({ type, options, deleteSelf }) => {
-  switch (type){
+  switch (type) {
     case 'action': {
       return (
         <Action
@@ -25,7 +25,6 @@ const SequenceUnit = ({ type, options, deleteSelf }) => {
       return null;
     }
   }
-
 };
 
 SequenceUnit.propTypes = {
