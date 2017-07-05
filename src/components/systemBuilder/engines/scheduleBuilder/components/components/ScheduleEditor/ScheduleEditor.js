@@ -1,15 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Subheader, FlatButton, RaisedButton, DropDownMenu, MenuItem, TextField } from 'material-ui';
+import { RaisedButton, TextField } from 'material-ui';
 import RawCron from './components/RawCron';
+import QuickOptions from './components/QuickOptions';
 
 const styles = {
-  style: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: 'black',
-    padding: 18,
-  },
   topicValueStyle : {
     display: 'flex',
     flexDirection: 'column',
@@ -41,6 +35,9 @@ const styles = {
 };
 
 class QuickAdd extends Component {
+  state = {
+    selectedOption: undefined,
+  }
   render() {
     const {
       schedule,
@@ -50,15 +47,9 @@ class QuickAdd extends Component {
 
     return (
       <div>
-        <div style={styles.style}>
-          <FlatButton label="Second" />
-          <FlatButton backgroundColor="rgb(40,40,40)" label="Minute" />
-          <FlatButton label="Hourly" />
-          <FlatButton label="Daily" />
-          <FlatButton label="Weekly" />
-          <FlatButton label="Monthly" />
-          <FlatButton secondary label="Schedule Single Event" />
-        </div>
+        <QuickOptions
+          onScheduleChange={onScheduleChange}
+        />
 
         <div style={{ display: 'flex', flexDirection: 'row'  }}>
           <div style={styles.topicValueStyle}>

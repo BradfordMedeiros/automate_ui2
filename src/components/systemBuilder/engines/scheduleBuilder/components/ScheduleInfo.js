@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomHeader from '../../../../axiomBuilder/AxiomHeader';
-import QuickAdd from './components/QuickAdd/QuickAdd';
+import ScheduleEditor from './components/ScheduleEditor/ScheduleEditor';
 
 class ScheduleInfo extends Component {
   state = {
@@ -15,7 +15,7 @@ class ScheduleInfo extends Component {
           axiomName="Schedule"
           axiomNameValue={scheduleName}
         />
-          <QuickAdd
+          <ScheduleEditor
             schedule={this.state.schedule}
             onSubmitSchedule={() => {
               console.log('should add schedule');
