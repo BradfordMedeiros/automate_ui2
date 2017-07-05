@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomHeader from '../../../../axiomBuilder/AxiomHeader';
+import QuickAdd from './components/QuickAdd';
 
 class ScheduleInfo extends Component {
   render() {
@@ -11,6 +12,7 @@ class ScheduleInfo extends Component {
           axiomName="Schedule"
           axiomNameValue={scheduleName}
         />
+          <QuickAdd />
       </div>
     );
   }

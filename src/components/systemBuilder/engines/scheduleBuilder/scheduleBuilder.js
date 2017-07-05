@@ -26,7 +26,6 @@ class ConditionBuilder extends Component {
         <ScheduleInfo
           scheduleName={scheduleName}
           deleteSchedule={() => {
-            console.log('want to delete schedule name: ', scheduleName);
             const newSchedules = schedules.slice().filter(schedule => schedule !== scheduleName);
             onScheduleChange(newSchedules, undefined, scheduleName);
           }}

@@ -9,15 +9,12 @@ class ActionsBuilder extends Component {
     selectedIndex: 0,
     selectedName: 'other',
   };
-
   render() {
     return (
       <WithSchedules
         renderWhileLoading
       >
         {({ schedules, addSchedule, deleteSchedule, saveSchedule }) => {
-          window.s = schedules;
-          window.ds = deleteSchedule;
           return (
             <ScheduleBuilderComponent
               schedules={schedules.map(schedule => schedule.name)}
@@ -40,15 +37,6 @@ class ActionsBuilder extends Component {
                 }
                 console.log('new schedules: ', newSchedules);
               }}
-
-              // conditionName={conditions.length > 0 ? conditions[this.state.selectedIndex].name : 'No conditions'}
-              /**/
-
-              // conditionType={conditions.length > 0 ? conditions[this.state.selectedIndex].type : ''}
-              // conditionCode={conditions.length > 0 ? conditions[this.state.selectedIndex].content : ''}
-              /* onUpload={(code) => {
-               saveCondition(conditions[this.state.selectedIndex].name, code);
-               }}*/
             />
           );
         }}
