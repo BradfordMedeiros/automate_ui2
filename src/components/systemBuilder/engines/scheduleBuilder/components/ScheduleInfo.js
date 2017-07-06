@@ -7,7 +7,7 @@ class ScheduleInfo extends Component {
     schedule: '* * * * *',
   };
   render() {
-    const { scheduleName, deleteSchedule } = this.props;
+    const { scheduleName, submitSchedule, deleteSchedule } = this.props;
     return (
       <div style={{ width: '100%' }}>
         <AxiomHeader
@@ -18,7 +18,7 @@ class ScheduleInfo extends Component {
           <ScheduleEditor
             schedule={this.state.schedule}
             onSubmitSchedule={() => {
-              console.log('should add schedule');
+              submitSchedule(this.state.schedule);
             }}
             onScheduleChange={schedule => {
               this.setState({ schedule });
@@ -32,6 +32,7 @@ class ScheduleInfo extends Component {
 ScheduleInfo.propTypes = {
   scheduleName: PropTypes.string,
   deleteSchedule: PropTypes.func,
+  submitSchedule: PropTypes.func,
 };
 
 export default ScheduleInfo;

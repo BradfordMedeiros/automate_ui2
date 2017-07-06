@@ -2,17 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../.././../axiomBuilder/AxiomBuilder';
 import ScheduleInfo from './components/ScheduleInfo';
 
-class ConditionBuilder extends Component {
+class ScheduleBuilder extends Component {
   render() {
     const {
       schedules,
-      conditionCode,
       selectedIndex,
+      deleteSchedule,
       onScheduleChange,
       onScheduleSelected,
       scheduleName,
-      conditionType,
-      onUpload,
     } = this.props;
 
     return (
@@ -25,26 +23,26 @@ class ConditionBuilder extends Component {
       >
         <ScheduleInfo
           scheduleName={scheduleName}
-          deleteSchedule={() => {
-            const newSchedules = schedules.slice().filter(schedule => schedule !== scheduleName);
-            onScheduleChange(newSchedules, undefined, scheduleName);
+          submitSchedule={schedule => {
+            //addSchedule(scheduleName, schedule);
           }}
+          deleteSchedule={() => {
+            onScheduleChange(undefined, undefined, scheduleName)}
+          }
         />
       </AxiomBuilder>
     );
   }
 }
 
-ConditionBuilder.propTypes = {
+ScheduleBuilder.propTypes = {
   schedules: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedIndex: PropTypes.number.isRequired,
-  onConditionChange: PropTypes.func.isRequired,
+  deleteSchedule: PropTypes.func.isRequired,
   onScheduleSelected: PropTypes.func.isRequired,
-  conditionName: PropTypes.string.isRequired,
-  conditionCode: PropTypes.string.isRequired,
-  conditionType: PropTypes.string.isRequired,
-  onUpload: PropTypes.func.isRequired,
+  scheduleName: PropTypes.string.isRequired,
+  scheduleType: PropTypes.string.isRequired,
 };
 
-export default ConditionBuilder;
+export default ScheduleBuilder;
 

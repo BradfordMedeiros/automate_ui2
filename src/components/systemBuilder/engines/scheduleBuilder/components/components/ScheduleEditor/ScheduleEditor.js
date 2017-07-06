@@ -66,7 +66,7 @@ class QuickAdd extends Component {
             onScheduleChange={onScheduleChange}
           />
         </div>
-        <RaisedButton primary="Submit" label="Submit" fullWidth />
+        <RaisedButton primary="Submit" label="Submit" fullWidth onClick={onSubmitSchedule} />
       </div>
     );
   }
