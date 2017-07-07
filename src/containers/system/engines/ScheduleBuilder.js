@@ -26,16 +26,23 @@ class ActionsBuilder extends Component {
                 });
               }}
               scheduleName={schedules.length > 0 ? schedules[this.state.selectedIndex].name : 'No schedules'}
-              onScheduleChange={(newSchedules, addedScheduleName, deletedScheduleName) => {
-                if (addedScheduleName) {
-                  console.error('added:--- ', addedScheduleName);
-                  addSchedule(addedScheduleName);
+              onScheduleChange={(newSchedules, addedSchedule, deletedScheduleName) => {
+                if (addedSchedule) {
+                  //console.error('added:--- ', addedScheduleName);
+                  //addSchedule(addedSchedule.name, addedSchedule.;
+                  //const scheduleName = addedSchedule.name;
+                  //const schedule = addedSchedule.schedule;
+                  console.log('added schedule:');
+                  console.log(addedSchedule);
+                  const name = addedSchedule.name;
+                  const schedule = addedSchedule.schedule;
+                  addSchedule(name, schedule);
                 }
+
                 if (deletedScheduleName) {
                   console.error('delete:--- ', deletedScheduleName);
                   deleteSchedule(deletedScheduleName);
                 }
-                console.log('new schedules: ', newSchedules);
               }}
             />
           );

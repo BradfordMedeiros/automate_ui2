@@ -24,7 +24,16 @@ class ScheduleBuilder extends Component {
         <ScheduleInfo
           scheduleName={scheduleName}
           submitSchedule={schedule => {
-            //addSchedule(scheduleName, schedule);
+            const name = schedules[selectedIndex];
+            console.log('submit schedule');
+            console.log('schedule name: ', schedule);
+            console.log('schedule name: ', schedules[selectedIndex]);
+            //addSchedule(name, schedule);
+            onScheduleChange(undefined,
+              {
+                name: schedules[selectedIndex],
+                schedule,
+              })
           }}
           deleteSchedule={() => {
             onScheduleChange(undefined, undefined, scheduleName)}
