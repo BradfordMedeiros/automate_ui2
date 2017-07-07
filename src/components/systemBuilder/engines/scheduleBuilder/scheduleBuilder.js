@@ -11,8 +11,10 @@ class ScheduleBuilder extends Component {
       onScheduleChange,
       onScheduleSelected,
       scheduleName,
+      scheduleValues,
     } = this.props;
 
+    console.log('--+---values: ', scheduleValues);
     return (
       <AxiomBuilder
         title="Schedules"
@@ -23,12 +25,10 @@ class ScheduleBuilder extends Component {
       >
         <ScheduleInfo
           scheduleName={scheduleName}
+          schedule={scheduleValues[selectedIndex]}
           submitSchedule={schedule => {
             const name = schedules[selectedIndex];
-            console.log('submit schedule');
-            console.log('schedule name: ', schedule);
-            console.log('schedule name: ', schedules[selectedIndex]);
-            //addSchedule(name, schedule);
+
             onScheduleChange(undefined,
               {
                 name: schedules[selectedIndex],
@@ -51,6 +51,7 @@ ScheduleBuilder.propTypes = {
   onScheduleSelected: PropTypes.func.isRequired,
   scheduleName: PropTypes.string.isRequired,
   scheduleType: PropTypes.string.isRequired,
+  scheduleValues:  PropTypes.array.isRequired,
 };
 
 export default ScheduleBuilder;

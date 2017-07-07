@@ -18,6 +18,7 @@ class ActionsBuilder extends Component {
           return (
             <ScheduleBuilderComponent
               schedules={schedules.map(schedule => schedule.name)}
+              scheduleValues={schedules.map(schedule => schedule.content)}
               selectedIndex={this.state.selectedIndex}
               onScheduleSelected={(selectedName, selectedIndex) => {
                 this.setState({
