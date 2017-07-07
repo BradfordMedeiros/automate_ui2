@@ -12,7 +12,13 @@ const getWithSchedules = (automateUrl) => {
     })
   );
 
-  const addSchedule = async (scheduleName, schedule) => (
+  const addSchedule = async (scheduleName, schedule) => {
+
+    console.log('---------------');
+    console.log('schedule name: ', scheduleName);
+    console.log('schedule: ', schedule);
+    console.log('===============');
+
     fetch(`${SCHEDULES_URL}/modify/schedules/${scheduleName}`, {
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -23,24 +29,6 @@ const getWithSchedules = (automateUrl) => {
       }),
       method: 'POST',
     })
-  );
-
-
-  const saveSchedule = async (conditionName, evalLogic) => {
-    const conditionEval = evalLogic;
-
-    return (
-      fetch(`${SCHEDULES_URL}/modify/conditions/${conditionName}`, {
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        }),
-        body: JSON.stringify({
-          conditionEval,
-        }),
-        method: 'POST',
-      })
-    );
   };
 
 
@@ -80,7 +68,7 @@ const getWithSchedules = (automateUrl) => {
     render() {
       const { children } = this.props;
       const { hasData, schedules } = this.state;
-      return (hasData && children) ? children({ schedules, addSchedule, saveSchedule, deleteSchedule }) : null;
+      return (hasData && children) ? children({ schedules, addSchedule, deleteSchedule }) : null;
     }
   }
 

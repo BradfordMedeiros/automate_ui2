@@ -14,7 +14,7 @@ class ActionsBuilder extends Component {
       <WithSchedules
         renderWhileLoading
       >
-        {({ schedules, addSchedule, deleteSchedule, saveSchedule }) => {
+        {({ schedules, addSchedule, deleteSchedule }) => {
           return (
             <ScheduleBuilderComponent
               schedules={schedules.map(schedule => schedule.name)}
@@ -28,21 +28,21 @@ class ActionsBuilder extends Component {
               scheduleName={schedules.length > 0 ? schedules[this.state.selectedIndex].name : 'No schedules'}
               onScheduleChange={(newSchedules, addedSchedule, deletedScheduleName) => {
                 if (addedSchedule) {
-                  //console.error('added:--- ', addedScheduleName);
-                  //addSchedule(addedSchedule.name, addedSchedule.;
-                  //const scheduleName = addedSchedule.name;
-                  //const schedule = addedSchedule.schedule;
-                  console.log('added schedule:');
-                  console.log(addedSchedule);
-                  const name = addedSchedule.name;
-                  const schedule = addedSchedule.schedule;
-                  addSchedule(name, schedule);
+                  console.log('added schedule ------ ', addedSchedule);
+                  if(typeof(addedSchedule) === typeof('')){
+                    addSchedule(addedSchedule);
+                  }else {
+                    const name = addedSchedule.name;
+                    const schedule = addedSchedule.schedule;
+                    addSchedule(name, schedule);
+                  }
                 }
-
                 if (deletedScheduleName) {
                   console.error('delete:--- ', deletedScheduleName);
                   deleteSchedule(deletedScheduleName);
                 }
+
+
               }}
             />
           );
