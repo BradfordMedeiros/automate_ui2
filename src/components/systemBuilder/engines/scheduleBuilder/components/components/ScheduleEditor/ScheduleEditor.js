@@ -40,6 +40,10 @@ class QuickAdd extends Component {
   }
   render() {
     const {
+      topic,
+      onTopicChange,
+      value,
+      onValueChange,
       schedule,
       onScheduleChange,
       onSubmitSchedule,
@@ -53,8 +57,8 @@ class QuickAdd extends Component {
 
         <div style={{ display: 'flex', flexDirection: 'row'  }}>
           <div style={styles.topicValueStyle}>
-            <TextField floatingLabelText={"Topic"} />
-            <TextField floatingLabelText={"Value"} />
+            <TextField value={topic} onChange={(_, topic) => onTopicChange(topic)} floatingLabelText={"Topic"} />
+            <TextField value={value} onChange={(_, value) => onValueChange(value)} floatingLabelText={"Value"} />
           </div>
           <div style={styles.detailStyle}>
             Every <TextField /> hour of the day
@@ -74,6 +78,10 @@ class QuickAdd extends Component {
 
 QuickAdd.propTypes = {
   schedule: PropTypes.string.isRequired,
+  topic: PropTypes.string.isRequired,
+  onTopicChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onValueChange: PropTypes.func.isRequired,
   onScheduleChange: PropTypes.func.isRequired,
   onSubmitSchedule: PropTypes.func.isRequired,
 };

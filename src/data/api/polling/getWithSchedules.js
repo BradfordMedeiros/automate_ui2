@@ -12,20 +12,19 @@ const getWithSchedules = (automateUrl) => {
     })
   );
 
-  const addSchedule = async (scheduleName, schedule) => {
-
-    console.log('---------------');
-    console.log('schedule name: ', scheduleName);
-    console.log('schedule: ', schedule);
-    console.log('===============');
+  const addSchedule = async (scheduleName, schedule, topic, value) => {
 
     fetch(`${SCHEDULES_URL}/modify/schedules/${scheduleName}`, {
       headers: new Headers({
         'Content-Type': 'application/json',
         Accept: 'application/json',
       }),
+
+
       body: JSON.stringify({
         schedule,
+        topic,
+        value,
       }),
       method: 'POST',
     })

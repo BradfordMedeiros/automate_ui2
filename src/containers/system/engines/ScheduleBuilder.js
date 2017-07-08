@@ -33,9 +33,9 @@ class ActionsBuilder extends Component {
                   if(typeof(addedSchedule) === typeof('')){
                     addSchedule(addedSchedule);
                   }else {
-                    const name = addedSchedule.name;
-                    const schedule = addedSchedule.schedule;
-                    addSchedule(name, schedule);
+
+                    const { name, schedule, topic, value } = addedSchedule;
+                    addSchedule(name, schedule, topic, value);
                   }
                 }
                 if (deletedScheduleName) {
