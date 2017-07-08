@@ -7,27 +7,27 @@ class ScheduleBuilder extends Component {
     const {
       schedules,
       selectedIndex,
-      deleteSchedule,
       onScheduleChange,
       onScheduleSelected,
       scheduleName,
-      scheduleValues,
     } = this.props;
 
-    console.log('--+---values: ', scheduleValues);
+    window.ss = schedules[selectedIndex];
     return (
       <AxiomBuilder
         title="Schedules"
-        axioms={schedules}
+        axioms={schedules.map(schedule => schedule.name)}
         selectedIndex={selectedIndex}
         onAxiomSelected={onScheduleSelected}
         onAxiomChange={onScheduleChange}
       >
         <ScheduleInfo
-          scheduleName={scheduleName}
-          schedule={scheduleValues[selectedIndex]}
+          topic={schedules[selectedIndex].topic}
+          value={schedules[selectedIndex].value}
+          scheduleName={schedules[selectedIndex].name}
+          schedule={schedules[selectedIndex].content}
           submitSchedule={({ schedule, topic, value }) => {
-            const name = schedules[selectedIndex];
+            const name = schedules[selectedIndex].name;
 
             onScheduleChange(undefined,
               {
@@ -49,11 +49,9 @@ class ScheduleBuilder extends Component {
 ScheduleBuilder.propTypes = {
   schedules: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedIndex: PropTypes.number.isRequired,
-  deleteSchedule: PropTypes.func.isRequired,
   onScheduleSelected: PropTypes.func.isRequired,
   scheduleName: PropTypes.string.isRequired,
   scheduleType: PropTypes.string.isRequired,
-  scheduleValues:  PropTypes.array.isRequired,
 };
 
 export default ScheduleBuilder;

@@ -3,25 +3,29 @@ import AxiomHeader from '../../../../axiomBuilder/AxiomHeader';
 import ScheduleEditor from './components/ScheduleEditor/ScheduleEditor';
 
 class ScheduleInfo extends Component {
-  state = {
-    schedule: '* * * * *',
-    topic: '',
-    value: '',
-    hasChanged: false,
-  };
+  constructor(nextProps){
+    super(nextProps);
+    this.state = {
+      hasChanged: false,
+      schedule: nextProps.schedule,
+      topic: nextProps.topic,
+      value: nextProps.value,
+    }
+  }
   componentWillReceiveProps(nextProps){
-
     if (nextProps.scheduleName !== this.props.scheduleName){
       console.log('schedule name changed');
       this.setState({
+        schedule: nextProps.schedule,
+        topic: nextProps.topic,
+        value: nextProps.value,
         hasChanged: false,
       })
     }
   }
   render() {
-    const {schedule, scheduleName, submitSchedule, deleteSchedule} = this.props;
+    const {topic, value, schedule, scheduleName, submitSchedule, deleteSchedule} = this.props;
 
-    window.p = this.props;
     return (
       <div style={{width: '100%'}}>
         <AxiomHeader
@@ -31,22 +35,30 @@ class ScheduleInfo extends Component {
         />
         <ScheduleEditor
           schedule={this.state.hasChanged ? this.state.schedule : schedule}
-          topic={this.state.topic}
+          topic={this.state.hasChanged ? this.state.topic: topic}
           onTopicChange={topic => {
-            this.setState({topic});
+            this.setState({
+              topic,
+              hasChanged: true,
+            });
           }}
-          value={this.state.value}
+          value={this.state.hasChanged ? this.state.value: value}
           onValueChange={value => {
-            this.setState({value});
+            this.setState({
+              value,
+              hasChanged: true,
+            });
           }}
           onSubmitSchedule={() => {
             submitSchedule({
               schedule: this.state.schedule,
-              topic: 'test topic',
-              value: 'test value',
+              topic: this.state.topic,
+              value: this.state.value,
             });
             this.setState({
               hasChanged: false,
+              topic: '',
+              value: '',
             })
           }}
           onScheduleChange={schedule => {
@@ -64,6 +76,8 @@ class ScheduleInfo extends Component {
 ScheduleInfo.propTypes = {
   schedule: PropTypes.string,
   scheduleName: PropTypes.string,
+  topic: PropTypes.string,
+  value: PropTypes.string,
   deleteSchedule: PropTypes.func,
   submitSchedule: PropTypes.func,
 };
