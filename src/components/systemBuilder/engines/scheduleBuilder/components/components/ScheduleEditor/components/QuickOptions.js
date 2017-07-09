@@ -9,30 +9,21 @@ const style = {
   padding: 18,
 };
 
-const handleChange =  (onScheduleChange, index) => () => {
-   const baseSchedule =  '* * * * * *';
-   const newSchedule = baseSchedule.split(' ');
-   newSchedule[index] = '1';
-   onScheduleChange(newSchedule.join(' '));
-};
 
-
-const QuickOptions = ({ selectedOption, onSelectedOptionChange, onScheduleChange }) => (
+const QuickOptions = ({ selectedOption, onScheduleSelected }) => (
   <div style={style}>
-    <FlatButton onClick={handleChange(onScheduleChange, 0)} label="Second" />
-    <FlatButton onClick={handleChange(onScheduleChange, 1)}  label="Minute" />
-    <FlatButton onClick={handleChange(onScheduleChange, 2)} label="Hourly" />
-    <FlatButton onClick={handleChange(onScheduleChange, 3)} label="Daily" />
-    <FlatButton onClick={handleChange(onScheduleChange, 4)} label="Weekly" />
-    <FlatButton onClick={handleChange(onScheduleChange, 5)} label="Monthly" />
+    <FlatButton onClick={() => onScheduleSelected('second')} label="Second" />
+    <FlatButton onClick={() => onScheduleSelected('minute')}  label="Minute" />
+    <FlatButton onClick={() => onScheduleSelected('hourly')} label="Hourly" />
+    <FlatButton onClick={() => onScheduleSelected('daily')} label="Daily" />
+    <FlatButton onClick={() => onScheduleSelected('monthly')} label="Monthly" />
     <FlatButton secondary label="Schedule Single Event" />
   </div>
 );
 
 QuickOptions.propTypes = {
   selectedOption: PropTypes.number.isRequired,
-  onSelectedOptionChange: PropTypes.func.isRequired,
-  onScheduleChange: PropTypes.func,
+  onScheduleSelected: PropTypes.func.isRequired,
 };
 
 export default QuickOptions;

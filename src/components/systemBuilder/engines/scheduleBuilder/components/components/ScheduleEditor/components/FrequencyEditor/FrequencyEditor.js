@@ -14,11 +14,14 @@ const stringToComponent =  {
 };
 
 const FrequencyEditor = ({ type }) => {
-  if (type === undefined){
-    return <None />;
-  }
-  const FrequencyComponent = stringToComponent[type];
-  return <FrequencyComponent />;
+  console.log('type is: ', type);
+
+  const FrequencyComponent = stringToComponent[type] || None;
+  return (
+    <div style={{ width: '100%', display: 'inline-block', background: 'rgba(0,0,0,0.1)', padding: 28, overflow: 'auto' }}>
+      <FrequencyComponent />
+    </div>
+  );
 };
 
 FrequencyEditor.propTypes = {

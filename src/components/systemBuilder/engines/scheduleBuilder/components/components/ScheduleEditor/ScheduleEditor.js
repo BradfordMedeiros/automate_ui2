@@ -17,7 +17,6 @@ const styles = {
   detailStyle : {
     display: 'flex',
     flexGrow: 6,
-    boxShadow: '0px 1px 10px 1px black inset',
   },
   detailStyle2 : {
     display: 'flex',
@@ -47,7 +46,9 @@ class QuickAdd extends Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', height: '85%' }}>
         <QuickOptions
-          onScheduleChange={onScheduleChange}
+          onScheduleSelected={selectedOption => {
+            this.setState({ selectedOption });
+          }}
         />
         <div style={{ display: 'flex', flexDirection: 'row', flexGrow: 5 }}>
           <div style={styles.topicValueStyle}>
@@ -66,7 +67,7 @@ class QuickAdd extends Component {
             </div>
           </div>
           <div style={styles.detailStyle}>
-            <FrequencyEditor />
+            <FrequencyEditor type={this.state.selectedOption} />
           </div>
         </div>
         <div style={styles.detailStyle2} >
