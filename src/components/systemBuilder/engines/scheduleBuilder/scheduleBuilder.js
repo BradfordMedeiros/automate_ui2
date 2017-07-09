@@ -12,7 +12,6 @@ class ScheduleBuilder extends Component {
       scheduleName,
     } = this.props;
 
-    window.ss = schedules[selectedIndex];
     return (
       <AxiomBuilder
         title="Schedules"

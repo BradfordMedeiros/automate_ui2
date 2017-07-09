@@ -36,6 +36,7 @@ const handleChange = (schedule, onScheduleChange, index) => (_, newValue) => {
 
 const RawCron = ({ schedule, onScheduleChange }) => {
   const timeObject = convertCronStringToObject(schedule);
+  window.to = timeObject;
   return (
     <div style={style}>
       <TextField

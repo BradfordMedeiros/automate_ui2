@@ -1,36 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import { RaisedButton, TextField } from 'material-ui';
+import { RaisedButton, TextField, Subheader, Divider } from 'material-ui';
 import RawCron from './components/RawCron';
 import QuickOptions from './components/QuickOptions';
+import FrequencyEditor from './components/FrequencyEditor/FrequencyEditor';
 
 const styles = {
   topicValueStyle : {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
-    paddingTop: 32,
-    paddingBottom: 32,
-    boxShadow: '0px 0px 2px 1px black',
-    marginLeft: 10,
     alignItems: 'center',
+    padding: 18,
+    paddingBottom: 48,
+    borderBottom: '2px ridge rgba(0, 0, 0, 0.14)',
   },
   detailStyle : {
     display: 'flex',
-    flexGrow: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 24,
-    color: 'rgb(210,210,210)',
+    flexGrow: 6,
     boxShadow: '0px 1px 10px 1px black inset',
   },
   detailStyle2 : {
     display: 'flex',
-    flexGrow: 5,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 24,
     color: 'rgb(210,210,210)',
-    boxShadow: '0px 1px 10px 1px black',
   }
 };
 
@@ -50,18 +45,28 @@ class QuickAdd extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '85%' }}>
         <QuickOptions
           onScheduleChange={onScheduleChange}
         />
-
-        <div style={{ display: 'flex', flexDirection: 'row'  }}>
+        <div style={{ display: 'flex', flexDirection: 'row', flexGrow: 5 }}>
           <div style={styles.topicValueStyle}>
-            <TextField value={topic} onChange={(_, topic) => onTopicChange(topic)} floatingLabelText={"Topic"} />
-            <TextField value={value} onChange={(_, value) => onValueChange(value)} floatingLabelText={"Value"} />
+            <Subheader>Mqtt Trigger</Subheader>
+            <Divider />
+            <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <TextField fullWidth value={topic} onChange={(_, topic) => onTopicChange(topic)} floatingLabelText={"Topic"} />
+              <TextField fullWidth value={value} onChange={(_, value) => onValueChange(value)} floatingLabelText={"Value"} />
+            </div>
+
+            <div style={{ marginTop: 80, width: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Subheader>Controls</Subheader>
+              <Divider />
+              <RaisedButton label="Submit" onClick={onSubmitSchedule} />
+              <RaisedButton label="Pause/Play" />
+            </div>
           </div>
           <div style={styles.detailStyle}>
-            Every <TextField /> hour of the day
+            <FrequencyEditor />
           </div>
         </div>
         <div style={styles.detailStyle2} >
@@ -70,7 +75,6 @@ class QuickAdd extends Component {
             onScheduleChange={onScheduleChange}
           />
         </div>
-        <RaisedButton primary="Submit" label="Submit" fullWidth onClick={onSubmitSchedule} />
       </div>
     );
   }
