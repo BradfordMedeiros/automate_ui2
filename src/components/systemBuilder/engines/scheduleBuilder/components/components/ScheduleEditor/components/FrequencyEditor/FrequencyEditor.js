@@ -4,6 +4,7 @@ import Hourly from './components/Hourly';
 import Daily from './components/Daily';
 import Weekly from './components/Weekly';
 import Monthly from './components/Monthly';
+import TargetDate from './components/TargetDate';
 import None from './components/None';
 
 const stringToComponent =  {
@@ -11,6 +12,7 @@ const stringToComponent =  {
   daily: Daily,
   weekly: Weekly,
   monthly: Monthly,
+  target: TargetDate,
 };
 
 const FrequencyEditor = ({ type }) => {

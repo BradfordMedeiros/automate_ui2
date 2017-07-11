@@ -17,7 +17,7 @@ const QuickOptions = ({ selectedOption, onScheduleSelected }) => (
     <FlatButton onClick={() => onScheduleSelected('hourly')} label="Hourly" />
     <FlatButton onClick={() => onScheduleSelected('daily')} label="Daily" />
     <FlatButton onClick={() => onScheduleSelected('monthly')} label="Monthly" />
-    <FlatButton secondary label="Schedule Single Event" />
+    <FlatButton onClick={() => onScheduleSelected('target')}  secondary label="Schedule Single Event" />
   </div>
 );
 
