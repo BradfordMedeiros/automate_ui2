@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Checkbox from 'material-ui/Checkbox';
+import isSelected from './util/isSelected';
 
 const styles = {
 
@@ -27,10 +28,23 @@ const months = [
   'December',
 ];
 
-const Monthly = () => (
-  <div>
-    {months.map(month => <Checkbox style={styles.checkbox} label={month} />)}
-  </div>
-);
+
+const Monthly = ({ schedule }) => {
+  return (
+    <div>
+      {months.map((month, index) =>
+        <Checkbox
+          style={styles.checkbox}
+          checked={isSelected.monthly.isSelected(schedule, index)}
+          label={month}
+        />
+      )}
+    </div>
+  );
+}
+
+Monthly.propTypes = {
+  schedule: PropTypes.string.isRequired,
+};
 
 export default Monthly;

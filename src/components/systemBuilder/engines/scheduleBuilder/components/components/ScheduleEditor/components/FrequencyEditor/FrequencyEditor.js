@@ -15,19 +15,19 @@ const stringToComponent =  {
   target: TargetDate,
 };
 
-const FrequencyEditor = ({ type }) => {
-  console.log('type is: ', type);
+const FrequencyEditor = ({ type, schedule }) => {
 
   const FrequencyComponent = stringToComponent[type] || None;
   return (
     <div style={{ width: '100%', display: 'inline-block', background: 'rgba(0,0,0,0.1)', padding: 28, overflow: 'auto' }}>
-      <FrequencyComponent />
+      <FrequencyComponent schedule={schedule} />
     </div>
   );
 };
 
 FrequencyEditor.propTypes = {
   type: PropTypes.string.isRequired,
+  schedule: PropTypes.string.isRequired,
 };
 
 export default FrequencyEditor;

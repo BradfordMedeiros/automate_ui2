@@ -10,7 +10,6 @@ class TargetDate extends Component {
     time: undefined,
   };
   render() {
-    window.t = this;
     return (
       <div>
         <div>
