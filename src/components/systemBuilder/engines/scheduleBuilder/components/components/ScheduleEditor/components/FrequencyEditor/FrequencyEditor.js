@@ -20,7 +20,12 @@ const FrequencyEditor = ({ type, schedule }) => {
   const FrequencyComponent = stringToComponent[type] || None;
   return (
     <div style={{ width: '100%', display: 'inline-block', background: 'rgba(0,0,0,0.1)', padding: 28, overflow: 'auto' }}>
-      <FrequencyComponent schedule={schedule} />
+      <FrequencyComponent
+        schedule={schedule}
+        onScheduleChange={newSchedule => {
+          console.log('new schedule: ', newSchedule);
+        }}
+      />
     </div>
   );
 };
@@ -28,6 +33,7 @@ const FrequencyEditor = ({ type, schedule }) => {
 FrequencyEditor.propTypes = {
   type: PropTypes.string.isRequired,
   schedule: PropTypes.string.isRequired,
+  onScheduleChange: PropTypes.func.isRequired,
 };
 
 export default FrequencyEditor;

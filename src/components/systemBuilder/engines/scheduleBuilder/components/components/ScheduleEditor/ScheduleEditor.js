@@ -67,7 +67,11 @@ class QuickAdd extends Component {
             </div>
           </div>
           <div style={styles.detailStyle}>
-            <FrequencyEditor type={this.state.selectedOption} schedule={schedule} />
+            <FrequencyEditor
+              type={this.state.selectedOption}
+              schedule={schedule}
+              onScheduleChange={onScheduleChange}
+            />
           </div>
         </div>
         <div style={styles.detailStyle2} >

@@ -36,6 +36,9 @@ const Monthly = ({ schedule }) => {
         <Checkbox
           style={styles.checkbox}
           checked={isSelected.monthly.isSelected(schedule, index)}
+          onCheck={(_, x) => {
+            isSelected.monthly.getScheduleChange(schedule, index, x);
+          }}
           label={month}
         />
       )}
@@ -45,6 +48,7 @@ const Monthly = ({ schedule }) => {
 
 Monthly.propTypes = {
   schedule: PropTypes.string.isRequired,
+  onScheduleChange: PropTypes.func.isRequired,
 };
 
 export default Monthly;
