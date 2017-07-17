@@ -30,6 +30,7 @@ const months = [
 
 
 const Monthly = ({ schedule, onScheduleChange }) => {
+  window.s = schedule;
   return (
     <div>
       {months.map((month, index) =>
