@@ -1,7 +1,7 @@
 
 import React, { PropTypes } from 'react';
 import Checkbox from 'material-ui/Checkbox';
-import isSelected from './util/isSelected';
+import { month as monthUtil } from 'cron_util';
 
 const styles = {
 
@@ -29,15 +29,21 @@ const months = [
 ];
 
 
-const Monthly = ({ schedule }) => {
+const Monthly = ({ schedule, onScheduleChange }) => {
   return (
     <div>
       {months.map((month, index) =>
         <Checkbox
           style={styles.checkbox}
-          checked={isSelected.monthly.isSelected(schedule, index)}
+          checked={monthUtil.isSelected(schedule, index)}
           onCheck={(_, x) => {
-            isSelected.monthly.getScheduleChange(schedule, index, x);
+            if (x === true){
+              const newSchedule = monthUtil.add(schedule, index);
+              onScheduleChange(newSchedule);
+            }else{
+              const newSchedule = monthUtil.remove(schedule, index);
+              onScheduleChange(newSchedule);
+            }
           }}
           label={month}
         />

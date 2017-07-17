@@ -15,16 +15,14 @@ const stringToComponent =  {
   target: TargetDate,
 };
 
-const FrequencyEditor = ({ type, schedule }) => {
+const FrequencyEditor = ({ type, schedule, onScheduleChange }) => {
 
   const FrequencyComponent = stringToComponent[type] || None;
   return (
     <div style={{ width: '100%', display: 'inline-block', background: 'rgba(0,0,0,0.1)', padding: 28, overflow: 'auto' }}>
       <FrequencyComponent
         schedule={schedule}
-        onScheduleChange={newSchedule => {
-          console.log('new schedule: ', newSchedule);
-        }}
+        onScheduleChange={onScheduleChange}
       />
     </div>
   );

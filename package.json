@@ -17,6 +17,7 @@
   "dependencies": {
     "babel-register": "^6.24.1",
     "chart.js": "^2.5.0",
+    "cron_util": "https://github.com/BradfordMedeiros/cron_util.git",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.16.6",
