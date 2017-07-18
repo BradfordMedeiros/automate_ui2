@@ -64,7 +64,7 @@ class QuickAdd extends Component {
               <Subheader>Controls</Subheader>
               <Divider />
               <RaisedButton label="Submit" onClick={onSubmitSchedule} />
-              <RaisedButton label="Pause/Play" />
+              <RaisedButton disabled label="Pause/Play" />
             </div>
           </div>
           <div style={styles.detailStyle}>

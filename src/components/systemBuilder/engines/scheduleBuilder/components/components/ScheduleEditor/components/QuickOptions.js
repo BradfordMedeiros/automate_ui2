@@ -23,7 +23,7 @@ const buttonTypes = ['second','minute','hourly','daily','monthly'];
 const QuickOptions = ({ selectedOption, onScheduleSelected }) => (
   <div style={style}>
     {buttonTypes.map(type => getButton(type, onScheduleSelected, selectedOption))}
-    <FlatButton onClick={() => onScheduleSelected('target')}  secondary label="Schedule Single Event" />
+    {/*<FlatButton onClick={() => onScheduleSelected('target')}  secondary label="Schedule Single Event" />*/}
   </div>
 );
 
