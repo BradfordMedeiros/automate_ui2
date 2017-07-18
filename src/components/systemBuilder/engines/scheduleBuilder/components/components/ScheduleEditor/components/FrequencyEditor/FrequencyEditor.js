@@ -1,5 +1,7 @@
 
 import React, { PropTypes } from 'react';
+import Second from './components/Second';
+import Minute from './components/Minute';
 import Hourly from './components/Hourly';
 import Daily from './components/Daily';
 import Monthly from './components/Monthly';
@@ -15,6 +17,8 @@ const style = {
 };
 
 const stringToComponent =  {
+  second: Second,
+  minute: Minute,
   hourly: Hourly,
   daily: Daily,
   weekly: None,

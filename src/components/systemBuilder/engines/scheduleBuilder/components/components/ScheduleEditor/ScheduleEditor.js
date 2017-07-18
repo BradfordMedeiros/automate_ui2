@@ -46,6 +46,7 @@ class QuickAdd extends Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', height: '85%' }}>
         <QuickOptions
+          selectedOption={this.state.selectedOption}
           onScheduleSelected={selectedOption => {
             this.setState({ selectedOption });
           }}

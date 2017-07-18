@@ -9,14 +9,20 @@ const style = {
   padding: 18,
 };
 
+const getBackgroundColor = (selectedType, selectedOption) => selectedOption === selectedType ? 'rgb(1, 90, 99)': undefined;
 
+const getButton = (selectedType, onScheduleSelected, selectedOption) => (
+  <FlatButton
+    backgroundColor={getBackgroundColor(selectedType, selectedOption)}
+    onClick={() => onScheduleSelected(selectedType)}
+    label={selectedType}
+  />
+);
+
+const buttonTypes = ['second','minute','hourly','daily','monthly'];
 const QuickOptions = ({ selectedOption, onScheduleSelected }) => (
   <div style={style}>
-    <FlatButton onClick={() => onScheduleSelected('second')} label="Second" />
-    <FlatButton onClick={() => onScheduleSelected('minute')}  label="Minute" />
-    <FlatButton onClick={() => onScheduleSelected('hourly')} label="Hourly" />
-    <FlatButton onClick={() => onScheduleSelected('daily')} label="Daily" />
-    <FlatButton onClick={() => onScheduleSelected('monthly')} label="Monthly" />
+    {buttonTypes.map(type => getButton(type, onScheduleSelected, selectedOption))}
     <FlatButton onClick={() => onScheduleSelected('target')}  secondary label="Schedule Single Event" />
   </div>
 );
