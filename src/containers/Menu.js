@@ -12,7 +12,7 @@ import StateBuilder from './system/base/StatesBuilder';
 import ConditionBuilder from './system/base/ConditionsBuilder';
 import SequenceBuilder from './system/engines/SequencesBuilder';
 import ScheduleBuilder from './system/engines/ScheduleBuilder';
-import ComingSoon from './system/ComingSoon';
+import RuleBuilder from './system/engines/RuleBuilder';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -137,7 +137,7 @@ class MenuContainer extends Component {
                 },
                 {
                   label: 'Logic',
-                  onClick: () => this.openContent(<ComingSoon />),
+                  onClick: () => this.openContent(<RuleBuilder />),
                 },
                 {
                   label: 'Scheduler',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ScheduleBuilderComponent from '../../../components/systemBuilder/engines/scheduleBuilder/scheduleBuilder';
+import ScheduleBuilderComponent from '../../../components/systemBuilder/engines/scheduleBuilder/ScheduleBuilder';
 import WithData from '../../../data/WithData';
 
 const WithSchedules = WithData.polling.WithSchedules;
@@ -32,7 +32,6 @@ class ActionsBuilder extends Component {
                   if(typeof(addedSchedule) === typeof('')){
                     addSchedule(addedSchedule);
                   }else {
-
                     const { name, schedule, topic, value } = addedSchedule;
                     addSchedule(name, schedule, topic, value);
                   }
