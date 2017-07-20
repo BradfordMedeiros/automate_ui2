@@ -12,7 +12,6 @@ class RuleBuilder extends Component {
       ruleName,
     } = this.props;
 
-    window.r = rules;
     return (
       <AxiomBuilder
         title="Rules"
@@ -28,6 +27,10 @@ class RuleBuilder extends Component {
           strategy={rules[selectedIndex].strategy}
           rate={rules[selectedIndex].rate}
           conditionName={rules[selectedIndex].conditionName}
+          submitRule={newRule => {
+            console.log('new rule is ', newRule);
+            // should add rule here
+          }}
           deleteRule={() =>{
             onRuleChange(undefined, undefined, ruleName)}
           }
