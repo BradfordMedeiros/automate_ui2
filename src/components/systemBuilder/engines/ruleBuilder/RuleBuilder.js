@@ -28,8 +28,7 @@ class RuleBuilder extends Component {
           rate={rules[selectedIndex].rate}
           conditionName={rules[selectedIndex].conditionName}
           submitRule={newRule => {
-            console.log('new rule is ', newRule);
-            // should add rule here
+            onRuleChange(undefined, newRule);
           }}
           deleteRule={() =>{
             onRuleChange(undefined, undefined, ruleName)}

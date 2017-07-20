@@ -28,13 +28,11 @@ class ActionsBuilder extends Component {
             ruleName={this.state.selectedName}
             onRuleChange={(newRules, addedRule, deletedRuleName) => {
               if (addedRule) {
-                console.log('added rule: ', addedRule);
-                console.log('added schedule ------ ', addedRule);
                 if(typeof(addedRule) === typeof('')){
                   addRule(addedRule);
                 }else {
-                  //const { name, schedule, topic, value } = addedSchedule;
-                  //addedRule(name, schedule, topic, value);
+                  const {conditionName, rate, ruleName, strategy, topic, value} = addedRule;
+                  addRule(ruleName, conditionName, strategy, rate, topic, value);
                 }
               }
               if (deletedRuleName) {

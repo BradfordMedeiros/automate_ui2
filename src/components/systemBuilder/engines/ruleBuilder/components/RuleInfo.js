@@ -74,6 +74,9 @@ class RuleInfo extends Component {
           label="Submit Changes"
           onTouchTap={() => {
             submitRule(this.getRuleData())
+            this.setState({
+              hasChanged: false,
+            })
           }}
         />
         <div style={{ height: '70%', overflow: 'auto', boxShadow: '0px 0px 1px 0.1px black inset'}}>
