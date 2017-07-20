@@ -12,6 +12,7 @@ class RuleBuilder extends Component {
       ruleName,
     } = this.props;
 
+    window.r = rules;
     return (
       <AxiomBuilder
         title="Rules"
@@ -21,8 +22,13 @@ class RuleBuilder extends Component {
         onAxiomChange={onRuleChange}
       >
         <RuleInfo
-          scheduleName={rules[selectedIndex].name}
-          deleteSchedule={() =>{
+          ruleName={rules[selectedIndex].name}
+          topic={rules[selectedIndex].topic}
+          value={rules[selectedIndex].value}
+          strategy={rules[selectedIndex].strategy}
+          rate={rules[selectedIndex].rate}
+          conditionName={rules[selectedIndex].conditionName}
+          deleteRule={() =>{
             onRuleChange(undefined, undefined, ruleName)}
           }
         />
