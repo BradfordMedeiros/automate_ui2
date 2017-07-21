@@ -132,15 +132,15 @@ class MenuContainer extends Component {
               label: 'Engines',
               children: [
                 {
+                  label: 'Rules',
+                  onClick: () => this.openContent(<RuleBuilder />),
+                },
+                {
                   label: 'Sequences',
                   onClick: () => this.openContent(<SequenceBuilder />),
                 },
                 {
-                  label: 'Logic',
-                  onClick: () => this.openContent(<RuleBuilder />),
-                },
-                {
-                  label: 'Scheduler',
+                  label: 'Schedules',
                   onClick: () => this.openContent(<ScheduleBuilder />),
                 },
               ],

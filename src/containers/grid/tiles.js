@@ -10,8 +10,12 @@ import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSli
 import { tile as MqttButtonTile } from './tiles/mqtt/button/button';
 import { overlay as MqttButtonOverlay } from './tiles/mqtt/button/buttonOverlay';
 
-import { tile as IFrameTile } from './tiles/misc/IFrame';
-import { overlay as IFrameOverlay } from './tiles/misc/IFrameOverlay';
+import { tile as IFrameTile } from './tiles/misc/iframe/IFrame';
+import { overlay as IFrameOverlay } from './tiles/misc/iframe/IFrameOverlay';
+import { tile as LabelTile } from './tiles/misc/label/Label';
+import { overlay as LabelOverlay } from './tiles/misc/label/LabelOverlay';
+import { tile as WhitespaceTile } from './tiles/misc/whitespace/WhiteSpace';
+import { overlay as WhitespaceOverlay } from './tiles/misc/whitespace/WhiteSpaceOverlay';
 
 import MongoLine from './tiles/graphs/line/mongoTile';
 import MongoPie from './tiles/graphs/pie/MongoPie';
@@ -64,6 +68,8 @@ export const tileNames = [
     label: 'Misc',
     children: [
       'IFrame',
+      'Label',
+      'Whitespace',
     ],
   },
 ];
@@ -97,6 +103,12 @@ const InnerTile = (props) => {
     }
     case 'IFrame' : {
       return <IFrameTile {...otherProps} />;
+    }
+    case 'Whitespace': {
+      return <WhitespaceTile {...otherProps} />
+    }
+    case 'Label': {
+      return <LabelTile {...otherProps} />
     }
     case 'Button': {
       return <MqttButtonTile {...otherProps} />;
@@ -166,6 +178,12 @@ class TileOverlay extends Component {
       }
       case 'IFrame': {
         return <IFrameOverlay {...otherProps} />;
+      }
+      case 'Label': {
+        return <LabelOverlay {...otherProps} />
+      }
+      case 'Whitespace': {
+        return <WhitespaceOverlay {...otherProps} />
       }
       case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;

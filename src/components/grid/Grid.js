@@ -31,6 +31,7 @@ class Grid extends Component {
             cols={{ lg: 24, md: 24, sm: 1, xs: 1, xxs: 1 }}
             rowHeight={30}
             verticalCompact
+            margin={[0,0]}
             isDraggable={isEditable}
             isResizable={isEditable}
             onLayoutChange={(newLayout) => {
