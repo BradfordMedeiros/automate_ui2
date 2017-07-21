@@ -35,10 +35,10 @@ class Mongo extends Component {
       >
         {({ data }) => {
           const frequencyMap = data.reduce((acc, curr) => {
-            if (acc[curr.message] === undefined) {
-              acc[curr.message] = 0;
+            if (acc[curr.value] === undefined) {
+              acc[curr.value] = 0;
             }
-            acc[curr.message] = acc[curr.message] + 1;
+            acc[curr.value] = acc[curr.value] + 1;
             return acc;
           }, {});
 

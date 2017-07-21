@@ -49,7 +49,7 @@ class Mongo extends Component {
             const topic = data[0].topic;
             const dataToRender = data.map(item => ({
               x: new Date(item.timestamp),
-              y: Number(item.message),
+              y: Number(item.value),
             }));
 
             const theData = {
