@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { List } from 'immutable';
-import { ActionHome, ContentCreate, ActionStore, ActionSettingsPower } from 'material-ui/svg-icons';
 import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/grid/MultiGrid';
@@ -9,7 +7,6 @@ import { container as SelectionOverlay } from './containers/Overlay';
 import { container as Menu } from './containers/Menu';
 import { container as Notifications } from './containers/notifications/Notifications';
 
-import MinimalMenu from './components/menu/minimalMenu';
 import Footer from './components/footer/footer';
 
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
@@ -27,9 +24,8 @@ const desktopStyles = {
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
-  grid: { top: 50, bottom: 10, left: 55, right: 0 },
-  minMenu: { width: 55, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: { left: 75, right: 18 },
+  grid: { top: 50, bottom: 10, left: 0, right: 0 },
+  overlay: { left: 0, right: 0 },
 };
 
 class Layout extends Component {
@@ -55,24 +51,9 @@ class Layout extends Component {
         </Desktop>
 
         <Mobile>
-          {hideMenu ?
-            null :
-            <MinimalMenu
-              buttonIcons={
-                List([
-                  <ActionHome />,
-                  <ContentCreate />,
-                  <ActionStore />,
-                  <ActionSettingsPower />,
-                ])}
-              style={mobileStyles.minMenu}
-            />
-          }
           <Appbar tileNames={tileNames} style={mobileStyles.appbar} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
-          <Footer />
-          <DisconnectedOverlay />
           <Notifications />
         </Mobile>
       </div>
