@@ -14,13 +14,18 @@ const generateMetaActionMap = () => ({
   },
 });
 
+const getSelectedIndex = (sequences, selectedIndex) => {
+  if (selectedIndex < sequences.length){
+    return selectedIndex;
+  }
+  return 0;
+};
 
 class SequenceBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0,
-      selectedName: 'other',
+      selectedIndex: undefined,
     };
   }
   render() {
@@ -28,8 +33,10 @@ class SequenceBuilder extends Component {
       (
         <WithSequences>
           {({ sequences, addSequence, deleteSequence }) => {
+            const selectedSequence = sequences[getSelectedIndex(sequences, this.state.selectedIndex)];
+
             const sequenceActions = sequences.filter(
-              sequence => sequence.name === this.state.selectedName,
+              sequence => sequence.name === selectedSequence.name,
             );
 
             const sequenceAction = (
@@ -48,8 +55,8 @@ class SequenceBuilder extends Component {
                     selectedName,
                   });
                 }}
-                selectedName={this.state.selectedName}
-                selectedIndex={this.state.selectedIndex}
+                selectedName={selectedSequence ? selectedSequence.name : ''}
+                selectedIndex={getSelectedIndex(sequences, this.state.selectedIndex)}
                 metaActions={generateMetaActionMap()}
                 onSequenceChange={(newSequence, addedSequenceName, deletedSequenceName) => {
                   console.log('new sequence is : ', newSequence);
@@ -63,7 +70,7 @@ class SequenceBuilder extends Component {
                   }
                 }}
                 onSequenceActionsChange={(newActions) => {
-                  addSequence(this.state.selectedName, newActions);
+                  addSequence(selectedSequence.name, newActions);
                 }}
               />
             );
