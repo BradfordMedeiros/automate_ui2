@@ -49,6 +49,7 @@ class Appbar extends Component {
       tileNames,
       onToggle,
       onHideMenu,
+      showHideMenu,
       title,
       style,
     } = this.props;
@@ -76,7 +77,7 @@ class Appbar extends Component {
             )
           }
         </Drawer>
-        <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>
+        {showHideMenu && <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>}
         <div className="toggle">
           <Toggle onToggle={onToggle} />
         </div>
@@ -105,6 +106,7 @@ class Appbar extends Component {
 
 Appbar.propTypes = {
   style: PropTypes.object,
+  showHideMenu: PropTypes.bool,
   rotateAddIcon: PropTypes.bool,
   onRotatedAddIconClick: PropTypes.func,
   tileNames: PropTypes.array,

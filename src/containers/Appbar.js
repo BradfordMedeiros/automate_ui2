@@ -4,10 +4,11 @@ import Appbar from '../components/appbar/Appbar';
 import { expandMenu, lock, setMenu } from './module';
 import { addTile } from './grid/module';
 
-const ConnectedAppbar = ({ activeGrid, onTileClick, ...otherProps }) => (
+const ConnectedAppbar = ({ activeGrid, onTileClick, showHideMenu, ...otherProps }) => (
   <Appbar
     {...otherProps}
     title={'automate'}
+    showHideMenu={showHideMenu}
     onTileClick={(tileName) => {
       onTileClick(tileName, activeGrid);
     }}

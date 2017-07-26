@@ -35,7 +35,7 @@ class Layout extends Component {
       <div style={appStyle}>
         <Desktop>
           {hideMenu ? null : <Menu style={desktopStyles.menu} />}
-          <Appbar tileNames={tileNames} style={desktopStyles.appbar} />
+          <Appbar showHideMenu tileNames={tileNames} style={desktopStyles.appbar} />
           <Grid
             tileNames={tileNames}
             tileNameToTile={tileNameToTile}
