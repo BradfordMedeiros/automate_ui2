@@ -20,7 +20,7 @@ class ScheduleBuilder extends Component {
         onAxiomSelected={onScheduleSelected}
         onAxiomChange={onScheduleChange}
       >
-        <ScheduleInfo
+        {(schedules.length > 0) && <ScheduleInfo
           topic={schedules[selectedIndex].topic}
           value={schedules[selectedIndex].value}
           scheduleName={schedules[selectedIndex].name}
@@ -39,7 +39,7 @@ class ScheduleBuilder extends Component {
           deleteSchedule={() => {
             onScheduleChange(undefined, undefined, scheduleName)}
           }
-        />
+        />}
       </AxiomBuilder>
     );
   }

@@ -4,10 +4,17 @@ import WithData from '../../../data/WithData';
 
 const WithSchedules = WithData.polling.WithSchedules;
 
-class ActionsBuilder extends Component {
+const getSelectedIndex = (schedules, selectedIndex) => {
+  if (selectedIndex < schedules.length){
+    return selectedIndex;
+  }
+  return 0;
+};
+
+
+class ScheduleBuilder extends Component {
   state = {
     selectedIndex: 0,
-    selectedName: 'other',
   };
   render() {
     return (
@@ -15,6 +22,10 @@ class ActionsBuilder extends Component {
         renderWhileLoading
       >
         {({ schedules, addSchedule, deleteSchedule }) => {
+
+          const selectedSchedule = schedules[getSelectedIndex(schedules, this.state.selectedIndex)];
+          window.s = schedules;
+
           return (
             <ScheduleBuilderComponent
               schedules={schedules}
@@ -25,7 +36,7 @@ class ActionsBuilder extends Component {
                   selectedName,
                 });
               }}
-              scheduleName={schedules.length > 0 ? schedules[this.state.selectedIndex].name : 'No schedules'}
+              scheduleName={selectedSchedule ? selectedSchedule.name : ''}
               onScheduleChange={(newSchedules, addedSchedule, deletedScheduleName) => {
                 if (addedSchedule) {
                   console.log('added schedule ------ ', addedSchedule);
@@ -51,5 +62,5 @@ class ActionsBuilder extends Component {
   }
 }
 
-export default ActionsBuilder;
+export default ScheduleBuilder;
 
