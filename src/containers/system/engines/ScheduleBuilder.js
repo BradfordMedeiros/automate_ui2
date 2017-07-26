@@ -24,7 +24,6 @@ class ScheduleBuilder extends Component {
         {({ schedules, addSchedule, deleteSchedule }) => {
 
           const selectedSchedule = schedules[getSelectedIndex(schedules, this.state.selectedIndex)];
-          window.s = schedules;
 
           return (
             <ScheduleBuilderComponent

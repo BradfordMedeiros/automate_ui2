@@ -20,20 +20,22 @@ class RuleBuilder extends Component {
         onAxiomSelected={onRuleSelected}
         onAxiomChange={onRuleChange}
       >
-        <RuleInfo
-          ruleName={rules[selectedIndex].name}
-          topic={rules[selectedIndex].topic}
-          value={rules[selectedIndex].value}
-          strategy={rules[selectedIndex].strategy}
-          rate={rules[selectedIndex].rate}
-          conditionName={rules[selectedIndex].conditionName}
-          submitRule={newRule => {
-            onRuleChange(undefined, newRule);
-          }}
-          deleteRule={() =>{
-            onRuleChange(undefined, undefined, ruleName)}
-          }
-        />
+        {(rules.length > 0) && (
+          <RuleInfo
+            ruleName={rules[selectedIndex].name}
+            topic={rules[selectedIndex].topic}
+            value={rules[selectedIndex].value}
+            strategy={rules[selectedIndex].strategy}
+            rate={rules[selectedIndex].rate}
+            conditionName={rules[selectedIndex].conditionName}
+            submitRule={newRule => {
+              onRuleChange(undefined, newRule);
+            }}
+            deleteRule={() =>{
+              onRuleChange(undefined, undefined, ruleName)}
+            }
+          />
+        )}
       </AxiomBuilder>
     );
   }
