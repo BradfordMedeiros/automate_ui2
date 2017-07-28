@@ -1,34 +1,52 @@
 import React, { Component, PropTypes } from 'react';
-import AxiomSelection from './components/AxiomSelection';
-import GenericOverlay from '../overlay/GenericOverlay';
+import AxiomBuilderComponent from './AxiomBuilderComponent';
+import { Desktop, Mobile } from '../../util/ViewportSizing';
+
+
+
 
 class AxiomBuilder extends Component {
+  state = {
+    isHidden: true,
+  }
   render() {
-    const {
-      axioms,
-      title,
-      selectedIndex,
-      onAxiomSelected,
-      onAxiomChange,
-      children,
-    } = this.props;
-
+    const { axioms, title, selectedIndex, onAxiomSelected, onAxiomChange, children } = this.props;
     return (
-      <GenericOverlay title={title}>
-        <div style={{ display: 'flex' }}>
-          <AxiomSelection
+      <div>
+        <Mobile>
+          <AxiomBuilderComponent
             axioms={axioms}
+            title={title}
             selectedIndex={selectedIndex}
             onAxiomSelected={onAxiomSelected}
             onAxiomChange={onAxiomChange}
-            style={{ width: 250 }}
-          />
-          <div style={{ width: 0, height: '100%', border: '1px solid rgba(0,0,0,0.3)' }} />
-          {children}
-        </div>
-      </GenericOverlay>
-    );
+            isHidden={this.state.isHidden}
+            onMenuToggle={() => this.setState({ isHidden: !this.state.isHidden })}
+            isMobile={true}
+          >
+            {children}
+          </AxiomBuilderComponent>
+        </Mobile>
+        <Desktop>
+          <AxiomBuilderComponent
+            axioms={axioms}
+            title={title}
+            selectedIndex={selectedIndex}
+            onAxiomSelected={onAxiomSelected}
+            onAxiomChange={onAxiomChange}
+            isHidden={this.state.isHidden}
+            onMenuToggle={() => this.setState({ isHidden: !this.state.isHidden })}
+            isMobile={false}
+          >
+            {children}
+          </AxiomBuilderComponent>
+        </Desktop>
+      </div>
+
+    )
   }
+
+
 }
 
 

@@ -1,0 +1,22 @@
+@keyframes axiom_slide_in {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100vw;
+        opacity: 1;
+
+    }
+}
+
+@keyframes axiom_slide_out {
+    from {
+        width: 100vw;
+        opacity: 1;
+    }
+    to {
+        width: 0;
+        opacity: 0;
+    }
+}
