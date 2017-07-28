@@ -2,17 +2,24 @@ import React, { Component, PropTypes } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 
 const style = {
-  temp: {
-    background: 'rgb(40, 40, 40)',
+  body: {
+    width: '100%',
     height: '100%',
+    background: 'rgb(40,40,40)'
+  },
+  inner: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: '20%',
+    flexWrap: 'wrap',
   },
-  mqttDisplay: {
-    fontSize: '120%',
-    position: 'fixed',
-    color: 'rgb(170,170,170)',
-    fontFamily: 'Arial',
+  savedContentText: {
+    color: 'whitesmoke',
   },
+  button: {
+    margin: 18,
+  }
 };
 
 class MqttOverlay extends Component {
@@ -25,18 +32,25 @@ class MqttOverlay extends Component {
   render() {
     const { saveContent, savedContent, fieldName } = this.props;
     return (
-      <div style={style.temp}>
-        <TextField
-          onChange={(x) => {
-            this.setState({
-              topic: x.target.value,
-            });
-          }}
-          hintText={fieldName}
-        />
-        <div style={style.mqttDisplay} >
-          saved content: {savedContent}</div>
-        <RaisedButton onClick={() => saveContent(this.state.topic)}>Set Topic</RaisedButton>
+      <div style={style.body}>
+      <div style={style.inner}>
+        <div>
+          <TextField
+            onChange={(x) => {
+              this.setState({
+                topic: x.target.value,
+              });
+            }}
+            floatingLabelText={"mqtt topic "}
+            hintText={fieldName}
+          />
+          <div style={style.savedContentText} >saved content: {savedContent}</div>
+        </div>
+        <RaisedButton
+          label="Set Topic"
+          style={style.button}
+          onClick={() => saveContent(this.state.topic)}/>
+      </div>
       </div>
     );
   }
