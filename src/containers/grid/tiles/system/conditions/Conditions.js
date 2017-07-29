@@ -11,9 +11,10 @@ const createMqttTopic = conditionName => `/automate_sys/req/condtions/${conditio
 
 class Conditions extends Component {
   handleOnTouchTap = (publish, conditionName, conditionState) => {
-    const topicName = createMqttTopic(conditionName);
+    /*const topicName = createMqttTopic(conditionName);
     const newState = conditionState === 'active' ? 'off' : 'on';
-    publish(topicName, newState);
+    publish(topicName, newState);*/
+    console.error('this is unimplemented currently');
   };
   render() {
     return (

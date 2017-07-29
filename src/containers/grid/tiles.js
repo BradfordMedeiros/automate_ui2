@@ -22,17 +22,18 @@ import MongoPie from './tiles/graphs/pie/MongoPie';
 import MongoRadar from './tiles/graphs/radar/MongoRadar';
 import MongoBar from './tiles/graphs/bar/MongoBar';
 
-import Conditions from './tiles/system/conditions/Conditions';
-import ConditionsOverlay from './tiles/system/conditions/ConditionOverlay';
 
 import States from './tiles/system/states/States';
 import Actions from './tiles/system/actions/Actions';
-
+import Conditions from './tiles/system/conditions/Conditions';
 import Sequences from './tiles/system/sequences/Sequences';
-import SequenceBuilder from '../system/engines/SequencesBuilder';
 
 import ActionBuilder from '../system/base/ActionsBuilder';
 import StateBuilder from '../system/base/StatesBuilder';
+import ConditionBuilder from '../system/base/ConditionsBuilder';
+import RuleBuilder from '../system/engines/RuleBuilder';
+import SequenceBuilder from '../system/engines/SequencesBuilder';
+import ScheduleBuilder from '../system/engines/ScheduleBuilder';
 
 import SingleFieldOverlay from './tiles/common/overlays/SingleFieldOverlay';
 
@@ -42,8 +43,10 @@ export const tileNames = [
     children: [
       'System - States',
       'System - Actions',
-      // 'System - Conditions',
+      'System - Conditions',
+      'Engines - Rules',
       'Engines - Sequences',
+      'Engines - Schedules',
     ],
   },
   {
@@ -113,17 +116,23 @@ const InnerTile = (props) => {
     case 'Button': {
       return <MqttButtonTile {...otherProps} />;
     }
-    case 'Conditions': {
-      return <Conditions />;
-    }
-    case 'Engines - Sequences': {
-      return <Sequences />;
-    }
     case 'System - States': {
-      return <States />;
+      return <States {...otherProps} />;
     }
     case 'System - Actions': {
-      return <Actions />;
+      return <Actions {...otherProps} />;
+    }
+    case 'System - Conditions': {
+      return <Conditions {...otherProps} />
+    }
+    case 'Engines - Rules': {
+      return <div>ruless title here</div>;
+    }
+    case 'Engines - Sequences': {
+      return <Sequences {...otherProps} />;
+    }
+    case 'Engines - Schedules': {
+      return <div>schedules tile here</div>;
     }
     default : {
       return <div>invalid tile</div>;
@@ -188,17 +197,23 @@ class TileOverlay extends Component {
       case 'Button': {
         return <MqttButtonOverlay {...otherProps} />;
       }
-      case 'Conditions' : {
-        return <ConditionsOverlay {...otherProps} />;
-      }
-      case 'Engines - Sequences': {
-        return <SequenceBuilder />;
-      }
       case 'System - States': {
         return <StateBuilder />;
       }
       case 'System - Actions': {
         return <ActionBuilder />;
+      }
+      case 'System - Conditions': {
+        return <ConditionBuilder />;
+      }
+      case 'Engines - Rules': {
+        return <RuleBuilder />;
+      }
+      case 'Engines - Sequences': {
+        return <SequenceBuilder />;
+      }
+      case 'Engines - Schedules': {
+        return <ScheduleBuilder />
       }
       default : {
         return <div>invalid tile</div>;
