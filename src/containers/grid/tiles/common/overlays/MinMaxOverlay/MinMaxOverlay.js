@@ -12,7 +12,7 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: '20%',
-    paddingTop: '12%',
+    paddingTop: '2%',
     flexWrap: 'wrap',
     flexDirection: 'column',
   },
@@ -29,7 +29,8 @@ class MqttOverlay extends Component {
     super(props);
     this.state = {
       topic: undefined,
-      value: undefined,
+      minValue: undefined,
+      maxValue:  undefined,
     };
   }
   render() {
@@ -50,13 +51,21 @@ class MqttOverlay extends Component {
             <TextField
               onChange={(x) => {
                 this.setState({
-                  value: x.target.value,
+                  minValue: x.target.value,
                 });
               }}
-              floatingLabelText={"mqtt value"}
-              hintText={"mqtt value"}
+              floatingLabelText={"min value"}
+              hintText={"min value"}
             />
-            <div style={style.savedContentText} >topic: {savedContent.topic} | value: {savedContent.value}</div>
+            <TextField
+              onChange={(x) => {
+                this.setState({
+                  maxValue: x.target.value,
+                });
+              }}
+              floatingLabelText={"max value"}
+              hintText={"max value"}
+            />
           </div>
           <RaisedButton
             label="Set Topic"
@@ -64,7 +73,8 @@ class MqttOverlay extends Component {
             onClick={() => saveContent(
               {
                 topic: this.state.topic,
-                value: this.state.value,
+                min: this.state.minValue,
+                max: this.state.maxValue,
               },
             )}/>
         </div>
