@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Menu from '../components/menu/menu';
+import MinimalMenu from '../components/menu/minimalMenu';
 import EventLog from './EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
@@ -34,6 +35,95 @@ class MenuContainer extends Component {
     onSetActiveGrid(gridName);
   };
 
+  getButtonLabels = () => {
+    const { grids } = this.props;
+
+    const menuItems = grids.map(gridNumber => ({
+      label: gridNumber,
+      onClick: () => this.onGridClick(gridNumber),
+    })).toJS();
+
+    return [
+        {
+          label: 'Home',
+          onClick: () => this.onGridClick('Home'),
+        },
+        {
+          label: 'My Grids',
+          children: [
+            {
+              label: 'Add Grid +',
+              onClick: () => {
+                this.setState({
+                  showAddDialog: true,
+                  gridName: null,
+                });
+              },
+            },
+            {
+              label: 'Set Background',
+              onClick: () => {
+                this.setState({
+                  showSetBackgroundDialog: true,
+                });
+              },
+            },
+            ...menuItems,
+          ],
+        },
+        {
+          label: 'System',
+          children: [
+            {
+              label: 'States',
+              onClick: () => this.openContent(<StateBuilder />),
+            },
+            {
+              label: 'Actions',
+              onClick: () => this.openContent(<ActionBuilder />),
+            },
+            {
+              label: 'Conditions',
+              onClick: () => this.openContent(<ConditionBuilder />),
+            },
+          ],
+        },
+        {
+          label: 'Engines',
+          children: [
+            {
+              label: 'Rules',
+              onClick: () => this.openContent(<RuleBuilder />),
+            },
+            {
+              label: 'Sequences',
+              onClick: () => this.openContent(<SequenceBuilder />),
+            },
+            {
+              label: 'Schedules',
+              onClick: () => this.openContent(<ScheduleBuilder />),
+            },
+          ],
+        },
+        {
+          label: 'Events',
+          onClick: () => this.openContent(<EventLog />),
+        },
+        {
+          label: 'Device',
+          children: [
+            {
+              label: 'Device Info',
+              onClick: () => this.openContent(<DeviceInfo />),
+            },
+            {
+              label: 'SSH',
+              onClick: () => this.openContent(<SSH />),
+            },
+          ],
+        },
+      ];
+  };
   openContent = (content) => {
     const { onCloseMenu, onSetContent, menuIsExpanded } = this.props;
     if (menuIsExpanded) {
@@ -44,6 +134,7 @@ class MenuContainer extends Component {
   }
   render() {
     const {
+      isMinimal,
       grids,
       onAddGrid,
       onSetGridBackground,
@@ -51,10 +142,6 @@ class MenuContainer extends Component {
       ...otherProps
     } = this.props;
 
-    const menuItems = grids.map(gridNumber => ({
-      label: gridNumber,
-      onClick: () => this.onGridClick(gridNumber),
-    })).toJS();
 
     return (
       <div>
@@ -80,96 +167,23 @@ class MenuContainer extends Component {
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
           }}
         />
-        <Menu
-          {...otherProps}
-          buttonLabels={
-          [
-            {
-              label: 'Home',
-              onClick: () => this.onGridClick('Home'),
-            },
-            {
-              label: 'My Grids',
-              children: [
-                {
-                  label: 'Add Grid +',
-                  onClick: () => {
-                    this.setState({
-                      showAddDialog: true,
-                      gridName: null,
-                    });
-                  },
-                },
-                {
-                  label: 'Set Background',
-                  onClick: () => {
-                    this.setState({
-                      showSetBackgroundDialog: true,
-                    });
-                  },
-                },
-                ...menuItems,
-              ],
-            },
-            {
-              label: 'System',
-              children: [
-                {
-                  label: 'States',
-                  onClick: () => this.openContent(<StateBuilder />),
-                },
-                {
-                  label: 'Actions',
-                  onClick: () => this.openContent(<ActionBuilder />),
-                },
-                {
-                  label: 'Conditions',
-                  onClick: () => this.openContent(<ConditionBuilder />),
-                },
-              ],
-            },
-            {
-              label: 'Engines',
-              children: [
-                {
-                  label: 'Rules',
-                  onClick: () => this.openContent(<RuleBuilder />),
-                },
-                {
-                  label: 'Sequences',
-                  onClick: () => this.openContent(<SequenceBuilder />),
-                },
-                {
-                  label: 'Schedules',
-                  onClick: () => this.openContent(<ScheduleBuilder />),
-                },
-              ],
-            },
-            {
-              label: 'Events',
-              onClick: () => this.openContent(<EventLog />),
-            },
-            {
-              label: 'Device',
-              children: [
-                {
-                  label: 'Device Info',
-                  onClick: () => this.openContent(<DeviceInfo />),
-                },
-                {
-                  label: 'SSH',
-                  onClick: () => this.openContent(<SSH />),
-                },
-              ],
-            },
-          ]}
-        />
+        {isMinimal ?
+          <MinimalMenu
+            {...otherProps}
+            buttonLabels={this.getButtonLabels()}
+          />:
+          <Menu
+            {...otherProps}
+            buttonLabels={this.getButtonLabels()}
+          />
+        }
       </div>
     );
   }
 }
 
 MenuContainer.propTypes = {
+  isMinimal: PropTypes.bool,
   grids: PropTypes.object.isRequired,
   menuIsExpanded: PropTypes.bool.isRequired,
   onCloseMenu: PropTypes.func.isRequired,

@@ -28,12 +28,13 @@ class Grid extends Component {
           <ReactGridLayout
             layouts={{ xxs: jsLayout, xs: jsLayout, sm: jsLayout, md: jsLayout, lg: jsLayout }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-            cols={{ lg: 24, md: 24, sm: 1, xs: 1, xxs: 1 }}
+            cols={{ lg: 24, md: 24, sm: 4, xs: 4, xxs: 4 }}
             rowHeight={30}
             verticalCompact
             margin={[0,0]}
             isDraggable={isEditable}
             isResizable={isEditable}
+            useCSSTransforms={true}
             onLayoutChange={(newLayout) => {
               if (isEditable && onLayoutChange) {
                 onLayoutChange(newLayout);

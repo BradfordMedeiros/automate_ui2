@@ -29,6 +29,7 @@
     color: rgb(140,140,140);
     transform: rotateZ(45deg);
     cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .hide_menu{
@@ -53,6 +54,7 @@
     height: 50px;
     box-shadow: 0px 0px 0.1px 0.8px black inset;
     cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 .xBorderBox{
@@ -62,6 +64,7 @@
     height: 50px;
     right: 35px;
     position: fixed;
+
 }
 
 @keyframes turn_into_x {

@@ -3,7 +3,6 @@ import { List, ListItem } from 'material-ui';
 import { List as IList } from 'immutable';
 import './style.css';
 
-
 const liStyle = {
   border: '1px solid rgb(40,40,40)',
 };

@@ -5,6 +5,7 @@ import { container as Appbar } from './containers/Appbar';
 import { container as Grid } from './containers/grid/MultiGrid';
 import { container as SelectionOverlay } from './containers/Overlay';
 import { container as Menu } from './containers/Menu';
+
 import { container as Notifications } from './containers/notifications/Notifications';
 
 import Footer from './components/footer/footer';
