@@ -25,7 +25,8 @@ const desktopStyles = {
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
-  grid: { top: 50, bottom: 10, left: 0, right: 0 },
+  grid: { top: 50, bottom: 50, left: 0, right: 0 },
+  menu: { width: '100vw', position: 'fixed', top: '94vh', bottom: 0, background: 'red',zIndex: 100000 },
   overlay: { left: 0, right: 0 },
 };
 
@@ -52,6 +53,7 @@ class Layout extends Component {
         </Desktop>
 
         <Mobile>
+          {hideMenu ? null : <Menu isMinimal style={mobileStyles.menu} />}
           <Appbar tileNames={tileNames} style={mobileStyles.appbar} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
