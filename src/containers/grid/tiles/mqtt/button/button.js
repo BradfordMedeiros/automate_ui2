@@ -23,7 +23,13 @@ class MqttTile extends Component {
     return (
       <WithMqtt topics={content} >
         {(stuff, publish) => (
-          <div style={style} onClick={() => publish(savedContent.topic, savedContent.value)} />
+          <div
+            style={style}
+            onClick={() => {
+              if (savedContent){
+                publish(savedContent.topic, savedContent.value)
+              }
+            }} />
         )}
       </WithMqtt>
     );

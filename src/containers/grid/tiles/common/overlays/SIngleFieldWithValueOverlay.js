@@ -56,7 +56,10 @@ class MqttOverlay extends Component {
               floatingLabelText={"mqtt value"}
               hintText={"mqtt value"}
             />
-            <div style={style.savedContentText} >topic: {savedContent.topic} | value: {savedContent.value}</div>
+            <div style={style.savedContentText}>
+              topic: {savedContent ? savedContent.topic : '(none)'} |
+              value: {savedContent ? savedContent.value : '(none'}
+            </div>
           </div>
           <RaisedButton
             label="Set Topic"
