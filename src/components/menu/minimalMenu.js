@@ -38,6 +38,7 @@ class MinimalMenu extends Component {
       <div
         onClick={element => {
           if ((!item.children || item.children.length  === 0) && item.onClick){
+            this.handleRequestClose();
             item.onClick();
           }else{
             onPopOverClick(item, element.currentTarget);
@@ -49,11 +50,17 @@ class MinimalMenu extends Component {
     );
   }
   handleClickIconItem = (item, element) => {
-    this.setState({
-      showMenu: true,
-      anchorEl: element,
-      items: item.children,
-    })
+    if (this.state.anchorEl === element){
+      this.handleRequestClose();
+    }else{
+      console.log('new element');
+      this.setState({
+        showMenu: true,
+        anchorEl: element,
+        items: item.children,
+      })
+    }
+
   };
   handleRequestClose = () => {
     this.setState({
@@ -71,8 +78,9 @@ class MinimalMenu extends Component {
           this.handleClickIconItem(item, element);
         }))}
         <Popover
-          open={this.state.showMenu}
           anchorEl={this.state.anchorEl}
+          animated={false}
+          open={this.state.showMenu}
           onRequestClose={this.handleRequestClose}
         >
           <Menu>
