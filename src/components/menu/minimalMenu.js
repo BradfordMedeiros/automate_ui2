@@ -53,7 +53,7 @@ class MinimalMenu extends Component {
     if (this.state.anchorEl === element){
       this.handleRequestClose();
     }else{
-      console.log('new element');
+      this.handleRequestClose();  // need to call this to make menu hide for a second, due to material ui bugs
       this.setState({
         showMenu: true,
         anchorEl: element,
@@ -78,6 +78,7 @@ class MinimalMenu extends Component {
           this.handleClickIconItem(item, element);
         }))}
         <Popover
+          style={{ height:190 }}
           anchorEl={this.state.anchorEl}
           animated={false}
           open={this.state.showMenu}

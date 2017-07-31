@@ -8,6 +8,10 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  devServer: {
+    host: '0.0.0.0',
+    disableHostCheck: true
+  },
   module: {
     loaders: [
       {
