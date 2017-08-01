@@ -35,17 +35,17 @@ class ActionBuilder extends Component {
               upload={onUpload}
             />
           )}
+          <MqttFields
+            topic={actionName}
+          />
           {(actionType === 'javascript') && (
             <JavascriptsFields
               initialText={actionCode}
               upload={onUpload}
             />
           )}
-          {(actionType === 'mqtt') && (
-            <MqttFields
-              topic={actionName}
-            />
-          )}
+
+
         </div>
       </GenericBuilder>
     );
