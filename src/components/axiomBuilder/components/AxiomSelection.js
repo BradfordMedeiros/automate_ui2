@@ -16,7 +16,6 @@ class AxiomSelection extends Component {
 
   render() {
     const { axioms, onAxiomSelected, onAxiomChange, selectedIndex, style } = this.props;
-    window.a = axioms;
     return (
       <div style={style}>
         <InlineTextfieldDialog

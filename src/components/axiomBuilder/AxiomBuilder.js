@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import AxiomBuilderComponent from './AxiomBuilderComponent';
 import { Desktop, Mobile } from '../../util/ViewportSizing';
 
-
-
-
 class AxiomBuilder extends Component {
   state = {
     isHidden: true,

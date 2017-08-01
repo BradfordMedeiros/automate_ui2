@@ -4,19 +4,36 @@
         opacity: 0;
     }
     to {
-        width: 100vw;
+        width: 200px;
         opacity: 1;
-
     }
 }
 
 @keyframes axiom_slide_out {
     from {
-        width: 100vw;
+        width: 200px;
         opacity: 1;
     }
     to {
         width: 0;
         opacity: 0;
+    }
+}
+
+@keyframes content_slide_in {
+    from {
+       left: 0;
+    }
+    to {
+       left: 200px;
+    }
+}
+
+@keyframes content_slide_out {
+    from {
+        left: 200px;
+    }
+    to {
+        left: 0;
     }
 }
