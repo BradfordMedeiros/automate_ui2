@@ -28,6 +28,7 @@ class JavascriptsFields extends Component {
           style={{
             display: 'flex',
             alignItems: 'center',
+            marginLeft: 12,
           }}
         >
           <EditorControls

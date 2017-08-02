@@ -17,43 +17,27 @@ class PublishMqttValue extends Component {
       >
         {(topics, publish) => (
           <div
-            style={{ display: 'flex', width: '100%', height: 100 }}
+            style={{ display: 'flex', width: '100%', height: 100, flexDirection: 'column' }}
           >
-            <div
-              style={{
-                padding: 35,
-                marginRight: 60,
-                fontSize: 26,
-                display: 'flex',
-                alignItems: 'center',
+            <TextField
+              style={{ marginLeft: '8%', width: '80%', marginRight: '8%' }}
+              value={this.state.topicValue}
+              inputStyle={{ textAlign: 'center' }}
+              onChange={(_, topicValue) => {
+                this.setState({
+                  topicValue,
+                });
               }}
-            >
-              <RaisedButton
-                label="Publish"
-                style={{ marginRight: 60 }}
-                onClick={() => {
-                  publish(topic, this.state.topicValue.toString());
-                }}
-              />
-              <div
-                style={{
-                  height: 100,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: 40,
-                }}
-              >
-                <TextField
-                  value={this.state.topicValue}
-                  onChange={(_, topicValue) => {
-                    this.setState({
-                      topicValue,
-                    });
-                  }}
-                />
-              </div>
-            </div>
+            />
+            <RaisedButton
+              fullWidth
+              primary
+              disabled={this.state.topicValue === undefined || this.state.topicValue === ''}
+              label="Publish"
+              onClick={() => {
+                publish(topic, this.state.topicValue.toString());
+              }}
+            />
           </div>
           )}
       </WithMqtt>

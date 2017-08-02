@@ -26,7 +26,6 @@ class ActionBuilder extends Component {
         selectedIndex={selectedIndex}
         onAxiomSelected={onActionSelected}
         axiomName={actionName}
-        axiomType={actionType}
       >
         <div>
           {(actionType === 'executable') && (

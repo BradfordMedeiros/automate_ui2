@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomBuilder from '../../axiomBuilder/AxiomBuilder';
 import AxiomInfo from './components/AxiomInfo';
-import ActionHeader from './components/AxiomHeader';
 
 class GenericBuilder extends Component {
   render() {
@@ -11,7 +10,6 @@ class GenericBuilder extends Component {
       onAxiomChange,
       onAxiomSelected,
       axiomName,
-      axiomType,
       axiomClass,
       children,
     } = this.props;
@@ -32,7 +30,6 @@ class GenericBuilder extends Component {
               onAxiomChange(newActions, undefined, axiomName);
             }}
           />
-          <ActionHeader actionType={axiomType} />
           <div style={{ width: '100%', height: '100%' }}>
             {children}
           </div>
@@ -48,7 +45,6 @@ GenericBuilder.propTypes = {
   onAxiomChange: PropTypes.func.isRequired,
   onAxiomSelected: PropTypes.func.isRequired,
   axiomName: PropTypes.string.isRequired,
-  axiomType: PropTypes.string.isRequired,
   axiomClass: PropTypes.string.isRequired,
   children: PropTypes.node,
 };

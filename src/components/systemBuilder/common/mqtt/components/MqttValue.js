@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { fromJS } from 'immutable';
 import WithData from '../../../../../data/WithData';
+import Subheader from 'material-ui/Subheader';
 
 const WithMqtt = WithData.pubsub.WithMqtt;
 
@@ -9,33 +10,24 @@ const MqttValue = ({ topic }) => (
     topics={fromJS(topic ? [topic] : [])}
   >
     {topics => (
-      <div
-        style={{ display: 'flex', width: '100%', height: 100 }}
-      >
+      <div style={{ height: 80, width: '100%', display: 'flex', justifyContent: 'center' }}>
         <div
-          style={{
-            padding: 35,
-            paddingRight: 60,
-            fontSize: 26,
-            display: 'flex',
-            alignItems: 'center',
-          }}
+          style={{ display: 'flex', position: 'absolute', justifyContent: 'center', alignItems: 'center', height: 80 }}
         >
-            Current value
-          </div>
-        <div
-          style={{
-            height: 100,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: 40,
-          }}
-        >
-          {topics[topic] || 'No data'}
+          <div>{topics[topic] || 'No data'}</div>
         </div>
+        <div style={{
+          fontFamily: 'monospace',
+          fontSize: 12,
+          height: 18,
+          display: 'flex',
+          alignItems: 'flex-start',
+          paddingLeft: 8,
+          paddingRight: 8,
+          background: 'rgba(0, 0, 0, 0.07)',
+        }}>topic value</div>
       </div>
-      )}
+    )}
   </WithMqtt>
 );
 
