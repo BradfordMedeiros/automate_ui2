@@ -14,20 +14,20 @@ import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
 import { container as DisconnectedOverlay } from './containers/disconnected_overlay/DisconnectedOverlay';
 
-const appStyle = { width: '100vw', height: '100vh', margin: 0, padding: 0, left: 0, top: 0, overflow: 'hidden' };
+const appStyle = { width: '100vw', height: '100vh', position: 'absolute', margin: 0, padding: 0, left: 0, top: 0, overflow: 'hidden' };
 const desktopStyles = {
-  appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
+  appbar: { height: 50, width: '100%', top: 0, zIndex: 200, position: 'absolute' },
   grid: menuIsHidden => (menuIsHidden ?
-    { top: 50, bottom: 10, left: 0, right: 0 } :
-    { top: 50, bottom: 10, left: 210, right: 0 }),
-  menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500 },
-  overlay: menuIsHidden => (menuIsHidden ? { left: 0, right: 1 } : { left: 213, right: 1 }),
+    { top: 50, bottom: 10, left: 0, right: 0, position: 'absolute' } :
+    { top: 50, bottom: 10, left: 210, right: 0, position: 'absolute' }),
+  menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500, position: 'absolute' },
+  overlay: menuIsHidden => (menuIsHidden ? { left: 0, right: 1, position: 'absolute' } : { left: 213, right: 1, position: 'absolute' }),
 };
 const mobileStyles = {
-  appbar: { height: 50, width: '100%', top: 0, zIndex: 200 },
-  grid: { top: 50, bottom: 50, left: 0, right: 0 },
-  menu: { width: '100vw', position: 'fixed', top: '94vh', bottom: 0, background: 'red',zIndex: 100000 },
-  overlay: { left: 0, right: 0 },
+  appbar: { height: 50, width: '100%', top: 0, zIndex: 200, position: 'absolute' },
+  grid: { top: 50, bottom: '6vh', left: 0, right: 0, position: 'absolute'},
+  menu: { width: '100vw', top: '94vh', bottom: 0, zIndex: 100000, position: 'absolute' },
+  overlay: { left: 0, right: 0, position: 'absolute' },
 };
 
 class Layout extends Component {

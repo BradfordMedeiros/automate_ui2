@@ -16,7 +16,7 @@ const styles = {
 
 class JavascriptsFields extends Component {
   state = {
-    editEnabled: false,
+    editEnabled: true,
     editorKey: Math.random(),
     code: '',
   }
