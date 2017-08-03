@@ -3,6 +3,7 @@ import GenericBuilder from './GenericBuilder';
 import ExecutableFields from './executables/ExecutableFields';
 import JavascriptsFields from './javascripts/JavascriptsFields';
 import MqttFields from './mqtt/MqttFields';
+import { Desktop } from '../../../util/ViewportSizing';
 
 class ActionBuilder extends Component {
   render() {
@@ -37,14 +38,14 @@ class ActionBuilder extends Component {
           <MqttFields
             topic={actionName}
           />
-          {(actionType === 'javascript') && (
-            <JavascriptsFields
-              initialText={actionCode}
-              upload={onUpload}
-            />
-          )}
-
-
+          <Desktop>
+            {(actionType === 'javascript') && (
+              <JavascriptsFields
+                initialText={actionCode}
+                upload={onUpload}
+              />
+            )}
+          </Desktop>
         </div>
       </GenericBuilder>
     );
