@@ -8,8 +8,6 @@ import { container as Menu } from './containers/Menu';
 
 import { container as Notifications } from './containers/notifications/Notifications';
 
-import Footer from './components/footer/footer';
-
 import { tileNames, tileNameToTile } from './containers/grid/tiles';
 
 import { container as DisconnectedOverlay } from './containers/disconnected_overlay/DisconnectedOverlay';
@@ -18,9 +16,9 @@ const appStyle = { width: '100vw', height: '100vh', position: 'absolute', margin
 const desktopStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200, position: 'absolute' },
   grid: menuIsHidden => (menuIsHidden ?
-    { top: 50, bottom: 10, left: 0, right: 0, position: 'absolute' } :
-    { top: 50, bottom: 10, left: 210, right: 0, position: 'absolute' }),
-  menu: { width: 210, height: '94%', position: 'fixed', left: 1, top: 48, zIndex: 500, position: 'absolute' },
+    { top: 50, bottom: 0, left: 0, right: 0, position: 'absolute' } :
+    { top: 50, bottom: 0, left: 210, right: 0, position: 'absolute' }),
+  menu: { width: 210, position: 'fixed', left: 1, top: 48, bottom: 0, zIndex: 500, position: 'absolute' },
   overlay: menuIsHidden => (menuIsHidden ? { left: 0, right: 1, position: 'absolute' } : { left: 213, right: 1, position: 'absolute' }),
 };
 const mobileStyles = {
@@ -47,7 +45,6 @@ class Layout extends Component {
             left={desktopStyles.overlay(hideMenu).left}
             right={desktopStyles.overlay(hideMenu).right}
           />
-          <Footer />
           <DisconnectedOverlay />
           <Notifications />
         </Desktop>
