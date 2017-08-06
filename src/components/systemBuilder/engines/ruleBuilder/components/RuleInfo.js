@@ -67,39 +67,45 @@ class RuleInfo extends Component {
           axiomName="Rule"
           axiomNameValue={ruleName}
         />
-        <RaisedButton
-          fullWidth
-          primary
-          disabled={this.state.hasChanged !== true}
-          label="Submit Changes"
-          onTouchTap={() => {
-            submitRule(this.getRuleData())
-            this.setState({
-              hasChanged: false,
-            })
-          }}
-        />
-        <div style={{ height: '70%', overflow: 'auto', boxShadow: '0px 0px 1px 0.1px black inset'}}>
-        <ItemWrapper style={itemWrapperStyle}>
-          Topic <TextField style={textfieldStyle} value={this.state.topic} onChange={(_,topic) => { this.setState({ topic, hasChanged: true }); }} />
-        </ItemWrapper>
-        <ItemWrapper style={itemWrapperStyle}>
-          Value <TextField style={textfieldStyle} value={this.state.value} onChange={(_,value) => { this.setState({ value, hasChanged: true }); }} />
-        </ItemWrapper>
-        <ItemWrapper style={itemWrapperStyle}>
-          Strategy
-          <DropDownMenu value={this.state.strategy} onChange={(_,__,strategy) => { this.setState({ strategy, hasChanged: true }); }}>
-            <MenuItem value="positive-edge" primaryText="positive-edge" />
-            <MenuItem value="negative-edge" primaryText="negative-edge" />
-            <MenuItem value="each" primaryText="each" />
-          </DropDownMenu>
-        </ItemWrapper>
-        <ItemWrapper style={itemWrapperStyle}>
-          Rate <TextField style={textfieldStyle} value={this.state.rate} onChange={(_,rate) => { this.setState({ rate, hasChanged: true }); }} />
-        </ItemWrapper>
-        <ItemWrapper style={itemWrapperStyle}>
-          Condition <TextField style={textfieldStyle} value={this.state.conditionName} onChange={(_,__, conditionName) => { this.setState({ conditionName, hasChanged: true }); }} />
-        </ItemWrapper>
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          height: 'calc(100% - 48px)',
+        }}>
+          <RaisedButton
+            fullWidth
+            primary
+            disabled={this.state.hasChanged !== true}
+            label="Submit Changes"
+            onTouchTap={() => {
+              submitRule(this.getRuleData())
+              this.setState({
+                hasChanged: false,
+              })
+            }}
+          />
+          <div style={{ height: '100%', overflow: 'auto', boxShadow: '0px 0px 1px 0.1px black inset'}}>
+            <ItemWrapper style={itemWrapperStyle}>
+              Topic <TextField style={textfieldStyle} value={this.state.topic} onChange={(_,topic) => { this.setState({ topic, hasChanged: true }); }} />
+            </ItemWrapper>
+            <ItemWrapper style={itemWrapperStyle}>
+              Value <TextField style={textfieldStyle} value={this.state.value} onChange={(_,value) => { this.setState({ value, hasChanged: true }); }} />
+            </ItemWrapper>
+            <ItemWrapper style={itemWrapperStyle}>
+              Strategy
+              <DropDownMenu value={this.state.strategy} onChange={(_,__,strategy) => { this.setState({ strategy, hasChanged: true }); }}>
+                <MenuItem value="positive-edge" primaryText="positive-edge" />
+                <MenuItem value="negative-edge" primaryText="negative-edge" />
+                <MenuItem value="each" primaryText="each" />
+              </DropDownMenu>
+            </ItemWrapper>
+            <ItemWrapper style={itemWrapperStyle}>
+              Rate <TextField style={textfieldStyle} value={this.state.rate} onChange={(_,rate) => { this.setState({ rate, hasChanged: true }); }} />
+            </ItemWrapper>
+            <ItemWrapper style={itemWrapperStyle}>
+              Condition <TextField style={textfieldStyle} value={this.state.conditionName} onChange={(_,__, conditionName) => { this.setState({ conditionName, hasChanged: true }); }} />
+            </ItemWrapper>
+          </div>
         </div>
       </div>
     );

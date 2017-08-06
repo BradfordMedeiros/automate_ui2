@@ -17,11 +17,12 @@ const getMobileContent = ({ axioms, selectedIndex, onAxiomSelected, onAxiomChang
       />
       <div style={{ width: 0, height: '100%', border: '1px solid rgba(0,0,0,0.3)' }} />
       <div style={{
-        width: '100vw',
+        width: '100%',
+        height: '100%',
         position: 'absolute',
         animation: !isHidden ? 'content_slide_in 0.1s linear forwards': 'content_slide_out 0.1s linear forwards',
       }}>
-      {children}
+        {children}
       </div>
     </div>
   )
@@ -38,7 +39,9 @@ const getDesktopContent = ({ axioms, title, selectedIndex, onAxiomSelected, onAx
         style={{ width: 250 }}
       />
       <div style={{ width: 0, height: '100%', border: '1px solid rgba(0,0,0,0.3)' }} />
-      {children}
+      <div style={{ position: 'relative', width: 'calc(100% - 250px)'}}>
+        {children}
+      </div>
     </div>
   )
 };

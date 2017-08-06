@@ -30,3 +30,24 @@
         bottom: calc(100vh - 50px);
     }
 }
+
+@keyframes fade_in_mobile {
+    0%   {
+        top: -90vh;
+        bottom: calc(100vh - 50px);
+    }
+    100% {
+        top: 50px;
+        bottom: 6vh;
+    }
+}
+@keyframes fade_out_mobile {
+    0%   {
+        top: 50px;
+        bottom: 6vh;
+    }
+    100% {
+        top: -90vh;
+        bottom: calc(100vh - 50px);
+    }
+}

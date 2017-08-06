@@ -11,7 +11,7 @@ class GenericOverlay extends Component {
     } = this.props;
 
     return (
-      <div style={{ height: '100%', background: '#282828' }}>
+      <div style={{ height: '100%', position: 'absolute', width: '100%', height: '100%', background: '#282828' }}>
         <div
           style={{
             width: '100%',
@@ -28,7 +28,9 @@ class GenericOverlay extends Component {
           {onMenuToggle ? <IconButton onClick={onMenuToggle} style={{ marginLeft: -20 }}><NavigationMenu /></IconButton>: null}
           <div style={{ display: 'inline', cursor: 'pointer', paddingRight: 120 }}>{title}</div>
         </div>
-        {children}
+        <div style={{ position: 'absolute', height: 'calc(100% - 60px)', width: '100%', overflow: 'hidden' }}>
+          {children}
+        </div>
       </div>
     );
   }
