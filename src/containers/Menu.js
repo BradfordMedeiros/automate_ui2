@@ -6,11 +6,15 @@ import EventLog from './EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
+
 import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
+import Database from './Database';
+
 import ActionBuilder from './system/base/ActionsBuilder';
 import StateBuilder from './system/base/StatesBuilder';
 import ConditionBuilder from './system/base/ConditionsBuilder';
+
 import SequenceBuilder from './system/engines/SequencesBuilder';
 import ScheduleBuilder from './system/engines/ScheduleBuilder';
 import RuleBuilder from './system/engines/RuleBuilder';
@@ -115,6 +119,10 @@ class MenuContainer extends Component {
             {
               label: 'Device Info',
               onClick: () => this.openContent(<DeviceInfo />),
+            },
+            {
+              label: 'Database',
+              onClick: () => this.openContent(<Database />),
             },
             {
               label: 'SSH',
