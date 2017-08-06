@@ -18,7 +18,7 @@ const styles = {
     justifyContent: 'center',
   },
   content: {
-    marginTop: 48,
+    marginTop: 58,
     display: 'flex',
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
@@ -28,12 +28,39 @@ const styles = {
   }
 };
 
-const Databases = ({ databases }) => (
+const Databases = ({
+  databases,
+  onDatabaseSelected,
+  selectedDatabaseIndex,
+
+  setDatabaseAsActive,
+  deleteDatabase,
+  createNewDatabase,
+  onDownloadDatabase,
+  onUploadDatabase,
+
+}) => (
   <GenericOverlay title="Database Management">
     <div style={styles.outer}>
-      <ActionBar style={styles.actionbar} />
+      <ActionBar
+        onSetDatabaseAsActive={setDatabaseAsActive}
+        onDeleteDatabase={deleteDatabase}
+        onDownloadDatabase={onDownloadDatabase}
+        onUploadDatabase={onUploadDatabase}
+
+        style={styles.actionbar}
+      />
       <div style={styles.content}>
-      {databases.map(database => <DatabaseElement databaseName={database.name} />)}
+      {databases.map((database, index) => (
+        <DatabaseElement
+          isActive={database.isActive || (selectedDatabaseIndex === index)}
+          databaseName={database.name}
+          onClick={() => {
+            console.log('selected: ', index);
+            onDatabaseSelected(index);
+          }}
+        />
+      ))}
       </div>
     </div>
   </GenericOverlay>
@@ -44,6 +71,12 @@ Databases.propTypes = {
   setDatabaseAsActive: PropTypes.func,
   createNewDatabase: PropTypes.func,
   deleteDatabase: PropTypes.func,
+  onDownloadDatabase: PropTypes.func,
+  onUploadDatabase: PropTypes.func,
+
+
+  onDatabaseSelected: PropTypes.func,
+  selectedDatabaseIndex: PropTypes.number,
 };
 
 export default Databases;
