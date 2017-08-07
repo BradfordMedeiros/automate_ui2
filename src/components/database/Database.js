@@ -20,11 +20,11 @@ const styles = {
   content: {
     marginTop: 58,
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     flexWrap: 'wrap',
     width: '100%',
     height: 'calc(100% - 48px)',
-    background: 'linear-gradient(rgb(40,40,40), rgb(35,35,35))',
+    overflow: 'auto',
   }
 };
 
@@ -38,6 +38,7 @@ const Databases = ({
   createNewDatabase,
   onDownloadDatabase,
   onUploadDatabase,
+  onCopyDatabase,
 
 }) => (
   <GenericOverlay title="Database Management">
@@ -47,6 +48,7 @@ const Databases = ({
         onDeleteDatabase={deleteDatabase}
         onDownloadDatabase={onDownloadDatabase}
         onUploadDatabase={onUploadDatabase}
+        onCloneDatabase={onCopyDatabase}
 
         style={styles.actionbar}
       />
@@ -73,6 +75,7 @@ Databases.propTypes = {
   deleteDatabase: PropTypes.func,
   onDownloadDatabase: PropTypes.func,
   onUploadDatabase: PropTypes.func,
+  onCopyDatabase: PropTypes.func,
 
 
   onDatabaseSelected: PropTypes.func,
