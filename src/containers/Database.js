@@ -24,12 +24,13 @@ class Database extends Component {
       <WithDatabases
         refresh={1000}
       >
-        {({ databases }) => (
+        {({ databases, deleteDatabase }) => (
           <DatabaseComponent
             onDatabaseSelected={selectedIndex => { this.setState({ selectedIndex }) }}
             selectedDatabaseIndex={this.state.selectedIndex}
             deleteDatabase={() => {
-              console.log('delete database: ', this.state.selectedIndex);
+              const databaseName = databases[this.state.selectedIndex].name;
+              deleteDatabase(databaseName);
             }}
             createNewDatabase={() => {
               console.log('create new database');

@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 const getWithDatabases = (AUTOMATE_CORE_URL) => {
   const url = `${AUTOMATE_CORE_URL}/databases/`;
 
-  const request = async () => {
+  const getDatabases = async () => {
 
     const response = await fetch(url, {
       method: 'GET',
@@ -16,6 +16,17 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
     }else{
       return databases;
     }
+  };
+
+  const createNewDatabase = async () => {
+
+  };
+
+  const deleteDatabase = async databaseName => {
+    const response = await fetch(`${url}${databaseName}`, {
+      method: 'DELETE',
+      mode: 'cors',
+    });
   };
 
   class WithDatabases extends Component {
@@ -35,7 +46,7 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
       clearInterval(this.intervalHandle);
     }
     makeDatabaseRequest =  async () => {
-      const databases = await request();
+      const databases = await getDatabases();
       this.setState({
         databases,
       })
@@ -50,7 +61,13 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
       if (!this.state.databases) {
         return whileLoading ? whileLoading() : null;
       }
-      return children ? children({ databases: this.state.databases }) : null;
+      return (
+        children ?
+          children({
+            databases: this.state.databases,
+            deleteDatabase,
+          }) : null
+      );
     }
   }
 
