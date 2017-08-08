@@ -24,7 +24,11 @@ class Database extends Component {
       <WithDatabases
         refresh={1000}
       >
-        {({ databases, deleteDatabase }) => (
+        {({
+            databases,
+            deleteDatabase,
+            downloadDatabase,
+        }) => (
           <DatabaseComponent
             onDatabaseSelected={selectedIndex => { this.setState({ selectedIndex }) }}
             selectedDatabaseIndex={this.state.selectedIndex}
@@ -38,8 +42,9 @@ class Database extends Component {
             setDatabaseAsActive={() => {
               console.log('set database as active: ', this.state.selectedIndex);
             }}
-            onDownloadDatabase={() => {
-              console.log('download database: ', this.state.selectedIndex);
+            onDownloadDatabase={async () => {
+              const databaseName = databases[this.state.selectedIndex].name;
+              downloadDatabase(databaseName);
             }}
             onCopyDatabase={() => {
               console.log('copy database: ', this.state.selectedIndex);

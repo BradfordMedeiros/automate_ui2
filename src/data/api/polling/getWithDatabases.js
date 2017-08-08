@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
+import download from 'downloadjs';
 
 const getWithDatabases = (AUTOMATE_CORE_URL) => {
   const url = `${AUTOMATE_CORE_URL}/databases/`;
@@ -27,6 +28,15 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
       method: 'DELETE',
       mode: 'cors',
     });
+  };
+
+  const downloadDatabase = async databaseName => {
+    const response = await fetch(`${url}download/${databaseName}`, {
+      method: 'GET',
+      mode: 'cors',
+    });
+    const blob = await response.blob();
+    download(blob, databaseName, "text/plain");
   };
 
   class WithDatabases extends Component {
@@ -65,6 +75,7 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
         children ?
           children({
             databases: this.state.databases,
+            downloadDatabase,
             deleteDatabase,
           }) : null
       );
