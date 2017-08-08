@@ -19,8 +19,20 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
     }
   };
 
-  const createNewDatabase = async () => {
+  const uploadDatabase = async (databaseName, file) => {
+    const formData = new FormData();
+    formData.append('thing', file);
+    return await fetch(`${url}upload/${file.name}`, {
+      method: 'POST',
+      body: formData,
+    })
+  };
 
+  const createNewDatabase = async (databaseName) => {
+    const response = await fetch(`${url}${databaseName}`, {
+      method: 'POST',
+      mode: 'cors',
+    });
   };
 
   const deleteDatabase = async databaseName => {
@@ -75,6 +87,8 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
         children ?
           children({
             databases: this.state.databases,
+            createNewDatabase,
+            uploadDatabase,
             downloadDatabase,
             deleteDatabase,
           }) : null
