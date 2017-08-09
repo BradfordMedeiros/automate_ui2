@@ -13,6 +13,7 @@ const ActionBar = ({
   onDownloadDatabase,
   onCloneDatabase,
   onUploadDatabase,
+  onCreateDatabase,
   style
 }) => (
   <div style={{ background: 'rgb(55, 55, 55)', ...style}}>
@@ -21,10 +22,12 @@ const ActionBar = ({
     <FlatButton style={buttonStyle} label="Copy" onClick={onCloneDatabase} />
     <FlatButton style={buttonStyle} label="Delete" onClick={onDeleteDatabase} />
     <FlatButton style={{ marginLeft: 8 }} label="Upload" onClick={onUploadDatabase} />
+    <FlatButton style={{ marginLeft: 8 }} label="Create New" onClick={onCreateDatabase} />
   </div>
 );
 
 ActionBar.propTypes = {
+  onCreateDatabase: PropTypes.func,
   onSetDatabaseAsActive: PropTypes.func,
   onDeleteDatabase: PropTypes.func,
   onDownloadDatabase: PropTypes.func,

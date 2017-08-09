@@ -49,7 +49,7 @@ const Databases = ({
         onDownloadDatabase={onDownloadDatabase}
         onUploadDatabase={onUploadDatabase}
         onCloneDatabase={onCopyDatabase}
-
+        onCreateDatabase={createNewDatabase}
         style={styles.actionbar}
       />
       <div style={styles.content}>
@@ -76,7 +76,6 @@ Databases.propTypes = {
   onDownloadDatabase: PropTypes.func,
   onUploadDatabase: PropTypes.func,
   onCopyDatabase: PropTypes.func,
-
 
   onDatabaseSelected: PropTypes.func,
   selectedDatabaseIndex: PropTypes.number,

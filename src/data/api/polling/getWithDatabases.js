@@ -35,6 +35,20 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
     });
   };
 
+  const copyDatabase = async (databaseNameToCopy, databaseName) => {
+    const response = await fetch(`${url}copy/${databaseName}`, {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        from: databaseNameToCopy,
+      }),
+    });
+  };
+
   const deleteDatabase = async databaseName => {
     const response = await fetch(`${url}${databaseName}`, {
       method: 'DELETE',
@@ -88,6 +102,7 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
           children({
             databases: this.state.databases,
             createNewDatabase,
+            copyDatabase,
             uploadDatabase,
             downloadDatabase,
             deleteDatabase,

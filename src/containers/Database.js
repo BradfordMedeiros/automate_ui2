@@ -1,13 +1,47 @@
 import React, { Component } from 'react';
+import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import DatabaseComponent from '../components/database/Database';
 import WithData from '../data/WithData';
-import fetch from 'isomorphic-fetch';
 
 const WithDatabases = WithData.polling.WithDatabases;
+
+const getDialog = ({  isOpen, onRequestClose, onTextFieldChange, onSubmit }) => (
+  <Dialog
+    open={isOpen}
+    onRequestClose={onRequestClose}
+  >
+    <TextField
+      floatingLabelText="Enter Name"
+      onChange={onTextFieldChange}
+    />
+    <div style={{ display: 'flex' }}>
+      <FlatButton label="Cancel" onClick={onRequestClose} />
+      <RaisedButton label="Submit" onClick={onSubmit} />
+    </div>
+  </Dialog>
+);
 
 class Database extends Component {
   state = {
     selectedIndex: 0,
+    copyDialogOpen: false,
+    createNewDialogOpen: false,
+
+    databaseNameToCopyTarget: undefined,
+    databaseNameToCreate: undefined,
+  }
+  handleCopyDialogClose = () => {
+    this.setState({
+      copyDialogOpen: false,
+    });
+  }
+  handleCreateNewDialogClose = () => {
+    this.setState({
+      createNewDialogOpen: false,
+    })
   }
   render() {
     return (
@@ -17,6 +51,7 @@ class Database extends Component {
         {({
           databases,
           createNewDatabase,
+          copyDatabase,
           uploadDatabase,
           deleteDatabase,
           downloadDatabase,
@@ -33,8 +68,9 @@ class Database extends Component {
                 deleteDatabase(databaseName);
               }}
               createNewDatabase={() => {
-                console.log('create new database');
-                createNewDatabase('test: '+ Math.random());
+                this.setState({
+                  createNewDialogOpen: true,
+                })
               }}
               setDatabaseAsActive={() => {
                 console.log('set database as active: ', this.state.selectedIndex);
@@ -45,8 +81,9 @@ class Database extends Component {
               }}
               onCopyDatabase={() => {
                 console.log('copy database: ', this.state.selectedIndex);
-                createNewDatabase('test'+ Math.floor(Math.random()));
-
+                this.setState({
+                  copyDialogOpen: true,
+                });
               }}
               onUploadDatabase={() => {
                 document.querySelector('#file_upload').click();
@@ -64,6 +101,34 @@ class Database extends Component {
                 uploadDatabase(file.name, file);
               }}
             />
+            {getDialog({
+              isOpen: this.state.copyDialogOpen,
+              onRequestClose: this.handleCopyDialogClose,
+              onTextFieldChange:  (_, databaseNameToCopyTarget) => {
+                this.setState({
+                  databaseNameToCopyTarget,
+                })
+              },
+              onSubmit: () => {
+                const databaseNameToCopy = databases[this.state.selectedIndex].name;
+                copyDatabase(databaseNameToCopy, this.state.databaseNameToCopyTarget);
+                this.handleCopyDialogClose();
+              }
+            })}
+            {getDialog({
+              isOpen: this.state.createNewDialogOpen,
+              onRequestClose: this.handleCreateNewDialogClose,
+              onTextFieldChange:  (_, databaseNameToCreate) => {
+                this.setState({
+                  databaseNameToCreate,
+                })
+              },
+              onSubmit: () => {
+                createNewDatabase(this.state.databaseNameToCreate);
+                this.handleCreateNewDialogClose();
+              }
+            })}
+
           </div>
         )}
       </WithDatabases>
