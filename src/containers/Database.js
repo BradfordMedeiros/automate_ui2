@@ -29,6 +29,7 @@ class Database extends Component {
     selectedIndex: 0,
     copyDialogOpen: false,
     createNewDialogOpen: false,
+    showSetActiveDialogOpen: false,
 
     databaseNameToCopyTarget: undefined,
     databaseNameToCreate: undefined,
@@ -43,6 +44,11 @@ class Database extends Component {
       createNewDialogOpen: false,
     })
   }
+  handleCloseSetActiveDialog = () => {
+    this.setState({
+      showSetActiveDialogOpen: false,
+    })
+  }
   render() {
     return (
       <WithDatabases
@@ -50,6 +56,7 @@ class Database extends Component {
       >
         {({
           databases,
+          setDatabaseAsActive,
           createNewDatabase,
           copyDatabase,
           uploadDatabase,
@@ -72,8 +79,13 @@ class Database extends Component {
                   createNewDialogOpen: true,
                 })
               }}
-              setDatabaseAsActive={() => {
-                console.log('set database as active: ', this.state.selectedIndex);
+              setDatabaseAsActive={async () => {
+                const databaseName = databases[this.state.selectedIndex].name;
+                console.log('db name active: ', databaseName);
+                await setDatabaseAsActive(databaseName);
+                this.setState({
+                  showSetActiveDialogOpen: true,
+                })
               }}
               onDownloadDatabase={async() => {
                 const databaseName = databases[this.state.selectedIndex].name;
@@ -128,7 +140,20 @@ class Database extends Component {
                 this.handleCreateNewDialogClose();
               }
             })}
-
+            <Dialog
+              open={this.state.showSetActiveDialogOpen}
+              style={{ display: 'flex', flexDirection: 'column' }}
+            >
+              <div>The system will be loaded with the selected database when it is restarted.</div>
+              <div>This is a current limitation that will be fixed.</div>
+              <RaisedButton
+                primary
+                onClick={this.handleCloseSetActiveDialog}
+                label={"OK"}
+                fullWidth
+                style={{ marginTop: 12 }}
+              />
+            </Dialog>
           </div>
         )}
       </WithDatabases>

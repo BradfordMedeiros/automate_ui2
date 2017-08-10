@@ -35,6 +35,13 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
     });
   };
 
+  const setDatabaseAsActive = async databaseName => {
+    const response = await fetch(`${url}set_as_active/${databaseName}`, {
+      method: 'POST',
+      mode: 'cors',
+    });
+    return response;
+  };
   const copyDatabase = async (databaseNameToCopy, databaseName) => {
     const response = await fetch(`${url}copy/${databaseName}`, {
       headers: new Headers({
@@ -106,6 +113,7 @@ const getWithDatabases = (AUTOMATE_CORE_URL) => {
             uploadDatabase,
             downloadDatabase,
             deleteDatabase,
+            setDatabaseAsActive,
           }) : null
       );
     }
