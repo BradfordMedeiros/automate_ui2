@@ -21,7 +21,7 @@ class LightDimmerTile extends Component {
       <div className="slidertile">
         <WithMqtt topics={List()}>
           {(stuff, publish) => {
-            const conversion = value => ((max - min) * Number(value)) + min;
+            const conversion = value => ((Number(max) - Number(min)) * Number(value)) + Number(min);
             return (
               <Slider
                 onChange={(x, value) => {

@@ -6,9 +6,10 @@ import { tile as MqttTile, overlay as MqttOverlay } from './tiles/mqtt/display/M
 import { tile as VerticalMqttSliderTile } from './tiles/mqtt/slider/VerticalSlider';
 import { tile as HorizontalMqttSliderTile } from './tiles/mqtt/slider/HorizontalSlider';
 import { overlay as MqttSliderOverlay } from './tiles/mqtt/slider/common/MqttSliderOverlay';
-
 import { tile as MqttButtonTile } from './tiles/mqtt/button/button';
 import { overlay as MqttButtonOverlay } from './tiles/mqtt/button/buttonOverlay';
+import { tile as MqttGauge } from './tiles/mqtt/guage/Gauge';
+import { overlay as MqttGaugeOverlay } from './tiles/mqtt/guage/GaugeOverlay';
 
 import { tile as IFrameTile } from './tiles/misc/iframe/IFrame';
 import { overlay as IFrameOverlay } from './tiles/misc/iframe/IFrameOverlay';
@@ -53,6 +54,7 @@ export const tileNames = [
     label: 'Controls',
     children: [
       'Display',
+      'Gauge',
       'Button',
       'Dimmer (Vertical)',
       'Dimmer (Horizontal)',
@@ -82,6 +84,9 @@ const InnerTile = (props) => {
   switch (tileName) {
     case 'Display': {
       return <MqttTile {...otherProps} />;
+    }
+    case 'Gauge': {
+      return <MqttGauge {...otherProps} />
     }
     case 'Dimmer (Vertical)': {
       return <VerticalMqttSliderTile {...otherProps} />;
@@ -166,6 +171,9 @@ class TileOverlay extends Component {
     switch (tileName) {
       case 'Display': {
         return <MqttOverlay {...otherProps} />;
+      }
+      case 'Gauge': {
+        return <MqttGaugeOverlay {...otherProps} />;
       }
       case 'Dimmer (Vertical)': {
         return <MqttSliderOverlay {...otherProps} />;
