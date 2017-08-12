@@ -10,7 +10,7 @@ const styles = {
     height: '100%',
     width: '100%',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     linearGradient: '(rgb(30, 30, 30),rgb(20,20,20))',
     background: 'rgb(20,20,20)',
     boxShadow: '0px 0px 1px 0.1px white inset',
@@ -18,13 +18,13 @@ const styles = {
 
 };
 
-const NUM_BARS = 20;
 
-const getFillLevel = (value, min, max) => {
+const getFillPercentage = (value, min, max) => {
   const adjustedValue = value - min;
   const adjustedMax = max - min;
 
-  return Math.floor((adjustedValue / adjustedMax) * NUM_BARS);
+  const fraction = adjustedValue / adjustedMax;
+  return `${fraction * 100}%`
 
 };
 
@@ -39,24 +39,20 @@ class GaugeTile extends Component {
         <WithMqtt topics={topicsToSubscribe}>
           {(values, publish) => {
 
-            const fillLevel = getFillLevel(Number(values[topic]), Number(min), Number(max));
-            console.log('min: ', Number(min));
-            console.log('max: ', Number(max));
-            console.log(fillLevel);
+            const fillLevel = getFillPercentage(Number(values[topic]), Number(min), Number(max));
+
 
             return (
-              <div style={{ width: '100%', margin: 8, boxShadow: '0px 0px 1px 1px rgb(20,20,20)' }}>
-                {[...Array(NUM_BARS)].map((element, index) => (
-                  <div
-                    style={{
-                      border: '1px solid rgb(80,80,80)',
-                      boxShadow: (NUM_BARS - index)  <= fillLevel ? '0px 0px 28px 1px rgba(8, 123, 255, 1) inset': undefined,
-                      width: '100%',
-                      height: 16,
-                      transition: 'all .1s ease',
-                    }}
-                  />
-                ))}
+              <div style={{ width: '100%', margin: 2, boxShadow: '0px 0px 1px 1px rgb(20,20,20)' }}>
+                <div
+                  style={{
+                    background: 'rgba(0,0,250,0.6)',
+                    border: '1px solid rgb(80,80,80)',
+                    width: '100%',
+                    height: fillLevel,
+                    transition: 'all .1s ease',
+                  }}
+                />
               </div>
             );
           }}
