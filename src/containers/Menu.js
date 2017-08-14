@@ -10,6 +10,7 @@ import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module
 import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
 import Database from './Database';
+import ProtoCircuitProgrammer from './ProtoCircuitProgrammer';
 
 import ActionBuilder from './system/base/ActionsBuilder';
 import StateBuilder from './system/base/StatesBuilder';
@@ -119,6 +120,10 @@ class MenuContainer extends Component {
             {
               label: 'Device Info',
               onClick: () => this.openContent(<DeviceInfo />),
+            },
+            {
+              label: 'Proto-Circuit Programmer',
+              onClick: () => this.openContent(<ProtoCircuitProgrammer />),
             },
             {
               label: 'Database',
