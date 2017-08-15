@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 const ItemWrapper = ({ children, style }) => (
   <div
     style={{
+      position: 'relative',
       fontSize: 18,
       width: '100%',
       borderBottom: '1px solid rgba(0, 0, 0, 0.3)',

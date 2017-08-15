@@ -5,12 +5,29 @@ import ProtoCircuitProgrammerComponent from '../components/protoCircuitProgramme
 class ProtoCircuitProgrammer extends Component {
   state = {
     mode: 'input',
+    isChanged: false,
+    topic: '',
+    samplingRate: 1000,
   }
   render() {
     return (
       <ProtoCircuitProgrammerComponent
+
         mode={this.state.mode}
-        onModeChange={mode => this.setState({ mode })}
+        isChanged={this.state.isChanged}
+        onModeChange={mode => {
+          this.setState({
+            mode,
+            isChanged: true,
+          });
+        }}
+        settings={this.state}
+        onSettingsChange={newSettings => {
+          this.setState({
+            ...newSettings,
+            isChanged: true,
+          })
+        }}
       />
     );
   }

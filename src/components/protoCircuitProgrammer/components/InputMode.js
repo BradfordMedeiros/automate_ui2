@@ -21,12 +21,15 @@ const handleChange = ({ oldSettings, newSetting, value, onSettingsChange }) => {
   onSettingsChange(newSettings);
 };
 
-const InputMode = ({ settings, onSettingsChange }) => (
-  <div style={{ display: 'flex', flexDirection: 'column'}}>
-    <ItemWrapper style={itemWrapperStyle}>
-      Topic
+const InputMode = ({ settings, onSettingsChange }) => {
+  console.log('topic is: ', settings.topic);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column'}}>
+      <ItemWrapper style={itemWrapperStyle}>
+        <div style={{ width: 160, display: 'flex', justifyContent: 'center' }}>Topic</div>
         <TextField
           style={textfieldStyle}
+          value={settings.topic}
           floatingLabelText="Topic"
           onChange={(_, newTopic) => {
             if (onSettingsChange){
@@ -34,19 +37,20 @@ const InputMode = ({ settings, onSettingsChange }) => (
             }
           }}
         />
-    </ItemWrapper>
-    <ItemWrapper style={itemWrapperStyle}>
-      Sampling Rate
+      </ItemWrapper>
+      <ItemWrapper style={itemWrapperStyle}>
+        <div style={{ width: 160, display: 'flex', justifyContent: 'center' }}>Sampling Rate</div>
         <TextField
           style={textfieldStyle}
-          floatingLabelText="Sampling Rate"
+          floatingLabelText="Sampling Rate (ms)"
           onChange={(_, newSampleRate) => {
             handleChange({ oldSettings: settings, newSetting: 'sampleRate', value: newSampleRate, onSettingsChange })
           }}
         />
-    </ItemWrapper>
-  </div>
-);
+      </ItemWrapper>
+    </div>
+  );
+}
 
 InputMode.propTypes = {
   settings: PropTypes.object,
