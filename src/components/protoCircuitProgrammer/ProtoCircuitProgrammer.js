@@ -27,7 +27,7 @@ const ProtoCircuitProgrammer = ({
   settings,
   onSettingsChange,
 }) => (
-<GenericOverlay title="ProtoCircuit Programmer">
+<GenericOverlay title="Programmer">
   <div style={{ background: '#373737', width: '100%', height: '100%' }}>
     <ModeSelector style={{ height: 95 }} mode={mode} onModeChange={onModeChange} />
     <RaisedButton primary disabled={!isChanged} fullWidth label="Submit Changes" />
