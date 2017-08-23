@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
-const style = {
+const defaultStyle = {
   borderLeft: '1px solid rgba(0, 0, 0, 0.5)',
-    height: 110,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRight: '1px solid rgba(0, 0, 0, 0.5)',
-    padding: 18,
-    paddingBottom: 40,
-    background: '#2f2f2f',
+  height: 110,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  borderRight: '1px solid rgba(0, 0, 0, 0.5)',
+  padding: 18,
+  paddingBottom: 40,
+  background: 'rgb(40, 40, 40)',
 };
 
 const convertCronStringToObject = schedule => {
@@ -34,10 +34,10 @@ const handleChange = (schedule, onScheduleChange, index) => (_, newValue) => {
 
 
 
-const RawCron = ({ schedule, onScheduleChange }) => {
+const RawCron = ({ schedule, onScheduleChange, style = { }}) => {
   const timeObject = convertCronStringToObject(schedule);
   return (
-    <div style={style}>
+    <div style={{ ...defaultStyle, ...style }}>
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 0)}
         floatingLabelText="Second"
@@ -81,6 +81,7 @@ const RawCron = ({ schedule, onScheduleChange }) => {
 RawCron.propTypes = {
   schedule: PropTypes.string.isRequired,
   onScheduleChange: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default RawCron;

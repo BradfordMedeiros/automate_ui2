@@ -8,11 +8,12 @@ import Monthly from './components/Monthly';
 import TargetDate from './components/TargetDate';
 import None from './components/None';
 
-const style = {
-  width: '100%',
-  display: 'inline-block',
-  background: 'rgba(0,0,0,0.1)',
-  padding: 28,
+const defaultStyle = {
+  background: 'rgba(255, 255, 255, 0.1)',
+  boxShadow: '0px 0px 5px 0.1px black',
+  paddingTop: 4,
+  paddingLeft: 8,
+  paddingRight: 0,
   overflow: 'auto',
 };
 
@@ -26,11 +27,11 @@ const stringToComponent =  {
   target: TargetDate,
 };
 
-const FrequencyEditor = ({ type, schedule, onScheduleChange }) => {
+const FrequencyEditor = ({ type, schedule, onScheduleChange, style= { } }) => {
 
   const FrequencyComponent = stringToComponent[type] || None;
   return (
-    <div style={style}>
+    <div style={{...defaultStyle, ...style}}>
       <FrequencyComponent
         schedule={schedule}
         onScheduleChange={onScheduleChange}
@@ -43,6 +44,7 @@ FrequencyEditor.propTypes = {
   type: PropTypes.string.isRequired,
   schedule: PropTypes.string.isRequired,
   onScheduleChange: PropTypes.func.isRequired,
+  style: PropTypes.object,
 };
 
 export default FrequencyEditor;

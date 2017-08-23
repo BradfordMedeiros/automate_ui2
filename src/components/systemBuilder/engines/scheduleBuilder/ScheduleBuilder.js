@@ -20,26 +20,27 @@ class ScheduleBuilder extends Component {
         onAxiomSelected={onScheduleSelected}
         onAxiomChange={onScheduleChange}
       >
-        {(schedules.length > 0) && <ScheduleInfo
-          topic={schedules[selectedIndex].topic}
-          value={schedules[selectedIndex].value}
-          scheduleName={schedules[selectedIndex].name}
-          schedule={schedules[selectedIndex].content}
-          submitSchedule={({ schedule, topic, value }) => {
-            const name = schedules[selectedIndex].name;
-
-            onScheduleChange(undefined,
-              {
-                name,
-                schedule,
-                topic,
-                value,
-              })
-          }}
-          deleteSchedule={() => {
-            onScheduleChange(undefined, undefined, scheduleName)}
-          }
-        />}
+        {(schedules.length > 0) && (
+          <ScheduleInfo
+            topic={schedules[selectedIndex].topic}
+            value={schedules[selectedIndex].value}
+            scheduleName={schedules[selectedIndex].name}
+            schedule={schedules[selectedIndex].content}
+            submitSchedule={({ schedule, topic, value }) => {
+              const name = schedules[selectedIndex].name;
+              onScheduleChange(undefined,
+                {
+                  name,
+                  schedule,
+                  topic,
+                  value,
+                })
+            }}
+            deleteSchedule={() => {
+              onScheduleChange(undefined, undefined, scheduleName)}
+           }
+          />
+        )}
       </AxiomBuilder>
     );
   }

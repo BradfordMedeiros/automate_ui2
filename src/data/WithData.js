@@ -9,8 +9,8 @@ const getDataConfig = (isProduction) => {
     });
   }
   return ({
-    automateUrl: 'http://127.0.0.1:9000',
-    mqttBroker: 'http://127.0.0.1:4000',
+    automateUrl: 'http://10.0.139.164:9000',
+    mqttBroker: 'http://10.0.139.164:4000',
   });
 };
 

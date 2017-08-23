@@ -1,19 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { RaisedButton, TextField, Subheader, Divider } from 'material-ui';
 import RawCron from './components/RawCron';
 import QuickOptions from './components/QuickOptions';
+import MqttOptions from './components/MqttOptions';
 import FrequencyEditor from './components/FrequencyEditor/FrequencyEditor';
+import { Desktop, Mobile } from '../../../../../../../util/ViewportSizing';
 
 const styles = {
-  topicValueStyle : {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    alignItems: 'center',
-    padding: 18,
-    paddingBottom: 48,
-    borderBottom: '2px ridge rgba(0, 0, 0, 0.14)',
-  },
   detailStyle : {
     display: 'flex',
     flexGrow: 6,
@@ -30,7 +22,7 @@ const styles = {
 
 class QuickAdd extends Component {
   state = {
-    selectedOption: undefined,
+    selectedOption: 'monthly',
   }
   render() {
     const {
@@ -44,43 +36,41 @@ class QuickAdd extends Component {
     } = this.props;
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '85%' }}>
-        <QuickOptions
-          selectedOption={this.state.selectedOption}
-          onScheduleSelected={selectedOption => {
-            this.setState({ selectedOption });
-          }}
-        />
-        <div style={{ display: 'flex', flexDirection: 'row', flexGrow: 5 }}>
-          <div style={styles.topicValueStyle}>
-            <Subheader>Mqtt Trigger</Subheader>
-            <Divider />
-            <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-              <TextField fullWidth value={topic} onChange={(_, topic) => onTopicChange(topic)} floatingLabelText={"Topic"} />
-              <TextField fullWidth value={value} onChange={(_, value) => onValueChange(value)} floatingLabelText={"Value"} />
-            </div>
-
-            <div style={{ marginTop: 80, width: '100%', display: 'flex', flexDirection: 'column' }}>
-              <Subheader>Controls</Subheader>
-              <Divider />
-              <RaisedButton label="Submit" onClick={onSubmitSchedule} />
-              <RaisedButton disabled label="Pause/Play" />
-            </div>
-          </div>
-          <div style={styles.detailStyle}>
+      <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+        <Desktop>
+          <QuickOptions
+            style={{ width: '100%', height: 52 }}
+            selectedOption={this.state.selectedOption}
+            onScheduleSelected={selectedOption => {
+              this.setState({ selectedOption });
+            }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'row', top: 52, position: 'absolute', width: '100%', height: 'calc(100% - 152px)' }}>
+            <MqttOptions
+              style={{ width: 340, position: 'absolute', height: '100%' }}
+              topic={topic}
+              onTopicChange={onTopicChange}
+              value={value}
+              onValueChange={onValueChange}
+              onSubmitSchedule={onSubmitSchedule}
+            />
             <FrequencyEditor
+              style={{ position: 'absolute', height: '100%',  left: 340, right: 0 }}
               type={this.state.selectedOption}
               schedule={schedule}
               onScheduleChange={onScheduleChange}
             />
           </div>
-        </div>
-        <div style={styles.detailStyle2} >
           <RawCron
+            style={{ height: 100, position: 'absolute', width: '100%', bottom: 0 }}
             schedule={schedule}
             onScheduleChange={onScheduleChange}
           />
-        </div>
+        </Desktop>
+        <Mobile>
+          <div>need to do</div>
+        </Mobile>
+
       </div>
     );
   }

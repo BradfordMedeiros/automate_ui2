@@ -27,47 +27,49 @@ class ScheduleInfo extends Component {
     const {topic, value, schedule, scheduleName, submitSchedule, deleteSchedule} = this.props;
 
     return (
-      <div style={{width: '100%'}}>
+      <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
         <AxiomHeader
           deleteSequence={deleteSchedule}
           axiomName="Schedule"
           axiomNameValue={scheduleName}
         />
-        <ScheduleEditor
-          schedule={this.state.hasChanged ? this.state.schedule : schedule}
-          topic={this.state.hasChanged ? this.state.topic: topic}
-          onTopicChange={topic => {
-            this.setState({
-              topic,
-              hasChanged: true,
-            });
-          }}
-          value={this.state.hasChanged ? this.state.value: value}
-          onValueChange={value => {
-            this.setState({
-              value,
-              hasChanged: true,
-            });
-          }}
-          onSubmitSchedule={() => {
-            submitSchedule({
-              schedule: this.state.schedule,
-              topic: this.state.topic,
-              value: this.state.value,
-            });
-            this.setState({
-              hasChanged: false,
-              topic: '',
-              value: '',
-            })
-          }}
-          onScheduleChange={schedule => {
-            this.setState({
-              schedule,
-              hasChanged: true,
-            });
-          }}
-        />
+        <div style={{ position: 'relative', height: 'calc(100% - 48px)' }}>
+          <ScheduleEditor
+            schedule={this.state.hasChanged ? this.state.schedule : schedule}
+            topic={this.state.hasChanged ? this.state.topic: topic}
+            onTopicChange={topic => {
+              this.setState({
+                topic,
+                hasChanged: true,
+              });
+            }}
+            value={this.state.hasChanged ? this.state.value: value}
+            onValueChange={value => {
+              this.setState({
+                value,
+                hasChanged: true,
+              });
+            }}
+            onSubmitSchedule={() => {
+              submitSchedule({
+                schedule: this.state.schedule,
+                topic: this.state.topic,
+                value: this.state.value,
+              });
+              this.setState({
+                hasChanged: false,
+                topic: '',
+                value: '',
+              })
+            }}
+            onScheduleChange={schedule => {
+              this.setState({
+                schedule,
+                hasChanged: true,
+              });
+            }}
+          />
+        </div>
       </div>
     );
   }
