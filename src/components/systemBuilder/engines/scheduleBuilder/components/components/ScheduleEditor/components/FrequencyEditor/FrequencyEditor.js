@@ -9,7 +9,7 @@ import TargetDate from './components/TargetDate';
 import None from './components/None';
 
 const defaultStyle = {
-  background: 'rgba(255, 255, 255, 0.1)',
+  background: 'rgb(55, 55, 55)',
   boxShadow: '0px 0px 5px 0.1px black',
   paddingTop: 4,
   paddingLeft: 8,

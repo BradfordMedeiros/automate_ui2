@@ -4,6 +4,7 @@ import QuickOptions from './components/QuickOptions';
 import MqttOptions from './components/MqttOptions';
 import FrequencyEditor from './components/FrequencyEditor/FrequencyEditor';
 import { Desktop, Mobile } from '../../../../../../../util/ViewportSizing';
+import './style.css';
 
 const styles = {
   detailStyle : {
@@ -23,6 +24,7 @@ const styles = {
 class QuickAdd extends Component {
   state = {
     selectedOption: 'monthly',
+    mobileExpanded: false,
   }
   render() {
     const {
@@ -68,7 +70,50 @@ class QuickAdd extends Component {
           />
         </Desktop>
         <Mobile>
-          <div>need to do</div>
+          <QuickOptions
+            style={{ width: '100%', height: 52, position: 'relative' }}
+            includeToggle
+            onToggle={() => {
+              this.setState({
+                mobileExpanded: !this.state.mobileExpanded,
+              })
+            }}
+            selectedOption={this.state.selectedOption}
+            onScheduleSelected={selectedOption => {
+              this.setState({
+                selectedOption,
+                mobileExpanded: true,
+              });
+            }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'row', top: 52, position: 'absolute', width: '100%', height: 'calc(100% - 152px)' }}>
+            <MqttOptions
+              style={{ width: '100%', position: 'absolute', height: '100%' }}
+              topic={topic}
+              onTopicChange={onTopicChange}
+              value={value}
+              onValueChange={onValueChange}
+              onSubmitSchedule={onSubmitSchedule}
+            />
+            <FrequencyEditor
+              style={{
+                animation: this.state.mobileExpanded  ? `schedule_slide_in 0.2s linear forwards`: `schedule_slide_out 0.2s linear forwards`,
+                position: 'absolute',
+                height: '100%',
+                left: 200,
+                right: 0,
+                zIndex: 1
+              }}
+              type={this.state.selectedOption}
+              schedule={schedule}
+              onScheduleChange={onScheduleChange}
+            />
+          </div>
+          <RawCron
+            style={{ height: 100, position: 'absolute', width: '100%', bottom: 0 }}
+            schedule={schedule}
+            onScheduleChange={onScheduleChange}
+          />
         </Mobile>
 
       </div>

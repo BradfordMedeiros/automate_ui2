@@ -20,7 +20,9 @@ const MqttOptions = ({
   style = { },
 }) => (
   <div style={{...topicValueStyle, ...style}}>
-    <Subheader style={{ border: '1px solid rgba(0,0,0,0.4)', background: '#303030', fontSize: 18, marginTop: 8 }}>Mqtt Trigger</Subheader>
+    <Subheader style={{ border: '1px solid rgba(0,0,0,0.4)', background: '#303030', fontSize: 18, marginTop: 8 }}>
+      Mqtt Trigger
+    </Subheader>
     <Divider />
     <div style={{
       background: 'rgba(0, 0, 0, 0.25)',
