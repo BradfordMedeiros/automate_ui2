@@ -8,7 +8,6 @@
     "build": "set NODE_ENV=production && set IS_PRODUCTION=true && webpack --progress -p --config ./webpack.prod.js && cp index.html build && cp src/style.css build &&  tar -czvf automate_ui.tar.gz build",
     "lint": "eslint -c .eslintrc.js src/",
     "lintfix": "eslint --fix -c .eslintrc.js src/",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
