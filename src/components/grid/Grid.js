@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Paper } from 'material-ui';
 import { WidthProvider, Responsive } from 'react-grid-layout';
-import '../../../node_modules/react-grid-layout/css/styles.css';
-import '../../../node_modules/react-resizable/css/styles.css';
+import './react-grid-layout.css';
+import './react-resizable.css';
+//import '../../../node_modules/react-grid-layout/css/styles.css';
+//import '../../../node_modules/react-resizable/css/styles.css';
 import './style.css';
 
 const ReactGridLayout = WidthProvider(Responsive);
