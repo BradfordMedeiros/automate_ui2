@@ -1,11 +1,10 @@
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  menuExpanded: false,
-  addGridExpanded: false,
-  isLocked: true,
-  gridIsOpen: false,
   menuIsHidden: false,
+  menuExpanded: false,
+  isLocked: true,
+  drawerOpen: false,
 });
 
 
@@ -17,30 +16,34 @@ export const expandMenu = isExpanded => ({
   type: 'expandMenu',
   isExpanded,
 });
-export const expandAddGrid = isExpanded => ({
-  type: 'expandAddGrid',
-  isExpanded,
-});
 
 export const lock = isLocked => ({
   type: 'lockGrid',
   isLocked,
 });
 
+export const setDrawerOpen = isOpen => ({
+  type: 'drawerOpen',
+  isOpen,
+});
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'set_menu': {
-      return state.set('menuIsHidden', !state.get('menuIsHidden'));
+      return state.set('menuIsHidden', !state.get('menuIsHidden')); // hides left main menu
     }
     case 'expandMenu': {
-      return state.set('menuExpanded', action.isExpanded);
+      return state.set('menuExpanded', action.isExpanded);  // the overlay
     }
     case 'lockGrid': {
-      return state.set('isLocked', action.isLocked);
+      return state.set('isLocked', action.isLocked);  // determines if tiles can be moved
     }
-    case 'expandAddGrid': {
-      return state.set('addGridExpanded', action.isExpanded);
+    case 'drawerOpen': {
+      if (action.drawerOpen === undefined){
+        return state.set('drawerOpen', !state.get('drawerOpen'));
+      }
+      return state.set('drawerOpen', action.isOpen);
     }
     default: {
       return state;

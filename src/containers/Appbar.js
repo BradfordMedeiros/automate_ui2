@@ -1,17 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Appbar from '../components/appbar/Appbar';
-import { expandMenu, lock, setMenu } from './module';
-import { addTile } from './grid/module';
+import { expandMenu, lock, setMenu, setDrawerOpen } from './module';
 
-const ConnectedAppbar = ({ activeGrid, onTileClick, showHideMenu, ...otherProps }) => (
+const ConnectedAppbar = ({ activeGrid, showHideMenu, openDrawer, ...otherProps }) => (
   <Appbar
     {...otherProps}
     title={'automate'}
     showHideMenu={showHideMenu}
-    onTileClick={(tileName) => {
-      onTileClick(tileName, activeGrid);
-    }}
   />
 );
 
@@ -27,8 +23,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onAddIconClick: () => dispatch(setDrawerOpen()),
   onRotatedAddIconClick: () => dispatch(expandMenu(false)),
-  onTileClick: (tileName, activeGrid) => dispatch(addTile(tileName, activeGrid)),
   onToggle: (x, elementIsToggled) => dispatch(lock(!elementIsToggled)),
   onHideMenu: () => dispatch(setMenu()),
 });
