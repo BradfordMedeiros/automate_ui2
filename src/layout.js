@@ -21,7 +21,7 @@ const desktopStyles = {
     { top: 50, bottom: 0, left: 210, right: 0, position: 'absolute' }),
   menu: { width: 210, position: 'fixed', left: 1, top: 48, bottom: 0, zIndex: 500, position: 'absolute' },
   overlay: menuIsHidden => (menuIsHidden ? { left: 0, right: 1, position: 'absolute' } : { left: 211, right: 1, position: 'absolute' }),
-  drawer: { top: 50, height: 'calc(100% - 95px)' },
+  drawer: { top: 50, height: 'calc(100% - 50px)' },
 };
 const mobileStyles = {
   appbar: { height: 50, width: '100%', top: 0, zIndex: 200, position: 'absolute' },
