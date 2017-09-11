@@ -23,13 +23,15 @@ class GenericBuilder extends Component {
         onAxiomSelected={onAxiomSelected}
       >
         <div style={{ width: '100%', height: '100%' }}>
-          <AxiomInfo
-            axiomName={axiomClass}
-            deleteAxiom={() => {
-              const newActions = axioms.slice().filter((action, index) => index !== selectedIndex);
-              onAxiomChange(newActions, undefined, axiomName);
-            }}
-          />
+          {(axioms.length > 0) && (
+            <AxiomInfo
+              axiomName={axiomClass}
+              deleteAxiom={() => {
+                const newActions = axioms.slice().filter((action, index) => index !== selectedIndex);
+                onAxiomChange(newActions, undefined, axiomName);
+              }}
+            />
+          )}
           <div style={{ width: '100%', height: '100%' }}>
             {children}
           </div>
