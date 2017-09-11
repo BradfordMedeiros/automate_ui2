@@ -1,6 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import { Drawer, List, ListItem, Subheader, Divider, MenuItem } from 'material-ui';
+import { Drawer, List, ListItem, MenuItem } from 'material-ui';
 import DrawerMenuItem from './components/DrawerMenuItem';
+
+const styles = {
+  tiles: {
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: 22,
+    padding: 24,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginBottom: 12,
+  },
+};
 
 const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }) => (
   <Drawer
@@ -10,10 +22,9 @@ const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }
     docked={false}
     swipeAreaWidth={30}
     overlayStyle={{ background: 'transparent' }}
-    containerStyle={style}
+    containerStyle={{ background: 'rgb(18,18,18)',...style}}
   >
-    <Subheader>Tiles</Subheader>
-    <Divider />
+    <div style={styles.tiles}>tiles</div>
     { (tileNames === undefined || tileNames.length === 0) ?
       <MenuItem>No tiles</MenuItem> :
       <List>{tileNames.map(

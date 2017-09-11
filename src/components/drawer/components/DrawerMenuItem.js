@@ -6,6 +6,7 @@ const DrawerMenuItem = ({ tile, onTileClick, path, tileIndex}) =>  {
   if (typeof (tile) === typeof ({})) {
     return (
       <ListItem
+        innerDivStyle={{  border: '1px solid rgb(20,20,20)' }}
         key={path}
         primaryText={tile.label}
         primaryTogglesNestedList
@@ -22,6 +23,7 @@ const DrawerMenuItem = ({ tile, onTileClick, path, tileIndex}) =>  {
   }
   return (
     <ListItem
+      innerDivStyle={{ paddingLeft: 28, background: 'black' }}
       key={path}
       primaryText={tile}
       onClick={() => {
