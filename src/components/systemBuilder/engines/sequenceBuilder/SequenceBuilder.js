@@ -34,6 +34,22 @@ class SequenceBuilder extends Component {
           }}
           style={{ width: 'calc(100% - 250px)' }}
         />}
+        {(sequences.length === 0) && (
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              top: '30%',
+              color: 'rgb(110,110,110)',
+              fontFamily: 'monospace',
+              fontSize: 48,
+            }}>
+            no sequences
+          </div>
+        )}
       </AxiomBuilder>
     );
   }

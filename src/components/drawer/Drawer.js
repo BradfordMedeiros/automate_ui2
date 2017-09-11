@@ -20,7 +20,6 @@ const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }
     onRequestChange={onDrawerStateChange}
     openSecondary
     docked={false}
-    swipeAreaWidth={30}
     overlayStyle={{ background: 'transparent' }}
     containerStyle={{ background: 'rgb(18,18,18)',...style}}
   >

@@ -23,8 +23,8 @@ const DrawerMenuItem = ({ tile, onTileClick, path, tileIndex}) =>  {
   }
   return (
     <ListItem
-      style={{ paddingLeft: 28, background: 'black' }}
-      hoverColor={'blue'}
+      style={{ paddingLeft: 28  }}
+      hoverColor={'rgba(40,40,210,0.8)'}
       key={path}
       primaryText={tile}
       onClick={() => {

@@ -28,7 +28,7 @@ class ActionBuilder extends Component {
         onAxiomSelected={onActionSelected}
         axiomName={actionName}
       >
-        <div>
+        {(actions.length > 0) && <div>
           {(actionType === 'executable') && (
             <ExecutableFields
               initialText={actionCode}
@@ -46,7 +46,23 @@ class ActionBuilder extends Component {
               />
             )}
           </Desktop>
-        </div>
+        </div>}
+        {(actions.length === 0) && (
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                top: '30%',
+                color: 'rgb(110,110,110)',
+                fontFamily: 'monospace',
+                fontSize: 48,
+              }}>
+              no {axiomClass.toLowerCase()}
+            </div>
+          )}
       </GenericBuilder>
     );
   }
