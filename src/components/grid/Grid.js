@@ -27,6 +27,30 @@ class Grid extends Component {
     return (
       <div>
         <div className="grid" style={style}>
+          {(tileKeys.length === 0) && (
+            <div style={{width: '100%', height: '100%', background: 'rgba(0,0,0,0.8)'}} />
+            )}
+          {(tileKeys.length === 0) && (
+            <div
+              style={{
+                position: 'absolute',
+                left: '30%',
+                right: '30%',
+                display: 'flex',
+                justifyContent: 'center',
+                top: '30%',
+                color: 'rgb(210,210,210)',
+                borderTop: '1px solid grey',
+                borderBottom: '1px solid grey',
+                textShadow: '0px 1px 1px black',
+                fontFamily: 'monospace',
+                fontSize: 48,
+                padding: 14,
+              }}
+            >
+              Add tiles to the grid
+            </div>
+          )}
           <ReactGridLayout
             layouts={{ xxs: jsLayout, xs: jsLayout, sm: jsLayout, md: jsLayout, lg: jsLayout }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
