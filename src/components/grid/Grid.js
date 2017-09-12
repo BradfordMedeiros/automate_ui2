@@ -28,7 +28,7 @@ class Grid extends Component {
       <div>
         <div className="grid" style={style}>
           {(tileKeys.length === 0) && (
-            <div style={{width: '100%', height: '100%', background: 'rgba(0,0,0,0.8)'}} />
+            <div style={{width: '100%', height: '100%', background: 'rgba(0,0,0,0.9)'}} />
             )}
           {(tileKeys.length === 0) && (
             <div
