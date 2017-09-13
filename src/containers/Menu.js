@@ -1,5 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import {
+  ActionHome,
+  ActionDashboard,
+  ActionSchedule,
+  ActionEvent,
+  ActionImportantDevices,
+  ActionCode,
+} from 'material-ui/svg-icons';
 import Menu from '../components/menu/menu';
 import MinimalMenu from '../components/menu/minimalMenu';
 import EventLog from './EventLog';
@@ -51,10 +59,12 @@ class MenuContainer extends Component {
     return [
         {
           label: 'Home',
+          icon: <ActionHome />,
           onClick: () => this.onGridClick('Home'),
         },
         {
           label: 'My Grids',
+          icon: <ActionDashboard />,
           children: [
             {
               label: 'Add Grid +',
@@ -78,6 +88,7 @@ class MenuContainer extends Component {
         },
         {
           label: 'System',
+          icon: <ActionCode />,
           children: [
             {
               label: 'States',
@@ -95,6 +106,7 @@ class MenuContainer extends Component {
         },
         {
           label: 'Engines',
+          icon: <ActionSchedule />,
           children: [
             {
               label: 'Rules',
@@ -112,10 +124,12 @@ class MenuContainer extends Component {
         },
         {
           label: 'Events',
+          icon: <ActionEvent />,
           onClick: () => this.openContent(<EventLog />),
         },
         {
           label: 'Device',
+          icon: <ActionImportantDevices />,
           children: [
             {
               label: 'Device Info',

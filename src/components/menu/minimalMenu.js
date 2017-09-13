@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { List as IList } from 'immutable';
+import IconButton from 'material-ui/IconButton';
 import Popover from 'material-ui/Popover/Popover';
 import {Menu, MenuItem} from 'material-ui/Menu';
 
@@ -7,7 +8,7 @@ import './style.css';
 
 const boxStyle = {
   background: 'rgb(55,55,55)',
-  boxShadow: '0px 0px 5px 1px black',
+  boxShadow: '0px 0px 2px 0.2px black',
   borderTop: '0.1px solid black',
   display: 'flex',
   justifyContent: 'space-around',
@@ -16,6 +17,7 @@ const boxStyle = {
 const menuItemStyle = {
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   paddingTop: 8,
   color: 'whitesmoke',
   border: '1px solid black',
@@ -45,7 +47,8 @@ class MinimalMenu extends Component {
           }
         }}
         style={menuItemStyle}>
-          {item.label}
+          {/*item.label*/}
+          <IconButton>{item.icon}</IconButton>
       </div>
     );
   }
