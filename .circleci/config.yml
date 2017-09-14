@@ -24,11 +24,7 @@ jobs:
 
       - run: 
 	  name: Building and Saving Tar 
-	  command: |
-		yarn install;
-		mkdir -p /tmp/artifacts;
-	 	cp automate_ui.tar.gz /tmp/artifacts;
-
+	  command: yarn install && mkdir -p /tmp/artifacts && cp automate_ui.tar.gz /tmp/artifacts;
 
       - save_cache:
           paths:
