@@ -22,7 +22,13 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install && cp automate_ui.tar.gz $CIRCLE_ARTIFACTS
+      - run: 
+	  name: Building and Saving Tar 
+	  command: |
+		yarn install
+		mkdir -p /tmp/artifacts
+	 	cp automate_ui.tar.gz /tmp/artifacts
+
 
       - save_cache:
           paths:
@@ -33,5 +39,5 @@ jobs:
       #- run: yarn test
 
       - store_artifacts:
-          path: /tmp/
+          path: /tmp/artifacts
 
