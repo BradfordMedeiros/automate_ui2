@@ -32,7 +32,11 @@ class Appbar extends Component {
       <div className="titlebar" style={style}>
         {showHideMenu && <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>}
         <div className="toggle">
-          <Toggle onToggle={onToggle} />
+          <Toggle
+            thumbStyle={{ background: 'darkgrey' }}
+            thumbSwitchedStyle={{ background: 'white' }}
+            onToggle={onToggle}
+          />
         </div>
         <div className="xBorderBox">
           <div
