@@ -1,12 +1,12 @@
 
 import generateWithData from './api/generateWithData';
 
-const isUrl = url => {
-  if (!url || url.length === 0){
-    return false;
-  }
-  return true;
+const getUrl = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const backendUrl = searchParams.get('url') ? searchParams.get('url') : '127.0.0.1';
+  return backendUrl;
 };
+
 const getDataConfig = (isProduction) => {
   if (isProduction == true && window.location.protocol !== 'file:') { //eslint-disable-line
     return ({
@@ -15,7 +15,7 @@ const getDataConfig = (isProduction) => {
     });
   }
 
-  const backendUrl  = isUrl(window.location.hash.substring(1)) ? window.location.hash.substring(1): '127.0.0.1' ;
+  const backendUrl = getUrl();
 
   return ({
     automateUrl: `http://${backendUrl}:9000`,
