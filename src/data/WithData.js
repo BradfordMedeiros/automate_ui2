@@ -16,6 +16,7 @@ const getDataConfig = (isProduction) => {
   }
 
   const backendUrl = getUrl();
+  console.log('backend url ',  backendUrl);
 
   return ({
     automateUrl: `http://${backendUrl}:9000`,

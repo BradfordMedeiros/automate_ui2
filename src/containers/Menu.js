@@ -15,7 +15,6 @@ import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
 
-import SSH from './SSH';
 import DeviceInfo from './DeviceInfo';
 import Database from './Database';
 import ProtoCircuitProgrammer from './ProtoCircuitProgrammer';
@@ -142,10 +141,6 @@ class MenuContainer extends Component {
             {
               label: 'Database',
               onClick: () => this.openContent(<Database />),
-            },
-            {
-              label: 'SSH',
-              onClick: () => this.openContent(<SSH />),
             },
           ],
         },
