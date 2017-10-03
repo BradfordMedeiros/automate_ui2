@@ -15,7 +15,7 @@ import Layout from './layout';
 import logger from './util/logger';
 import reducer from './containers/module';
 import connection from './containers/disconnected_overlay/module';
-import gridReducer from './containers/grid/module';
+import gridReducer from './containers/grid/module/module';
 import './style.css';
 
 injectTapEventPlugin();

@@ -13,7 +13,7 @@ import MinimalMenu from '../components/menu/minimalMenu';
 import EventLog from './EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
 import { expandMenu } from './module';
-import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module';
+import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module/module';
 
 import DeviceInfo from './DeviceInfo';
 import Database from './Database';
