@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import WithData from '../data/WithData';
 import Drawer from '../components/drawer/Drawer';
 import { setDrawerOpen } from './module';
-import { addTile } from './grid/module';
+import { addTile } from './grid/module/module';
 
 const WithCustomTiles = WithData.polling.WithCustomTiles;
 
@@ -27,6 +27,8 @@ const ConnectedDrawer = ({ activeGrid, onTileClick, tileNames, ...otherProps }) 
         const tilesWithCustom = staticTiles.concat({
           label: 'Custom Tiles',
           children: tiles.map(tile => tile.name),
+          url: tiles.map(tile => tile.url),
+          isCustom: true,
         });
 
         return (

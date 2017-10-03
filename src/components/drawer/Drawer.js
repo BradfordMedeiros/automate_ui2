@@ -14,7 +14,13 @@ const styles = {
   },
 };
 
-const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }) => (
+const TileDrawer = ({
+  open,
+  onTileClick,
+  tileNames,
+  onDrawerStateChange,
+  style
+}) => (
   <Drawer
     open={open}
     onRequestChange={onDrawerStateChange}
@@ -24,7 +30,7 @@ const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }
     containerStyle={{ background: 'rgb(18,18,18)',...style}}
   >
     <div style={styles.tiles}>tiles</div>
-    { (tileNames === undefined || tileNames.length === 0) ?
+    {(tileNames === undefined || tileNames.length === 0) ?
       <MenuItem>No tiles</MenuItem> :
       <List>{tileNames.map(
         (value, index) => (
@@ -35,8 +41,7 @@ const TileDrawer = ({ open, onTileClick, tileNames, onDrawerStateChange, style }
             path={index}
           />
         ))}
-      </List>
-    }
+      </List>}
   </Drawer>
 );
 
