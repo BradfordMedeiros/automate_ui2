@@ -6,85 +6,58 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
   const url = `${AUTOMATE_CORE_URL}/tiles/`;
 
   const getCustomTiles = async () => {
-
     const response = await fetch(url, {
       method: 'GET',
       mode: 'cors',
     });
-    const customTiles = (await response.json()).tiles;
-    if (!customTiles){
-      throw (new Error('custom tiles not included in response'));
-    }else{
-      return databases;
-    }
+
+    const tiles = (await response.json());
+    return tiles;
   };
-
-  /*const uploadDatabase = async (databaseName, file) => {
-    const formData = new FormData();
-    formData.append('thing', file);
-    return await fetch(`${url}upload/${file.name}`, {
-      method: 'POST',
-      body: formData,
-    })
-  };*/
-
-  /*const deleteDatabase = async databaseName => {
-    const response = await fetch(`${url}${databaseName}`, {
-      method: 'DELETE',
-      mode: 'cors',
-    });
-  };*/
-
-  /*const downloadDatabase = async databaseName => {
-    const response = await fetch(`${url}download/${databaseName}`, {
-      method: 'GET',
-      mode: 'cors',
-    });
-    const blob = await response.blob();
-    download(blob, databaseName, "text/plain");
-  };*/
 
   class WithCustomTiles extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        databases: null,
+        tiles: null,
         error: false,
       };
       this.intervalHandle = undefined;
     }
     componentWillMount() {
-      this.makeDatabaseRequest();
-      this.getDatabases();
+      this.makeTileRequest();
+      this.getTiles();
     }
     componentWillUnmount() {
       clearInterval(this.intervalHandle);
     }
-    makeDatabaseRequest =  async () => {
-      const databases = await getCustomTiles();
+    makeTileRequest =  async () => {
+      const tiles = await getCustomTiles();
       this.setState({
-        databases,
+        tiles,
       })
     }
-    getDatabases() {
-      const { refresh } = this.props;
+    getTiles() {
+      const { refresh = 10000 } = this.props;
       clearInterval(this.intervalHandle);
-      this.intervalHandle = setInterval(this.makeDatabaseRequest, refresh);
+      this.intervalHandle = setInterval(this.makeTileRequest, refresh);
     }
     render() {
       const { children, whileLoading } = this.props;
-      if (!this.state.databases) {
+      if (!this.state.tiles) {
         return whileLoading ? whileLoading() : null;
       }
       return (
         children ?
           children({
-            databases: this.state.databases,
-            uploadDatabase,
-            downloadDatabase,
-            deleteDatabase,
+            tiles: this.state.tiles,
           }) : null
       );
+      return (
+        children({
+          tiles: [],
+        })
+      )
     }
   }
 
