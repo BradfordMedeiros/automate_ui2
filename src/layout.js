@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Desktop, Mobile } from './util/ViewportSizing';
 import { container as Appbar } from './containers/Appbar';
 import { container as Drawer } from './containers/Drawer';
-import { container as Grid } from './containers/grid/MultiGrid/MultiGrid';
+import { container as Grid } from './containers/grid/Grid';
 import { container as SelectionOverlay } from './containers/Overlay';
 import { container as Menu } from './containers/Menu';
 

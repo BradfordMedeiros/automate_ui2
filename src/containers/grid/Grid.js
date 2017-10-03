@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
-import Grid from '../../../components/grid/Grid';
-import { tileNameToContent } from '../tile/tiles';
-import { expandMenu } from '../../module';
-import { setContent, setLayout } from '../module/module';
+import Grid from '../../components/grid/Grid';
+import { tileNameToContent } from './tile/tiles';
+import { expandMenu } from '../module';
+import { setContent, setLayout } from './module/module';
 
 const TileToRender = ({ tileName, tileKey }) => tileNameToContent.get(tileName, tileKey);
 
