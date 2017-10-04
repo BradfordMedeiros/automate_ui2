@@ -82,7 +82,14 @@ export const tileNames = [
 const InnerTile = (props) => {
   const { tileName, isCustom, url,  ...otherProps } = props;
   if (isCustom){
-    return <iframe src={url}></iframe>
+    return (
+      <iframe
+        alt="Cannot load custom content"
+        src={`http://localhost:9000/${url}`}
+        allowFullScreen
+        style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: otherProps.isEditing ? 'none' : undefined }}
+      />
+    )
   }
   switch (tileName) {
     case 'Display': {
