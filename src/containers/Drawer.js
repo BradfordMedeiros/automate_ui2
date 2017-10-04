@@ -7,41 +7,31 @@ import { addTile } from './grid/module/module';
 
 const WithCustomTiles = WithData.polling.WithCustomTiles;
 
+const getContainerDrawer = (tiles, otherProps, onTileClick, activeGrid) => (
+  <Drawer
+    {...otherProps}
+    tileNames={tiles}
+    onTileClick={(tile,  url) => {
+      if (onTileClick){
+        onTileClick(tile, activeGrid, { isCustom: true, url });
+      }
+    }}
+  />
+);
+
 const ConnectedDrawer = ({ activeGrid, onTileClick, tileNames, ...otherProps }) => {
   return (
     <WithCustomTiles
-      whileLoading={() => (
-        <Drawer
-          {...otherProps}
-          tileNames={tileNames}
-          onTileClick={tile => {
-            if (onTileClick){
-              onTileClick(tile, activeGrid);
-            }
-          }}
-        />
-      )}
+      whileLoading={() => getContainerDrawer(tileNames, otherProps, onTileClick, activeGrid)}
     >
       {({ tiles }) => {
         const staticTiles = tileNames;
         const tilesWithCustom = staticTiles.concat({
           label: 'Custom Tiles',
-          children: tiles.map(tile => tile.name),
-          url: tiles.map(tile => tile.url),
-          isCustom: true,
+          children: tiles,
         });
 
-        return (
-          <Drawer
-            {...otherProps}
-            tileNames={tilesWithCustom}
-            onTileClick={tile => {
-              if (onTileClick){
-                onTileClick(tile, activeGrid);
-              }
-            }}
-          />
-        )
+        return getContainerDrawer(tilesWithCustom,  otherProps, onTileClick, activeGrid);
       }}
     </WithCustomTiles>
 
@@ -55,7 +45,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onDrawerStateChange: isOpen => dispatch(setDrawerOpen(isOpen)),
-  onTileClick: (tileName, activeGrid) => dispatch(addTile(tileName, activeGrid)),
+  onTileClick: (tileName, activeGrid, { isCustom = false, url = undefined} = { }) => {
+    dispatch(addTile(tileName, activeGrid, { isCustom, url }));
+  }
 });
 
 export const container = connect(mapStateToProps, mapDispatchToProps)(ConnectedDrawer);

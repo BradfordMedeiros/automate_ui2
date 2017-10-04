@@ -79,10 +79,12 @@ export const setLayout = (layout, gridNumber) => ({
   layout,
 });
 
-export const addTile = (tileName, gridNumber) => ({
+export const addTile = (tileName, gridNumber, { isCustom, url }) => ({
   type: 'addTile',
   gridNumber,
   tileName,
+  isCustom,
+  url,
 });
 
 export const deleteTile = tileKey => ({
@@ -156,6 +158,7 @@ const gridReducer = (state = initialState, action) => {
       const { tileName, gridNumber } = action;
       const tile = getNextTile(state.get('layout'), tileName);
       const layout = (state.getIn(['layout', gridNumber]) || fromJS([])).push(tile);
+      window.a = action;
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, tileName);
       return (state
         .setIn(['layout', gridNumber], layout)
