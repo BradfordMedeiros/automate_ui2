@@ -80,7 +80,17 @@ export const tileNames = [
 ];
 
 const InnerTile = (props) => {
-  const { tileName, ...otherProps } = props;
+  const { tileName, isCustom, url,  ...otherProps } = props;
+  if (isCustom){
+    return (
+      <iframe
+        alt="Cannot load custom content"
+        src={`http://localhost:9000/${url}`}
+        allowFullScreen
+        style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: otherProps.isEditing ? 'none' : undefined }}
+      />
+    )
+  }
   switch (tileName) {
     case 'Display': {
       return <MqttTile {...otherProps} />;
@@ -237,12 +247,14 @@ TileOverlay.propTypes = {
 
 
 export const tileNameToTile = {
-  get: (tileName, tileKey, isEditing) => (
+  get: (tileName, tileKey, isEditing, { isCustom = false, url = undefined} = {}) => (
     <Wrapper
       tileKey={tileKey}
     >
       {({ savedContent, saveContent }) =>
         (<Tile
+          isCustom={isCustom}
+          url={url}
           isEditing={isEditing}
           tileName={tileName}
           saveContent={saveContent}

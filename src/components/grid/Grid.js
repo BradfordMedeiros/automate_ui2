@@ -41,6 +41,13 @@ const styles = {
 
 const ReactGridLayout = WidthProvider(Responsive);
 
+const getTile = (tileNameToTile, tileKeyToTileName, key, isEditable) => {
+  const tileContent =  tileKeyToTileName.get(key);
+  window.tc = tileContent;
+  const tile = tileNameToTile.get(tileContent, key, isEditable, { isCustom: tileContent.url ? true: false, url: tileContent.url })
+  return tile;
+};
+
 class Grid extends Component {
   render() {
     const {
@@ -105,7 +112,7 @@ class Grid extends Component {
                 onDoubleClick={() => onGridItemClick(tileKeyToTileName.get(key), key)}
               >
                 <Paper zDepth={1} style={{ width: '100%', height: '100%', background: 'none' }}>
-                  {tileNameToTile.get(tileKeyToTileName.get(key), key, isEditable)}
+                  {getTile(tileNameToTile, tileKeyToTileName, key, isEditable)}
                 </Paper>
               </div>
               ))}
