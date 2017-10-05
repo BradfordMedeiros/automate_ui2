@@ -7,9 +7,13 @@ import { addTile } from './grid/module/module';
 
 const WithCustomTiles = WithData.polling.WithCustomTiles;
 
-const getContainerDrawer = (tiles, otherProps, onTileClick, activeGrid) => (
+const getContainerDrawer = (tiles, otherProps, onTileClick, activeGrid, onUploadClick) => (
   <Drawer
     {...otherProps}
+    onUploadClick={onUploadClick}
+    onFormData={data => {
+      window.dd = data;
+    }}
     tileNames={tiles}
     onTileClick={(tile,  url) => {
       if (onTileClick){
@@ -31,7 +35,9 @@ const ConnectedDrawer = ({ activeGrid, onTileClick, tileNames, ...otherProps }) 
           children: tiles,
         });
 
-        return getContainerDrawer(tilesWithCustom,  otherProps, onTileClick, activeGrid);
+        return getContainerDrawer(tilesWithCustom,  otherProps, onTileClick, activeGrid, () => {
+          console.log('on upload clicked');
+        });
       }}
     </WithCustomTiles>
 

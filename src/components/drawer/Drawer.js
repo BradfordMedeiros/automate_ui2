@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Drawer, List, ListItem, MenuItem } from 'material-ui';
+import { Drawer, List, ListItem, MenuItem, Dialog, TextField } from 'material-ui';
 import DrawerMenuItem from './components/DrawerMenuItem';
+import File from './components/File';
 
 const styles = {
   tiles: {
@@ -12,11 +13,20 @@ const styles = {
     paddingBottom: 12,
     marginBottom: 12,
   },
+  upload: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 18,
+    color: 'rgb(210,210,210)',
+    cursor: 'pointer',
+  }
 };
 
 const TileDrawer = ({
   open,
   onTileClick,
+  onUploadClick,
+  onFormData,
   tileNames,
   onDrawerStateChange,
   style
@@ -29,7 +39,24 @@ const TileDrawer = ({
     overlayStyle={{ background: 'transparent' }}
     containerStyle={{ background: 'rgb(18,18,18)',...style}}
   >
+    <Dialog
+      open={true}
+    >
+      Tile Name: <TextField />
+      <File
+        onChange={form => {
+          onFormData(form);
+        }}
+      />
+
+    </Dialog>
     <div style={styles.tiles}>tiles</div>
+    <div
+      onClick={onUploadClick}
+      style={styles.upload}
+    >
+      Upload New
+    </div>
     {(tileNames === undefined || tileNames.length === 0) ?
       <MenuItem>No tiles</MenuItem> :
       <List>{tileNames.map(
@@ -48,6 +75,8 @@ const TileDrawer = ({
 TileDrawer.propTypes = {
   open: PropTypes.bool,
   onTileClick: PropTypes.func,
+  onUploadClick: PropTypes.func,
+  onFormData: PropTypes.func,
   style: PropTypes.object,
 };
 

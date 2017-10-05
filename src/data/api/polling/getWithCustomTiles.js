@@ -15,6 +15,17 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
     return tiles;
   };
 
+  const submitCustomTile = async formData => {
+    const response  = await fetch(`${url}test`, {
+      method: 'POST',
+      mode: 'cors',
+      body: formData,
+    });
+    return response;
+  };
+
+  window.sct = submitCustomTile;
+
   class WithCustomTiles extends Component {
     constructor(props) {
       super(props);
