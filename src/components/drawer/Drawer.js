@@ -26,9 +26,11 @@ const TileDrawer = ({
   open,
   onTileClick,
   onUploadClick,
+  onUploadRequestClose,
   onFormData,
   tileNames,
   onDrawerStateChange,
+  showUploadDialog,
   style
 }) => (
   <Drawer
@@ -40,7 +42,8 @@ const TileDrawer = ({
     containerStyle={{ background: 'rgb(18,18,18)',...style}}
   >
     <Dialog
-      open={true}
+      open={showUploadDialog}
+      onRequestClose={onUploadRequestClose}
     >
       Tile Name: <TextField />
       <File
@@ -76,6 +79,8 @@ TileDrawer.propTypes = {
   open: PropTypes.bool,
   onTileClick: PropTypes.func,
   onUploadClick: PropTypes.func,
+  onUploadRequestClose: PropTypes.func,
+  showUploadDialog: PropTypes.bool,
   onFormData: PropTypes.func,
   style: PropTypes.object,
 };
