@@ -63,10 +63,11 @@ class ConnectedDrawer extends Component {
                     errorText: 'must include tile name (no spaces)'
                   });
                 }else{
+                  uploadTile(this.tileFormData, this.state.tileName);
                   this.setState({
                     errorText: undefined,
-                  })
-                  uploadTile(this.tileFormData, this.state.tileName);
+                    showUploadButton: false,
+                  });
                 }
               }}
             />
