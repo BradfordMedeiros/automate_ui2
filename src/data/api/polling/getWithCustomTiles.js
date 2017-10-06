@@ -15,16 +15,14 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
     return tiles;
   };
 
-  const submitCustomTile = async formData => {
-    const response  = await fetch(`${url}test`, {
+  const uploadTile = async (formData, tileName) => {
+    const response  = await fetch(`${url}${tileName}`, {
       method: 'POST',
       mode: 'cors',
       body: formData,
     });
     return response;
   };
-
-  window.sct = submitCustomTile;
 
   class WithCustomTiles extends Component {
     constructor(props) {
@@ -62,6 +60,7 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
         children ?
           children({
             tiles: this.state.tiles,
+            uploadTile,
           }) : null
       );
       return (

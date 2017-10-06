@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Drawer, List, ListItem, MenuItem, Dialog, TextField } from 'material-ui';
+import { Drawer, List, MenuItem, Dialog, TextField, FlatButton } from 'material-ui';
 import DrawerMenuItem from './components/DrawerMenuItem';
 import File from './components/File';
 
@@ -26,11 +26,14 @@ const TileDrawer = ({
   open,
   onTileClick,
   onUploadClick,
+  onUploadFileButtonClick,
   onUploadRequestClose,
   onFormData,
   tileNames,
+  onTileNameChange,
   onDrawerStateChange,
   showUploadDialog,
+  errorText,
   style
 }) => (
   <Drawer
@@ -45,13 +48,19 @@ const TileDrawer = ({
       open={showUploadDialog}
       onRequestClose={onUploadRequestClose}
     >
-      Tile Name: <TextField />
-      <File
-        onChange={form => {
-          onFormData(form);
-        }}
-      />
-
+      Tile Name:
+        <TextField
+          errorText={errorText}
+          onChange={(_, text) => {
+            onTileNameChange(text);
+          }}
+        />
+        <File
+          onChange={form => {
+            onFormData(form);
+          }}
+        />
+      <FlatButton label="Upload" onClick={onUploadFileButtonClick} />
     </Dialog>
     <div style={styles.tiles}>tiles</div>
     <div
@@ -78,8 +87,11 @@ const TileDrawer = ({
 TileDrawer.propTypes = {
   open: PropTypes.bool,
   onTileClick: PropTypes.func,
+  errorText: PropTypes.string,
+  onUploadFileButtonClick: PropTypes.func,
   onUploadClick: PropTypes.func,
   onUploadRequestClose: PropTypes.func,
+  onTileNameChange: PropTypes.func,
   showUploadDialog: PropTypes.bool,
   onFormData: PropTypes.func,
   style: PropTypes.object,

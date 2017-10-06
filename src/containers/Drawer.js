@@ -7,59 +7,70 @@ import { addTile } from './grid/module/module';
 
 const WithCustomTiles = WithData.polling.WithCustomTiles;
 
-const getContainerDrawer = (tiles, otherProps, onTileClick, activeGrid, onUploadClick, showUploadDialog, onUploadRequestClose) => (
-  <Drawer
-    {...otherProps}
-    onUploadRequestClose={onUploadRequestClose}
-    showUploadDialog={showUploadDialog}
-    onUploadClick={onUploadClick}
-    onFormData={data => {
-      window.dd = data;
-    }}
-    tileNames={tiles}
-    onTileClick={(tile,  url) => {
-      if (onTileClick){
-        onTileClick(tile, activeGrid, { isCustom: true, url });
-      }
-    }}
-  />
-);
-
 class ConnectedDrawer extends Component {
+  tileFormData = undefined;
   state = {
     showUploadButton: false,
+    tileName: '',
+    errorText: undefined,
   };
   render() {
     const { activeGrid, onTileClick, tileNames, ...otherProps } = this.props;
 
     return (
       <WithCustomTiles
-        whileLoading={() => getContainerDrawer(tileNames, otherProps, onTileClick, activeGrid)}
+        whileLoading={() => null} // render nothing
       >
-        {({ tiles }) => {
+        {({ tiles, uploadTile }) => {
           const staticTiles = tileNames;
           const tilesWithCustom = staticTiles.concat({
             label: 'Custom Tiles',
             children: tiles,
           });
 
-          return getContainerDrawer(
-            tilesWithCustom,
-            otherProps,
-            onTileClick,
-            activeGrid,
-            () => {
-              this.setState({
-                showUploadButton: true,
-              })
-            },
-            this.state.showUploadButton,
-            () => {
-              this.setState({
-                showUploadButton: false,
-              })
-            }
-          );
+          return (
+            <Drawer
+              {...otherProps}
+              errorText={this.state.errorText}
+              onUploadRequestClose={() => {
+                this.setState({
+                  showUploadButton: false,
+                })
+              }}
+              showUploadDialog={this.state.showUploadButton}
+              onUploadClick={() => {
+                this.setState({
+                  showUploadButton: true,
+                })
+              }}
+              onFormData={data => {
+                this.tileFormData = data;
+              }}
+              tileNames={tilesWithCustom}
+              onTileClick={(tile,  url) => {
+                if (onTileClick){
+                  onTileClick(tile, activeGrid, { isCustom: true, url });
+                }
+              }}
+              onTileNameChange={tileName => {
+                this.setState({
+                  tileName
+                })
+              }}
+              onUploadFileButtonClick={() => {
+                if (this.state.tileName.length === 0 || (this.state.tileName.indexOf(' ') >= 0)){
+                  this.setState({
+                    errorText: 'must include tile name (no spaces)'
+                  });
+                }else{
+                  this.setState({
+                    errorText: undefined,
+                  })
+                  uploadTile(this.tileFormData, this.state.tileName);
+                }
+              }}
+            />
+          )
         }}
       </WithCustomTiles>
     )
