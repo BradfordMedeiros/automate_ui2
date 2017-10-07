@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
-//import download from 'downloadjs';
+import download from 'downloadjs';
 
 const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
   const url = `${AUTOMATE_CORE_URL}/tiles/`;
@@ -25,13 +25,20 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
   };
 
   const deleteTile = async tileName => {
-    console.log('delete tile  placeholder');
-    console.log('delete: ', tileName);
+    const response  = await fetch(`${url}${tileName}`, {
+      method: 'DELETE',
+      mode: 'cors',
+    });
+    return response;
   };
 
   const downloadTile = async tileName => {
-    console.log('download  tile placeholder');
-    console.log('download: ', tileName);
+     const response  = await fetch(`${url}${tileName}`, {
+     method: 'GET',
+     mode: 'cors',
+     });
+    const blob = await response.blob();
+    download(blob, `${tileName}.tar.gz`, "text/plain");
   };
 
   class WithCustomTiles extends Component {

@@ -71,10 +71,10 @@ class ConnectedDrawer extends Component {
                 }
               }}
               onDownloadTile={tile => {
-                downloadTile(tile);
+                downloadTile(tile.name);
               }}
               onDeleteTile={tile => {
-                deleteTile(tile);
+                deleteTile(tile.name);
               }}
             />
           )
