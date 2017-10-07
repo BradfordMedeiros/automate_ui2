@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import WithData from '../data/WithData';
 import Drawer from '../components/drawer/Drawer';
@@ -7,36 +7,82 @@ import { addTile } from './grid/module/module';
 
 const WithCustomTiles = WithData.polling.WithCustomTiles;
 
-const getContainerDrawer = (tiles, otherProps, onTileClick, activeGrid) => (
-  <Drawer
-    {...otherProps}
-    tileNames={tiles}
-    onTileClick={(tile,  url) => {
-      if (onTileClick){
-        onTileClick(tile, activeGrid, { isCustom: true, url });
-      }
-    }}
-  />
-);
+class ConnectedDrawer extends Component {
+  tileFormData = undefined;
+  state = {
+    showUploadButton: false,
+    tileName: '',
+    errorText: undefined,
+  };
+  render() {
+    const { activeGrid, onTileClick, tileNames, ...otherProps } = this.props;
 
-const ConnectedDrawer = ({ activeGrid, onTileClick, tileNames, ...otherProps }) => {
-  return (
-    <WithCustomTiles
-      whileLoading={() => getContainerDrawer(tileNames, otherProps, onTileClick, activeGrid)}
-    >
-      {({ tiles }) => {
-        const staticTiles = tileNames;
-        const tilesWithCustom = staticTiles.concat({
-          label: 'Custom Tiles',
-          children: tiles,
-        });
+    return (
+      <WithCustomTiles
+        whileLoading={() => null} // render nothing
+      >
+        {({ tiles, uploadTile, deleteTile, downloadTile }) => {
+          const staticTiles = tileNames;
+          const tilesWithCustom = staticTiles.concat({
+            label: 'Custom Tiles',
+            children: tiles,
+          });
 
-        return getContainerDrawer(tilesWithCustom,  otherProps, onTileClick, activeGrid);
-      }}
-    </WithCustomTiles>
-
-  );
-};
+          return (
+            <Drawer
+              {...otherProps}
+              errorText={this.state.errorText}
+              onUploadRequestClose={() => {
+                this.setState({
+                  showUploadButton: false,
+                })
+              }}
+              showUploadDialog={this.state.showUploadButton}
+              onUploadClick={() => {
+                this.setState({
+                  showUploadButton: true,
+                })
+              }}
+              onFormData={data => {
+                this.tileFormData = data;
+              }}
+              tileNames={tilesWithCustom}
+              onTileClick={(tile,  url) => {
+                if (onTileClick){
+                  onTileClick(tile, activeGrid, { isCustom: true, url });
+                }
+              }}
+              onTileNameChange={tileName => {
+                this.setState({
+                  tileName
+                })
+              }}
+              onUploadFileButtonClick={() => {
+                if (this.state.tileName.length === 0 || (this.state.tileName.indexOf(' ') >= 0)){
+                  this.setState({
+                    errorText: 'must include tile name (no spaces)'
+                  });
+                }else{
+                  uploadTile(this.tileFormData, this.state.tileName);
+                  this.setState({
+                    errorText: undefined,
+                    showUploadButton: false,
+                  });
+                }
+              }}
+              onDownloadTile={tile => {
+                downloadTile(tile.name);
+              }}
+              onDeleteTile={tile => {
+                deleteTile(tile.name);
+              }}
+            />
+          )
+        }}
+      </WithCustomTiles>
+    )
+  }
+}
 
 const mapStateToProps = state => ({
   open: state.getIn(['reducer', 'drawerOpen']),
