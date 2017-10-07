@@ -33,6 +33,8 @@ const TileDrawer = ({
   onTileNameChange,
   onDrawerStateChange,
   showUploadDialog,
+  onDeleteTile,
+  onDownloadTile,
   errorText,
   style
 }) => (
@@ -75,6 +77,12 @@ const TileDrawer = ({
         (value, index) => (
           <DrawerMenuItem
             onTileClick={onTileClick}
+            onDownloadTile={tile => {
+              onDownloadTile(tile);
+            }}
+            onDeleteTile={tile => {
+              onDeleteTile(tile);
+            }}
             tile={value}
             tileIndex={index}
             path={index}
@@ -93,6 +101,8 @@ TileDrawer.propTypes = {
   onUploadRequestClose: PropTypes.func,
   onTileNameChange: PropTypes.func,
   showUploadDialog: PropTypes.bool,
+  onDeleteTile: PropTypes.func,
+  onDownloadTile: PropTypes.func,
   onFormData: PropTypes.func,
   style: PropTypes.object,
 };

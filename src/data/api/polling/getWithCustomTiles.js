@@ -24,6 +24,16 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
     return response;
   };
 
+  const deleteTile = async tileName => {
+    console.log('delete tile  placeholder');
+    console.log('delete: ', tileName);
+  };
+
+  const downloadTile = async tileName => {
+    console.log('download  tile placeholder');
+    console.log('download: ', tileName);
+  };
+
   class WithCustomTiles extends Component {
     constructor(props) {
       super(props);
@@ -61,6 +71,8 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
           children({
             tiles: this.state.tiles,
             uploadTile,
+            deleteTile,
+            downloadTile,
           }) : null
       );
       return (

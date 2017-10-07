@@ -21,7 +21,7 @@ class ConnectedDrawer extends Component {
       <WithCustomTiles
         whileLoading={() => null} // render nothing
       >
-        {({ tiles, uploadTile }) => {
+        {({ tiles, uploadTile, deleteTile, downloadTile }) => {
           const staticTiles = tileNames;
           const tilesWithCustom = staticTiles.concat({
             label: 'Custom Tiles',
@@ -69,6 +69,12 @@ class ConnectedDrawer extends Component {
                     showUploadButton: false,
                   });
                 }
+              }}
+              onDownloadTile={tile => {
+                downloadTile(tile);
+              }}
+              onDeleteTile={tile => {
+                deleteTile(tile);
               }}
             />
           )
