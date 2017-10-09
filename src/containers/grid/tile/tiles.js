@@ -178,6 +178,15 @@ class Tile extends Component {
 class TileOverlay extends Component {
   render() {
     const { tileName, ...otherProps } = this.props;
+    if (typeof(tileName) === typeof({})){
+      return (
+        <iframe
+          alt="Cannot load custom content"
+          src={`http://localhost:9000/${tileName.overlay}`}
+          allowFullScreen
+          style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: otherProps.isEditing ? 'none' : undefined }}
+      />);
+    }
     switch (tileName) {
       case 'Display': {
         return <MqttOverlay {...otherProps} />;
@@ -242,6 +251,7 @@ class TileOverlay extends Component {
 
 TileOverlay.propTypes = {
   tileName: PropTypes.string.isRequired,
+  isCustom: PropTypes.bool,
   saveContent: PropTypes.func.isRequired,
 };
 
