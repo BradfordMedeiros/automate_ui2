@@ -18,6 +18,7 @@ import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module
 import DeviceInfo from './DeviceInfo';
 import Database from './Database';
 import ProtoCircuitProgrammer from './ProtoCircuitProgrammer';
+import Environment from './Environment';
 
 import ActionBuilder from './system/base/ActionsBuilder';
 import StateBuilder from './system/base/StatesBuilder';
@@ -142,6 +143,10 @@ class MenuContainer extends Component {
               label: 'Database',
               onClick: () => this.openContent(<Database />),
             },
+            {
+              label: 'Environment',
+              onClick: () => this.openContent(<Environment />),
+            }
           ],
         },
       ];
