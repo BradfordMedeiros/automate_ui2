@@ -21,13 +21,14 @@ class EventLog extends Component {
     showDialog: false,
   }
   render() {
-    const { variables, onDelete } = this.props;
+    const { variables, onDelete, onAdd } = this.props;
 
     return (
       <GenericOverlay title="Environment">
         <AddVariableDialog
           onAdd={(env) => {
             console.log(env);
+            onAdd(env);
             this.setState({
               showDialog: false,
             });

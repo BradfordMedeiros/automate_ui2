@@ -2,11 +2,11 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const getWithEnv = (AUTOMATE_CORE_URL) => {
-  const url = `${AUTOMATE_CORE_URL}/env`;
+  const envUrl = `${AUTOMATE_CORE_URL}/env`;
 
   const request = async () => {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(envUrl, {
         method: 'GET',
         mode: 'cors',
       });
@@ -22,12 +22,22 @@ const getWithEnv = (AUTOMATE_CORE_URL) => {
     }
   };
 
-  const deleteEnv = async () => {
-    console.log('delete env placeholder');
+  const deleteEnv = async (token) => {
+    const url = `${envUrl}/${token}`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      mode: 'cors',
+    });
+    return response;
   };
 
-  const setEnv = async () => {
-    console.log('set env placeholder');
+  const setEnv = async (token, value) => {
+    const url = `${envUrl}/${token}/${value}`;
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+    });
+    return response;
   };
 
   class WithEnv extends Component {

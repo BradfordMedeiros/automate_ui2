@@ -22,9 +22,14 @@ const Environment = () => (
 
       return (
         <EnvironmentComponent
+          onAdd={({ token, value }) => {
+            console.log('on add: ');
+            console.log('token: ', token);
+            console.log('value: ', value);
+            setEnv(token, value);
+          }}
           onDelete={(variable, index) => {
-            console.log('variable: ', variable);
-            console.log('index: ', index);
+            deleteEnv(variable.name);
           }}
           variables={variablesAsArray}
         />
