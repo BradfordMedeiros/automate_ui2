@@ -26,6 +26,12 @@ class EventLog extends Component {
     return (
       <GenericOverlay title="Environment">
         <AddVariableDialog
+          onAdd={(env) => {
+            console.log(env);
+            this.setState({
+              showDialog: false,
+            });
+          }}
           open={this.state.showDialog}
           onRequestClose={() => {
             this.setState({
