@@ -8,6 +8,7 @@ class GenericOverlay extends Component {
       title,
       children,
       onMenuToggle,
+      inject,
     } = this.props;
 
     return (
@@ -23,10 +24,12 @@ class GenericOverlay extends Component {
             borderBottom: '1px solid rgba(0,0,0,0.3)',
             display: 'flex',
             alignItems: 'center',
+            position: 'relative',
           }}
         >
           {onMenuToggle ? <IconButton onClick={onMenuToggle} style={{ marginLeft: -20 }}><NavigationMenu /></IconButton>: null}
           <div style={{ display: 'inline', cursor: 'pointer', paddingRight: 120 }}>{title}</div>
+          {inject && inject()}
         </div>
         <div style={{ position: 'absolute', height: 'calc(100% - 60px)', width: '100%', overflow: 'hidden' }}>
           {children}
@@ -41,6 +44,7 @@ GenericOverlay.propTypes = {
   onMenuToggle: PropTypes.func,
   title: PropTypes.string.isRequired,
   children: PropTypes.node,
+  inject: PropTypes.func,
 };
 
 export default GenericOverlay;

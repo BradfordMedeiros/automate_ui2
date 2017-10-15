@@ -1,6 +1,6 @@
 import React from 'react';
 import WithData from '../data/WithData';
-import EventLogComponent from '../components/EventLog';
+import EventLogComponent from '../components/eventLog/EventLog';
 const WithEvents = WithData.polling.WithEvents;
 
 class EventLog extends React.Component {
