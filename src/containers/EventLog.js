@@ -29,10 +29,14 @@ class EventLog extends React.Component {
                     emailAddress={emailAddress}
                     isAlertingEnabled={emailEnabled}
                     onSetEmailAddress={emailAddress => {
-                      console.log('email address: ', emailAddress);
+                      setEmail(emailAddress);
                     }}
-                    onSetIsEmailEnabled={isEnabled => {
-                      console.log('is enabled: ', isEnabled);
+                    onSetIsAlertingEnabled={isEnabled => {
+                      if (isEnabled){
+                        enableEmail();
+                      }else{
+                        disableEmail();
+                      }
                     }}
                   />
                 )}

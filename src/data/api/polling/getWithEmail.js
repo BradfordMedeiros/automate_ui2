@@ -83,9 +83,18 @@ const getWithEmail = (AUTOMATE_CORE_URL) => {
       return children ? children({
         emailAddress,
         emailEnabled,
-        setEmail,
-        enableEmail,
-        disableEmail,
+        setEmail: async emailAddress => {
+          await setEmail(emailAddress);
+          this.getData();
+        },
+        enableEmail: async () => {
+          await enableEmail();
+          this.getData();
+        },
+        disableEmail: async () => {
+          await disableEmail();
+          this.getData();
+        },
       }) : null;
     }
   }
