@@ -13,6 +13,7 @@ class EventLog extends Component {
       isAlertingEnabled,
       emailAddress,
       onSetEmailAddress,
+      onSetIsAlertingEnabled,
     } = this.props;
     return (
       <GenericOverlay inject={() => (
@@ -46,17 +47,20 @@ class EventLog extends Component {
             isAlertingEnabled={isAlertingEnabled}
             emailAddress={emailAddress}
             onSetEmailAddress={onSetEmailAddress}
+            onSetIsAlertingEnabled={onSetIsAlertingEnabled}
           />}
       </GenericOverlay>
     );
   }
 }
 
+
 EventLog.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   isAlertingEnabled: PropTypes.bool,
   emailAddress: PropTypes.string,
   onSetEmailAddress: PropTypes.func,
+  onSetIsAlertingEnabled: PropTypes.func,
 };
 
 export default EventLog;
