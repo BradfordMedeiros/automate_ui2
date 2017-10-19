@@ -2,11 +2,11 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const getWithIsSystemLocked = (AUTOMATE_CORE_URL) => {
-  const emailUrl = `${AUTOMATE_CORE_URL}/email`;
+  const lockUrl = `${AUTOMATE_CORE_URL}/lock`;
 
   const request = async () => {
     try {
-      const response = await fetch(emailUrl, {
+      const response = await fetch(lockUrl, {
         method: 'GET',
         mode: 'cors',
       });
@@ -23,8 +23,8 @@ const getWithIsSystemLocked = (AUTOMATE_CORE_URL) => {
   };
 
 
-  const lockSystem = async () => {
-    const url = `${emailUrl}/disable`;
+  const lockSystem = async systemName => {
+    const url = systemName ? `${lockUrl}/${systemName}` : lockUrl;
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -62,10 +62,12 @@ const getWithIsSystemLocked = (AUTOMATE_CORE_URL) => {
         return whileLoading ? whileLoading() : null;
       }
 
-      const { emailAddress, emailEnabled } = this.state.data;
+      const { isLocked, systemName } = this.state.data;
       return children ? children({
-        lockSystem: async () => {
-          await lockSystem();
+        isLocked,
+        systemName,
+        lockSystem: async systemName => {
+          await lockSystem(systemName);
           window.location.reload();
         },
       }) : null;

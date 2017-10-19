@@ -3,19 +3,25 @@ import { connect } from 'react-redux';
 import Appbar from '../components/appbar/Appbar';
 import { expandMenu, lock, setMenu, setDrawerOpen } from './module';
 
-const ConnectedAppbar = ({ activeGrid, showHideMenu, openDrawer, systemLocked, ...otherProps }) => (
-  <Appbar
-    {...otherProps}
-    title={'automate'}
-    showHideMenu={showHideMenu}
-    systemLocked={systemLocked}
-  />
-);
+const ConnectedAppbar = ({ activeGrid, showHideMenu, openDrawer, systemLocked, systemName, ...otherProps }) => {
+  console.log('systemname: ', systemName);
+  console.log('systemlocked: ', systemLocked);
+  return (
+    <Appbar
+      {...otherProps}
+      title={systemLocked ? (systemName ? systemName: 'automate') : 'automate'}
+      showHideMenu={showHideMenu}
+      systemLocked={systemLocked}
+      systemName={systemName}
+    />
+  );
+}
 
 ConnectedAppbar.propTypes = {
   activeGrid: PropTypes.string.isRequired,
   onTileClick: PropTypes.func.isRequired,
   systemLocked: PropTypes.bool,
+  systemName: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

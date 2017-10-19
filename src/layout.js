@@ -36,6 +36,7 @@ class Layout extends Component {
     const {
       hideMenu,
       systemLocked,
+      systemName,
     } = this.props;
 
     const shouldHideMenu = hideMenu || systemLocked;
@@ -43,7 +44,12 @@ class Layout extends Component {
       <div style={appStyle}>
         <Desktop>
           {shouldHideMenu ? null : <Menu style={desktopStyles.menu} />}
-          <Appbar systemLocked={systemLocked} showHideMenu style={desktopStyles.appbar} />
+          <Appbar
+            showHideMenu
+            systemLocked={systemLocked}
+            systemName={systemName}
+            style={desktopStyles.appbar}
+          />
           <Drawer style={desktopStyles.drawer} tileNames={tileNames} />
           <Grid
             tileNames={tileNames}
@@ -60,7 +66,11 @@ class Layout extends Component {
 
         <Mobile>
           {shouldHideMenu ? null : <Menu isMinimal style={mobileStyles.menu} />}
-          <Appbar systemLocked={systemLocked} style={mobileStyles.appbar} />
+          <Appbar
+            systemLocked={systemLocked}
+            systemName={systemName}
+            style={mobileStyles.appbar}
+          />
           <Drawer style={mobileStyles.drawer} tileNames={tileNames} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
@@ -74,6 +84,7 @@ class Layout extends Component {
 Layout.propTypes = {
   hideMenu: PropTypes.bool,
   systemLocked: PropTypes.bool,
+  systemName: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

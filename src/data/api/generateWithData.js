@@ -11,7 +11,8 @@ import getWithSchedules from './polling/getWithSchedules';
 import getWithRules from './polling/getWithRules';
 import getWithCustomTiles from './polling/getWithCustomTiles';
 import getWithEnv from './polling/getWithEnv';
-import getWithEmail from './polling/getWithEmail';
+import getWithEmail from './polling/getWithEmail'
+import getWithIsSystemLocked from './polling/getWithIsSystemLocked';
 
 import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
@@ -33,6 +34,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithCustomTiles: getWithCustomTiles(automateUrl),
       WithEnv: getWithEnv(automateUrl),
       WithEmail: getWithEmail(automateUrl),
+      WithIsSystemLocked: getWithIsSystemLocked(automateUrl),
     },
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),

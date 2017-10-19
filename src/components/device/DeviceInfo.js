@@ -3,6 +3,7 @@ import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import GenericOverlay from '../overlay/GenericOverlay';
 import './style.css';
@@ -17,6 +18,7 @@ const renderField = (title, value) => (
 class DeviceInfo extends Component {
   state = {
     dialogOpen: false,
+    systemName: 'automate',
   };
   handleDialogOpen = () => {
     this.setState({
@@ -31,7 +33,7 @@ class DeviceInfo extends Component {
   confirmLock = () => {
     const { onClickConfirmLockSystem } = this.props;
     if (onClickConfirmLockSystem){
-      onClickConfirmLockSystem();
+      onClickConfirmLockSystem(this.state.systemName);
     }
     this.handleDialogClose();
   };
@@ -81,6 +83,17 @@ class DeviceInfo extends Component {
 
           <br />
           <i><b>do not do this unless you know why you are doing it</b></i>
+          <div>
+          <TextField
+            floatingLabelText="System Name"
+            value={this.state.systemName}
+            onChange={(_, systemName) => {
+              this.setState({
+                systemName,
+              })
+            }}
+          />
+          </div>
         </Dialog>
         </div>
       </GenericOverlay>
