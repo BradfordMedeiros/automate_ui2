@@ -49,7 +49,7 @@ class MenuContainer extends Component {
   };
 
   getButtonLabels = () => {
-    const { grids } = this.props;
+    const { grids, lockSystem } = this.props;
 
     const menuItems = grids.map(gridNumber => ({
       label: gridNumber,
@@ -133,7 +133,7 @@ class MenuContainer extends Component {
           children: [
             {
               label: 'Device Info',
-              onClick: () => this.openContent(<DeviceInfo />),
+              onClick: () => this.openContent(<DeviceInfo lockSystem={lockSystem} />),
             },
             {
               label: 'Proto-Circuit Programmer',

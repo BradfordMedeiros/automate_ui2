@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist-immutable';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import createRoutes from './Routing';
+import WithData from './data/WithData';
 import Layout from './layout';
 import logger from './util/logger';
 import reducer from './containers/module';
@@ -22,6 +23,7 @@ injectTapEventPlugin();
 
 const reducers = combineReducers({ reducer, connection, gridReducer });
 const store = createStore(reducers, applyMiddleware(logger(), thunk));
+const  WithIsSystemLocked = WithData.polling.WithIsSystemLocked;
 
 persistStore(store,
   {
@@ -29,14 +31,23 @@ persistStore(store,
   });
 
 const App = () => (
-  <div>
-    <Helmet title="automate" />
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-      <Provider store={store} >
-        <Layout />
-      </Provider>
-    </MuiThemeProvider>
-  </div>
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Provider store={store} >
+      <WithIsSystemLocked>
+        {({ isLocked, systemName }) => {
+          return (
+            <div>
+              <Helmet title={isLocked ? (systemName ? systemName: 'automate'): 'automate'} />
+              <Layout
+                systemLocked={isLocked === true}
+                systemName={systemName}
+              />
+            </div>
+          )
+        }}
+      </WithIsSystemLocked>
+    </Provider>
+  </MuiThemeProvider>
 );
 
 const Routes = createRoutes(App);

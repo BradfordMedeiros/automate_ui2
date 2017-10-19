@@ -33,29 +33,44 @@ const mobileStyles = {
 
 class Layout extends Component {
   render() {
-    const { hideMenu } = this.props;
+    const {
+      hideMenu,
+      systemLocked,
+      systemName,
+    } = this.props;
+
+    const shouldHideMenu = hideMenu || systemLocked;
     return (
       <div style={appStyle}>
         <Desktop>
-          {hideMenu ? null : <Menu style={desktopStyles.menu} />}
-          <Appbar showHideMenu style={desktopStyles.appbar} />
+          {shouldHideMenu ? null : <Menu style={desktopStyles.menu} />}
+          <Appbar
+            showHideMenu
+            systemLocked={systemLocked}
+            systemName={systemName}
+            style={desktopStyles.appbar}
+          />
           <Drawer style={desktopStyles.drawer} tileNames={tileNames} />
           <Grid
             tileNames={tileNames}
             tileNameToTile={tileNameToTile}
-            style={desktopStyles.grid(hideMenu)}
+            style={desktopStyles.grid(shouldHideMenu)}
           />
           <SelectionOverlay
-            left={desktopStyles.overlay(hideMenu).left}
-            right={desktopStyles.overlay(hideMenu).right}
+            left={desktopStyles.overlay(shouldHideMenu).left}
+            right={desktopStyles.overlay(shouldHideMenu).right}
           />
           <DisconnectedOverlay />
           <Notifications />
         </Desktop>
 
         <Mobile>
-          {hideMenu ? null : <Menu isMinimal style={mobileStyles.menu} />}
-          <Appbar style={mobileStyles.appbar} />
+          {shouldHideMenu ? null : <Menu isMinimal style={mobileStyles.menu} />}
+          <Appbar
+            systemLocked={systemLocked}
+            systemName={systemName}
+            style={mobileStyles.appbar}
+          />
           <Drawer style={mobileStyles.drawer} tileNames={tileNames} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
@@ -68,10 +83,8 @@ class Layout extends Component {
 
 Layout.propTypes = {
   hideMenu: PropTypes.bool,
-};
-
-Layout.defaultProps = {
-  hideMenu: false,
+  systemLocked: PropTypes.bool,
+  systemName: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
