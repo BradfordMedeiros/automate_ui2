@@ -31,23 +31,23 @@ persistStore(store,
   });
 
 const App = () => (
-  <div>
-    <Helmet title="automate" />
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-      <Provider store={store} >
-        <WithIsSystemLocked>
-          {({ isLocked, systemName }) => {
-            return (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Provider store={store} >
+      <WithIsSystemLocked>
+        {({ isLocked, systemName }) => {
+          return (
+            <div>
+              <Helmet title={isLocked ? (systemName ? systemName: 'automate'): 'automate'} />
               <Layout
                 systemLocked={isLocked === true}
                 systemName={systemName}
               />
-            )
-          }}
-        </WithIsSystemLocked>
-      </Provider>
-    </MuiThemeProvider>
-  </div>
+            </div>
+          )
+        }}
+      </WithIsSystemLocked>
+    </Provider>
+  </MuiThemeProvider>
 );
 
 const Routes = createRoutes(App);
