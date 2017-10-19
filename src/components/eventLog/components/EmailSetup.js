@@ -23,7 +23,7 @@ class EmailSetup extends Component {
       }}>
         <div style={{
           width: '100%',
-          height: '40%',
+          height: '30%',
           alignItems: 'flex-end',
           justifyContent: 'center',
           display: 'flex',
@@ -36,7 +36,7 @@ class EmailSetup extends Component {
         </div>
         <div style={{
           position: 'absolute',
-          top: '40%',
+          top: '30%',
           width: '100%',
           height: '10%',
           display: 'flex',
@@ -74,7 +74,7 @@ class EmailSetup extends Component {
         <div style={{
           position: 'absolute',
           width: '100%',
-          top: '50%',
+          top: '40%',
           height: '20%',
           display: 'flex',
           flexDirection: 'column',
