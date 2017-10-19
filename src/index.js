@@ -33,7 +33,7 @@ const App = () => (
     <Helmet title="automate" />
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Provider store={store} >
-        <Layout />
+        <Layout  />
       </Provider>
     </MuiThemeProvider>
   </div>

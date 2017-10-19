@@ -22,6 +22,7 @@ class Appbar extends Component {
       onHideMenu,
       showHideMenu,
       title,
+      systemLocked,
       style,
     } = this.props;
 
@@ -30,15 +31,15 @@ class Appbar extends Component {
     const { height, marginTop } = style;
     return (
       <div className="titlebar" style={style}>
-        {showHideMenu && <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>}
-        <div className="toggle">
+        {!systemLocked && (showHideMenu && <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>)}
+        {!systemLocked && <div className="toggle">
           <Toggle
             thumbStyle={{ background: 'darkgrey' }}
             thumbSwitchedStyle={{ background: 'white' }}
             onToggle={onToggle}
           />
-        </div>
-        <div className="xBorderBox">
+        </div>}
+        {!systemLocked && <div className="xBorderBox">
           <div
             className="xIcon"
             style={xStyle}
@@ -50,7 +51,7 @@ class Appbar extends Component {
               }
             }}
           >&times;</div>
-        </div>
+        </div>}
         <div className="app_title"><h1>{title}</h1></div>
       </div>
     );
@@ -66,6 +67,7 @@ Appbar.propTypes = {
   onToggle: PropTypes.func,
   onHideMenu: PropTypes.func,
   title: PropTypes.string,
+  systemLocked: PropTypes.bool,
 };
 
 Appbar.defaultProps = {
