@@ -43,7 +43,6 @@ const ReactGridLayout = WidthProvider(Responsive);
 
 const getTile = (tileNameToTile, tileKeyToTileName, key, isEditable) => {
   const tileContent =  tileKeyToTileName.get(key);
-  window.tc = tileContent;
   const tile = tileNameToTile.get(tileContent, key, isEditable, { isCustom: tileContent.url ? true: false, url: tileContent.url })
   return tile;
 };
