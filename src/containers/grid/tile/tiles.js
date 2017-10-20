@@ -37,6 +37,7 @@ import SequenceBuilder from '../../system/engines/SequencesBuilder';
 import ScheduleBuilder from '../../system/engines/ScheduleBuilder';
 
 import EventLog from '../../../containers/EventLog';
+import Environment from '../../../containers/Environment';
 
 import SingleFieldOverlay from './tileTypes/common/overlays/SingleFieldOverlay';
 
@@ -51,6 +52,7 @@ export const tileNames = [
       'Engines - Sequences',
       'Engines - Schedules',
       'Event Log',
+      'Environment',
     ],
   },
   {
@@ -154,6 +156,9 @@ const InnerTile = (props) => {
     }
     case 'Event Log': {
       return <EventLog />
+    }
+    case 'Environment': {
+      return <Environment />
     }
     default : {
       return <div>invalid tile</div>;
