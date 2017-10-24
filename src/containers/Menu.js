@@ -17,7 +17,6 @@ import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module
 
 import DeviceInfo from './DeviceInfo';
 import Database from './Database';
-import ProtoCircuitProgrammer from './ProtoCircuitProgrammer';
 import Environment from './Environment';
 
 import ActionBuilder from './system/base/ActionsBuilder';
@@ -132,21 +131,17 @@ class MenuContainer extends Component {
           icon: <ActionImportantDevices />,
           children: [
             {
-              label: 'Device Info',
-              onClick: () => this.openContent(<DeviceInfo lockSystem={lockSystem} />),
-            },
-            {
-              label: 'Proto-Circuit Programmer',
-              onClick: () => this.openContent(<ProtoCircuitProgrammer />),
+              label: 'Environment',
+              onClick: () => this.openContent(<Environment />),
             },
             {
               label: 'Database',
               onClick: () => this.openContent(<Database />),
             },
             {
-              label: 'Environment',
-              onClick: () => this.openContent(<Environment />),
-            }
+              label: 'Device Info',
+              onClick: () => this.openContent(<DeviceInfo lockSystem={lockSystem} />),
+            },
           ],
         },
       ];
