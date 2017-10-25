@@ -77,8 +77,14 @@ const getWithCustomTiles = (AUTOMATE_CORE_URL) => {
         children ?
           children({
             tiles: this.state.tiles,
-            uploadTile,
-            deleteTile,
+            uploadTile: async (formData, tileName) => {
+              await uploadTile(formData, tileName);
+              this.makeTileRequest();
+            },
+            deleteTile: async tileName => {
+              await deleteTile(tileName);
+              this.makeTileRequest();
+            },
             downloadTile,
           }) : null
       );
