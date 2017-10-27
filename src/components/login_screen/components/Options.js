@@ -14,7 +14,7 @@ const Options = ({ isHidden }) => (
     background: 'rgb(10,10,10)',
   }}>
     <TextField disabled={isHidden} floatingLabelFixed floatingLabelText="password" />
-    <FlatButton label="Login" />
+    <FlatButton primary label="Login" />
   </div>
 );
 

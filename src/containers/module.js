@@ -4,6 +4,7 @@ const initialState = fromJS({
   menuIsHidden: false,
   menuExpanded: false,
   isLocked: true,
+  isLoggedIn: false,
   drawerOpen: false,
 });
 
@@ -27,9 +28,22 @@ export const setDrawerOpen = isOpen => ({
   isOpen,
 });
 
+export const setLoggedIn = () => ({
+  type: 'login',
+});
+
+export const setLoggedOut = () => ({
+  type:  'logout',
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'login': {
+     return state.set('isLoggedIn', true);
+    }
+    case 'logout': {
+      return state.set('isLoggedIn', false);
+    }
     case 'set_menu': {
       return state.set('menuIsHidden', !state.get('menuIsHidden')); // hides left main menu
     }

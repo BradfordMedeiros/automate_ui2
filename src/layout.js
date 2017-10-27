@@ -38,18 +38,19 @@ class Layout extends Component {
   render() {
     const {
       hideMenu,
+      isLoggedIn,
       systemLocked,
       systemName,
     } = this.props;
 
-    const shouldHideMenu = hideMenu || systemLocked;
+    const shouldHideMenu = hideMenu || !isLoggedIn || systemLocked;
     return (
       <div style={appStyle}>
         <Desktop>
           {shouldHideMenu ? null : <Menu style={desktopStyles.menu} />}
           <Appbar
             showHideMenu
-            systemLocked={systemLocked}
+            systemLocked={systemLocked || !isLoggedIn}
             systemName={systemName}
             style={desktopStyles.appbar}
           />
@@ -64,21 +65,21 @@ class Layout extends Component {
             right={desktopStyles.overlay(shouldHideMenu).right}
           />
           <DisconnectedOverlay />
-          <Login style={desktopStyles.login} />
+          {!isLoggedIn && <Login style={desktopStyles.login} />}
           <Notifications />
         </Desktop>
 
         <Mobile>
           {shouldHideMenu ? null : <Menu isMinimal style={mobileStyles.menu} />}
           <Appbar
-            systemLocked={systemLocked}
+            systemLocked={systemLocked || !isLoggedIn}
             systemName={systemName}
             style={mobileStyles.appbar}
           />
           <Drawer style={mobileStyles.drawer} tileNames={tileNames} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
-          <Login style={mobileStyles.login} />
+          {!isLoggedIn && <Login style={mobileStyles.login} />}
           <Notifications />
         </Mobile>
       </div>
@@ -88,12 +89,14 @@ class Layout extends Component {
 
 Layout.propTypes = {
   hideMenu: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   systemLocked: PropTypes.bool,
   systemName: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   hideMenu: state.getIn(['reducer', 'menuIsHidden']),
+  isLoggedIn: state.getIn(['reducer', 'isLoggedIn']),
 });
 
 export default connect(mapStateToProps)(Layout);

@@ -17,6 +17,8 @@ import logger from './util/logger';
 import reducer from './containers/module';
 import connection from './containers/disconnected_overlay/module';
 import gridReducer from './containers/grid/module/module';
+
+import { setLoggedIn, setLoggedOut } from './containers/module';
 import './style.css';
 
 injectTapEventPlugin();
@@ -29,6 +31,11 @@ persistStore(store,
   {
     whitelist: ['gridReducer'],
   });
+
+
+window.s = store;
+window.setLoggedIn = setLoggedIn;
+window.setLoggedOut = setLoggedOut;
 
 const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
