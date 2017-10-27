@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
-import SavedUser from './components/SavedUser';
+import SavedUsers from './components/SavedUsers/SavedUsers';
 import CreateAccountScreen from './components/CreateAccountScreen';
+import Options from './components/Options';
 import './style.css';
 
 const users = [
@@ -33,7 +34,13 @@ const users = [
 
 class LoginScreen extends Component {
   state = {
-    creatingAccount: true,
+    creatingAccount: false,
+    selectedIndex: -1,
+  };
+  selectUser = selectedIndex => {
+    this.setState({
+      selectedIndex,
+    });
   };
   render() {
     const { style } = this.props;
@@ -64,27 +71,10 @@ class LoginScreen extends Component {
             />
           )}
 
-          {!this.state.creatingAccount && <div style={{
-            background: 'rgb(30,30,30)',
-            width: '100%',
-            display: 'flex' ,
-            marginBottom: '6em',
-            borderTop: '1px solid white',
-            borderBottom: '1px solid white',
-            justifyContent: 'center',
-            position: 'relative',
-            overflow: 'auto',
-          }}>
-            {users.map(user => (
-              <SavedUser
-                username={user.username}
-                remote={user.remote}
-              />
-            ))}
-          </div>}
-
+          {!this.state.creatingAccount && <SavedUsers selectedUserIndex={this.state.selectedIndex} onSelectUser={this.selectUser} users={users} />}
+          {!this.state.creatingAccount && <Options isHidden={this.state.selectedIndex === -1} />}
+          {!this.state.creatingAccount && <div style={{ marginBottom: '2em'}} />}
           {!this.state.creatingAccount && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
-            <div className="login_selection">login</div>
             <div className="login_selection" onClick={() => {
               this.setState({
                 creatingAccount: true,
