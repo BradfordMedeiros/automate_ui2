@@ -12,6 +12,7 @@ const SavedUsers = ({ users, onSelectUser, selectedUserIndex }) => (
     justifyContent: 'center',
     position: 'relative',
     overflow: 'auto',
+    opacity: '1',
   }}>
     {users.map((user, index) => (
       <SavedUser
@@ -20,6 +21,7 @@ const SavedUsers = ({ users, onSelectUser, selectedUserIndex }) => (
           onSelectUser(index);
         }}
         username={user.username}
+        imageUrl={user.imageUrl}
         remote={user.remote}
       />
     ))}

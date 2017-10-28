@@ -33,10 +33,6 @@ persistStore(store,
   });
 
 
-window.s = store;
-window.setLoggedIn = setLoggedIn;
-window.setLoggedOut = setLoggedOut;
-
 const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Provider store={store} >

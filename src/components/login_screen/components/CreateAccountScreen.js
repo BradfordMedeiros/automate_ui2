@@ -6,8 +6,18 @@ import IconButton from 'material-ui/IconButton';
 import Back from 'material-ui/svg-icons/navigation/arrow-back';
 
 class CreateAccountScreen extends Component {
+  state = {
+    username: '',
+    password: '',
+  };
+  createAccount = () => {
+    this.props.onCreateAccount({
+      username: this.state.username,
+      password: this.state.password,
+    })
+  };
   render() {
-    const { onClickBack } = this.props;
+    const { onClickBack, onCreateAccount } = this.props;
 
     return (
       <div style={{
@@ -21,9 +31,31 @@ class CreateAccountScreen extends Component {
         alignItems: 'center',
       }}>
         <IconButton onClick={onClickBack} style={{ marginTop: 22, marginRight: 8 }}><Back /></IconButton>
-        <TextField floatingLabelFixed  floatingLabelText="email" hintText="email used to login"  />
-        <TextField floatingLabelFixed  floatingLabelText="password" hintText="unrestricted character domain" />
-        <FlatButton style={{ marginTop: 22 }} label="Create" />
+        <TextField
+          onChange={(_, username) => {
+            this.setState({
+              username,
+            })
+          }}
+          floatingLabelFixed
+          floatingLabelText="email"
+          hintText="email used to login"
+        />
+        <TextField
+          onChange={(_, password) => {
+            this.setState({
+              password,
+            });
+          }}
+          floatingLabelFixed
+          floatingLabelText="password"
+          hintText="unrestricted character domain"
+        />
+        <FlatButton
+          label="Create"
+          onClick={this.createAccount}
+          style={{ marginTop: 22 }}
+        />
       </div>
     )
   }
@@ -31,6 +63,7 @@ class CreateAccountScreen extends Component {
 
 CreateAccountScreen.propTypes = {
   onClickBack: PropTypes.func,
+  onCreateAccount: PropTypes.func,
 };
 
 export default CreateAccountScreen;
