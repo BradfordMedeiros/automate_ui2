@@ -1,10 +1,11 @@
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  menuIsHidden: false,
-  menuExpanded: false,
   isLocked: true,
   isLoggedIn: false,
+  activeUserEmail: null,
+  menuIsHidden: false,
+  menuExpanded: false,
   drawerOpen: false,
 });
 
@@ -28,21 +29,15 @@ export const setDrawerOpen = isOpen => ({
   isOpen,
 });
 
-export const setLoggedIn = () => ({
+export const setLoggedIn = ({ username }) => ({
   type: 'login',
-});
-
-export const setLoggedOut = () => ({
-  type:  'logout',
+  username,
 });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'login': {
-     return state.set('isLoggedIn', true);
-    }
-    case 'logout': {
-      return state.set('isLoggedIn', false);
+     return state.set('isLoggedIn', true).set('activeUserEmail', action.username);
     }
     case 'set_menu': {
       return state.set('menuIsHidden', !state.get('menuIsHidden')); // hides left main menu

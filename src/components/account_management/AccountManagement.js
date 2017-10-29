@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
+import RaisedButton from 'material-ui/RaisedButton';
 
-const AccountManagement = () => (
+const AccountManagement = ({
+  username,
+  onLogout,
+}) => (
   <div style={{
     background: 'rgb(30,30,30)',
     width: '100%',
@@ -22,11 +26,14 @@ const AccountManagement = () => (
     </div>
     <Divider />
     <div style={{ margin: 20 }}>Username</div>
-    <div>bradford medeiros</div>
-    <div style={{ margin: 20 }}>Email Address</div>
-    <div>bradmedeiros0@gmail.com</div>
+    <div>{username || 'Error Retrieving Information'}</div>
+    <RaisedButton label="Logout" onClick={onLogout} />
   </div>
-
 );
+
+AccountManagement.propTypes = {
+  username: PropTypes.string,
+  onLogout: PropTypes.func,
+};
 
 export default AccountManagement;

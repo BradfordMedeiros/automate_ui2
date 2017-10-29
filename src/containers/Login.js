@@ -21,9 +21,10 @@ class Login extends Component {
             onLoginWithPassword={async (username, password) => {
               try {
                 await loginWithPassword(username, password);
-                this.props.onSetLoggedIn();
+                this.props.onSetLoggedIn(username);
               }catch(err){
                 console.warn('Invalid credentials');
+                console.warn(err);
               }
             }}
             onCreateAccount={({ username, password }) => {
@@ -47,7 +48,7 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSetLoggedIn: () => dispatch(setLoggedIn()),
+  onSetLoggedIn: username => dispatch(setLoggedIn({ username })),
 });
 
 export const container = connect(undefined, mapDispatchToProps)(Login);
