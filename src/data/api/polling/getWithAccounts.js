@@ -45,6 +45,34 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     return response;
   };
 
+  const loginWithPassword = async (username, password) => {
+    if (typeof(username) !== typeof('')){
+      throw (new Error('username is undefined'));
+    }
+    if (typeof(password) !== typeof('')){
+      throw (new Error('password is undefined'));
+    }
+
+    const response = await fetch(`${accountsUrl}/login`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+
+    if (response.status === 200){
+      return true;
+    }else{
+      throw (new Error('invalid credentials'));
+    }
+  };
+
   class WithAccounts extends Component {
     constructor(props) {
       super(props);
@@ -75,6 +103,7 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
       const users = this.state.data;
       return children ? children({
         users,
+        loginWithPassword,
         createUser: async (username, password) => {
           await addAccount(username, password);
           this.makeRequest();

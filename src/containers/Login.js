@@ -11,20 +11,22 @@ class Login extends Component {
     selectedAccountIndex : -1,
   }
   render() {
+    window.props = this.props;
     return (
       <WithAccounts>
-        {({ users, createUser }) => (
+        {({ users, createUser, loginWithPassword }) => (
           <LoginComponent
             {...this.props}
             users={users}
-            onLoginWithPassword={(userInfo, password) => {
-              console.log('trying to log in: ', userInfo);
-              console.log('with password: ', password);
-              this.props.onSetLoggedIn();
+            onLoginWithPassword={async (username, password) => {
+              try {
+                await loginWithPassword(username, password);
+                this.props.onSetLoggedIn();
+              }catch(err){
+                console.warn('Invalid credentials');
+              }
             }}
             onCreateAccount={({ username, password }) => {
-              console.log('username: ', username);
-              console.log('password: ', password);
               createUser(username, password);
             }}
             selectedAccountIndex={this.state.selectedAccountIndex}
