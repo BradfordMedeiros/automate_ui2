@@ -13,7 +13,7 @@ class Login extends Component {
   render() {
     return (
       <WithAccounts>
-        {({ users }) => (
+        {({ users, createUser }) => (
           <LoginComponent
             {...this.props}
             users={users}
@@ -23,11 +23,9 @@ class Login extends Component {
               this.props.onSetLoggedIn();
             }}
             onCreateAccount={({ username, password }) => {
-              users.push({
-                username,
-                remote: false,
-              })
-              this.forceUpdate();
+              console.log('username: ', username);
+              console.log('password: ', password);
+              createUser(username, password);
             }}
             selectedAccountIndex={this.state.selectedAccountIndex}
             onSelectAccount={selectedAccountIndex => {
