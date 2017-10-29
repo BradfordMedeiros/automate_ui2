@@ -34,7 +34,7 @@ class Appbar extends Component {
       <div className="titlebar" style={
         style}>
         {!systemLocked && <div className="accounts_menu" onClick={onUserIconClick}><IconButton><ActionAccountCircle /></IconButton></div>}
-        {!systemLocked && (showHideMenu && <div className="hide_menu" onClick={() => onHideMenu()}><IconButton><NavigationMenu /></IconButton></div>)}
+        {!systemLocked && (showHideMenu && <div className="hide_menu" onClick={onHideMenu}><IconButton><NavigationMenu /></IconButton></div>)}
         {!systemLocked && <div className="toggle">
           <Toggle
             thumbStyle={{ background: 'darkgrey' }}

@@ -162,10 +162,8 @@ class MenuContainer extends Component {
   render() {
     const {
       isMinimal,
-      grids,
       onAddGrid,
       onSetGridBackground,
-      onSetContent,
       ...otherProps
     } = this.props;
 

@@ -8,6 +8,7 @@ import { expandMenu, lock, setMenu, setDrawerOpen } from './module';
 const ConnectedAppbar = ({
   activeGrid,
   showHideMenu,
+  onHideMenu,
   openDrawer,
   systemLocked,
   systemName,
@@ -21,7 +22,7 @@ const ConnectedAppbar = ({
       {...otherProps}
       title={systemLocked ? (systemName ? systemName: 'automate') : 'automate'}
       showHideMenu={showHideMenu}
-      onHideMenu={onHideOverlay}
+      onHideMenu={onHideMenu}
       rotateAddIcon={menuIsExpanded}
       onRotatedAddIconClick={onHideOverlay}
       onUserIconClick={() => {
