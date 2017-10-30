@@ -2,7 +2,7 @@
 import React, { PropTypes, Component } from 'react';
 import SavedUsers from './components/SavedUsers/SavedUsers';
 import CreateAccountScreen from './components/CreateAccountScreen';
-import PasswordEntry from './components/PasswordEntry';
+import PasswordEntry from './components/PasswordEntry/PasswordEntry';
 import './style.css';
 
 
@@ -24,6 +24,8 @@ class LoginScreen extends Component {
       users,
       selectedAccountIndex,
       onLoginWithPassword,
+      onPasswordTextChange,
+      errorText,
       style
     } = this.props;
     return (
@@ -54,12 +56,14 @@ class LoginScreen extends Component {
             />
           )}
 
-          {!this.state.creatingAccount && <SavedUsers selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser} users={users} />}
+          {!this.state.creatingAccount && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
           {!this.state.creatingAccount && (
             <PasswordEntry
+              errorText={errorText}
               isHidden={selectedAccountIndex === -1}
               user={users[selectedAccountIndex]}
               onLoginWithPassword={onLoginWithPassword}
+              onPasswordTextChange={onPasswordTextChange}
             />
           )}
           {!this.state.creatingAccount && <div style={{ marginBottom: '2em'}} />}
@@ -82,6 +86,8 @@ LoginScreen.propTypes = {
   onSelectAccount: PropTypes.func,
   selectedAccountIndex: PropTypes.number,
   onLoginWithPassword: PropTypes.func,
+  onPasswordTextChange: PropTypes.func,
+  errorText: PropTypes.string,
 };
 
 export default LoginScreen;

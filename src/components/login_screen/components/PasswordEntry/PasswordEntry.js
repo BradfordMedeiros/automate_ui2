@@ -2,6 +2,7 @@
 import React, { PropTypes, Component } from 'react';
 import TextField from 'material-ui/TextField';
 import  FlatButton from 'material-ui/FlatButton';
+import './style.css';
 
 class PasswordEntry extends Component {
   state = {
@@ -11,7 +12,8 @@ class PasswordEntry extends Component {
     this.props.onLoginWithPassword(this.props.user, this.state.password);
   };
   render() {
-    const { isHidden } = this.props;
+    const { isHidden, errorText, onPasswordTextChange } = this.props;
+    console.log('error tedt: ', errorText);
     return (
       <div style={{
         transition: 'opacity 0.1s ease-in',
@@ -23,11 +25,14 @@ class PasswordEntry extends Component {
         background: 'rgb(10,10,10)',
       }}>
         <TextField
+          className={errorText ? 'shake_error': undefined}
+          errorText={errorText}
           value={this.state.password}
           onChange={(_, password) => {
             this.setState({
               password,
             });
+            onPasswordTextChange();
           }}
           disabled={isHidden}
           floatingLabelFixed
@@ -47,6 +52,8 @@ PasswordEntry.propTypes = {
   isHidden: PropTypes.bool,
   user: PropTypes.object,
   onLoginWithPassword: PropTypes.func,
+  onPasswordTextChange: PropTypes.func,
+  errorText: PropTypes.string,
 };
 
 export default PasswordEntry;

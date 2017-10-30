@@ -7,9 +7,10 @@ const SavedUser = ({ username, remote, isSelected, imageUrl, onClick }) => (
     className="SavedUser"
     onClick={onClick}
     style={{
-      height: 120,
-      width: 120,
+      height: 140,
+      width: 140,
       background: imageUrl ? `url(${imageUrl})`: 'black',
+      backgroundSize: 'contain',
       display: 'inline-table',
       justifyContent: 'center',
       alignItems: 'center',
@@ -19,8 +20,8 @@ const SavedUser = ({ username, remote, isSelected, imageUrl, onClick }) => (
       position: 'relative',
     }}
   >
-    <div>{username}</div>
-    <div>{remote ?  'remote': 'local'}</div>
+    <div>username: {username}</div>
+    <div>type: {remote ?  'remote': 'local'}</div>
   </div>
 );
 

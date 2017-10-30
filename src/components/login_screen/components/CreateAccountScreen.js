@@ -9,11 +9,13 @@ class CreateAccountScreen extends Component {
   state = {
     username: '',
     password: '',
+    alias: '',
   };
   createAccount = () => {
     this.props.onCreateAccount({
       username: this.state.username,
       password: this.state.password,
+      alias: this.state.alias,
     })
   };
   render() {
@@ -50,6 +52,16 @@ class CreateAccountScreen extends Component {
           floatingLabelFixed
           floatingLabelText="password"
           hintText="unrestricted character domain"
+        />
+        <TextField
+          onChange={(_, alias) => {
+            this.setState({
+              alias,
+            })
+          }}
+          floatingLabelFixed
+          floatingLabelText="alias"
+          hintText="Used to identify accounts"
         />
         <FlatButton
           label="Create"
