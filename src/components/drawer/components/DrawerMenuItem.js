@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {  ListItem, IconButton} from 'material-ui';
-import {  ActionDelete,FileFileDownload } from 'material-ui/svg-icons';
+import {  ActionDelete, FileFileDownload, FileCloud } from 'material-ui/svg-icons';
 
 
 const DrawerMenuItem = ({
@@ -59,6 +59,15 @@ const DrawerMenuItem = ({
               hoveredStyle={{ background: 'black', border: 'blue' }}
             >
               <FileFileDownload  />
+            </IconButton>
+            <IconButton
+              onClick={event => {
+                event.stopPropagation();
+              }}
+              style={{ position: 'absolute', right: 116, top: -2 }}
+              hoveredStyle={{ background: 'black', border: 'blue' }}
+            >
+              <FileCloud />
             </IconButton>
           </div>
         )}

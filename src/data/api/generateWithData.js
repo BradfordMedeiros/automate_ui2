@@ -13,9 +13,12 @@ import getWithCustomTiles from './polling/getWithCustomTiles';
 import getWithEnv from './polling/getWithEnv';
 import getWithEmail from './polling/getWithEmail'
 import getWithIsSystemLocked from './polling/getWithIsSystemLocked';
+import getWithAccounts from './polling/getWithAccounts';
 
 import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
+
+import getSetProfileImage from './requests/getSetProfileImage';
 
 const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
@@ -35,10 +38,14 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithEnv: getWithEnv(automateUrl),
       WithEmail: getWithEmail(automateUrl),
       WithIsSystemLocked: getWithIsSystemLocked(automateUrl),
+      WithAccounts: getWithAccounts(automateUrl),
     },
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),
       WithEvents: getWithPubsubEvents(mqttBroker),
+    },
+    requests: {
+      setProfileImage: getSetProfileImage(automateUrl),
     },
   };
   return withData;
