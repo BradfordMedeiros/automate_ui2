@@ -94,7 +94,6 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
       });
     }
     render() {
-
       const { children, whileLoading } = this.props;
       if (!this.state.data) {
         return whileLoading ? whileLoading() : null;
@@ -109,7 +108,6 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
           this.makeRequest();
         },
       }) : null;
-
     }
   }
 

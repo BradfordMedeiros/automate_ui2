@@ -2,31 +2,34 @@
 import React, { PropTypes } from 'react';
 import SavedUser from './components/SavedUser';
 
-const SavedUsers = ({ users, onSelectUser, selectedUserIndex }) => (
-  <div style={{
-    background: 'rgb(30,30,30)',
-    width: '100%',
-    display: 'flex' ,
-    borderTop: '1px solid white',
-    borderBottom: '1px solid white',
-    justifyContent: 'center',
-    position: 'relative',
-    overflow: 'auto',
-    opacity: '1',
-  }}>
-    {users.map((user, index) => (
-      <SavedUser
-        isSelected={selectedUserIndex === index}
-        onClick={() => {
-          onSelectUser(index);
-        }}
-        username={user.username}
-        imageUrl={user.imageUrl}
-        remote={user.remote}
-      />
-    ))}
-  </div>
-);
+const SavedUsers = ({ users, onSelectUser, selectedUserIndex }) => {
+  window.users = users;
+  return (
+    <div style={{
+      background: 'rgb(30,30,30)',
+      width: '100%',
+      display: 'flex' ,
+      borderTop: '1px solid white',
+      borderBottom: '1px solid white',
+      justifyContent: 'center',
+      position: 'relative',
+      overflow: 'auto',
+      opacity: '1',
+    }}>
+      {users.map((user, index) => (
+        <SavedUser
+          isSelected={selectedUserIndex === index}
+          onClick={() => {
+            onSelectUser(index);
+          }}
+          username={user.username}
+          imageURL={user.imageURL}
+          remote={user.remote}
+        />
+      ))}
+    </div>
+  );
+}
 
 SavedUsers.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),

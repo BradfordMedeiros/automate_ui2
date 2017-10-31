@@ -18,6 +18,8 @@ import getWithAccounts from './polling/getWithAccounts';
 import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
 
+import getSetProfileImage from './requests/getSetProfileImage';
+
 const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
     polling: {
@@ -41,6 +43,9 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),
       WithEvents: getWithPubsubEvents(mqttBroker),
+    },
+    requests: {
+      setProfileImage: getSetProfileImage(automateUrl),
     },
   };
   return withData;

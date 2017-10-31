@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setLoggedOut } from './module';
 import AccountManagementComponent from '../components/account_management/AccountManagement';
+import WithData from '../data/WithData';
+
+const setProfileImage = WithData.requests.setProfileImage;
 
 const AccountManagement = ({
   activeUserEmail,
@@ -10,6 +13,9 @@ const AccountManagement = ({
   <AccountManagementComponent
     username={activeUserEmail}
     onLogout={onSetLoggedOut}
+    onUploadImage={imageUrl => {
+      setProfileImage(activeUserEmail, imageUrl);
+    }}
   />
 );
 
