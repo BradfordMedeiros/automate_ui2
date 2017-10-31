@@ -5,24 +5,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-
-const styles = {
-  header: {
-    margin: 20,
-    boxShadow: '0px 0px 1px 1px black',
-    padding: 18,
-    background: '#383838',
-  },
-  field: {
-    margin: 80,
-    marginTop: 0,
-  }
-};
+import AccountInformation from './components/AccountInformation';
+import AdminSettings from './components/AdminSettings';
 
 class AccountManagement extends Component {
   state = {
     showImageUpload: false,
     imageUrl: '',
+    showAdminSettings: false,
   };
   showImageUpload = () => {
     this.setState({
@@ -37,6 +27,16 @@ class AccountManagement extends Component {
   uploadImage = () => {
     this.props.onUploadImage(this.state.imageUrl);
     this.hideImageUpload();
+  };
+  showAdminSettings = () => {
+    this.setState({
+      showAdminSettings: true,
+    });
+  };
+  hideAdminSettings = () => {
+    this.setState({
+      showAdminSettings: false,
+    });
   };
   render() {
     const { username, onLogout } = this.props;
@@ -86,20 +86,26 @@ class AccountManagement extends Component {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ border: '1px solid black', cursor: 'pointer', width: 100, height: 100 }} />
-            <div style={{ marginLeft: 48 }}>My Account</div>
+            <div style={{ marginLeft: 48 }}>{this.state.showAdminSettings ? 'Admin Settings': 'My Account'}</div>
           </div>
           <div>
+            <RaisedButton
+              style={{ margin: 4 }}
+              label={this.state.showAdminSettings ? 'Show My Account': 'Show Admin Settings'}
+              onClick={() =>{
+                if (this.state.showAdminSettings){
+                  this.hideAdminSettings();
+                }else{
+                  this.showAdminSettings();
+                }
+              }}
+            />
             <RaisedButton style={{ margin: 4 }} label="Set Profile Icon" onClick={this.showImageUpload} />
             <RaisedButton style={{ margin: 4 }} label="Logout" onClick={onLogout} />
           </div>
         </div>
         <Divider />
-        <div style={styles.header}>Username</div>
-        <div style={styles.field}>{username || 'Error Retrieving Information'}</div>
-        <div style={styles.header}>Email</div>
-        <div style={styles.field}>{username || 'Error Retrieving Information'}</div>
-        <div style={styles.header}>Alias</div>
-        <div style={styles.field}>{username || 'Error Retrieving Information'}</div>
+        {this.state.showAdminSettings ? <AdminSettings/> : <AccountInformation username={username} />}
       </div>
     )
   }
