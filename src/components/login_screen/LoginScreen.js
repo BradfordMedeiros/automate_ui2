@@ -25,6 +25,7 @@ class LoginScreen extends Component {
       selectedAccountIndex,
       onLoginWithPassword,
       onPasswordTextChange,
+      showCreateAccount,
       errorText,
       style
     } = this.props;
@@ -68,11 +69,11 @@ class LoginScreen extends Component {
           )}
           {!this.state.creatingAccount && <div style={{ marginBottom: '2em'}} />}
           {!this.state.creatingAccount && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
-            <div className="login_selection" onClick={() => {
+            {showCreateAccount && <div className="login_selection" onClick={() => {
               this.setState({
                 creatingAccount: true,
               })
-            }}>create account</div>
+            }}>create account</div>}
           </div>}
         </div>
       </div>
@@ -83,6 +84,7 @@ class LoginScreen extends Component {
 LoginScreen.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
   onCreateAccount: PropTypes.func,
+  showCreateAccount: PropTypes.bool,
   onSelectAccount: PropTypes.func,
   selectedAccountIndex: PropTypes.number,
   onLoginWithPassword: PropTypes.func,

@@ -22,6 +22,24 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     }
   };
 
+  const isAccountCreationAdminOnly = async () => {
+    try {
+      const response = await fetch(`${accountsUrl}/isAccountCreationAdminOnly`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+      const text = await response.text();
+      try {
+        const parsedText = JSON.parse(text);
+        return parsedText;
+      } catch (err) {
+        throw (err);
+      }
+    } catch (err) {
+      throw (err);
+    }
+  };
+
   const addAccount = async (username, password) => {
     if (typeof(username) !== typeof('')){
       throw (new Error('username is undefined'));
@@ -44,6 +62,7 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     });
     return response;
   };
+
 
   const loginWithPassword = async (username, password) => {
     if (typeof(username) !== typeof('')){
@@ -87,21 +106,35 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     makeRequest = () => {
       request().then((response) => {
         this.setState({
-          data: response,
+          users: response,
         });
-      }).catch({
-        error: true,
+      }).catch(() => {
+        this.setState({
+          error: true,
+        })
+      });
+
+      isAccountCreationAdminOnly().then(isAdminOnly => {
+        this.setState({
+          isAdminOnly,
+        })
+      }).catch(() => {
+        this.setState({
+          error: true,
+        })
       });
     }
     render() {
       const { children, whileLoading } = this.props;
-      if (!this.state.data) {
+      if (!this.state.users && !this.state.isAdminOnly) {
         return whileLoading ? whileLoading() : null;
       }
 
-      const users = this.state.data;
+      const users = this.state.users;
+      const isAccountCreationAdminOnly = this.state.isAdminOnly;
       return children ? children({
         users,
+        isAccountCreationAdminOnly,
         loginWithPassword,
         createUser: async (username, password) => {
           await addAccount(username, password);
