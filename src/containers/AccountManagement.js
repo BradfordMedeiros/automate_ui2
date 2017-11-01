@@ -5,18 +5,23 @@ import AccountManagementComponent from '../components/account_management/Account
 import WithData from '../data/WithData';
 
 const setProfileImage = WithData.requests.setProfileImage;
+const WithMyAccount = WithData.polling.WithMyAccount;
 
 const AccountManagement = ({
   activeUserEmail,
   onSetLoggedOut,
 }) => (
-  <AccountManagementComponent
-    username={activeUserEmail}
-    onLogout={onSetLoggedOut}
-    onUploadImage={imageUrl => {
-      setProfileImage(activeUserEmail, imageUrl);
-    }}
-  />
+  <WithMyAccount>
+    {() => (
+      <AccountManagementComponent
+        username={activeUserEmail}
+        onLogout={onSetLoggedOut}
+        onUploadImage={imageUrl => {
+          setProfileImage(activeUserEmail, imageUrl);
+        }}
+      />
+    )}
+  </WithMyAccount>
 );
 
 const mapStateToProps = state => ({

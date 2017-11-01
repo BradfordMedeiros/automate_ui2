@@ -14,6 +14,7 @@ import getWithEnv from './polling/getWithEnv';
 import getWithEmail from './polling/getWithEmail'
 import getWithIsSystemLocked from './polling/getWithIsSystemLocked';
 import getWithAccounts from './polling/getWithAccounts';
+import getWithMyAccount from './polling/getWithMyAccount';
 
 import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
@@ -39,6 +40,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithEmail: getWithEmail(automateUrl),
       WithIsSystemLocked: getWithIsSystemLocked(automateUrl),
       WithAccounts: getWithAccounts(automateUrl),
+      WithMyAccount: getWithMyAccount(automateUrl),
     },
     pubsub: {
       WithMqtt: getWithMqtt(mqttBroker),
