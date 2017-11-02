@@ -19,7 +19,13 @@ class Login extends Component {
   render() {
     return (
       <WithAccounts>
-        {({ users, createUser, loginWithPassword, isAccountCreationAdminOnly }) => (
+        {({
+          users,
+          createUser,
+          loginWithPassword,
+          isAccountCreationAdminOnly,
+          onToken,
+        }) => (
           <LoginComponent
             {...this.props}
             users={users}
@@ -33,9 +39,10 @@ class Login extends Component {
             onLoginWithPassword={async (user, password) => {
               try {
                 const username = user.username;
-                await loginWithPassword(username, password);
-                console.log('hereee');
+                const token = await loginWithPassword(username, password);
+                console.log('token: ', token);
                 this.props.onSetLoggedIn(username);
+                // probably set the log into local storage here and redux
               }catch(err){
                 console.warn('Invalid credentials');
                 console.warn(err);
@@ -60,6 +67,7 @@ class Login extends Component {
 
 Login.propTypes = {
   onSetLoggedIn: PropTypes.func,
+  onToken: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({

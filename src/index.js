@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -32,10 +32,24 @@ persistStore(store,
     whitelist: ['gridReducer'],
   });
 
+const tryLogin = (store) => {
+  // load token from local storage
+  // if it is not in storage, we just set state to show the login
+  // if
+};
 
-const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-    <Provider store={store} >
+class MainApp extends Component {
+  state = {
+    loadingTokens: true,
+  };
+  componentDidMount() {
+    this.loadTokensFromStorage();
+  }
+  loadTokensFromStorage = () => {
+
+  };
+  render() {
+    return (
       <WithIsSystemLocked>
         {({ isLocked, systemName }) => {
           return (
@@ -49,6 +63,14 @@ const App = () => (
           )
         }}
       </WithIsSystemLocked>
+    );
+  }
+}
+
+const App = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Provider store={store} >
+      <MainApp />
     </Provider>
   </MuiThemeProvider>
 );
