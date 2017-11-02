@@ -43,6 +43,7 @@ class AccountManagement extends Component {
       username,
       email,
       alias,
+      isAdmin,
       allowUserCreation,
       enableUserAccountCreation,
       disableUserAccountCreation,
@@ -97,7 +98,7 @@ class AccountManagement extends Component {
             <div style={{ marginLeft: 48 }}>{this.state.showAdminSettings ? 'Admin Settings': 'My Account'}</div>
           </div>
           <div>
-            <RaisedButton
+            {isAdmin && <RaisedButton
               style={{ margin: 4 }}
               label={this.state.showAdminSettings ? 'Show My Account': 'Show Admin Settings'}
               onClick={() =>{
@@ -107,7 +108,7 @@ class AccountManagement extends Component {
                   this.showAdminSettings();
                 }
               }}
-            />
+            />}
             <RaisedButton style={{ margin: 4 }} label="Set Profile Icon" onClick={this.showImageUpload} />
             <RaisedButton style={{ margin: 4 }} label="Logout" onClick={onLogout} />
           </div>
@@ -135,6 +136,7 @@ AccountManagement.propTypes = {
   username: PropTypes.string,
   email: PropTypes.string,
   alias: PropTypes.string,
+  isAdmin: PropTypes.bool,
   allowUserCreation: PropTypes.bool,
   enableUserAccountCreation: PropTypes.func,
   disableUserAccountCreation: PropTypes.func,

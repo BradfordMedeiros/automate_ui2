@@ -26,6 +26,7 @@ const AccountManagement = ({
           username={username}
           email={email}
           alias={alias}
+          isAdmin={isAdmin}
           allowUserCreation={admin.allowAccountCreation}
           enableUserAccountCreation={enableUserAccountCreation}
           disableUserAccountCreation={disableUserAccountCreation}
