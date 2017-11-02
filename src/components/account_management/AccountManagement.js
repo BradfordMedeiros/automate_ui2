@@ -39,7 +39,15 @@ class AccountManagement extends Component {
     });
   };
   render() {
-    const { username, onLogout } = this.props;
+    const {
+      username,
+      email,
+      alias,
+      allowUserCreation,
+      enableUserAccountCreation,
+      disableUserAccountCreation,
+      onLogout,
+    } = this.props;
     return (
       <div style={{
         background: 'rgb(30,30,30)',
@@ -105,7 +113,19 @@ class AccountManagement extends Component {
           </div>
         </div>
         <Divider />
-        {this.state.showAdminSettings ? <AdminSettings/> : <AccountInformation username={username} />}
+        {this.state.showAdminSettings ? (
+          <AdminSettings
+            allowUserCreation={allowUserCreation}
+            enableUserAccountCreation={enableUserAccountCreation}
+            disableUserAccountCreation={disableUserAccountCreation}
+          />
+        ): (
+          <AccountInformation
+            username={username}
+            email={email}
+            alias={alias}
+          />
+        )}
       </div>
     )
   }
@@ -113,6 +133,11 @@ class AccountManagement extends Component {
 
 AccountManagement.propTypes = {
   username: PropTypes.string,
+  email: PropTypes.string,
+  alias: PropTypes.string,
+  allowUserCreation: PropTypes.bool,
+  enableUserAccountCreation: PropTypes.func,
+  disableUserAccountCreation: PropTypes.func,
   onLogout: PropTypes.func,
   onUploadImage: PropTypes.func,
 };

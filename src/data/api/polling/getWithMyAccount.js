@@ -6,7 +6,7 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
 
   const request = async () => {
     try {
-      const response = await fetch(adminUrl, {
+      const response = await fetch(`${adminUrl}/myAccount`, {
         method: 'GET',
         mode: 'cors',
       });
@@ -21,6 +21,22 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
       throw (err);
     }
   };
+
+  const enableUserAccountCreation = async () => {
+    return await fetch(`${adminUrl}/enableUserAccountCreation`, {
+      method: 'POST',
+      mode: 'cors',
+    });
+  };
+
+  const disableUserAccountCreation = async () => {
+    return await fetch(`${adminUrl}/disableUserAccountCreation`, {
+      method: 'POST',
+      mode: 'cors',
+    });
+  };
+
+
 
   class WithMyAccount extends Component {
     constructor(props) {
@@ -51,10 +67,22 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
         return whileLoading ? whileLoading() : null;
       }
 
-      const settings = this.state.data;
+      const data = this.state.data;
 
       return children ? children({
-        settings,
+        username: data.username,
+        email: data.email,
+        alias: data.alias,
+        isAdmin: data.isAdmin,
+        admin: data.admin,
+        enableUserAccountCreation: async () => {
+          await enableUserAccountCreation();
+          this.makeRequest();
+        },
+        disableUserAccountCreation: async () => {
+          await disableUserAccountCreation();
+          this.makeRequest();
+        },
       }) : null;
     }
   }

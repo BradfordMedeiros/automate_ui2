@@ -12,15 +12,30 @@ const AccountManagement = ({
   onSetLoggedOut,
 }) => (
   <WithMyAccount>
-    {() => (
-      <AccountManagementComponent
-        username={activeUserEmail}
-        onLogout={onSetLoggedOut}
-        onUploadImage={imageUrl => {
-          setProfileImage(activeUserEmail, imageUrl);
-        }}
-      />
-    )}
+    {({
+      username,
+      email,
+      alias,
+      isAdmin,
+      admin,
+      enableUserAccountCreation,
+      disableUserAccountCreation,
+    }) => {
+      return (
+        <AccountManagementComponent
+          username={username}
+          email={email}
+          alias={alias}
+          allowUserCreation={admin.allowAccountCreation}
+          enableUserAccountCreation={enableUserAccountCreation}
+          disableUserAccountCreation={disableUserAccountCreation}
+          onLogout={onSetLoggedOut}
+          onUploadImage={imageUrl => {
+            setProfileImage(activeUserEmail, imageUrl);
+          }}
+        />
+      )
+    }}
   </WithMyAccount>
 );
 
