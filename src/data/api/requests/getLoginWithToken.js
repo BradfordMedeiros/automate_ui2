@@ -8,7 +8,7 @@ const getLoginWithToken = (AUTOMATE_CORE_URL) => {
       throw (new Error('token is undefined'));
     }
 
-    const response = await fetch(`${accountsUrl}/login`, {
+    const response = await fetch(`${accountsUrl}/loginWithToken`, {
       method: 'POST',
       mode: 'cors',
       headers: new Headers({
@@ -16,8 +16,7 @@ const getLoginWithToken = (AUTOMATE_CORE_URL) => {
         Accept: 'application/json',
       }),
       body: JSON.stringify({
-        username: 'teset',  // need to use token instead
-        password: 'password',
+        token,
       }),
     });
 
