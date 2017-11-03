@@ -1,6 +1,3 @@
-/**
- * Created by brad on 10/30/17.
- */
 
 const getSetProfileImage = (AUTOMATE_CORE_URL) => {
   const accountsUrl = `${AUTOMATE_CORE_URL}/accounts`;

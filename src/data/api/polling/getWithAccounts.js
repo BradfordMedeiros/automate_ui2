@@ -86,7 +86,7 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     });
 
     if (response.status === 200){
-      return await response.text();
+      return (await response.json()).token;
     }else{
       throw (new Error('invalid credentials'));
     }

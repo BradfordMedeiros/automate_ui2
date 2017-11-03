@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -18,7 +18,7 @@ import reducer from './containers/module';
 import connection from './containers/disconnected_overlay/module';
 import gridReducer from './containers/grid/module/module';
 
-import { setLoggedIn, setLoggedOut } from './containers/module';
+import { setLoggedIn, setToken } from './containers/module';
 import './style.css';
 
 injectTapEventPlugin();
@@ -32,45 +32,64 @@ persistStore(store,
     whitelist: ['gridReducer'],
   });
 
-const tryLogin = (store) => {
-  // load token from local storage
-  // if it is not in storage, we just set state to show the login
-  // if
-};
 
 class MainApp extends Component {
   state = {
     loadingTokens: true,
+    token: null,
   };
   componentDidMount() {
     this.loadTokensFromStorage();
   }
   loadTokensFromStorage = () => {
-
+    const token = localStorage.getItem('automate:login:token');
+    this.props.store.dispatch(setToken(token));
+    this.setState({
+      loadingTokens: false,
+    });
+  };
+  saveToken = token => {
+    // put token into redux + local storage
+    window.localStorage.setItem('automate:login:token', token);
+    this.props.store.dispatch(setToken(token));
   };
   render() {
+    const { isLocked, systemName } = this.props;
+    if (this.state.loadingTokens){
+      return null;
+    }
     return (
+      <Layout
+        systemLocked={isLocked === true}
+        systemName={systemName}
+        onToken={tokenServerResponse => {
+          this.saveToken(tokenServerResponse);
+          this.props.store.dispatch(setLoggedIn({ username: 'debug, this should not be used'  }))
+        }}
+      />
+    );
+  }
+}
+
+MainApp.propTypes = {
+  isLocked: PropTypes.bool,
+  systemName: PropTypes.string,
+  store: PropTypes.object,
+};
+
+const App = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Provider store={store} >
       <WithIsSystemLocked>
         {({ isLocked, systemName }) => {
           return (
             <div>
               <Helmet title={isLocked ? (systemName ? systemName: 'automate'): 'automate'} />
-              <Layout
-                systemLocked={isLocked === true}
-                systemName={systemName}
-              />
+              <MainApp store={store} isLocked={isLocked} systemName={systemName} />
             </div>
           )
         }}
       </WithIsSystemLocked>
-    );
-  }
-}
-
-const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-    <Provider store={store} >
-      <MainApp />
     </Provider>
   </MuiThemeProvider>
 );

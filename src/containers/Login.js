@@ -5,18 +5,39 @@ import LoginComponent from '../components/login_screen/LoginScreen';
 import { setLoggedIn, setLoggedOut } from './module';
 
 const WithAccounts = WithData.polling.WithAccounts;
+const LoginWithToken = WithData.requests.loginWithToken;
 
 class Login extends Component {
   state = {
     selectedAccountIndex : -1,
     errorText: undefined,
+    showLoginScreen: false,
   };
   onIncorrectPassword = () => {
     this.setState({
       errorText: 'incorrect password',
-    });
+    })
   };
+  tryLoginWithToken = async() => {
+    if (this.props.token){
+      const newToken = await LoginWithToken(this.props.token);
+      this.props.onToken(newToken);
+    }else{
+      this.setState({
+        showLoginScreen: true,
+      })
+    }
+  };
+  componentWillMount() {
+    this.tryLoginWithToken();
+  }
   render() {
+    if (!this.state.showLoginScreen){
+      return null;
+    }
+
+    const { onToken } = this.props;
+
     return (
       <WithAccounts>
         {({
@@ -24,7 +45,6 @@ class Login extends Component {
           createUser,
           loginWithPassword,
           isAccountCreationAdminOnly,
-          onToken,
         }) => (
           <LoginComponent
             {...this.props}
@@ -40,9 +60,7 @@ class Login extends Component {
               try {
                 const username = user.username;
                 const token = await loginWithPassword(username, password);
-                console.log('token: ', token);
-                this.props.onSetLoggedIn(username);
-                // probably set the log into local storage here and redux
+                onToken(token);
               }catch(err){
                 console.warn('Invalid credentials');
                 console.warn(err);
@@ -66,12 +84,12 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  onSetLoggedIn: PropTypes.func,
   onToken: PropTypes.func,
+  token: PropTypes.string,
 };
 
-const mapDispatchToProps = dispatch => ({
-  onSetLoggedIn: username => dispatch(setLoggedIn({ username })),
+const mapStateToProps = state => ({
+  token: state.getIn(['reducer', 'token']),
 });
 
-export const container = connect(undefined, mapDispatchToProps)(Login);
+export const container = connect(mapStateToProps)(Login);

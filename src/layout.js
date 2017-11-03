@@ -41,6 +41,7 @@ class Layout extends Component {
       isLoggedIn,
       systemLocked,
       systemName,
+      onToken,
     } = this.props;
 
     const shouldHideMenu = hideMenu || !isLoggedIn || systemLocked;
@@ -65,7 +66,7 @@ class Layout extends Component {
             right={desktopStyles.overlay(shouldHideMenu).right}
           />
           <DisconnectedOverlay />
-          {!isLoggedIn && <Login style={desktopStyles.login} />}
+          {!isLoggedIn && <Login onToken={onToken} style={desktopStyles.login} />}
           <Notifications />
         </Desktop>
 
@@ -79,7 +80,7 @@ class Layout extends Component {
           <Drawer style={mobileStyles.drawer} tileNames={tileNames} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
-          {!isLoggedIn && <Login style={mobileStyles.login} />}
+          {!isLoggedIn && <Login onToken={onToken} style={mobileStyles.login} />}
           <Notifications />
         </Mobile>
       </div>
@@ -92,6 +93,7 @@ Layout.propTypes = {
   isLoggedIn: PropTypes.bool,
   systemLocked: PropTypes.bool,
   systemName: PropTypes.string,
+  onToken: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

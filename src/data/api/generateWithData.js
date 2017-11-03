@@ -20,6 +20,7 @@ import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
 
 import getSetProfileImage from './requests/getSetProfileImage';
+import getLoginWithToken from './requests/getLoginWithToken';
 
 const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
@@ -48,6 +49,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
     },
     requests: {
       setProfileImage: getSetProfileImage(automateUrl),
+      loginWithToken: getLoginWithToken(automateUrl),
     },
   };
   return withData;

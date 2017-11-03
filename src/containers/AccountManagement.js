@@ -48,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
   onSetLoggedOut: () => {
     // why not could be safer if i screw shit up later
     // ...plus feels more satisfying for this to take longer...
+    window.localStorage.removeItem('automate:login:token');  // if this is in storage, we will automatically log the user back in
     window.location.reload();
   }
 });
