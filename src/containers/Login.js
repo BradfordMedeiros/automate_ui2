@@ -20,8 +20,15 @@ class Login extends Component {
   };
   tryLoginWithToken = async() => {
     if (this.props.token){
-      const newToken = await LoginWithToken(this.props.token);
-      this.props.onToken(newToken);
+      try{
+        const newToken = await LoginWithToken(this.props.token);
+        this.props.onToken(newToken);
+      }catch(err){
+        this.props.onClearToken();
+        this.setState({
+          showLoginScreen: true,
+        });
+      }
     }else{
       this.setState({
         showLoginScreen: true,
@@ -62,8 +69,6 @@ class Login extends Component {
                 const token = await loginWithPassword(username, password);
                 onToken(token);
               }catch(err){
-                console.warn('Invalid credentials');
-                console.warn(err);
                 this.onIncorrectPassword();
               }
             }}
@@ -85,6 +90,7 @@ class Login extends Component {
 
 Login.propTypes = {
   onToken: PropTypes.func,
+  onClearToken: PropTypes.func,
   token: PropTypes.string,
 };
 

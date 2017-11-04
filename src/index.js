@@ -48,6 +48,10 @@ class MainApp extends Component {
       loadingTokens: false,
     });
   };
+  clearToken = () => {
+    localStorage.removeItem('automate:login:token');
+    this.props.store.dispatch(setToken(null));
+  };
   saveToken = token => {
     // put token into redux + local storage
     window.localStorage.setItem('automate:login:token', token);
@@ -62,6 +66,7 @@ class MainApp extends Component {
       <Layout
         systemLocked={isLocked === true}
         systemName={systemName}
+        onClearToken={this.clearToken}
         onToken={tokenServerResponse => {
           this.saveToken(tokenServerResponse);
           this.props.store.dispatch(setLoggedIn({ username: 'debug, this should not be used'  }))

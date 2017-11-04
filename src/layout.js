@@ -42,6 +42,7 @@ class Layout extends Component {
       systemLocked,
       systemName,
       onToken,
+      onClearToken,
     } = this.props;
 
     const shouldHideMenu = hideMenu || !isLoggedIn || systemLocked;
@@ -66,7 +67,7 @@ class Layout extends Component {
             right={desktopStyles.overlay(shouldHideMenu).right}
           />
           <DisconnectedOverlay />
-          {!isLoggedIn && <Login onToken={onToken} style={desktopStyles.login} />}
+          {!isLoggedIn && <Login onToken={onToken} onClearToken={onClearToken} style={desktopStyles.login} />}
           <Notifications />
         </Desktop>
 
@@ -80,7 +81,7 @@ class Layout extends Component {
           <Drawer style={mobileStyles.drawer} tileNames={tileNames} />
           <Grid tileNames={tileNames} tileNameToTile={tileNameToTile} style={mobileStyles.grid} />
           <SelectionOverlay left={mobileStyles.overlay.left} right={mobileStyles.overlay.right} />
-          {!isLoggedIn && <Login onToken={onToken} style={mobileStyles.login} />}
+          {!isLoggedIn && <Login onToken={onToken} onClearToken={onClearToken} style={mobileStyles.login} />}
           <Notifications />
         </Mobile>
       </div>
