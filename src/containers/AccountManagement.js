@@ -8,7 +8,6 @@ const setProfileImage = WithData.requests.setProfileImage;
 const WithMyAccount = WithData.polling.WithMyAccount;
 
 const AccountManagement = ({
-  activeUserEmail,
   onSetLoggedOut,
   token,
 }) => (
@@ -16,7 +15,6 @@ const AccountManagement = ({
     token={token}
   >
     {({
-      username,
       email,
       alias,
       isAdmin,
@@ -26,7 +24,6 @@ const AccountManagement = ({
     }) => {
       return (
         <AccountManagementComponent
-          username={username}
           email={email}
           alias={alias}
           isAdmin={isAdmin}
@@ -35,7 +32,7 @@ const AccountManagement = ({
           disableUserAccountCreation={disableUserAccountCreation}
           onLogout={onSetLoggedOut}
           onUploadImage={imageUrl => {
-            setProfileImage(activeUserEmail, imageUrl);
+            setProfileImage(email, imageUrl);
           }}
         />
       )
@@ -44,7 +41,6 @@ const AccountManagement = ({
 );
 
 const mapStateToProps = state => ({
-  activeUserEmail: state.getIn(['reducer', 'activeUserEmail']),
   token: state.getIn(['reducer', 'token']),
 });
 

@@ -14,13 +14,10 @@ const styles = {
 };
 
 const AccountInformation = ({
-  username,
   email,
   alias,
 }) => (
   <div>
-    <div style={styles.header}>Username</div>
-    <div style={styles.field}>{username || 'Error Retrieving Information'}</div>
     <div style={styles.header}>Email</div>
     <div style={styles.field}>{email || 'Error Retrieving Information'}</div>
     <div style={styles.header}>Alias</div>
@@ -29,7 +26,6 @@ const AccountInformation = ({
 );
 
 AccountInformation.propTypes = {
-  username: PropTypes.string,
   email: PropTypes.string,
   alias: PropTypes.string,
 };

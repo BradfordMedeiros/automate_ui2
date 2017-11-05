@@ -65,15 +65,15 @@ class Login extends Component {
             }}
             onLoginWithPassword={async (user, password) => {
               try {
-                const username = user.username;
-                const token = await loginWithPassword(username, password);
+                const email = user.email;
+                const token = await loginWithPassword(email, password);
                 onToken(token);
               }catch(err){
                 this.onIncorrectPassword();
               }
             }}
-            onCreateAccount={({ username, password }) => {
-              createUser(username, password);
+            onCreateAccount={({ email, password,  alias}) => {
+              createUser(email, password, alias);
             }}
             selectedAccountIndex={this.state.selectedAccountIndex}
             onSelectAccount={selectedAccountIndex => {

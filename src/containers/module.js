@@ -4,7 +4,6 @@ const initialState = fromJS({
   isLoggedIn: false,
   token: null,
   isLocked: true,
-  activeUserEmail: null,
   menuIsHidden: false,
   menuExpanded: false,
   drawerOpen: false,
@@ -43,7 +42,7 @@ export  const setToken = token => ({
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'login': {
-     return state.set('isLoggedIn', true).set('activeUserEmail', action.username);
+     return state.set('isLoggedIn', true);
     }
     case 'setToken': {
       return state.set('token', action.token);

@@ -84,7 +84,6 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
       const data = this.state.data;
 
       return children ? children({
-        username: data.username,
         email: data.email,
         alias: data.alias,
         isAdmin: data.isAdmin,

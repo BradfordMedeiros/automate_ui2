@@ -7,13 +7,13 @@ import Back from 'material-ui/svg-icons/navigation/arrow-back';
 
 class CreateAccountScreen extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
     alias: '',
   };
   createAccount = () => {
     this.props.onCreateAccount({
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
       alias: this.state.alias,
     })
@@ -34,9 +34,9 @@ class CreateAccountScreen extends Component {
       }}>
         <IconButton onClick={onClickBack} style={{ marginTop: 22, marginRight: 8 }}><Back /></IconButton>
         <TextField
-          onChange={(_, username) => {
+          onChange={(_, email) => {
             this.setState({
-              username,
+              email,
             })
           }}
           floatingLabelFixed

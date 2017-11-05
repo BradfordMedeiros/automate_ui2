@@ -40,12 +40,15 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     }
   };
 
-  const addAccount = async (username, password) => {
-    if (typeof(username) !== typeof('')){
-      throw (new Error('username is undefined'));
+  const addAccount = async (email, password, alias) => {
+    if (typeof(email) !== typeof('')){
+      throw (new Error('email is undefined'));
     }
     if (typeof(password) !== typeof('')){
       throw (new Error('password is undefined'));
+    }
+    if (typeof(alias) !== typeof('')){
+      throw (new Error('alias is undefined'));
     }
 
     const response = await fetch(`${accountsUrl}/createUser`, {
@@ -56,17 +59,18 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
         Accept: 'application/json',
       }),
       body: JSON.stringify({
-        username,
+        email,
         password,
+        alias,
       }),
     });
     return response;
   };
 
 
-  const loginWithPassword = async (username, password) => {
-    if (typeof(username) !== typeof('')){
-      throw (new Error('username is undefined'));
+  const loginWithPassword = async (email, password) => {
+    if (typeof(email) !== typeof('')){
+      throw (new Error('email is undefined'));
     }
     if (typeof(password) !== typeof('')){
       throw (new Error('password is undefined'));
@@ -80,7 +84,7 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
         Accept: 'application/json',
       }),
       body: JSON.stringify({
-        username,
+        email,
         password,
       }),
     });
@@ -136,8 +140,8 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
         users,
         isAccountCreationAdminOnly,
         loginWithPassword,
-        createUser: async (username, password) => {
-          await addAccount(username, password);
+        createUser: async (email, password, alias) => {
+          await addAccount(email, password, alias);
           this.makeRequest();
         },
       }) : null;

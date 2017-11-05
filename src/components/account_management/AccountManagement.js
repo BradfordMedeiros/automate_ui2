@@ -40,7 +40,6 @@ class AccountManagement extends Component {
   };
   render() {
     const {
-      username,
       email,
       alias,
       isAdmin,
@@ -122,7 +121,6 @@ class AccountManagement extends Component {
           />
         ): (
           <AccountInformation
-            username={username}
             email={email}
             alias={alias}
           />
@@ -133,7 +131,6 @@ class AccountManagement extends Component {
 }
 
 AccountManagement.propTypes = {
-  username: PropTypes.string,
   email: PropTypes.string,
   alias: PropTypes.string,
   isAdmin: PropTypes.bool,
