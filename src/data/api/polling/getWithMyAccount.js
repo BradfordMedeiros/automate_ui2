@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
 const getWithMyAccount = (AUTOMATE_CORE_URL) => {
-  const adminUrl = `${AUTOMATE_CORE_URL}/accounts`;
+  const accountsUrl = `${AUTOMATE_CORE_URL}/accounts`;
 
   const request = async token => {
     if (typeof(token) !== typeof('')){
@@ -10,7 +10,7 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
       throw (new Error('no token provided'));
     }
     try {
-      const response = await fetch(`${adminUrl}/myAccount`, {
+      const response = await fetch(`${accountsUrl}/myAccount`, {
         mode: 'cors',
         method: 'POST',
         headers: new Headers({
@@ -36,19 +36,40 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
   };
 
   const enableUserAccountCreation = async () => {
-    return await fetch(`${adminUrl}/enableUserAccountCreation`, {
+    return await fetch(`${accountsUrl}/enableUserAccountCreation`, {
       method: 'POST',
       mode: 'cors',
     });
   };
 
   const disableUserAccountCreation = async () => {
-    return await fetch(`${adminUrl}/disableUserAccountCreation`, {
+    return await fetch(`${accountsUrl}/disableUserAccountCreation`, {
       method: 'POST',
       mode: 'cors',
     });
   };
 
+  const setProfileImage = async(email, imageUrl) => {
+    if (typeof(email) !== typeof('')) {
+      throw (new Error('email is undefined'));
+    }
+    if (typeof(imageUrl) !== typeof('')) {
+      throw (new Error('password is undefined'));
+    }
+
+    const response = await fetch(`${accountsUrl}/setProfileImage`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        email,
+        imageUrl,
+      }),
+    })
+  };
 
 
   class WithMyAccount extends Component {
@@ -88,12 +109,17 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
         alias: data.alias,
         isAdmin: data.isAdmin,
         admin: data.admin,
+        imageURL: data.imageURL,
         enableUserAccountCreation: async () => {
           await enableUserAccountCreation();
           this.makeRequest();
         },
         disableUserAccountCreation: async () => {
           await disableUserAccountCreation();
+          this.makeRequest();
+        },
+        setProfileImage: async (email, imageUrl) => {
+          await setProfileImage(email,  imageUrl);
           this.makeRequest();
         },
       }) : null;

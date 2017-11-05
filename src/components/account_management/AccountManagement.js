@@ -42,6 +42,7 @@ class AccountManagement extends Component {
     const {
       email,
       alias,
+      imageURL,
       isAdmin,
       allowUserCreation,
       enableUserAccountCreation,
@@ -93,7 +94,7 @@ class AccountManagement extends Component {
           height: 100,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ border: '1px solid black', cursor: 'pointer', width: 100, height: 100 }} />
+            <div style={{ background: `url(${imageURL})`, backgroundSize: 'contain', border: '1px solid black', cursor: 'pointer', width: 100, height: 100 }} />
             <div style={{ marginLeft: 48 }}>{this.state.showAdminSettings ? 'Admin Settings': 'My Account'}</div>
           </div>
           <div>
@@ -133,6 +134,7 @@ class AccountManagement extends Component {
 AccountManagement.propTypes = {
   email: PropTypes.string,
   alias: PropTypes.string,
+  imageURL: PropTypes.string,
   isAdmin: PropTypes.bool,
   allowUserCreation: PropTypes.bool,
   enableUserAccountCreation: PropTypes.func,

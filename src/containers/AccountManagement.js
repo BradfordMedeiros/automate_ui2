@@ -4,7 +4,6 @@ import { setLoggedOut } from './module';
 import AccountManagementComponent from '../components/account_management/AccountManagement';
 import WithData from '../data/WithData';
 
-const setProfileImage = WithData.requests.setProfileImage;
 const WithMyAccount = WithData.polling.WithMyAccount;
 
 const AccountManagement = ({
@@ -17,15 +16,18 @@ const AccountManagement = ({
     {({
       email,
       alias,
+      imageURL,
       isAdmin,
       admin,
       enableUserAccountCreation,
       disableUserAccountCreation,
+      setProfileImage,
     }) => {
       return (
         <AccountManagementComponent
           email={email}
           alias={alias}
+          imageURL={imageURL}
           isAdmin={isAdmin}
           allowUserCreation={admin && admin.allowAccountCreation}
           enableUserAccountCreation={enableUserAccountCreation}
