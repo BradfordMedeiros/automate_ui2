@@ -4,12 +4,25 @@ import fetch from 'isomorphic-fetch';
 const getWithMyAccount = (AUTOMATE_CORE_URL) => {
   const adminUrl = `${AUTOMATE_CORE_URL}/accounts`;
 
-  const request = async () => {
+  const request = async token => {
+    if (typeof(token) !== typeof('')){
+      console.error('no auth token provided');
+      throw (new Error('no token provided'));
+    }
     try {
       const response = await fetch(`${adminUrl}/myAccount`, {
-        method: 'GET',
         mode: 'cors',
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        body: JSON.stringify({
+          token,
+        }),
+
       });
+
       const text = await response.text();
       try {
         const parsedText = JSON.parse(text);
@@ -50,12 +63,13 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
       this.makeRequest();
     }
     makeRequest = () => {
-      request().then((response) => {
+      request(this.props.token).then((response) => {
         this.setState({
           data: response,
         });
       }).catch(() => {
         this.setState({
+          data: {},
           error: true,
         })
       });
@@ -90,6 +104,7 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
   WithMyAccount.propTypes = {
     whileLoading: PropTypes.func,
     children: PropTypes.func,
+    token: PropTypes.string,
   };
 
   return WithMyAccount;

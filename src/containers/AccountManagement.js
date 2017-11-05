@@ -10,8 +10,11 @@ const WithMyAccount = WithData.polling.WithMyAccount;
 const AccountManagement = ({
   activeUserEmail,
   onSetLoggedOut,
+  token,
 }) => (
-  <WithMyAccount>
+  <WithMyAccount
+    token={token}
+  >
     {({
       username,
       email,
@@ -27,7 +30,7 @@ const AccountManagement = ({
           email={email}
           alias={alias}
           isAdmin={isAdmin}
-          allowUserCreation={admin.allowAccountCreation}
+          allowUserCreation={admin && admin.allowAccountCreation}
           enableUserAccountCreation={enableUserAccountCreation}
           disableUserAccountCreation={disableUserAccountCreation}
           onLogout={onSetLoggedOut}
@@ -42,6 +45,7 @@ const AccountManagement = ({
 
 const mapStateToProps = state => ({
   activeUserEmail: state.getIn(['reducer', 'activeUserEmail']),
+  token: state.getIn(['reducer', 'token']),
 });
 
 const mapDispatchToProps = dispatch => ({
