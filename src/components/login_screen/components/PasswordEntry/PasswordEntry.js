@@ -13,7 +13,6 @@ class PasswordEntry extends Component {
   };
   render() {
     const { isHidden, errorText, onPasswordTextChange } = this.props;
-    console.log('error tedt: ', errorText);
     return (
       <div style={{
         transition: 'opacity 0.1s ease-in',

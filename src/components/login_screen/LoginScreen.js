@@ -1,23 +1,39 @@
-
 import React, { PropTypes, Component } from 'react';
 import SavedUsers from './components/SavedUsers/SavedUsers';
 import CreateAccountScreen from './components/CreateAccountScreen';
+import ForgotPasswordScreen from './components/ForgotPasswordScreen';
 import PasswordEntry from './components/PasswordEntry/PasswordEntry';
 import './style.css';
 
 
 class LoginScreen extends Component {
   state = {
-    creatingAccount: false,
+      loginState: 'login',
   };
   selectUser = selectedIndex => {
     this.props.onSelectAccount(selectedIndex);
   };
   handleCreateAccount = userInfo => {
     this.props.onCreateAccount(userInfo);
+    this.goToMainScreen();
+  };
+  isMainScreen = () => this.state.loginState === 'login';
+  isCreateAccountScreen = ()  => this.state.loginState === 'create';
+  isResetPasswordScreen = () => this.state.loginState === 'reset';
+  goToMainScreen = () => {
     this.setState({
-      creatingAccount: false,
-    })
+      loginState: 'login',
+    });
+  };
+  goToCreateAccountScreen = () => {
+    this.setState({
+      loginState: 'create',
+    });
+  };
+  goToResetPasswordScreen = () => {
+    this.setState({
+      loginState: 'reset',
+    });
   };
   render() {
     const {
@@ -46,34 +62,32 @@ class LoginScreen extends Component {
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-          {this.state.creatingAccount && (
+          {this.isCreateAccountScreen() && (
             <CreateAccountScreen
               onCreateAccount={this.handleCreateAccount}
-              onClickBack={() => {
-                this.setState({
-                  creatingAccount: false,
-                });
-              }}
+              onClickBack={this.goToMainScreen}
+            />
+          )}
+          {this.isResetPasswordScreen() && (
+            <ForgotPasswordScreen
+              onClickBack={this.goToMainScreen}
             />
           )}
 
-          {!this.state.creatingAccount && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
-          {!this.state.creatingAccount && (
+
+          {this.isMainScreen() && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
+          {this.isMainScreen() && (
             <PasswordEntry
-              errorText={errorText}
+              errorText={errorText && <div>{errorText}  <div style={{ cursor: 'pointer'}} onClick={this.goToResetPasswordScreen}>forgot password?</div></div>}
               isHidden={selectedAccountIndex === -1}
               user={users[selectedAccountIndex]}
               onLoginWithPassword={onLoginWithPassword}
               onPasswordTextChange={onPasswordTextChange}
             />
           )}
-          {!this.state.creatingAccount && <div style={{ marginBottom: '2em'}} />}
-          {!this.state.creatingAccount && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
-            {showCreateAccount && <div className="login_selection" onClick={() => {
-              this.setState({
-                creatingAccount: true,
-              })
-            }}>create account</div>}
+          {this.isMainScreen() && <div style={{ marginBottom: '2em'}} />}
+          {this.isMainScreen() && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
+            {showCreateAccount && <div className="login_selection" onClick={this.goToCreateAccountScreen}>create account</div>}
           </div>}
         </div>
       </div>
