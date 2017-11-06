@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import SavedUsers from './components/SavedUsers/SavedUsers';
 import CreateAccountScreen from './components/CreateAccountScreen';
 import ForgotPasswordScreen from './components/ForgotPasswordScreen';
+import SetNewPasswordScreen from './components/SetNewPasswordScreen';
 import PasswordEntry from './components/PasswordEntry/PasswordEntry';
 import './style.css';
 
@@ -17,9 +18,10 @@ class LoginScreen extends Component {
     this.props.onCreateAccount(userInfo);
     this.goToMainScreen();
   };
-  isMainScreen = () => this.state.loginState === 'login';
-  isCreateAccountScreen = ()  => this.state.loginState === 'create';
-  isResetPasswordScreen = () => this.state.loginState === 'reset';
+  isMainScreen = () => this.state.loginState === 'login'  && !this.isSetNewPasswordScreen();
+  isCreateAccountScreen = ()  => this.state.loginState === 'create' && !this.isSetNewPasswordScreen();
+  isResetPasswordScreen = () => this.state.loginState === 'reset' && !this.isSetNewPasswordScreen();
+  isSetNewPasswordScreen = () => this.props.resetToken != null;
   goToMainScreen = () => {
     this.setState({
       loginState: 'login',
@@ -41,10 +43,15 @@ class LoginScreen extends Component {
       selectedAccountIndex,
       onLoginWithPassword,
       onPasswordTextChange,
+      onSendResetEmail,
+      onSetPassword,
       showCreateAccount,
+      resetToken,
+      resetErrorText,
       errorText,
       style
     } = this.props;
+
     return (
       <div style={{
         position: 'absolute',
@@ -70,10 +77,20 @@ class LoginScreen extends Component {
           )}
           {this.isResetPasswordScreen() && (
             <ForgotPasswordScreen
+              onSendResetEmail={() => {
+                const user = users[selectedAccountIndex];
+                onSendResetEmail(user);
+              }}
               onClickBack={this.goToMainScreen}
             />
           )}
 
+          {this.isSetNewPasswordScreen() && (
+            <SetNewPasswordScreen
+              resetErrorText={resetErrorText}
+              onSetPassword={onSetPassword}
+            />
+          )}
 
           {this.isMainScreen() && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
           {this.isMainScreen() && (
@@ -102,7 +119,11 @@ LoginScreen.propTypes = {
   onSelectAccount: PropTypes.func,
   selectedAccountIndex: PropTypes.number,
   onLoginWithPassword: PropTypes.func,
+  onSendResetEmail: PropTypes.func,
+  onSetPassword: PropTypes.func,
   onPasswordTextChange: PropTypes.func,
+  resetToken: PropTypes.string,
+  resetErrorText: PropTypes.string,
   errorText: PropTypes.string,
 };
 

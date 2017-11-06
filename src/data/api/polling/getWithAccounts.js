@@ -96,6 +96,53 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
     }
   };
 
+  const requestResetPassword = async email => {
+    if (typeof(email) !== typeof('')){
+      throw (new Error('email is undefined'));
+    }
+
+    const response = await fetch(`${accountsUrl}/requestPasswordReset`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        email,
+      }),
+    });
+    return response;
+  };
+
+  const confirmResetPassword = async (token, newPassword) => {
+    if (typeof(token) !== typeof('')){
+      throw (new Error('token is undefined'));
+    }
+    if (typeof('newPassword') !== typeof('')){
+      throw (new Error('password is undefined'));
+    }
+
+    const response = await fetch(`${accountsUrl}/confirmResetPassword`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        token,
+        new_password: newPassword,
+      }),
+    });
+
+    if (response.status === 200){
+      return response;
+    }else{
+      throw (new Error('error resetting password'));
+    }
+  };
+
   class WithAccounts extends Component {
     constructor(props) {
       super(props);
@@ -140,6 +187,8 @@ const getWithAccounts = (AUTOMATE_CORE_URL) => {
         users,
         isAccountCreationAdminOnly,
         loginWithPassword,
+        requestResetPassword,
+        confirmResetPassword,
         createUser: async (email, password, alias) => {
           await addAccount(email, password, alias);
           this.makeRequest();

@@ -11,6 +11,7 @@ class ForgotPasswordScreen extends Component {
     hasSentReset: false,
   };
   onSendResetEmail = () => {
+    this.props.onSendResetEmail();
     this.setState({
       hasSentReset: true,
     })
@@ -44,46 +45,7 @@ class ForgotPasswordScreen extends Component {
 
 ForgotPasswordScreen.propTypes = {
   onClickBack: PropTypes.func,
-  onCreateAccount: PropTypes.func,
+  onSendResetEmail: PropTypes.func,
 };
 
 export default ForgotPasswordScreen;
-
-/*
-
- <TextField
- onChange={(_, email) => {
- this.setState({
- email,
- })
- }}
- floatingLabelFixed
- floatingLabelText="email"
- hintText="email used to login"
- />
- <TextField
- onChange={(_, password) => {
- this.setState({
- password,
- });
- }}
- floatingLabelFixed
- floatingLabelText="password"
- hintText="unrestricted character domain"
- />
- <TextField
- onChange={(_, alias) => {
- this.setState({
- alias,
- })
- }}
- floatingLabelFixed
- floatingLabelText="alias"
- hintText="Used to identify accounts"
- />
- <FlatButton
- label="Create"
- onClick={this.createAccount}
- style={{ marginTop: 22 }}
- />
- */
