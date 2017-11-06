@@ -61,7 +61,7 @@ class MenuContainer extends Component {
           icon: <ActionHome />,
           onClick: () => this.onGridClick('Home'),
         },
-        /*{
+        {
           label: 'My Grids',
           icon: <ActionDashboard />,
           children: [
@@ -84,7 +84,7 @@ class MenuContainer extends Component {
             },
             ...menuItems,
           ],
-        },*/
+        },
       {
         label: 'Online',
         icon: <ActionDashboard />,
