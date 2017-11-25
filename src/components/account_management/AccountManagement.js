@@ -94,7 +94,7 @@ class AccountManagement extends Component {
           height: 100,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ background: `url(${imageURL})`, backgroundSize: 'contain', border: '1px solid black', cursor: 'pointer', width: 100, height: 100 }} />
+            <div onClick={this.showImageUpload} style={{ background: `url(${imageURL})`, backgroundSize: 'contain', border: '1px solid black', cursor: 'pointer', width: 100, height: 100 }} />
             <div style={{ marginLeft: 48 }}>{this.state.showAdminSettings ? 'Admin Settings': 'My Account'}</div>
           </div>
           <div>
@@ -109,7 +109,6 @@ class AccountManagement extends Component {
                 }
               }}
             />}
-            <RaisedButton style={{ margin: 4 }} label="Set Profile Icon" onClick={this.showImageUpload} />
             <RaisedButton style={{ margin: 4 }} label="Logout" onClick={onLogout} />
           </div>
         </div>
