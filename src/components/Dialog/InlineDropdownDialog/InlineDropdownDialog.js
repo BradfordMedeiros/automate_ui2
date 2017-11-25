@@ -28,7 +28,7 @@ class InlineDropdownDialog extends Component {
           closeDialog();
         }}
       >
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <DropDownMenu
             value={items[this.state.leftItemSelected]}
             onChange={(_, leftItemSelected) => {
@@ -46,11 +46,10 @@ class InlineDropdownDialog extends Component {
               />),
             )}
           </DropDownMenu>
-          <div style={{ display: 'inline-block' }}>
+          <div style={{ marginTop: -8 }}>
             <Transforms
               selectedValue={this.state.newAction ? this.state.newAction.value : undefined}
               onChange={(newAction) => {
-                window.na = newAction;
                 this.setState({
                   newAction: ({
                     options: newAction,
