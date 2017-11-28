@@ -24,6 +24,7 @@ class PasswordEntry extends Component {
         background: 'rgb(10,10,10)',
       }}>
         <TextField
+          type="password"
           className={errorText ? 'shake_error': undefined}
           errorText={errorText}
           value={this.state.password}
