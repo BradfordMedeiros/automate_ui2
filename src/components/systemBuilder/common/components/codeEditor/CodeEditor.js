@@ -15,9 +15,6 @@ class CodeEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    window.p = this.props;
-    window.np = nextProps;
-    console.error('new props: ', nextProps.name);
     if (this.props.name !== nextProps.name){
       this.text = nextProps.initialText;
     }
