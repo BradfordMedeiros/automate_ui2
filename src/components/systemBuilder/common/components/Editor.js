@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import CodeEditor from './codeEditor/CodeEditor';
 
-const Editor = ({ initialText, onTextChange, readOnly, style }) => (
+const Editor = ({ initialText, onTextChange, name, style }) => (
   <div style={style}>
     <div
       style={{
@@ -10,17 +10,16 @@ const Editor = ({ initialText, onTextChange, readOnly, style }) => (
       }}
     >
       <CodeEditor
-        readOnly={readOnly}
         onTextChange={onTextChange}
-        style={{ height: '100%', width: '100%', background: '#303030' }}
         initialText={initialText}
+        name={name}
       />
     </div>
   </div>
 );
 
 Editor.propTypes = {
-  readOnly: PropTypes.bool,
+  name: PropTypes.string,
   initialText: PropTypes.string,
   onTextChange: PropTypes.func,
   style: PropTypes.object,

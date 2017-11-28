@@ -21,7 +21,7 @@ class JavascriptsFields extends Component {
     code: '',
   }
   render() {
-    const { initialText, upload } = this.props;
+    const { initialText, upload, name } = this.props;
     return (
       <div>
         <ItemWrapper
@@ -57,6 +57,7 @@ class JavascriptsFields extends Component {
             <Editor
               key={this.state.editorKey}
               initialText={initialText}
+              name={name}
               onTextChange={(code) => {
                 this.setState({
                   code,
@@ -75,6 +76,7 @@ class JavascriptsFields extends Component {
 JavascriptsFields.propTypes = {
   initialText: PropTypes.string,
   upload: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default JavascriptsFields;
