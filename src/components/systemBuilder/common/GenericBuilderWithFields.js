@@ -18,7 +18,6 @@ class ActionBuilder extends Component {
       axiomClass,
     } = this.props;
 
-    console.error('name is: ', actionName)
     return (
       <GenericBuilder
         axiomClass={axiomClass}
