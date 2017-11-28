@@ -7,13 +7,13 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
   const STATES_URL = `${AUTOMATE_CORE_URL}/states`;
 
   const deleteState = async stateName => (
-    fetch(`${STATES_URL}/${stateName}`, {
+    await fetch(`${STATES_URL}/${stateName}`, {
       method: 'DELETE',
     })
   );
 
   const addState = async stateName => (
-    fetch(`${STATES_URL}/modify/states/${stateName}`, {
+    await  fetch(`${STATES_URL}/modify/states/${stateName}`, {
       method: 'POST',
     })
   );
@@ -23,7 +23,7 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
     const stateEval = evalLogic;
 
     return (
-      fetch(`${STATES_URL}/modify/${stateName}`, {
+      await fetch(`${STATES_URL}/modify/${stateName}`, {
         headers: new Headers({
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -43,14 +43,9 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
       this.state = {
         hasData: false,
       };
-      this.handle = undefined;
     }
     componentWillMount() {
       this.getData();
-      this.handle = setInterval(this.getData, REFRESH_RATE);
-    }
-    componentWillUnmount() {
-      clearInterval(this.handle);
     }
     getData = async () => {
       try {
@@ -68,7 +63,6 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
           states: states.states,
         });
       } catch (err) {
-        /* eslint-disable no-console */
         console.error('error while fetching ', err);
       }
     }
@@ -77,9 +71,26 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
       const { hasData, states } = this.state;
 
       if (hasData && children) {
-        return children({ states, addState, deleteState, saveState });
+        return children({
+          states,
+          addState:  async (stateName) => {
+            console.log('add state-------');
+            await addState(stateName);
+            this.getData();
+          },
+          deleteState:  async (stateName) => {
+            await deleteState(stateName);
+            this.getData();
+          },
+          saveState: async (stateName, evalLogic) => {
+            await saveState(stateName, evalLogic);
+            this.getData();
+          }});
+
       } else if (children && renderWhileLoading) {
-        return children({ states: [], addState, deleteState, saveState });
+        return children({
+          states: [],
+        });
       }
       return null;
     }

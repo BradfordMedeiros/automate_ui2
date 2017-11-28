@@ -36,7 +36,7 @@ const getWithActions = (AUTOMATE_CORE_URL) => {
     })
   );
 
-
+  // @todo should remove probaby?
   const executeAction = async actionName => (
     fetch(`${ACTIONS_URL}/${actionName}`, {
       method: 'POST',
@@ -49,14 +49,9 @@ const getWithActions = (AUTOMATE_CORE_URL) => {
       this.state = {
         hasData: false,
       };
-      this.handle = undefined;
     }
     componentWillMount() {
-      this.handle = setInterval(this.getData, REFRESH_RATE);
       this.getData();
-    }
-    componentWillUnmount() {
-      clearInterval(this.handle);
     }
     getData = async () => {
       try {
@@ -81,9 +76,24 @@ const getWithActions = (AUTOMATE_CORE_URL) => {
       const { hasData, actions } = this.state;
 
       if (hasData && children) {
-        return children({ actions, addAction, deleteAction, saveAction, executeAction });
+        return children({
+          actions,
+          addAction: async actionName => {
+            await addAction(actionName);
+            this.getData();
+          } ,
+          deleteAction: async actionName => {
+            await deleteAction(actionName);
+            this.getData();
+          },
+          saveAction: async (actionName, evalLogic) => {
+            await saveAction(actionName, evalLogic);
+            this.getData();
+          },
+          executeAction
+        });
       } else if (children && renderWhileLoading) {
-        return children({ actions: [], addAction, deleteAction, saveAction, executeAction });
+        return children({ actions: [] });
       }
       return null;
     }

@@ -43,14 +43,9 @@ const getWithConditions = (automateUrl) => {
       this.state = {
         hasData: false,
       };
-      this.handle = undefined;
     }
     componentWillMount() {
       this.getData();
-      this.handle = setInterval(this.getData, REFRESH_RATE);
-    }
-    componentWillUnmount() {
-      clearInterval(this.handle);
     }
     getData = async () => {
       try {
@@ -73,7 +68,21 @@ const getWithConditions = (automateUrl) => {
     render() {
       const { children } = this.props;
       const { hasData, conditions } = this.state;
-      return (hasData && children) ? children({ conditions, addCondition, saveCondition, deleteCondition }) : null;
+      return (hasData && children) ? children({
+        conditions,
+        addCondition: async conditionName => {
+          await addCondition(conditionName);
+          this.getData();
+        },
+        saveCondition: async (conditionName, evalLogic) => {
+          await saveCondition(conditionName, evalLogic);
+          this.getData();
+        },
+        deleteCondition: async conditionName => {
+          await deleteCondition(conditionName);
+          this.getData();
+        }
+      }) : null;
     }
   }
 

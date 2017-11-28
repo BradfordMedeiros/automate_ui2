@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import GenericBuilder from './GenericBuilder';
-import ExecutableFields from './executables/ExecutableFields';
 import JavascriptsFields from './javascripts/JavascriptsFields';
 import MqttFields from './mqtt/MqttFields';
 import { Desktop } from '../../../util/ViewportSizing';
@@ -19,6 +18,7 @@ class ActionBuilder extends Component {
       axiomClass,
     } = this.props;
 
+    console.error('name is: ', actionName)
     return (
       <GenericBuilder
         axiomClass={axiomClass}
@@ -29,12 +29,6 @@ class ActionBuilder extends Component {
         axiomName={actionName}
       >
         {(actions.length > 0) && <div>
-          {(actionType === 'executable') && (
-            <ExecutableFields
-              initialText={actionCode}
-              upload={onUpload}
-            />
-          )}
           <MqttFields
             topic={actionName}
           />
@@ -43,6 +37,7 @@ class ActionBuilder extends Component {
               <JavascriptsFields
                 initialText={actionCode}
                 upload={onUpload}
+                name={actionName}
               />
             )}
           </Desktop>
@@ -60,7 +55,7 @@ class ActionBuilder extends Component {
                 fontFamily: 'monospace',
                 fontSize: 48,
               }}>
-              no {axiomClass.toLowerCase()}
+              {axiomClass.toLowerCase()}
             </div>
           )}
       </GenericBuilder>

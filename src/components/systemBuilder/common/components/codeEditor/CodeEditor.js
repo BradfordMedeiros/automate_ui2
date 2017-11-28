@@ -1,27 +1,57 @@
 import React, { Component, PropTypes } from 'react';
-import './style.css';
+import AceEditor from 'react-ace';
+import brace from 'brace';
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
+import 'brace/ext/searchbox';
+import 'brace/ext/language_tools';
 
 class CodeEditor extends Component {
-  render() {
-    const { initialText, onTextChange, readOnly, style } = this.props;
-    return (
-      <div
-        style={{ ...style, overflow: 'auto', padding: 24, border: '1px solid black', color: 'white', height: '100%' }}
-        contentEditable={!(readOnly === true)}
-        onInput={x => onTextChange(x.target.innerText)}
-      >
-        {initialText}
-      </div>
+  text = '';
 
+  constructor(props) {
+    super(props);
+    this.text = props.initialText;
+  }
+
+  componentWillReceiveProps(nextProps){
+    window.p = this.props;
+    window.np = nextProps;
+    console.error('new props: ', nextProps.name);
+    if (this.props.name !== nextProps.name){
+      this.text = nextProps.initialText;
+    }
+  }
+
+  render() {
+    const { onTextChange } = this.props;
+    return (
+      <AceEditor
+        style={{ width:  '100%'}}
+        mode="javascript"
+        theme="monokai"
+        name="ace_editor"
+        onLoad={() => { }}
+        onChange={newCode => {
+          this.text = newCode;
+          onTextChange(newCode)
+        }}
+        fontSize={18}
+        showGutter={true}
+        highlightActiveLine={true}
+        enableBasicAutocompletion
+        enableLiveAutocompletion
+        showPrintMargin={false}
+        value={this.text}
+      />
     );
   }
 }
 
 CodeEditor.propTypes = {
-  style: PropTypes.object,
   initialText: PropTypes.string,
   onTextChange: PropTypes.func,
-  readOnly: PropTypes.bool,
+  name: PropTypes.string,
 };
 
 export default CodeEditor;
