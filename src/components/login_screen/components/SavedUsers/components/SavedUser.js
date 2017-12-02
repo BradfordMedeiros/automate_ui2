@@ -8,8 +8,8 @@ const SavedUser = ({ username, remote, isSelected, imageURL, onClick }) => {
       className="SavedUser"
       onClick={onClick}
       style={{
-        height: 140,
-        width: 140,
+        height: 180,
+        width: 180,
         background: imageURL ? `url(${imageURL})`: 'black',
         backgroundSize: 'contain',
         display: 'inline-table',
