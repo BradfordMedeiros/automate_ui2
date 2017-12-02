@@ -3,15 +3,12 @@ import { List, ListItem } from 'material-ui';
 import { List as IList } from 'immutable';
 import './style.css';
 
-const liStyle = {
-  border: '1px solid rgb(40,40,40)',
-};
 
 class Menu extends Component {
   renderItem = (item) => {
     if (typeof (item) === 'string') {
       return (
-        <ListItem style={liStyle}>
+        <ListItem>
           <div className="liname">{item}</div>
         </ListItem>
       );
@@ -21,14 +18,13 @@ class Menu extends Component {
         <ListItem
           primaryTogglesNestedList
           nestedItems={item.children.map(childItem => this.renderItem(childItem))}
-          style={liStyle}
         >
           <div className="liname">{item.label}</div>
         </ListItem>
       );
     }
     return (
-      <ListItem style={liStyle} onClick={item.onClick} >
+      <ListItem onClick={item.onClick} >
         <div className="liname">{item.label}</div>
       </ListItem>
     );
