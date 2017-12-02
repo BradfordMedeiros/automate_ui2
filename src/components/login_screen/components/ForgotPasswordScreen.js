@@ -31,7 +31,7 @@ class ForgotPasswordScreen extends Component {
         alignItems: 'center',
       }}>
         <IconButton onClick={onClickBack} style={{ marginRight: 8 }}><Back /></IconButton>
-        <div style={{ margin: 24 }}>Would you like us to send you a reset password email?</div>
+        <div style={{ margin: 24, fontSize: 20 }}>Would you like us to send you a reset password email?</div>
         <RaisedButton
           primary
           disabled={this.state.hasSentReset}
