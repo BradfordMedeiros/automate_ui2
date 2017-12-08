@@ -49,6 +49,11 @@ const TileDrawer = ({
     <Dialog
       open={showUploadDialog}
       onRequestClose={onUploadRequestClose}
+      bodyStyle={{
+        background: 'rgb(10,10,10)',
+        borderLeft: '1px solid steelblue',
+        borderRight: '1px solid steelblue',
+      }}
     >
       Tile Name:
         <TextField
@@ -62,7 +67,7 @@ const TileDrawer = ({
             onFormData(form);
           }}
         />
-      <FlatButton label="Upload" onClick={onUploadFileButtonClick} />
+      <FlatButton labelStyle={{ color: 'steelblue' }} label="Upload" onClick={onUploadFileButtonClick} />
     </Dialog>
     <div style={styles.tiles}>tiles</div>
     <div

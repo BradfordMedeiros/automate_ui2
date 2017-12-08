@@ -22,6 +22,7 @@ const handleChange = onChange => event => {
 const File = ({ onChange }) => (
   <input
     type="file"
+    style={{ marginLeft: 36 }}
     onChange={handleChange(onChange)}
   />
 );
