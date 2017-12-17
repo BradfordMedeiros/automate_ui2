@@ -29,7 +29,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     top: '30%',
-    color: 'rgb(210,210,210)',
+    color: 'rgb(240,240,240)',
     borderTop: '1px solid grey',
     borderBottom: '1px solid grey',
     textShadow: '0px 1px 1px black',
@@ -66,7 +66,7 @@ class Grid extends Component {
       <div>
         <div className="grid" style={style}>
           {(tileKeys.length === 0) && (
-            <div style={{width: '100%', height: '100%', background: 'rgba(0,0,0,0.9)'}} />
+            <div style={{width: '100%', height: '100%', background: 'rgba(0,0,0,0.8)'}} />
             )}
 
           <Desktop>
