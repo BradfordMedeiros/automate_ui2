@@ -12,6 +12,7 @@ import Menu from '../components/menu/menu';
 import MinimalMenu from '../components/menu/minimalMenu';
 import EventLog from './EventLog';
 import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
+import StyleSheetUpload from '../components/menu/components/StyleSheetUpload/StyleSheetUpload';
 import { expandMenu } from './module';
 import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module/module';
 
@@ -31,9 +32,10 @@ class MenuContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAddDialog: false,
       gridName: null,
+      showAddDialog: false,
       showSetBackgroundDialog: false,
+      showSetThemeDialog: false,
       backgroundUrl: false,
     };
   }
@@ -82,14 +84,22 @@ class MenuContainer extends Component {
                 });
               },
             },
+            {
+              label: 'Set App Theme',
+              onClick: () => {
+                this.setState({
+                  showSetThemeDialog: true,
+                });
+              },
+            },
             ...menuItems,
           ],
         },
-      {
+      /*{
         label: 'Online',
         icon: <ActionDashboard />,
         onClick: () => this.openContent(<iframe style={{ width: '100%', height: '100%' }} src="http://ign.com" />),
-      },
+      },*/
         {
           label: 'System',
           icon: <ActionCode />,
@@ -191,6 +201,20 @@ class MenuContainer extends Component {
             onSetGridBackground(this.state.backgroundUrl);
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
           }}
+        />
+        {/*<InlineTextfieldDialog
+          open={this.state.showSetThemeDialog}
+          closeDialog={() => { this.setState({ showSetThemeDialog: false }); }}
+          //onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }); }}
+          hintText={'theme'}
+          text={'Set stylesheet of the app'}
+          onOkClick={() => {
+            this.setState({ showSetThemeDialog: false  });
+          }}
+        />*/}
+        <StyleSheetUpload
+          open={this.state.showSetThemeDialog}
+          onUploadRequestClose={() => { this.setState({ showSetThemeDialog: false }); }}
         />
         {isMinimal ?
           <MinimalMenu
