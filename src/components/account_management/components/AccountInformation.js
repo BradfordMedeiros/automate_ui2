@@ -2,14 +2,17 @@ import React, { PropTypes } from 'react';
 
 const styles = {
   header: {
-    margin: 20,
-    boxShadow: '0px 0px 1px 1px black',
-    padding: 18,
-    background: '#383838',
+    marginTop: 20,
+    paddingTop: 18,
+    paddingLeft: 18,
+    color: 'rgb(120,120,120)',
+    borderBottom: '1px solid rgb(10,10,10)',
+    marginBottom: 14,
   },
   field: {
-    margin: 80,
-    marginTop: 0,
+    marginBottom: 40,
+    paddingLeft: 38,
+    color: 'whitesmoke',
   }
 };
 

@@ -6,6 +6,9 @@ const styles = {
  toggle: {
    padding: 48,
    boxShadow: '0px 0px 8px 1px black',
+ },
+ outer: {
+   marginTop: 80,
  }
 };
 const AdminSettings = ({
@@ -14,7 +17,7 @@ const AdminSettings = ({
   disableUserAccountCreation,
 }) => {
   return (
-    <div>
+    <div style={styles.outer}>
       <Toggle
         toggled={allowUserCreation}
         onToggle={(_, toggleState) => {
