@@ -37,7 +37,7 @@ const StylesheetUploadDialog = ({ open, onRequestClose }) => (
 
 StylesheetUploadDialog.propTypes = {
   showUploadDialog: PropTypes.bool,
-  onUploadRequestClose: PropTypes.func,
+  onRequestClose: PropTypes.func,
 };
 
 export default StylesheetUploadDialog;

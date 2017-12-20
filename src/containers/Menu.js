@@ -214,7 +214,7 @@ class MenuContainer extends Component {
         />*/}
         <StyleSheetUpload
           open={this.state.showSetThemeDialog}
-          onUploadRequestClose={() => { this.setState({ showSetThemeDialog: false }); }}
+          onRequestClose={() => { this.setState({ showSetThemeDialog: false }); }}
         />
         {isMinimal ?
           <MinimalMenu
