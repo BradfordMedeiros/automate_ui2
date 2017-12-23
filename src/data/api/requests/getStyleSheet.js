@@ -1,7 +1,8 @@
 
+import download from 'downloadjs';
 
 const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
-  //const accountsUrl = `${AUTOMATE_CORE_URL}/accounts`;
+  const themeUrl = `${AUTOMATE_CORE_URL}/theme`;
 
   /*const response = await fetch(`${accountsUrl}/loginWithToken`, {
     method: 'POST',
@@ -27,8 +28,13 @@ const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
     console.log('delete placeholder!');
   };
 
-  const downloadStylesheet = () => {
-    console.log('download placeholder!');
+  const downloadStylesheet = async () => {
+    const response = await fetch(themeUrl, {
+      method: 'GET',
+      mode: 'cors',
+    });
+    const blob = await response.blob();
+    download(blob, "user_style.css", "text/plain");
   };
 
   const uploadStylesheet =  stylesheetData => {
