@@ -9,6 +9,7 @@ const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
       method: 'DELETE',
       mode: 'cors',
     });
+    return response;
   };
 
   const downloadStylesheet = async() => {
@@ -21,7 +22,6 @@ const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
   };
 
   const uploadStylesheet = async stylesheetData => {
-    window.sd = stylesheetData;
     const response = await fetch(themeUrl, {
       method: 'POST',
       mode: 'cors',
@@ -33,6 +33,7 @@ const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
         style: stylesheetData,
       }),
     });
+    return response;
   };
 
   return ({

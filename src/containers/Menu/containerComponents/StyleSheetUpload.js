@@ -9,10 +9,14 @@ const StyleSheetUpload = ({  open, onRequestClose }) => (
   <StyleSheetUploadComponent
     open={open}
     onRequestClose={onRequestClose}
-    onDeleteStyle={deleteStylesheet}
+    onDeleteStyle={async () => {
+      await deleteStylesheet();
+      window.location.reload();
+    }}
     onDownloadStyle={downloadStylesheet}
-    onUploadStyle={styleSheetContent => {
-      uploadStylesheet(styleSheetContent);
+    onUploadStyle={async styleSheetContent => {
+      await uploadStylesheet(styleSheetContent);
+      window.location.reload();
     }}
   />
 );
