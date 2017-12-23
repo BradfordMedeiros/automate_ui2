@@ -8,25 +8,25 @@ import {
   ActionImportantDevices,
   ActionCode,
 } from 'material-ui/svg-icons';
-import Menu from '../components/menu/menu';
-import MinimalMenu from '../components/menu/minimalMenu';
-import EventLog from './EventLog';
-import InlineTextfieldDialog from '../components/Dialog/InlineTextfieldDialog';
-import StyleSheetUpload from '../components/menu/components/StyleSheetUpload/StyleSheetUpload';
-import { expandMenu } from './module';
-import { setContent, setActiveGrid, addGrid, setBackground } from './grid/module/module';
+import Menu from '../../components/menu/menu';
+import MinimalMenu from '../../components/menu/minimalMenu';
+import EventLog from '../EventLog';
+import InlineTextfieldDialog from '../../components/Dialog/InlineTextfieldDialog';
+import StyleSheetUpload from './containerComponents/StyleSheetUpload';
+import { expandMenu } from '../module';
+import { setContent, setActiveGrid, addGrid, setBackground } from '../grid/module/module';
 
-import DeviceInfo from './DeviceInfo';
-import Database from './Database';
-import Environment from './Environment';
+import DeviceInfo from '../DeviceInfo';
+import Database from '../Database';
+import Environment from '../Environment';
 
-import ActionBuilder from './system/base/ActionsBuilder';
-import StateBuilder from './system/base/StatesBuilder';
-import ConditionBuilder from './system/base/ConditionsBuilder';
+import ActionBuilder from '../system/base/ActionsBuilder';
+import StateBuilder from '../system/base/StatesBuilder';
+import ConditionBuilder from '../system/base/ConditionsBuilder';
 
-import SequenceBuilder from './system/engines/SequencesBuilder';
-import ScheduleBuilder from './system/engines/ScheduleBuilder';
-import RuleBuilder from './system/engines/RuleBuilder';
+import SequenceBuilder from '../system/engines/SequencesBuilder';
+import ScheduleBuilder from '../system/engines/ScheduleBuilder';
+import RuleBuilder from '../system/engines/RuleBuilder';
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -202,16 +202,6 @@ class MenuContainer extends Component {
             this.setState({ showSetBackgroundDialog: false, backgroundUrl: undefined });
           }}
         />
-        {/*<InlineTextfieldDialog
-          open={this.state.showSetThemeDialog}
-          closeDialog={() => { this.setState({ showSetThemeDialog: false }); }}
-          //onChange={(_, backgroundUrl) => { this.setState({ backgroundUrl }); }}
-          hintText={'theme'}
-          text={'Set stylesheet of the app'}
-          onOkClick={() => {
-            this.setState({ showSetThemeDialog: false  });
-          }}
-        />*/}
         <StyleSheetUpload
           open={this.state.showSetThemeDialog}
           onRequestClose={() => { this.setState({ showSetThemeDialog: false }); }}

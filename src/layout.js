@@ -5,7 +5,7 @@ import { container as Appbar } from './containers/Appbar';
 import { container as Drawer } from './containers/Drawer';
 import { container as Grid } from './containers/grid/Grid';
 import { container as SelectionOverlay } from './containers/Overlay';
-import { container as Menu } from './containers/Menu';
+import { container as Menu } from './containers/Menu/Menu';
 import { container as Login } from './containers/Login';
 
 import { container as Notifications } from './containers/notifications/Notifications';

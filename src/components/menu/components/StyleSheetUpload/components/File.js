@@ -6,15 +6,11 @@ const handleChange = onChange => event => {
     Promise.all(files.map(file => new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (result) => {
-        resolve([result, file]);
+        resolve(result.target.result);
       };
       reader.readAsBinaryString(file);
     }))).then((binaryData) => {
-      const form = new FormData();
-      files.forEach(file => {
-        form.append(file.name, file);
-      });
-      onChange(form);
+      onChange(binaryData[0]);
     });
   }
 };

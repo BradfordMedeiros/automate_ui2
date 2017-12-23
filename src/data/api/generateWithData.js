@@ -20,6 +20,7 @@ import getWithMqtt from './pubsub/getWithMqtt';
 import getWithPubsubEvents from './pubsub/getWithEvents';
 
 import getLoginWithToken from './requests/getLoginWithToken';
+import getStyleSheet from './requests/getStyleSheet';
 
 const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
@@ -48,6 +49,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
     },
     requests: {
       loginWithToken: getLoginWithToken(automateUrl),
+      stylesheet: getStyleSheet(automateUrl),
     },
   };
   return withData;
