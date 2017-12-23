@@ -4,28 +4,11 @@ import download from 'downloadjs';
 const getStyleSheetOperations = (AUTOMATE_CORE_URL) => {
   const themeUrl = `${AUTOMATE_CORE_URL}/theme`;
 
-  /*const response = await fetch(`${accountsUrl}/loginWithToken`, {
-    method: 'POST',
-    mode: 'cors',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-    body: JSON.stringify({
-      token,
-    }),
-  });*/
-
-  /*
-   theme
-
-   get
-   post const content = req.body.style;
-   delete
-   */
-
-  const deleteStylesheet = () => {
-    console.log('delete placeholder!');
+  const deleteStylesheet = async () => {
+    const response = await fetch(themeUrl, {
+      method: 'DELETE',
+      mode: 'cors',
+    });
   };
 
   const downloadStylesheet = async () => {
