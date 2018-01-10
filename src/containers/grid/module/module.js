@@ -139,7 +139,7 @@ const gridReducer = (state = initialState, action) => {
       const { gridNumber } = action;
       return state.set('activeGrid', gridNumber);
     }
-    case 'setContent': {
+    case 'setContent': {  // this is the content of the overlay
       return state.set('content', action.content);
     }
     case 'saveContent': {
@@ -158,7 +158,6 @@ const gridReducer = (state = initialState, action) => {
       const { tileName, gridNumber } = action;
       const tile = getNextTile(state.get('layout'), tileName);
       const layout = (state.getIn(['layout', gridNumber]) || fromJS([])).push(tile);
-      window.a = action;
       const tileKeyToTileName = state.get('tileKeyToTileName').set(tile.i, tileName);
       return (state
         .setIn(['layout', gridNumber], layout)
@@ -175,6 +174,7 @@ const gridReducer = (state = initialState, action) => {
         state.setIn(['layout', gridNumber], layout)
         .deleteIn(['tileKeyToTileName', tileKey])
         .deleteIn(['tileKeyToTileGrid', tileKey])
+        .deleteIn(['savedTileContent', tileKey])
       );
     }
     default: {
