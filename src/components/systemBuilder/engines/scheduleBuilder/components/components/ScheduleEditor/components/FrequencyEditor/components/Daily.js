@@ -6,8 +6,6 @@ const styles = {
   checkbox: {
     padding: 18,
     marginBottom: 8,
-    //border: '1px solid black',
-    //background: 'rgba(0,0,0,0.2)'
   },
 };
 
