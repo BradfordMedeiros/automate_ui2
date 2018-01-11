@@ -92,9 +92,6 @@ class InnerTile extends Component {
       case 'Dimmer (Horizontal)': {
         return <HorizontalMqttSliderTile {...otherProps} />;
       }
-      case 'Test': {
-        return <div>hello world</div>;
-      }
       case 'IFrame' : {
         return <IFrameTile {...otherProps} />;
       }
