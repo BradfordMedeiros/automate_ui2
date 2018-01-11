@@ -11,6 +11,17 @@ const itemWrapperStyle = {
   padding: 48,
   display: 'flex',
   alignItems: 'center',
+  background: '#303030',
+  border: '1px solid black',
+};
+
+const itemWrapperStyleOdd = {
+  fontSize: 24,
+  padding: 48,
+  display: 'flex',
+  alignItems: 'center',
+  background: '#202020',
+  border: '1px solid black',
 };
 
 const textfieldStyle = {
@@ -77,6 +88,7 @@ class RuleInfo extends Component {
             primary
             disabled={this.state.hasChanged !== true}
             label="Submit Changes"
+            buttonStyle={{ boxShadow: '0px 0px 2px 1px black'}}
             onTouchTap={() => {
               submitRule(this.getRuleData())
               this.setState({
@@ -85,13 +97,13 @@ class RuleInfo extends Component {
             }}
           />
           <div style={{ height: '100%', overflow: 'auto', boxShadow: '0px 0px 1px 0.1px black inset'}}>
-            <ItemWrapper style={itemWrapperStyle}>
+            <ItemWrapper style={itemWrapperStyleOdd}>
               Topic <TextField style={textfieldStyle} value={this.state.topic} onChange={(_,topic) => { this.setState({ topic, hasChanged: true }); }} />
             </ItemWrapper>
             <ItemWrapper style={itemWrapperStyle}>
               Value <TextField style={textfieldStyle} value={this.state.value} onChange={(_,value) => { this.setState({ value, hasChanged: true }); }} />
             </ItemWrapper>
-            <ItemWrapper style={itemWrapperStyle}>
+            <ItemWrapper style={itemWrapperStyleOdd}>
               Strategy
               <DropDownMenu value={this.state.strategy} onChange={(_,__,strategy) => { this.setState({ strategy, hasChanged: true }); }}>
                 <MenuItem value="positive-edge" primaryText="positive-edge" />
@@ -102,7 +114,7 @@ class RuleInfo extends Component {
             <ItemWrapper style={itemWrapperStyle}>
               Rate <TextField style={textfieldStyle} value={this.state.rate} onChange={(_,rate) => { this.setState({ rate, hasChanged: true }); }} />
             </ItemWrapper>
-            <ItemWrapper style={itemWrapperStyle}>
+            <ItemWrapper style={itemWrapperStyleOdd}>
               Condition <TextField style={textfieldStyle} value={this.state.conditionName} onChange={(_,__, conditionName) => { this.setState({ conditionName, hasChanged: true }); }} />
             </ItemWrapper>
           </div>

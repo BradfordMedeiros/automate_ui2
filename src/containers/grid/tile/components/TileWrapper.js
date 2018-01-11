@@ -11,7 +11,7 @@ class TileWrapper extends Component {
   };
   render() {
     const { children, tileKey, savedContent, onSaveContent } = this.props;
-    const saveContentForTile = content => onSaveContent(content);
+    const saveContentForTile = (content, tileKey) => onSaveContent(content, tileKey);
     return (
       <div onContextMenu={this.handleContextMenu}>
         {children({ savedContent: savedContent.get(tileKey), saveContent: saveContentForTile })}
@@ -35,7 +35,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSaveContent: content => dispatch(saveContent(ownProps.tileKey, content)),
+  onSaveContent: (content, tileKey) => {
+    if (tileKey){
+      console.log('manual saving to tilekey: ', tileKey);
+    }
+    dispatch(saveContent(ownProps.tileKey, content));
+  },
   deleteTile: () => dispatch(deleteTile(ownProps.tileKey)),
 });
 

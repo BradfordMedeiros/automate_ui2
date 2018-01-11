@@ -11,18 +11,15 @@ import { overlay as MqttButtonOverlay } from './tileTypes/mqtt/button/buttonOver
 import { tile as MqttGauge } from './tileTypes/mqtt/guage/Gauge';
 import { overlay as MqttGaugeOverlay } from './tileTypes/mqtt/guage/GaugeOverlay';
 
+import { tile as CustomTile } from './tileTypes/custom/CustomTile';
+import { overlay as CustomOverlay }from './tileTypes/custom/CustomOverlay';
+
 import { tile as IFrameTile } from './tileTypes/misc/iframe/IFrame';
 import { overlay as IFrameOverlay } from './tileTypes/misc/iframe/IFrameOverlay';
 import { tile as LabelTile } from './tileTypes/misc/label/Label';
 import { overlay as LabelOverlay } from './tileTypes/misc/label/LabelOverlay';
 import { tile as WhitespaceTile } from './tileTypes/misc/whitespace/WhiteSpace';
 import { overlay as WhitespaceOverlay } from './tileTypes/misc/whitespace/WhiteSpaceOverlay';
-
-import MongoLine from './tileTypes/graphs/line/mongoTile';
-import MongoPie from './tileTypes/graphs/pie/MongoPie';
-import MongoRadar from './tileTypes/graphs/radar/MongoRadar';
-import MongoBar from './tileTypes/graphs/bar/MongoBar';
-
 
 import States from './tileTypes/system/states/States';
 import Actions from './tileTypes/system/actions/Actions';
@@ -66,15 +63,6 @@ export const tileNames = [
     ],
   },
   {
-    label: 'Graphs',
-    children: [
-      'Bar Graph',
-      'Line Chart',
-      'Pie Chart',
-      'Radar Chart',
-    ],
-  },
-  {
     label: 'Misc',
     children: [
       'IFrame',
@@ -84,87 +72,75 @@ export const tileNames = [
   },
 ];
 
-const InnerTile = (props) => {
-  const { tileName, isCustom, url,  ...otherProps } = props;
-  if (isCustom){
-    return (
-      <iframe
-        alt="Cannot load custom content"
-        src={`http://localhost:9000/${url}`}
-        allowFullScreen
-        style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: otherProps.isEditing ? 'none' : undefined }}
-      />
-    )
-  }
-  switch (tileName) {
-    case 'Display': {
-      return <MqttTile {...otherProps} />;
+
+class InnerTile extends Component {
+  render() {
+    const {tileName, isCustom, url, ...otherProps} = this.props;
+    if (isCustom) {
+      return <CustomTile url={url} {...otherProps} />;
     }
-    case 'Gauge': {
-      return <MqttGauge {...otherProps} />
-    }
-    case 'Dimmer (Vertical)': {
-      return <VerticalMqttSliderTile {...otherProps} />;
-    }
-    case 'Dimmer (Horizontal)': {
-      return <HorizontalMqttSliderTile {...otherProps} />;
-    }
-    case 'Line Chart': {
-      return <MongoLine {...otherProps} />;
-    }
-    case 'Pie Chart': {
-      return <MongoPie {...otherProps} />;
-    }
-    case 'Radar Chart': {
-      return <MongoRadar {...otherProps} />;
-    }
-    case 'Bar Graph': {
-      return <MongoBar {...otherProps} />;
-    }
-    case 'Test': {
-      return <div>hello world</div>;
-    }
-    case 'IFrame' : {
-      return <IFrameTile {...otherProps} />;
-    }
-    case 'Whitespace': {
-      return <WhitespaceTile {...otherProps} />
-    }
-    case 'Label': {
-      return <LabelTile {...otherProps} />
-    }
-    case 'Button': {
-      return <MqttButtonTile {...otherProps} />;
-    }
-    case 'System - States': {
-      return <States {...otherProps} />;
-    }
-    case 'System - Actions': {
-      return <Actions {...otherProps} />;
-    }
-    case 'System - Conditions': {
-      return <Conditions {...otherProps} />
-    }
-    case 'Engines - Rules': {
-      return <div>ruless title here</div>;
-    }
-    case 'Engines - Sequences': {
-      return <Sequences {...otherProps} />;
-    }
-    case 'Engines - Schedules': {
-      return <div>schedules tile here</div>;
-    }
-    case 'Event Log': {
-      return <EventLog />
-    }
-    case 'Environment': {
-      return <Environment />
-    }
-    default : {
-      return <div>invalid tile</div>;
+    switch (tileName) {
+      case 'Display': {
+        return <MqttTile {...otherProps} />;
+      }
+      case 'Gauge': {
+        return <MqttGauge {...otherProps} />
+      }
+      case 'Dimmer (Vertical)': {
+        return <VerticalMqttSliderTile {...otherProps} />;
+      }
+      case 'Dimmer (Horizontal)': {
+        return <HorizontalMqttSliderTile {...otherProps} />;
+      }
+      case 'Test': {
+        return <div>hello world</div>;
+      }
+      case 'IFrame' : {
+        return <IFrameTile {...otherProps} />;
+      }
+      case 'Whitespace': {
+        return <WhitespaceTile {...otherProps} />
+      }
+      case 'Label': {
+        return <LabelTile {...otherProps} />
+      }
+      case 'Button': {
+        return <MqttButtonTile {...otherProps} />;
+      }
+      case 'System - States': {
+        return <States {...otherProps} />;
+      }
+      case 'System - Actions': {
+        return <Actions {...otherProps} />;
+      }
+      case 'System - Conditions': {
+        return <Conditions {...otherProps} />
+      }
+      case 'Engines - Rules': {
+        return <div>ruless title here</div>;
+      }
+      case 'Engines - Sequences': {
+        return <Sequences {...otherProps} />;
+      }
+      case 'Engines - Schedules': {
+        return <div>schedules tile here</div>;
+      }
+      case 'Event Log': {
+        return <EventLog />
+      }
+      case 'Environment': {
+        return <Environment />
+      }
+      default : {
+        return <div>invalid tile</div>;
+      }
+
+
     }
   }
-};
+}
+
+
 
 InnerTile.propTypes = {
   tileName: PropTypes.string.isRequired,
@@ -180,7 +156,7 @@ class Tile extends Component {
           border: '1px solid rgb(30,30,30)',
         }}
       >
-        {InnerTile(this.props)}
+        <InnerTile {...this.props} />
       </div>
     );
   }
@@ -191,12 +167,8 @@ class TileOverlay extends Component {
     const { tileName, ...otherProps } = this.props;
     if (typeof(tileName) === typeof({})){
       return (
-        <iframe
-          alt="Cannot load custom content"
-          src={`http://localhost:9000/${tileName.overlay}`}
-          allowFullScreen
-          style={{ border: '0 none', height: '100%', width: '100%', pointerEvents: otherProps.isEditing ? 'none' : undefined }}
-      />);
+        <CustomOverlay tileName={tileName} {...otherProps} />
+      );
     }
     switch (tileName) {
       case 'Display': {
@@ -210,18 +182,6 @@ class TileOverlay extends Component {
       }
       case 'Dimmer (Horizontal)': {
         return <MqttSliderOverlay {...otherProps} />;
-      }
-      case 'Line Chart': {
-        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
-      }
-      case 'Pie Chart': {
-        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
-      }
-      case 'Radar Chart': {
-        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
-      }
-      case 'Bar Graph': {
-        return <SingleFieldOverlay fieldName="Mqtt topic" {...otherProps} />;
       }
       case 'IFrame': {
         return <IFrameOverlay {...otherProps} />;
