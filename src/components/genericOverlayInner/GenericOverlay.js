@@ -14,20 +14,7 @@ class GenericOverlay extends Component {
 
     return (
       <div id="generic_overlay">
-        <div
-          style={{
-            width: '100%',
-            background: 'rgb(40,40,40)',
-            height: 60,
-            fontSize: '140%',
-            paddingLeft: 30,
-            color: 'rgb(160,160,160)',
-            borderBottom: '1px solid rgba(0,0,0,0.3)',
-            display: 'flex',
-            alignItems: 'center',
-            position: 'relative',
-          }}
-        >
+        <div id="generic_overlay_top">
           {onMenuToggle ? <IconButton onClick={onMenuToggle} style={{ marginLeft: -20 }}><NavigationMenu /></IconButton>: null}
           <div id="generic_overlay_title">{title}</div>
           {inject && inject()}
