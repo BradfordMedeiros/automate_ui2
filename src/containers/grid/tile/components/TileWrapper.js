@@ -38,8 +38,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onSaveContent: (content, tileKey) => {
     if (tileKey){
       console.log('manual saving to tilekey: ', tileKey);
+      dispatch(saveContent(tileKey, content));
+    }else{
+      dispatch(saveContent(ownProps.tileKey, content));
     }
-    dispatch(saveContent(ownProps.tileKey, content));
   },
   deleteTile: () => dispatch(deleteTile(ownProps.tileKey)),
 });

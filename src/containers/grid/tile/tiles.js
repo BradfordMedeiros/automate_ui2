@@ -38,6 +38,32 @@ import Environment from '../../../containers/Environment';
 
 import SingleFieldOverlay from './tileTypes/common/overlays/SingleFieldOverlay';
 
+
+window.addEventListener("message", event => {
+  console.log('got message---');
+  const data = event.data;
+
+  const saveContentEvent = new Event(`automate_save_content:${data.uuid}`);
+  saveContentEvent.uuid = data.uuid;
+  saveContentEvent.data = data.value;
+  window.dispatchEvent(saveContentEvent);
+
+
+  //saveContentEvent.data = event.data;
+  // this is lame, but message event must be global.  We register that in tiles.js
+  // and then we reemit that event here
+  /*if (event.uuid === this.uuid){
+    //saveContent(event.data, tileKey);
+    console.log('tile got save data for uuid');
+    console.log('data: ', event.data);
+    console.log('uuid: ', uuid);
+    console.log('for tilekey: ', tileKey);k
+  }*/
+
+}, false);
+
+
+
 export const tileNames = [
   {
     label: 'Core',
@@ -237,6 +263,7 @@ export const tileNameToTile = {
           tileName={tileName}
           saveContent={saveContent}
           savedContent={savedContent}
+          tileKey={tileKey}
         />)}
     </Wrapper>),
 };
@@ -250,6 +277,7 @@ export const tileNameToContent = {
           saveContent={saveContent}
           savedContent={savedContent}
           tileName={tileName}
+          tileKey={tileKey}
         />)
       }
     </Wrapper>),
