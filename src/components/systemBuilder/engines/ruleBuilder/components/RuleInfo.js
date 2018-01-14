@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-import AxiomHeader from '../../../../axiomBuilder/AxiomHeader';
+import AxiomHeader from '../../../../axiomBuilder/components/AxiomHeader/AxiomHeader';
 import ItemWrapper from '../../../common/components/ItemWrapper';
 
 const itemWrapperStyle = {

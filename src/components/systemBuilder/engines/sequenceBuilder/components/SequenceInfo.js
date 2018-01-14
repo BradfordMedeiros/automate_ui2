@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
-import AxiomHeader from '../../../../axiomBuilder/AxiomHeader';
+import AxiomHeader from '../../../../axiomBuilder/components/AxiomHeader/AxiomHeader';
 import InlineDropdownDialog from '../../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
 import SequenceUnit from './components/sequenceUnit/SequenceUnit';
 

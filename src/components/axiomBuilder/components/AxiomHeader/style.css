@@ -1,0 +1,14 @@
+
+#axiom_header {
+    border-bottom: 1px solid black;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding-left: 18px;
+    color: whitesmoke;
+}
+
+#axiom_header_delete {
+    padding-left: 60px;
+    cursor: pointer;
+}

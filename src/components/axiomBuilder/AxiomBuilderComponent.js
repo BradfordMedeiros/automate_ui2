@@ -28,7 +28,7 @@ const getMobileContent = ({ axioms, selectedIndex, onAxiomSelected, onAxiomChang
   )
 };
 
-const getDesktopContent = ({ axioms, title, selectedIndex, onAxiomSelected, onAxiomChange, isHidden, onMenuToggle, isMobile, children }) => {
+const getDesktopContent = ({ axioms, selectedIndex, onAxiomSelected, onAxiomChange, children }) => {
   return (
     <div style={{ display: 'flex' }}>
       <AxiomSelection
@@ -47,7 +47,7 @@ const getDesktopContent = ({ axioms, title, selectedIndex, onAxiomSelected, onAx
 };
 
 const AxiomBuilder = (props) => {
-  const { axioms, title, selectedIndex, onAxiomSelected, onAxiomChange, isHidden, onMenuToggle, isMobile, children } = props;
+  const { title,  onMenuToggle, isMobile } = props;
   return (
     <GenericOverlay
       title={title}

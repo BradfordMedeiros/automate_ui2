@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import AccountInformation from './components/AccountInformation';
 import AdminSettings from './components/AdminSettings';
+import './style.css';
 
 class AccountManagement extends Component {
   state = {
@@ -49,15 +50,7 @@ class AccountManagement extends Component {
       onLogout,
     } = this.props;
     return (
-      <div style={{
-        background: 'rgb(30,30,30)',
-        width: '100%',
-        height: '100%',
-        fontSize: 28,
-        color: 'whitesmoke',
-        padding: 28,
-        paddingTop: 30,
-      }}>
+      <div id="account_management">
         <Dialog
           open={this.state.showImageUpload}
           onRequestClose={this.hideImageUpload}
