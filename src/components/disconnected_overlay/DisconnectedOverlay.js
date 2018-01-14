@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Subheader } from 'material-ui';
 import './style.css';
 
 class DisconnectedOverlay extends Component {
@@ -22,11 +21,10 @@ class DisconnectedOverlay extends Component {
     const { headerStyle, textStyle } = this.props;
     return (
       <div className="disconnected_overlay">
-        <Subheader style={headerStyle}>Automate is disconnected</Subheader>
-        <Subheader style={textStyle}>
-          <div>Attempting to reconnect {Array(...Array(this.state.numDots)).map(() => '.')}</div>
-        </Subheader>
-
+        <div id="disconnected_overlay_header" style={headerStyle}>Automate is disconnected</div>
+        <div id="disconnected_overlay_subtitle" style={textStyle}>
+          Attempting to reconnect {Array(...Array(this.state.numDots)).map(() => '.')}
+        </div>
       </div>
     );
   }

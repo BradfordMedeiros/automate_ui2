@@ -2,7 +2,7 @@
 
 .disconnected_overlay{
     border-top: 1px solid #423e3e;
-    background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
+    background: rgb(20,20,20);
     width: 100vw;
     height: calc(100vh - 47px);
     z-index: 10000;
@@ -10,34 +10,15 @@
     left: 0px;
     position: absolute;
     display: flex;
-    align-items: center;
     flex-direction: column;
     padding: 24%;
     justify-content: center;
-    opacity: 0.97;
-    animation: shimmer 100s alternate infinite;
 }
 
+#disconnected_overlay_header {
+    color: whitesmoke;
+}
 
-@keyframes shimmer {
-    0% {
-        background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
-        opacity: 0.97;
-    }
-    50% {
-        background: linear-gradient(rgb(10,10,10),rgb(30, 30, 30),rgb(60,60,60));
-        opacity: 0.95;
-    }
-    60% {
-        background: linear-gradient(rgb(40,40,40),rgb(40, 40, 40),rgb(50,50,50));
-        opacity: 0.9;
-    }
-    70% {
-        background: linear-gradient(rgb(50,50,50),rgb(50, 50, 50),rgb(50,50,50));
-        opacity: 0.95;
-    }
-    100% {
-        background: linear-gradient(rgb(20,10,10),rgb(20, 20, 20),rgb(0,0,0));
-        opacity: 0.97;
-    }
+#disconnected_overlay_subtitle {
+    color: steelblue;
 }
