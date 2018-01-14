@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
-import GenericOverlay from '../overlay/GenericOverlay';
+import GenericOverlay from '../genericOverlayInner/GenericOverlay';
 import './style.css';
 
 const renderField = (title, value) => (

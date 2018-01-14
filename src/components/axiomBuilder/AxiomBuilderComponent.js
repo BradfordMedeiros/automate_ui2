@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AxiomSelection from './components/AxiomSelection';
-import GenericOverlay from '../overlay/GenericOverlay';
+import GenericOverlay from '../genericOverlayInner/GenericOverlay';
 import './style.css';
 
 const getMobileContent = ({ axioms, selectedIndex, onAxiomSelected, onAxiomChange, isHidden, children }) => {

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import { NavigationMenu } from 'material-ui/svg-icons'
+import './style.css';
 
 class GenericOverlay extends Component {
   render() {
@@ -12,7 +13,7 @@ class GenericOverlay extends Component {
     } = this.props;
 
     return (
-      <div style={{ height: '100%', position: 'absolute', width: '100%', height: '100%', background: '#282828' }}>
+      <div id="generic_overlay">
         <div
           style={{
             width: '100%',

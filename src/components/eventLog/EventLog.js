@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GenericOverlay from '../overlay/GenericOverlay';
+import GenericOverlay from '../genericOverlayInner/GenericOverlay';
 import Log from './components/Log';
 import EmailSetup from './components/EmailSetup';
 

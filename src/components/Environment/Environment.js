@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import GenericOverlay from '../overlay/GenericOverlay';
+import GenericOverlay from '../genericOverlayInner/GenericOverlay';
 import AddVariableDialog from './components/AddVariableDialog';
 
 const settings = {
