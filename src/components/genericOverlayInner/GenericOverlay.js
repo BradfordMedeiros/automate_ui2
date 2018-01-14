@@ -29,7 +29,7 @@ class GenericOverlay extends Component {
           }}
         >
           {onMenuToggle ? <IconButton onClick={onMenuToggle} style={{ marginLeft: -20 }}><NavigationMenu /></IconButton>: null}
-          <div style={{ display: 'inline', cursor: 'pointer', paddingRight: 120 }}>{title}</div>
+          <div id="generic_overlay_title">{title}</div>
           {inject && inject()}
         </div>
         <div style={{ position: 'absolute', height: 'calc(100% - 60px)', width: '100%', overflow: 'hidden' }}>

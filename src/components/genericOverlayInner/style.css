@@ -6,3 +6,9 @@
     height: 100%;
     background: #282828;
 }
+
+#generic_overlay_title {
+    display: inline;
+    cursor: pointer;
+    padding-right: 120px;
+}
