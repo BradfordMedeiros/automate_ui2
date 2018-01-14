@@ -3,12 +3,9 @@ import Checkbox from 'material-ui/Checkbox';
 import { day as dayUtil } from 'cron_util';
 
 const styles = {
-
   checkbox: {
     padding: 18,
     marginBottom: 8,
-    border: '1px solid black',
-    background: 'rgba(0,0,0,0.2)'
   },
 };
 
