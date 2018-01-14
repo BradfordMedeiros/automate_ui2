@@ -55,7 +55,7 @@ class Appbar extends Component {
             }}
           >&times;</div>
         </div>}
-        <div className="app_title"><h1>{title}</h1></div>
+        <div className="app_title">{title}</div>
       </div>
     );
   }
