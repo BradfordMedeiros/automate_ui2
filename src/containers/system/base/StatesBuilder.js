@@ -33,8 +33,9 @@ class StateBuilder extends Component {
             }}
             stateType={states.length > 0 ? states[this.state.selectedIndex].type : ''}
             stateCode={states.length > 0 ? states[this.state.selectedIndex].content : ''}
-            onUpload={(code) => {
-              saveState(states[this.state.selectedIndex].name, code);
+            rate={states.length > 0 ? states[this.state.selectedIndex].rate : null}
+            onUpload={(code, rate) => {
+              saveState(states[this.state.selectedIndex].name, code, rate);
             }}
           />
           )}

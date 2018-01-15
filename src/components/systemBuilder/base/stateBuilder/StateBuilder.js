@@ -6,6 +6,7 @@ class StateBuilder extends Component {
     const {
       states,
       stateCode,
+      rate,
       selectedIndex,
       onStateChange,
       onStateSelected,
@@ -25,6 +26,8 @@ class StateBuilder extends Component {
         actionCode={stateCode}
         actionType={stateType}
         onUpload={onUpload}
+        showRate
+        rate={rate}
       />
     );
   }
@@ -37,6 +40,7 @@ StateBuilder.propTypes = {
   onStateSelected: PropTypes.func.isRequired,
   stateName: PropTypes.string.isRequired,
   stateCode: PropTypes.string.isRequired,
+  rate: PropTypes.number,
   stateType: PropTypes.string.isRequired,
   onUpload: PropTypes.func.isRequired,
 };

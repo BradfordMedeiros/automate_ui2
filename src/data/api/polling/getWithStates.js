@@ -1,8 +1,6 @@
 import { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 
-const REFRESH_RATE = 1000;
-
 const getWithStates = (AUTOMATE_CORE_URL) => {
   const STATES_URL = `${AUTOMATE_CORE_URL}/states`;
 
@@ -19,9 +17,7 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
   );
 
 
-  const saveState = async (stateName, evalLogic) => {
-    const stateEval = evalLogic;
-
+  const saveState = async (stateName, evalLogic, rate) => {
     return (
       await fetch(`${STATES_URL}/modify/${stateName}`, {
         headers: new Headers({
@@ -29,7 +25,8 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
           Accept: 'application/json',
         }),
         body: JSON.stringify({
-          stateEval,
+          stateEval: evalLogic,
+          rate: Number(rate),
         }),
         method: 'POST',
       })
@@ -82,8 +79,8 @@ const getWithStates = (AUTOMATE_CORE_URL) => {
             await deleteState(stateName);
             this.getData();
           },
-          saveState: async (stateName, evalLogic) => {
-            await saveState(stateName, evalLogic);
+          saveState: async (stateName, evalLogic, rate) => {
+            await saveState(stateName, evalLogic, rate);
             this.getData();
           }});
 

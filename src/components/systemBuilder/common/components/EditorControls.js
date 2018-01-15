@@ -9,6 +9,9 @@ const EditorControls = ({
   disableRevert,
   hideUpload,
   hideRevert,
+  showRate,
+  rate,
+  onRateChange,
 }) => (
   <div>
     <div
@@ -40,6 +43,25 @@ const EditorControls = ({
         }
       }}
     />}
+    {showRate && <div style={{ display: 'inline', marginLeft: 40 }}>
+      Rate (ms):
+        <input
+          ref={inputRef => {
+            if(inputRef){
+              inputRef.value = rate;
+            }
+          }}
+          type="number"
+          onChange={event => { onRateChange(event.target.value) }}
+          style={{
+            background: 'none',
+            border: 'none',
+            borderBottom: '1px solid rgba(245, 245, 245, 0.07)',
+            color: 'whitesmoke',
+            fontSize: 14,
+            marginLeft: 18,
+          }} />
+    </div>}
   </div>
 );
 
@@ -51,6 +73,9 @@ EditorControls.propTypes = {
   disableRevert: PropTypes.bool,
   hideUpload: PropTypes.bool,
   hideRevert: PropTypes.bool,
+  showRate: PropTypes.bool,
+  rate: PropTypes.number,
+  onRateChange: PropTypes.func,
 };
 
 export default EditorControls;
