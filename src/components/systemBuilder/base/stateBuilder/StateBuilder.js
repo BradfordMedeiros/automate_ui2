@@ -25,6 +25,7 @@ class StateBuilder extends Component {
         actionCode={stateCode}
         actionType={stateType}
         onUpload={onUpload}
+        showRate
       />
     );
   }

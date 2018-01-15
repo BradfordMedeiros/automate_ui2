@@ -19,9 +19,10 @@ class JavascriptsFields extends Component {
     editEnabled: true,
     editorKey: Math.random(),
     code: '',
+    rate: 1000,
   }
   render() {
-    const { initialText, upload, name } = this.props;
+    const { initialText, upload, name, showRate } = this.props;
     return (
       <div>
         <ItemWrapper
@@ -33,6 +34,9 @@ class JavascriptsFields extends Component {
         >
           <EditorControls
             disableRevert={!this.state.editEnabled || (initialText === this.state.code)}
+            showRate={showRate}
+            rate={this.state.rate}
+            onRateChange={rate => { this.state.rate =  rate; }}
             editModeEnabled={this.state.editEnabled}
             onEditModeClicked={() => {
               this.setState({
@@ -41,7 +45,7 @@ class JavascriptsFields extends Component {
             }}
             onUploadClicked={() => {
               if (upload) {
-                upload(this.state.code);
+                upload(this.state.code, this.state.rate);
               }
             }}
             onRevertClicked={() => {
@@ -75,6 +79,7 @@ class JavascriptsFields extends Component {
 
 JavascriptsFields.propTypes = {
   initialText: PropTypes.string,
+  showRate: PropTypes.bool,
   upload: PropTypes.func,
   name: PropTypes.string,
 };
