@@ -17,6 +17,7 @@ class ActionBuilder extends Component {
       onUpload,
       axiomClass,
       showRate,
+      rate,
     } = this.props;
 
     return (
@@ -36,6 +37,7 @@ class ActionBuilder extends Component {
             {(actionType === 'javascript') && (
               <JavascriptsFields
                 initialText={actionCode}
+                rate={rate}
                 showRate={showRate}
                 upload={onUpload}
                 name={actionName}
@@ -75,6 +77,7 @@ ActionBuilder.propTypes = {
   actionType: PropTypes.string.isRequired,
   onUpload: PropTypes.func.isRequired,
   showRate: PropTypes.bool,
+  rate: PropTypes.number,
 };
 
 export default ActionBuilder;

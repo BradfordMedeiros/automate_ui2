@@ -10,6 +10,7 @@ const EditorControls = ({
   hideUpload,
   hideRevert,
   showRate,
+  rate,
   onRateChange,
 }) => (
   <div>
@@ -45,6 +46,11 @@ const EditorControls = ({
     {showRate && <div style={{ display: 'inline', marginLeft: 40 }}>
       Rate (ms):
         <input
+          ref={inputRef => {
+            if(inputRef){
+              inputRef.value = rate;
+            }
+          }}
           type="number"
           onChange={event => { onRateChange(event.target.value) }}
           style={{
@@ -68,6 +74,7 @@ EditorControls.propTypes = {
   hideUpload: PropTypes.bool,
   hideRevert: PropTypes.bool,
   showRate: PropTypes.bool,
+  rate: PropTypes.number,
   onRateChange: PropTypes.func,
 };
 
