@@ -10,7 +10,7 @@ const initialState = fromJS({
   savedTileContent: {}, // maps key to content
   activeGrid: 'Home',
   grids: [],
-  gridBackgroundUrl: 'https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg',
+  gridBackgroundUrl: 'https://uglyduckblog.files.wordpress.com/2014/02/cat-with-cosmos-glasses-animal-hd-wallpaper-1920x1080-1233.jpg',
 });
 
 
