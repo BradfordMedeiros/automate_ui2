@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import GenericOverlay from '../genericOverlayInner/GenericOverlay';
+import GenericOverlay from '../../genericOverlayInner/GenericOverlay';
 import ActionBar from './components/ActionBar';
 import DatabaseElement from './components/DatabaseElement/DatabaseElement';
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from  'react-router';
 import WithData from '../data/WithData';
 import LoginComponent from '../components/login_screen/LoginScreen';
-import { setLoggedIn, setLoggedOut } from './module';
 
 const WithAccounts = WithData.polling.WithAccounts;
 const LoginWithToken = WithData.requests.loginWithToken;
