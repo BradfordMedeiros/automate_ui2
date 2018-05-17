@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import AccountManagement from './AccountManagement';
-import Appbar from '../components/appbar/Appbar';
-import { setContent } from './grid/module/module';
-import { expandMenu, lock, setMenu, setDrawerOpen } from './module';
+import AccountManagement from './components/AccountManagement';
+import Appbar from '../../components/appbar/Appbar';
+import { setContent } from '../grid/module/module';
+import { expandMenu, lock, setMenu, setDrawerOpen } from '../module';
 
 const ConnectedAppbar = ({
   activeGrid,

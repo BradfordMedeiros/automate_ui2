@@ -1,6 +1,6 @@
 import React from 'react';
 import WithData from '../../data/WithData';
-import Alert from './Alert';
+import Alert from './components/Alert';
 
 const WithEvents = WithData.pubsub.WithEvents;
 

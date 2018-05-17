@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Desktop, Mobile } from './util/ViewportSizing';
-import { container as Appbar } from './containers/Appbar';
+import { container as Appbar } from './containers/appbar/Appbar';
 import { container as Drawer } from './containers/Drawer';
 import { container as Grid } from './containers/grid/Grid';
 import { container as SelectionOverlay } from './containers/Overlay';

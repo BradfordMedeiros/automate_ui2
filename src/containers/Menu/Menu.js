@@ -12,7 +12,7 @@ import Menu from '../../components/menu/menu';
 import MinimalMenu from '../../components/menu/minimalMenu';
 import EventLog from '../EventLog';
 import InlineTextfieldDialog from '../../components/Dialog/InlineTextfieldDialog';
-import StyleSheetUpload from './containerComponents/StyleSheetUpload';
+import StyleSheetUpload from './components/StyleSheetUpload';
 import { expandMenu } from '../module';
 import { setContent, setActiveGrid, addGrid, setBackground } from '../grid/module/module';
 
