@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DatabaseComponent from '../components/database/Database';
 import WithData from '../data/WithData';
 
