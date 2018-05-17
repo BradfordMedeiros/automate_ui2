@@ -1,10 +1,8 @@
-
 import React from 'react';
 import EnvironmentComponent from '../components/Environment/Environment';
 import WithData from '../data/WithData';
 
 const WithEnv = WithData.polling.WithEnv;
-
 
 const Environment = () => (
   <WithEnv
@@ -23,12 +21,9 @@ const Environment = () => (
       return (
         <EnvironmentComponent
           onAdd={({ token, value }) => {
-            console.log('on add: ');
-            console.log('token: ', token);
-            console.log('value: ', value);
             setEnv(token, value);
           }}
-          onDelete={(variable, index) => {
+          onDelete={variable => {
             deleteEnv(variable.name);
           }}
           variables={variablesAsArray}
