@@ -36,8 +36,6 @@ import ScheduleBuilder from '../../system/engines/ScheduleBuilder';
 import EventLog from '../../../containers/EventLog';
 import Environment from '../../../containers/Environment';
 
-import SingleFieldOverlay from './tileTypes/common/overlays/SingleFieldOverlay';
-
 // this is lame, but message event must be global.  We register that in tiles.js
 // and then we reemit that event here
 window.addEventListener("message", event => {
