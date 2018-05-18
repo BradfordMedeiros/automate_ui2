@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Appbar from './components/appbar/Appbar';
+import getData from './data/getData';
 import './style.css';
+
+const Data = getData();
 
 const MockApp = () => (
     <div style={{
@@ -13,7 +16,6 @@ const MockApp = () => (
             title="automate"
             showHideMenu
         />
-
     </div>
 );
 

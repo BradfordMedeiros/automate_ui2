@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import Toggle from '@material-ui/core/Switch';
 import AccountIcon from '@material-ui/icons/AccountCircle';
@@ -15,54 +15,50 @@ const styles = {
   },
 };
 
-class Appbar extends Component {
-  render() {
-    const {
-      rotateAddIcon,
-      onAddIconClick,
-      onRotatedAddIconClick,
-      onUserIconClick,
-      onToggle,
-      onHideMenu,
-      showHideMenu,
-      title,
-      systemLocked,
-    } = this.props;
-
+const Appbar = ({
+        rotateAddIcon,
+        onAddIconClick,
+        onRotatedAddIconClick,
+        onUserIconClick,
+        onToggle,
+        onHideMenu,
+        showHideMenu,
+        title,
+        systemLocked,
+    }) => {
     const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     return (
-      <div className="titlebar">
-          <div className="app_title">{title}</div>
-          {!systemLocked && <div className="app_properties">
-              <IconButton onClick={onUserIconClick} className="app_property"><AccountIcon /></IconButton>
-              {showHideMenu && <IconButton className="app_property" onClick={onHideMenu}><NavigationMenu /></IconButton>}
-              {<div className="app_property">
-                  <Toggle
-                      thumbStyle={{ background: 'darkgrey' }}
-                      thumbSwitchedStyle={{ background: 'white' }}
-                      onToggle={onToggle}
-                  />
-              </div>}
-              {<div className="app_property">
+        <div className="titlebar">
+            <div className="app_title">{title}</div>
+            {!systemLocked && <div className="app_properties">
+                <IconButton onClick={onUserIconClick} className="app_property"><AccountIcon /></IconButton>
+                {showHideMenu && <IconButton className="app_property" onClick={onHideMenu}><NavigationMenu /></IconButton>}
+                {<div className="app_property">
+                    <Toggle
+                        thumbStyle={{ background: 'darkgrey' }}
+                        thumbSwitchedStyle={{ background: 'white' }}
+                        onToggle={onToggle}
+                    />
+                </div>}
+                {<div className="app_property">
                     <div
-                      className="xIcon"
-                      style={xStyle}
-                      onClick={() => {
-                          if (rotateAddIcon) {
-                              onRotatedAddIconClick();
-                          } else {
-                              onAddIconClick();
-                          }
-                      }}
+                        className="xIcon"
+                        style={xStyle}
+                        onClick={() => {
+                            if (rotateAddIcon) {
+                                onRotatedAddIconClick();
+                            } else {
+                                onAddIconClick();
+                            }
+                        }}
                     >&times;
-                  </div>
-              </div>}
-          </div>}
-      </div>
+                    </div>
+                </div>}
+            </div>}
+        </div>
     );
-  }
-}
+};
 
 Appbar.propTypes = {
   showHideMenu: PropTypes.bool,
@@ -84,10 +80,3 @@ Appbar.defaultProps = {
 
 export default Appbar;
 
-
-/*{ && <div >
-
-
-
-        </div>}
-        */
