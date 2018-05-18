@@ -4,7 +4,7 @@ import Appbar from './components/appbar/Appbar';
 import getData from './data/getData';
 import './style.css';
 
-const Data = getData();
+//const Data = getData();
 
 const MockApp = () => (
     <div style={{

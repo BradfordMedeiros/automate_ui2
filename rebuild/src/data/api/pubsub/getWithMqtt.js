@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'mqtt';
 import { fromJS } from 'immutable';
 
+console.error('@todo remove immutablejs.  barely used, adds ~150kb of bloat')
+
 const DEFAULT_MQTT_PUBLISH_OPTIONS = {
   retain: true,
 };
