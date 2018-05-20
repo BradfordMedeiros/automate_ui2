@@ -1,6 +1,5 @@
 .titlebar {
     background: rgb(55,55,55);
-    flex-grow: 1;
     height: 60px;
     display: flex;
     align-items: center;
