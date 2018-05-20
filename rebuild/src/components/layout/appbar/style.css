@@ -1,5 +1,5 @@
 .titlebar {
-    background: rgb(55,55,55);
+    background: linear-gradient(#1c1c1c,rgb(48, 48, 48),#353535);
     height: 60px;
     display: flex;
     align-items: center;
