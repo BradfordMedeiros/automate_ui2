@@ -11,6 +11,73 @@ import DeviceInfo from './components/overlayContent/deviceInfo/DeviceInfo';
 import EventLog from './components/overlayContent/eventLog/EventLog';
 //const Data = getData();
 
+
+const contentMap = {
+    event: (
+        <EventLog
+            data={[
+                { topic: 'test topic', timestamp: 'test timestamp'},
+                { topic: 'another test topic', timestamp: 'test timestamp'},
+
+            ]}
+            isAlertingEnabled={false}
+            emailAddress={"test email"}
+            onSetEmailAddress={emailAddress => {
+                console.log('set email: ', emailAddress);
+            }}
+            onSetIsAlertingEnabled={isEnabled => {
+                console.log('set enable alerting: ', isEnabled);
+            }}
+        />
+    ),
+    account: (
+        <AccountManagement
+            email="some email"
+            alias="some alias"
+            isAdmin={true}
+            allowUserCreation={true}
+            enableUserAccountCreation={() => {
+
+            }}
+            disableUserAccountCreation={() => {
+
+            }}
+            onLogout={() => {
+
+            }}
+            onUploadImage={() => {
+
+            }}
+        />
+    ),
+    device: (
+        <DeviceInfo
+            automateCoreVersion="some version"
+            ipAddress="some ip"
+            macAddress="some mac"
+            onClickConfirmLockSystem={() => {
+                console.log('lock system');
+            }}
+        />
+    )
+};
+
+class InjectableContent extends Component {
+    state = {
+        content: null,
+    };
+    setContent = contentType => {
+      const component = contentMap[contentType];
+      this.setState({
+          content: component || null,
+      })
+    };
+    render() {
+        window.set  = this.setContent;
+        return this.state.content;
+    };
+}
+
 class MockApp extends Component {
     state = {
         isRotated: false,
@@ -54,47 +121,7 @@ class MockApp extends Component {
                 />
 
                 <Overlay isExpanded={this.state.isRotated}>
-                    <EventLog
-                        data={[
-                            { topic: 'test topic', timestamp: 'test timestamp'},
-                            { topic: 'another test topic', timestamp: 'test timestamp'},
-
-                        ]}
-                        isAlertingEnabled={false}
-                        emailAddress={"test email"}
-                        onSetEmailAddress={emailAddress => {
-                            console.log('set email: ', emailAddress);
-                        }}
-                        onSetIsAlertingEnabled={isEnabled => {
-                            console.log('set enable alerting: ', isEnabled);
-                        }}
-                    />
-                    {/*<AccountManagement
-                        email="some email"
-                        alias="some alias"
-                        isAdmin={true}
-                        allowUserCreation={true}
-                        enableUserAccountCreation={() => {
-
-                        }}
-                        disableUserAccountCreation={() => {
-
-                        }}
-                        onLogout={() => {
-
-                        }}
-                        onUploadImage={() => {
-
-                        }}
-                    />*/}
-                    {/*<DeviceInfo
-                        automateCoreVersion="some version"
-                        ipAddress="some ip"
-                        macAddress="some mac"
-                        onClickConfirmLockSystem={() => {
-                            console.log('lock system');
-                        }}
-                    />*/}
+                    <InjectableContent />
                 </Overlay>
             </div>
         )
