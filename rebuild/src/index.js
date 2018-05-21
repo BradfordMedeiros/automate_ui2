@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 
 import AccountManagement from './components/overlayContent/accountManagement/AccountManagement';
 import DeviceInfo from './components/overlayContent/deviceInfo/DeviceInfo';
+import EventLog from './components/overlayContent/eventLog/EventLog';
 //const Data = getData();
 
 class MockApp extends Component {
@@ -53,6 +54,21 @@ class MockApp extends Component {
                 />
 
                 <Overlay isExpanded={this.state.isRotated}>
+                    <EventLog
+                        data={[
+                            { topic: 'test topic', timestamp: 'test timestamp'},
+                            { topic: 'another test topic', timestamp: 'test timestamp'},
+
+                        ]}
+                        isAlertingEnabled={false}
+                        emailAddress={"test email"}
+                        onSetEmailAddress={emailAddress => {
+                            console.log('set email: ', emailAddress);
+                        }}
+                        onSetIsAlertingEnabled={isEnabled => {
+                            console.log('set enable alerting: ', isEnabled);
+                        }}
+                    />
                     {/*<AccountManagement
                         email="some email"
                         alias="some alias"
@@ -71,14 +87,14 @@ class MockApp extends Component {
 
                         }}
                     />*/}
-                    <DeviceInfo
+                    {/*<DeviceInfo
                         automateCoreVersion="some version"
                         ipAddress="some ip"
                         macAddress="some mac"
                         onClickConfirmLockSystem={() => {
                             console.log('lock system');
                         }}
-                    />
+                    />*/}
                 </Overlay>
             </div>
         )

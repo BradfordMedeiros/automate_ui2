@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 0px 0px 10px 1px black;
+    z-index: 1;
 }
 .app_title{
     color: whitesmoke;

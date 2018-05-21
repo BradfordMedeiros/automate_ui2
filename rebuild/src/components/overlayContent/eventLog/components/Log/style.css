@@ -1,0 +1,26 @@
+.event_log_row {
+
+}
+
+.event_log_header {
+    background: rgb(30,30,30);
+
+}
+.event_log_header_cell {
+    color: steelblue !important;
+    border-bottom: none !important;
+    background: rgb(50,50,50);
+
+}
+
+.event_log_cell_even {
+    border: none !important;
+    color: white !important;
+    background: rgb(50,50,50);
+}
+
+.event_log_cell_odd {
+    border: none !important;
+    background: rgba(127, 203, 211, 0.4);
+    color: white !important;
+}
