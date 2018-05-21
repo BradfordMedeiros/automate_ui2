@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import AccountManagement from './components/overlayContent/accountManagement/AccountManagement';
 import DeviceInfo from './components/overlayContent/deviceInfo/DeviceInfo';
 import EventLog from './components/overlayContent/eventLog/EventLog';
+import Environment from './components/overlayContent/environment/Environment';
 //const Data = getData();
 
 
@@ -59,12 +60,32 @@ const contentMap = {
                 console.log('lock system');
             }}
         />
+    ),
+    env: (
+        <Environment
+            variables={[
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+                { name: 'some name',  value: 'some value' },
+
+            ]}
+            onDelete={(item, index) => {
+                console.log('delete index ', index, ' value ', item)
+            }}
+            onAdd={({ token, value}) => {
+                console.log('add: token(',token, ') value: (', value,')');
+            }}
+        />
     )
 };
 
 class InjectableContent extends Component {
     state = {
-        content: null,
+        content: contentMap['env'],
     };
     setContent = contentType => {
       const component = contentMap[contentType];

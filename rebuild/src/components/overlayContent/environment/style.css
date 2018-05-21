@@ -1,0 +1,43 @@
+.env_row {
+
+}
+
+.env_header {
+    background: rgb(30,30,30);
+
+}
+.env_header_cell {
+    color: steelblue !important;
+    border-bottom: none !important;
+    background: rgb(50,50,50);
+}
+.env_cell_add {
+    cursor: pointer;
+    color: white !important;
+    border-left: 1px solid black;
+    font-size: 14px !important;
+}
+.env_cell_add:hover {
+    color: steelblue !important;
+}
+
+.env_cell_even {
+    border: none !important;
+    color: white !important;
+    background: rgb(50,50,50);
+}
+
+.env_cell_odd {
+    border: none !important;
+    background: rgba(127, 203, 211, 0.4);
+    color: white !important;
+}
+
+.env_cell_remove {
+    cursor: pointer;
+    background: none;
+}
+
+.env_cell_remove:hover {
+    color: indianred !important;
+}
