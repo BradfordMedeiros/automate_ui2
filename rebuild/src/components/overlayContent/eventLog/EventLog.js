@@ -40,7 +40,6 @@ class EventLog extends Component {
                     />}
             </div>
         );
-
     }
 }
 
