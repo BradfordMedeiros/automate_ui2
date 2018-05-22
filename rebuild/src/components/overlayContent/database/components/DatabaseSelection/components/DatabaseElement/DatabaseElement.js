@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import Subheader from 'material-ui/Subheader';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 const DatabaseElement = ({ databaseName, isActive, onClick }) => (
@@ -8,9 +8,9 @@ const DatabaseElement = ({ databaseName, isActive, onClick }) => (
     onClick={onClick}
     className="database_element"
   >
-    <Subheader>Database Name</Subheader>
+    <div>Database Name</div>
     <div>{databaseName}</div>
-    <Subheader>Description</Subheader>
+    <div>Description</div>
     <div>none</div>
   </div>
 );

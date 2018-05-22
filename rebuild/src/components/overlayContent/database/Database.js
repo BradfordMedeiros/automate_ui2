@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatabaseComponent from './components/DatabaseSelection/DatabaseSelection';
+import DatabaseSelection from './components/DatabaseSelection/components/DatabaseSelection/DatabaseSelection';
 import DatabaseDialog from './components/DatabaseDialog';
 import DatabaseWarning from './components/DatabaseWarning';
 
@@ -41,8 +41,8 @@ class Database extends Component {
         } = this.props;
 
         return (
-            <div>
-                <DatabaseComponent
+            <div style={{ height: '100%', display: 'flex' }}>
+                <DatabaseSelection
                     onDatabaseSelected={selectedIndex => {
                         this.setState({selectedIndex})
                     }}
@@ -94,7 +94,8 @@ class Database extends Component {
                 <DatabaseDialog
                     isOpen={this.state.copyDialogOpen}
                     onRequestClose={this.handleCopyDialogClose}
-                    onTextFieldChange={(_, databaseNameToCopyTarget) => {
+                    onTextFieldChange={event => {
+                        const databaseNameToCopyTarget = event.target.value;
                         this.setState({
                             databaseNameToCopyTarget,
                         })

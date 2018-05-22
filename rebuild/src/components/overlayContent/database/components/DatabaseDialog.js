@@ -1,8 +1,7 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
 
 const DatabaseDialog = ({  isOpen, onRequestClose, onTextFieldChange, onSubmit }) => (
     <Dialog
@@ -10,12 +9,12 @@ const DatabaseDialog = ({  isOpen, onRequestClose, onTextFieldChange, onSubmit }
         onRequestClose={onRequestClose}
     >
         <TextField
-            floatingLabelText="Enter Name"
+            helperText="Enter name of the database"
             onChange={onTextFieldChange}
         />
         <div style={{ display: 'flex' }}>
-            <FlatButton label="Cancel" onClick={onRequestClose} />
-            <RaisedButton label="Submit" onClick={onSubmit} />
+            <Button variant="flat" onClick={onRequestClose}>Cancel</Button>
+            <Button variant="raised" onClick={onSubmit} >Submit</Button>
         </div>
     </Dialog>
 );

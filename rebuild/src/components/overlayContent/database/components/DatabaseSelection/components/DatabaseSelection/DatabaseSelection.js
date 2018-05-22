@@ -1,32 +1,8 @@
-import React, { PropTypes } from 'react';
-import GenericOverlay from '../../../genericOverlayInner/GenericOverlay';
-import ActionBar from './components/ActionBar';
-import DatabaseElement from './components/DatabaseElement/DatabaseElement';
-
-const styles = {
-  outer: {
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-  },
-  actionbar: {
-    position: 'absolute',
-    width: '100%',
-    height: 48,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  content: {
-    marginTop: 58,
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    width: '100%',
-    height: 'calc(100% - 48px)',
-    overflow: 'auto',
-  }
-};
+import React from 'react';
+import PropTypes from 'prop-types';
+import ActionBar from '../ActionBar/ActionBar';
+import DatabaseElement from '../DatabaseElement/DatabaseElement';
+import './style.css';
 
 const Databases = ({
   databases,
@@ -41,8 +17,7 @@ const Databases = ({
   onCopyDatabase,
 
 }) => (
-  <GenericOverlay title="Database Management">
-    <div style={styles.outer}>
+    <div className="database_selection_outer">
       <ActionBar
         onSetDatabaseAsActive={setDatabaseAsActive}
         onDeleteDatabase={deleteDatabase}
@@ -50,10 +25,9 @@ const Databases = ({
         onUploadDatabase={onUploadDatabase}
         onCloneDatabase={onCopyDatabase}
         onCreateDatabase={createNewDatabase}
-        style={styles.actionbar}
       />
-      <div style={styles.content}>
-      {databases.map((database, index) => (
+      <div className="database_selection_content">
+          {databases.map((database, index) => (
         <DatabaseElement
           isActive={database.isActive || (selectedDatabaseIndex === index)}
           databaseName={database.name}
@@ -65,7 +39,6 @@ const Databases = ({
       ))}
       </div>
     </div>
-  </GenericOverlay>
 );
 
 Databases.propTypes = {

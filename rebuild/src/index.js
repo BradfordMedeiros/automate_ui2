@@ -10,10 +10,44 @@ import AccountManagement from './components/overlayContent/accountManagement/Acc
 import DeviceInfo from './components/overlayContent/deviceInfo/DeviceInfo';
 import EventLog from './components/overlayContent/eventLog/EventLog';
 import Environment from './components/overlayContent/environment/Environment';
+import Database from './components/overlayContent/database/Database';
+
 //const Data = getData();
 
 
 const contentMap = {
+    database: (
+        <Database
+            databases={[
+                { isActive: true, name: 'some db' },
+                { isActive: false, name: 'some db' },
+                { isActive: false, name: 'some db' },
+                { isActive: false, name: 'some db' },
+                { isActive: false, name: 'some db' },
+                { isActive: false, name: 'some db' },
+                { isActive: false, name: 'some db' },
+
+            ]}
+            setDatabaseAsActive={database => {
+                console.log('set db as active: ', database);
+            }}
+            createNewDatabase={database => {
+                console.log('create database: ', database);
+            }}
+            copyDatabase={(databaseToCopy, databaseNameTarget) => {
+                console.log('create database: from: ', databaseToCopy,' to: ', databaseNameTarget);
+            }}
+            uploadDatabase={database => {
+                console.log('upload database: ', database);
+            }}
+            deleteDatabase={database => {
+                console.log('delete database ', database);
+            }}
+            downloadDatabase={database => {
+                console.log('download database: ', database);
+            }}
+        />
+    ),
     event: (
         <EventLog
             data={[
@@ -85,7 +119,7 @@ const contentMap = {
 
 class InjectableContent extends Component {
     state = {
-        content: contentMap['env'],
+        content: contentMap['database'],
     };
     setContent = contentType => {
       const component = contentMap[contentType];
