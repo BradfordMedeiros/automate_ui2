@@ -26,7 +26,7 @@ class Environment extends Component {
     const { variables, onDelete, onAdd } = this.props;
 
     return (
-        <div>
+        <div className="env_outer">
             <AddVariableDialog
                 open={this.state.showDialog}
                 onRequestClose={this.hideDialog}
