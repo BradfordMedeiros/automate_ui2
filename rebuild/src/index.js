@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import ReactDOM from 'react-dom';
+import './style.css';
+
+import getData from './data/getData';
 import Appbar from './components/layout/appbar/Appbar';
 import Overlay from './components/layout/overlay/Overlay';
-import getData from './data/getData';
-import './style.css';
-import PropTypes from "prop-types";
+import Drawer  from './components/layout/drawer/Drawer';
+
+
 
 import AccountManagement from './components/overlayContent/accountManagement/AccountManagement';
 import DeviceInfo from './components/overlayContent/deviceInfo/DeviceInfo';
