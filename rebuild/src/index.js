@@ -12,10 +12,36 @@ import EventLog from './components/overlayContent/eventLog/EventLog';
 import Environment from './components/overlayContent/environment/Environment';
 import Database from './components/overlayContent/database/Database';
 
+import LoginScreen from './components/special/login_screen/LoginScreen';
+import DisconnectedOverlay from './components/special/disconnected_overlay/DisconnectedOverlay';
+
 //const Data = getData();
 
 
 const contentMap = {
+    disconnected: (
+      <DisconnectedOverlay />
+    ),
+    login: (
+        <LoginScreen
+            users={[{
+                username: 'some user',
+                imageURL: '',
+                remote: false,
+            }]}
+
+            onCreateAccount={() => { }}
+            showCreateAccount={true}
+            onSelectAccount={() => { }}
+            selectedAccountIndex={0}
+            onLoginWithPassword={() => { }}
+            onSendResetEmail={() => { }}
+            onSetPassword={() => { }}
+            onPasswordTextChange={() => { }}
+            resetErrorText={'fucked up'}
+            errorText={"some error wow"}
+        />
+    ),
     database: (
         <Database
             databases={[
@@ -119,7 +145,7 @@ const contentMap = {
 
 class InjectableContent extends Component {
     state = {
-        content: contentMap['database'],
+        content: contentMap['disconnected'],
     };
     setContent = contentType => {
       const component = contentMap[contentType];
