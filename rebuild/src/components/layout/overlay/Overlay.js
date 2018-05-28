@@ -14,11 +14,11 @@ const style = {
 class SelectionOverlay extends Component {
   render() {
     const { isExpanded, children } = this.props;
-    const desktopStyle = isExpanded ? style.expanded : style.not_expanded;
+    const overlayStyle = isExpanded ? style.expanded : style.not_expanded;
 
     return (
       <div className="overlay_outer">
-        <div className="overlay" style={{ ...desktopStyle }}>
+        <div className="overlay" style={overlayStyle}>
           {children}
         </div>
       </div>
