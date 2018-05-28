@@ -7,22 +7,22 @@ import Back from '@material-ui/icons/NavigateBefore';
 
 class CreateAccountScreen extends Component {
   state = {
-      email: '',
-      password: '',
-      alias: '',
+    email: '',
+    password: '',
+    alias: '',
   };
   createAccount = () => {
-      this.props.onCreateAccount({
-          email: this.state.email,
-          password: this.state.password,
-          alias: this.state.alias,
-      });
+    this.props.onCreateAccount({
+      email: this.state.email,
+      password: this.state.password,
+      alias: this.state.alias,
+    });
   };
   render() {
-      const { onClickBack, onCreateAccount } = this.props;
+    const { onClickBack, onCreateAccount } = this.props;
 
-      return (
-        <div style={{
+    return (
+      <div style={{
               position: 'absolute',
               top: 0,
               bottom: 0,
@@ -32,53 +32,53 @@ class CreateAccountScreen extends Component {
               justifyContent: 'center',
               alignItems: 'center',
           }}
-          >
-              <div style={{ color: 'blue' }}>this screen all messed up</div>
-              <IconButton onClick={onClickBack} style={{ marginTop: 22, marginRight: 8 }}><Back /></IconButton>
-              <TextField
-            onChange={(_, email) => {
+      >
+        <div style={{ color: 'blue' }}>this screen all messed up</div>
+        <IconButton onClick={onClickBack} style={{ marginTop: 22, marginRight: 8 }}><Back /></IconButton>
+        <TextField
+          onChange={(_, email) => {
                       this.setState({
                           email,
                       });
                   }}
-            floatingLabelFixed
-            floatingLabelText="email"
-            hintText="email used to login"
-          />
-            <TextField
-                onChange={(_, password) => {
+          floatingLabelFixed
+          floatingLabelText="email"
+          hintText="email used to login"
+        />
+        <TextField
+          onChange={(_, password) => {
                       this.setState({
                           password,
                       });
                   }}
-                floatingLabelFixed
-                floatingLabelText="password"
-                hintText="unrestricted character domain"
-              />
-            <TextField
-                onChange={(_, alias) => {
+          floatingLabelFixed
+          floatingLabelText="password"
+          hintText="unrestricted character domain"
+        />
+        <TextField
+          onChange={(_, alias) => {
                       this.setState({
                           alias,
                       });
                   }}
-                floatingLabelFixed
-                floatingLabelText="alias"
-                hintText="Used to identify accounts"
-              />
-            <Button
-                onClick={this.createAccount}
-                style={{ marginTop: 22 }}
-              >
+          floatingLabelFixed
+          floatingLabelText="alias"
+          hintText="Used to identify accounts"
+        />
+        <Button
+          onClick={this.createAccount}
+          style={{ marginTop: 22 }}
+        >
             Create
-              </Button>
-          </div>
-      );
+        </Button>
+      </div>
+    );
   }
 }
 
 CreateAccountScreen.propTypes = {
-    onClickBack: PropTypes.func,
-    onCreateAccount: PropTypes.func,
+  onClickBack: PropTypes.func,
+  onCreateAccount: PropTypes.func,
 };
 
 export default CreateAccountScreen;

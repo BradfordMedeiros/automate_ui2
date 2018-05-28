@@ -7,75 +7,75 @@ import IconButton from '@material-ui/core/IconButton';
 import './style.css';
 
 const styles = {
-    expanded: {
-        animation: 'turn_into_x 0.1s forwards',
-    },
-    not_expanded: {
-        animation: 'turn_out_x 0.1s forwards',
-    },
+  expanded: {
+    animation: 'turn_into_x 0.1s forwards',
+  },
+  not_expanded: {
+    animation: 'turn_out_x 0.1s forwards',
+  },
 };
 
 const Appbar = ({
-    rotateAddIcon,
-    onAddIconClick,
-    onRotatedAddIconClick,
-    onUserIconClick,
-    onToggle,
-    onHideMenu,
-    showHideMenu,
-    title,
-    systemLocked,
+  rotateAddIcon,
+  onAddIconClick,
+  onRotatedAddIconClick,
+  onUserIconClick,
+  onToggle,
+  onHideMenu,
+  showHideMenu,
+  title,
+  systemLocked,
 }) => {
-    const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
+  const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
-    return (
-        <div className="titlebar">
-            <div className="app_title">{title}</div>
-            {!systemLocked && <div className="app_properties">
-                <IconButton onClick={onUserIconClick} className="app_property"><AccountIcon /></IconButton>
-                {showHideMenu && <IconButton className="app_property" onClick={onHideMenu}><NavigationMenu /></IconButton>}
-                {<div className="app_property">
-                    <Toggle
-                        thumbStyle={{ background: 'darkgrey' }}
-                        thumbSwitchedStyle={{ background: 'white' }}
-                        onToggle={onToggle}
-                    />
-                </div>}
-                {<div className="app_property">
-                    <div
-                        className="xIcon"
-                        style={xStyle}
-                        onClick={() => {
+  return (
+    <div className="titlebar">
+      <div className="app_title">{title}</div>
+      {!systemLocked && <div className="app_properties">
+        <IconButton onClick={onUserIconClick} className="app_property"><AccountIcon /></IconButton>
+        {showHideMenu && <IconButton className="app_property" onClick={onHideMenu}><NavigationMenu /></IconButton>}
+        {<div className="app_property">
+          <Toggle
+            thumbStyle={{ background: 'darkgrey' }}
+            thumbSwitchedStyle={{ background: 'white' }}
+            onToggle={onToggle}
+          />
+         </div>}
+        {<div className="app_property">
+          <div
+            className="xIcon"
+            style={xStyle}
+            onClick={() => {
                             if (rotateAddIcon) {
                                 onRotatedAddIconClick();
                             } else {
                                 onAddIconClick();
                             }
                         }}
-                    >&times;
-                    </div>
-                </div>}
-            </div>}
-        </div>
-    );
+          >&times;
+          </div>
+        </div>}
+                        </div>}
+    </div>
+  );
 };
 
 Appbar.propTypes = {
-    showHideMenu: PropTypes.bool,
-    rotateAddIcon: PropTypes.bool,
-    onAddIconClick: PropTypes.func,
-    onRotatedAddIconClick: PropTypes.func,
-    onUserIconClick:  PropTypes.func,
-    onToggle: PropTypes.func,
-    onHideMenu: PropTypes.func,
-    title: PropTypes.string,
-    systemLocked: PropTypes.bool,
+  showHideMenu: PropTypes.bool,
+  rotateAddIcon: PropTypes.bool,
+  onAddIconClick: PropTypes.func,
+  onRotatedAddIconClick: PropTypes.func,
+  onUserIconClick: PropTypes.func,
+  onToggle: PropTypes.func,
+  onHideMenu: PropTypes.func,
+  title: PropTypes.string,
+  systemLocked: PropTypes.bool,
 };
 
 Appbar.defaultProps = {
-    rotateAddIcon: false,
-    onAddIconClick: () => {},
-    onRotatedAddIconClick: () => {},
+  rotateAddIcon: false,
+  onAddIconClick: () => {},
+  onRotatedAddIconClick: () => {},
 };
 
 export default Appbar;
