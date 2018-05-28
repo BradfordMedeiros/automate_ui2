@@ -13,124 +13,126 @@ class LoginScreen extends Component {
       loginState: 'login',
   };
   selectUser = selectedIndex => {
-    this.props.onSelectAccount(selectedIndex);
+      this.props.onSelectAccount(selectedIndex);
   };
   handleCreateAccount = userInfo => {
-    this.props.onCreateAccount(userInfo);
-    this.goToMainScreen();
+      this.props.onCreateAccount(userInfo);
+      this.goToMainScreen();
   };
   isMainScreen = () => this.state.loginState === 'login'  && !this.isSetNewPasswordScreen();
   isCreateAccountScreen = ()  => this.state.loginState === 'create' && !this.isSetNewPasswordScreen();
   isResetPasswordScreen = () => this.state.loginState === 'reset' && !this.isSetNewPasswordScreen();
   isSetNewPasswordScreen = () => this.props.resetToken != null;
   goToMainScreen = () => {
-    this.setState({
-      loginState: 'login',
-    });
+      this.setState({
+          loginState: 'login',
+      });
   };
   goToCreateAccountScreen = () => {
-    this.setState({
-      loginState: 'create',
-    });
+      this.setState({
+          loginState: 'create',
+      });
   };
   goToResetPasswordScreen = () => {
-    this.setState({
-      loginState: 'reset',
-    });
+      this.setState({
+          loginState: 'reset',
+      });
   };
   render() {
-    const {
-      users,
-      selectedAccountIndex,
-      onLoginWithPassword,
-      onPasswordTextChange,
-      onSendResetEmail,
-      onSetPassword,
-      showCreateAccount,
-      resetToken,
-      resetErrorText,
-      errorText,
-      style
-    } = this.props;
+      const {
+          users,
+          selectedAccountIndex,
+          onLoginWithPassword,
+          onPasswordTextChange,
+          onSendResetEmail,
+          onSetPassword,
+          showCreateAccount,
+          resetToken,
+          resetErrorText,
+          errorText,
+          style
+      } = this.props;
 
       return (
-      <div style={{
-        position: 'absolute',
-        color: 'white',
-        //background: 'black',
-        background: 'blue',
-        borderTop: '1px solid  rgb(30,30,30)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        ...style,
-      }}>
-        <div style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
-          {this.isCreateAccountScreen() && (
-            <CreateAccountScreen
-              onCreateAccount={this.handleCreateAccount}
-              onClickBack={this.goToMainScreen}
-            />
-          )}
-          {this.isResetPasswordScreen() && (
-            <ForgotPasswordScreen
-              onSendResetEmail={() => {
-                const user = users[selectedAccountIndex];
-                onSendResetEmail(user);
+          <div style={{
+              position: 'absolute',
+              color: 'white',
+              //background: 'black',
+              background: 'blue',
+              borderTop: '1px solid  rgb(30,30,30)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              ...style,
+          }}
+        >
+          <div style={{
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
               }}
-              onClickBack={this.goToMainScreen}
-            />
-          )}
+            >
+              {this.isCreateAccountScreen() && (
+            <CreateAccountScreen
+                          onCreateAccount={this.handleCreateAccount}
+                        onClickBack={this.goToMainScreen}
+                      />
+                  )}
+                  {this.isResetPasswordScreen() && (
+            <ForgotPasswordScreen
+                        onSendResetEmail={() => {
+                              const user = users[selectedAccountIndex];
+                              onSendResetEmail(user);
+                          }}
+                          onClickBack={this.goToMainScreen}
+                      />
+                  )}
 
-          {this.isSetNewPasswordScreen() && (
+                  {this.isSetNewPasswordScreen() && (
             <SetNewPasswordScreen
-              resetErrorText={resetErrorText}
-              onSetPassword={onSetPassword}
-            />
-          )}
+                        resetErrorText={resetErrorText}
+                        onSetPassword={onSetPassword}
+                      />
+                  )}
 
-          {this.isMainScreen() && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
-          {this.isMainScreen() && (
+              {this.isMainScreen() && <SavedUsers users={users} selectedUserIndex={selectedAccountIndex} onSelectUser={this.selectUser}  />}
+                  {this.isMainScreen() && (
             <PasswordEntry
-              errorText={errorText && <div>{errorText}  <div style={{ cursor: 'pointer'}} onClick={this.goToResetPasswordScreen}>forgot password?</div></div>}
-              isHidden={selectedAccountIndex === -1}
-              user={users[selectedAccountIndex]}
-              onLoginWithPassword={onLoginWithPassword}
-              onPasswordTextChange={onPasswordTextChange}
-            />
-          )}
-          {this.isMainScreen() && <div style={{ marginBottom: '2em'}} />}
-          {this.isMainScreen() && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
-            {showCreateAccount && <div className="login_selection" onClick={this.goToCreateAccountScreen}>create account</div>}
-          </div>}
+                        errorText={errorText && <div>{errorText}  <div style={{ cursor: 'pointer'}} onClick={this.goToResetPasswordScreen}>forgot password?</div></div>}
+                        isHidden={selectedAccountIndex === -1}
+                        user={users[selectedAccountIndex]}
+                        onLoginWithPassword={onLoginWithPassword}
+                        onPasswordTextChange={onPasswordTextChange}
+                      />
+                  )}
+                  {this.isMainScreen() && <div style={{ marginBottom: '2em'}} />}
+              {this.isMainScreen() && <div style={{ color: 'whitesmoke', display: 'flex', width: '40%', borderBottom: '1px solid rgb(40,40,40)', fontSize: 24, justifyContent: 'space-evenly' }}>
+                      {showCreateAccount && <div className="login_selection" onClick={this.goToCreateAccountScreen}>create account</div>}
+                  </div>}
+              </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 
 LoginScreen.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
-  onCreateAccount: PropTypes.func,
-  showCreateAccount: PropTypes.bool,
-  onSelectAccount: PropTypes.func,
-  selectedAccountIndex: PropTypes.number,
-  onLoginWithPassword: PropTypes.func,
-  onSendResetEmail: PropTypes.func,
-  onSetPassword: PropTypes.func,
-  onPasswordTextChange: PropTypes.func,
-  resetToken: PropTypes.string,
-  resetErrorText: PropTypes.string,
-  errorText: PropTypes.string,
+    users: PropTypes.arrayOf(PropTypes.object),
+    onCreateAccount: PropTypes.func,
+    showCreateAccount: PropTypes.bool,
+    onSelectAccount: PropTypes.func,
+    selectedAccountIndex: PropTypes.number,
+    onLoginWithPassword: PropTypes.func,
+    onSendResetEmail: PropTypes.func,
+    onSetPassword: PropTypes.func,
+    onPasswordTextChange: PropTypes.func,
+    resetToken: PropTypes.string,
+    resetErrorText: PropTypes.string,
+    errorText: PropTypes.string,
 };
 
 export default LoginScreen;

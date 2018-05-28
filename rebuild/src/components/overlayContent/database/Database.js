@@ -21,12 +21,12 @@ class Database extends Component {
     handleCreateNewDialogClose = () => {
         this.setState({
             createNewDialogOpen: false,
-        })
+        });
     }
     handleCloseSetActiveDialog = () => {
         this.setState({
             showSetActiveDialogOpen: false,
-        })
+        });
     }
 
     render() {
@@ -43,18 +43,18 @@ class Database extends Component {
         return (
             <div style={{ height: '100%', display: 'flex' }}>
                 <DatabaseSelection
-                    onDatabaseSelected={selectedIndex => {
-                        this.setState({selectedIndex})
+                onDatabaseSelected={selectedIndex => {
+                        this.setState({selectedIndex});
                     }}
                     selectedDatabaseIndex={this.state.selectedIndex}
-                    deleteDatabase={() => {
+                deleteDatabase={() => {
                         const databaseName = databases[this.state.selectedIndex].name;
                         deleteDatabase(databaseName);
                     }}
-                    createNewDatabase={() => {
+                createNewDatabase={() => {
                         this.setState({
                             createNewDialogOpen: true,
-                        })
+                        });
                     }}
                     setDatabaseAsActive={async () => {
                         const databaseName = databases[this.state.selectedIndex].name;
@@ -62,9 +62,9 @@ class Database extends Component {
                         await setDatabaseAsActive(databaseName);
                         this.setState({
                             showSetActiveDialogOpen: true,
-                        })
+                        });
                     }}
-                    onDownloadDatabase={async () => {
+                onDownloadDatabase={async () => {
                         const databaseName = databases[this.state.selectedIndex].name;
                         downloadDatabase(databaseName);
                     }}
@@ -74,57 +74,57 @@ class Database extends Component {
                             copyDialogOpen: true,
                         });
                     }}
-                    onUploadDatabase={() => {
+                onUploadDatabase={() => {
                         document.querySelector('#file_upload').click();
                     }}
-                    databases={databases}
-                />
-                <input
-                    style={{opacity: 0, width: 0, height: 0}}
-                    id="file_upload"
-                    type="file"
-                    name="myFiles"
+                databases={databases}
+              />
+            <input
+                  style={{opacity: 0, width: 0, height: 0}}
+                  id="file_upload"
+                  type="file"
+                  name="myFiles"
                     onChange={event => {
                         const value = document.querySelector('#file_upload');
-                        const file = value.files[0]
+                        const file = value.files[0];
                         uploadDatabase(file.name, file);
                     }}
                 />
 
                 <DatabaseDialog
                     isOpen={this.state.copyDialogOpen}
-                    onRequestClose={this.handleCopyDialogClose}
-                    onTextFieldChange={event => {
+                onRequestClose={this.handleCopyDialogClose}
+                onTextFieldChange={event => {
                         const databaseNameToCopyTarget = event.target.value;
                         this.setState({
                             databaseNameToCopyTarget,
-                        })
+                        });
                     }}
-                    onSubmit={() => {
+                onSubmit={() => {
                         const databaseNameToCopy = databases[this.state.selectedIndex].name;
                         copyDatabase(databaseNameToCopy, this.state.databaseNameToCopyTarget);
                         this.handleCopyDialogClose();
                     }}
-                />
+              />
                 <DatabaseDialog
                     isOpen={this.state.createNewDialogOpen}
                     onRequestClose={this.handleCreateNewDialogClose}
                     onTextFieldChange={(_, databaseNameToCreate) => {
                         this.setState({
                             databaseNameToCreate,
-                        })
+                        });
                     }}
                     onSubmit={() => {
                         createNewDatabase(this.state.databaseNameToCreate);
                         this.handleCreateNewDialogClose();
                     }}
-                />
+              />
                 <DatabaseWarning
                     showSetActiveDialogOpen={this.state.showSetActiveDialogOpen}
                     handleCloseSetActiveDialog={this.handleCloseSetActiveDialog}
-                />
-            </div>
-        )
+              />
+          </div>
+        );
     }
 }
 

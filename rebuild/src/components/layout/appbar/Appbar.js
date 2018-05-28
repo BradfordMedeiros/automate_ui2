@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Toggle from '@material-ui/core/Switch';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import NavigationMenu from '@material-ui/icons/Navigation';
@@ -7,25 +7,25 @@ import IconButton from '@material-ui/core/IconButton';
 import './style.css';
 
 const styles = {
-  expanded: {
-    animation: 'turn_into_x 0.1s forwards',
-  },
-  not_expanded: {
-    animation: 'turn_out_x 0.1s forwards',
-  },
+    expanded: {
+        animation: 'turn_into_x 0.1s forwards',
+    },
+    not_expanded: {
+        animation: 'turn_out_x 0.1s forwards',
+    },
 };
 
 const Appbar = ({
-        rotateAddIcon,
-        onAddIconClick,
-        onRotatedAddIconClick,
-        onUserIconClick,
-        onToggle,
-        onHideMenu,
-        showHideMenu,
-        title,
-        systemLocked,
-    }) => {
+    rotateAddIcon,
+    onAddIconClick,
+    onRotatedAddIconClick,
+    onUserIconClick,
+    onToggle,
+    onHideMenu,
+    showHideMenu,
+    title,
+    systemLocked,
+}) => {
     const xStyle = rotateAddIcon ? styles.expanded : styles.not_expanded;
 
     return (
@@ -61,21 +61,21 @@ const Appbar = ({
 };
 
 Appbar.propTypes = {
-  showHideMenu: PropTypes.bool,
-  rotateAddIcon: PropTypes.bool,
-  onAddIconClick: PropTypes.func,
-  onRotatedAddIconClick: PropTypes.func,
-  onUserIconClick:  PropTypes.func,
-  onToggle: PropTypes.func,
-  onHideMenu: PropTypes.func,
-  title: PropTypes.string,
-  systemLocked: PropTypes.bool,
+    showHideMenu: PropTypes.bool,
+    rotateAddIcon: PropTypes.bool,
+    onAddIconClick: PropTypes.func,
+    onRotatedAddIconClick: PropTypes.func,
+    onUserIconClick:  PropTypes.func,
+    onToggle: PropTypes.func,
+    onHideMenu: PropTypes.func,
+    title: PropTypes.string,
+    systemLocked: PropTypes.bool,
 };
 
 Appbar.defaultProps = {
-  rotateAddIcon: false,
-  onAddIconClick: () => {},
-  onRotatedAddIconClick: () => {},
+    rotateAddIcon: false,
+    onAddIconClick: () => {},
+    onRotatedAddIconClick: () => {},
 };
 
 export default Appbar;

@@ -19,7 +19,7 @@ class EventLog extends Component {
         return (
             <div>
                 <Selection
-                    onShowLog={() => {
+                onShowLog={() => {
                         this.setState({
                             showLog: true,
                         });
@@ -29,26 +29,26 @@ class EventLog extends Component {
                             showLog: false,
                         });
                     }}
-                />
-                {this.state.showLog ?
-                    <Log data={data}/> :
-                    <EmailSetup
+              />
+            {this.state.showLog ?
+                    <Log data={data} /> :
+              <EmailSetup
                         isAlertingEnabled={isAlertingEnabled}
                         emailAddress={emailAddress}
                         onSetEmailAddress={onSetEmailAddress}
                         onSetIsAlertingEnabled={onSetIsAlertingEnabled}
                     />}
-            </div>
+          </div>
         );
     }
 }
 
 EventLog.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-  isAlertingEnabled: PropTypes.bool,
-  emailAddress: PropTypes.string,
-  onSetEmailAddress: PropTypes.func,
-  onSetIsAlertingEnabled: PropTypes.func,
+    data: PropTypes.arrayOf(PropTypes.object),
+    isAlertingEnabled: PropTypes.bool,
+    emailAddress: PropTypes.string,
+    onSetEmailAddress: PropTypes.func,
+    onSetIsAlertingEnabled: PropTypes.func,
 };
 
 export default EventLog;

@@ -5,53 +5,53 @@ import DatabaseElement from '../DatabaseElement/DatabaseElement';
 import './style.css';
 
 const Databases = ({
-  databases,
-  onDatabaseSelected,
-  selectedDatabaseIndex,
+    databases,
+    onDatabaseSelected,
+    selectedDatabaseIndex,
 
-  setDatabaseAsActive,
-  deleteDatabase,
-  createNewDatabase,
-  onDownloadDatabase,
-  onUploadDatabase,
-  onCopyDatabase,
+    setDatabaseAsActive,
+    deleteDatabase,
+    createNewDatabase,
+    onDownloadDatabase,
+    onUploadDatabase,
+    onCopyDatabase,
 
 }) => (
     <div className="database_selection_outer">
-      <ActionBar
-        onSetDatabaseAsActive={setDatabaseAsActive}
-        onDeleteDatabase={deleteDatabase}
-        onDownloadDatabase={onDownloadDatabase}
-        onUploadDatabase={onUploadDatabase}
-        onCloneDatabase={onCopyDatabase}
-        onCreateDatabase={createNewDatabase}
-      />
-      <div className="database_selection_content">
-          {databases.map((database, index) => (
-        <DatabaseElement
-          isActive={database.isActive || (selectedDatabaseIndex === index)}
-          databaseName={database.name}
-          onClick={() => {
-            console.log('selected: ', index);
-            onDatabaseSelected(index);
-          }}
+        <ActionBar
+            onSetDatabaseAsActive={setDatabaseAsActive}
+            onDeleteDatabase={deleteDatabase}
+            onDownloadDatabase={onDownloadDatabase}
+            onUploadDatabase={onUploadDatabase}
+            onCloneDatabase={onCopyDatabase}
+            onCreateDatabase={createNewDatabase}
         />
-      ))}
-      </div>
+        <div className="database_selection_content">
+            {databases.map((database, index) => (
+                <DatabaseElement
+                    isActive={database.isActive || (selectedDatabaseIndex === index)}
+                    databaseName={database.name}
+                    onClick={() => {
+                        console.log('selected: ', index);
+                        onDatabaseSelected(index);
+                    }}
+                />
+            ))}
+        </div>
     </div>
 );
 
 Databases.propTypes = {
-  databases: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setDatabaseAsActive: PropTypes.func,
-  createNewDatabase: PropTypes.func,
-  deleteDatabase: PropTypes.func,
-  onDownloadDatabase: PropTypes.func,
-  onUploadDatabase: PropTypes.func,
-  onCopyDatabase: PropTypes.func,
+    databases: PropTypes.arrayOf(PropTypes.object).isRequired,
+    setDatabaseAsActive: PropTypes.func,
+    createNewDatabase: PropTypes.func,
+    deleteDatabase: PropTypes.func,
+    onDownloadDatabase: PropTypes.func,
+    onUploadDatabase: PropTypes.func,
+    onCopyDatabase: PropTypes.func,
 
-  onDatabaseSelected: PropTypes.func,
-  selectedDatabaseIndex: PropTypes.number,
+    onDatabaseSelected: PropTypes.func,
+    selectedDatabaseIndex: PropTypes.number,
 };
 
 export default Databases;

@@ -34,32 +34,34 @@ class TileDrawer extends Component {
         return (
             <Drawer
                 open={open}
-                anchor="right"
-                variant="persistent"
+            anchor="right"
+            variant="persistent"
                 classes={{
                     paper: 'drawer_main_panel',
                 }}
-            >
+          >
                 <Button
-                    className="drawer_upload_button"
+                className="drawer_upload_button"
                     onClick={() => {
                         this.setState({
                             showUploadDialog: true,
-                        })
-                    }}>Upload</Button>
+                        });
+                    }}
+              >Upload
+              </Button>
                 <UploadDialog
                     showUploadDialog={this.state.showUploadDialog}
                     onRequestClose={() => {
                         this.setState({
                             showUploadDialog: false,
-                        })
+                        });
                     }}
                     onUploadFileButtonClick={() => {
                         console.log('upload file  clicked');
                     }}
-                />
+              />
                 {(tileNames === undefined || tileNames.length === 0) ?
-                    <MenuItem>No tiles</MenuItem> :
+                <MenuItem>No tiles</MenuItem> :
                     <List>{tileNames.map((value, index) => {
                         return (
                             <DrawerMenuItem
@@ -73,17 +75,17 @@ class TileDrawer extends Component {
                                 tile={value}
                                 tileIndex={index}
                                 path={index}
-                            />
-                        )
+                          />
+                        );
                     })}
-                    </List>}
+                </List>}
 
 
-            </Drawer>
+          </Drawer>
         );
 
     }
-};
+}
 
 /*
   */

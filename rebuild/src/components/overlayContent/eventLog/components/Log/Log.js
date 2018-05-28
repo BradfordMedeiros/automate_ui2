@@ -21,19 +21,19 @@ const Log = ({ data }) => {
                 {data && data.map((item, index) => {
                     return (
                         <TableRow className="event_log_row" key={index}>
-                            <TableCell className={index % 2 ? "event_log_cell_even" : "event_log_cell_odd"}>{index}</TableCell>
-                            <TableCell className={index % 2 ? "event_log_cell_even" : "event_log_cell_odd"}>{item.topic}</TableCell>
-                            <TableCell className={index % 2 ? "event_log_cell_even" : "event_log_cell_odd"}>{item.timestamp}</TableCell>
+                            <TableCell className={index % 2 ? 'event_log_cell_even' : 'event_log_cell_odd'}>{index}</TableCell>
+                            <TableCell className={index % 2 ? 'event_log_cell_even' : 'event_log_cell_odd'}>{item.topic}</TableCell>
+                            <TableCell className={index % 2 ? 'event_log_cell_even' : 'event_log_cell_odd'}>{item.timestamp}</TableCell>
                         </TableRow>
                     );
                 })}
             </TableBody>
         </Table>
-    )
+    );
 };
 
 Log.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Log;

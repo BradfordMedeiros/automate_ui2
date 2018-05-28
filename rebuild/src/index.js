@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import './style.css';
 
@@ -28,27 +28,27 @@ const contentMap = {
     ),
     login: (
         <LoginScreen
-            users={[{
+        users={[{
                 username: 'some user',
                 imageURL: '',
                 remote: false,
             }]}
 
             onCreateAccount={() => { }}
-            showCreateAccount={true}
+            showCreateAccount
             onSelectAccount={() => { }}
             selectedAccountIndex={0}
-            onLoginWithPassword={() => { }}
+        onLoginWithPassword={() => { }}
             onSendResetEmail={() => { }}
             onSetPassword={() => { }}
             onPasswordTextChange={() => { }}
-            resetErrorText={'fucked up'}
-            errorText={"some error wow"}
-        />
+        resetErrorText="fucked up"
+        errorText="some error wow"
+      />
     ),
     database: (
         <Database
-            databases={[
+        databases={[
                 { isActive: true, name: 'some db' },
                 { isActive: false, name: 'some db' },
                 { isActive: false, name: 'some db' },
@@ -61,22 +61,22 @@ const contentMap = {
             setDatabaseAsActive={database => {
                 console.log('set db as active: ', database);
             }}
-            createNewDatabase={database => {
+        createNewDatabase={database => {
                 console.log('create database: ', database);
             }}
             copyDatabase={(databaseToCopy, databaseNameTarget) => {
                 console.log('create database: from: ', databaseToCopy,' to: ', databaseNameTarget);
             }}
-            uploadDatabase={database => {
+        uploadDatabase={database => {
                 console.log('upload database: ', database);
             }}
-            deleteDatabase={database => {
+        deleteDatabase={database => {
                 console.log('delete database ', database);
             }}
-            downloadDatabase={database => {
+        downloadDatabase={database => {
                 console.log('download database: ', database);
             }}
-        />
+      />
     ),
     event: (
         <EventLog
@@ -85,22 +85,22 @@ const contentMap = {
                 { topic: 'another test topic', timestamp: 'test timestamp'},
 
             ]}
-            isAlertingEnabled={false}
-            emailAddress={"test email"}
+        isAlertingEnabled={false}
+        emailAddress="test email"
             onSetEmailAddress={emailAddress => {
                 console.log('set email: ', emailAddress);
             }}
-            onSetIsAlertingEnabled={isEnabled => {
+        onSetIsAlertingEnabled={isEnabled => {
                 console.log('set enable alerting: ', isEnabled);
             }}
-        />
+      />
     ),
     account: (
         <AccountManagement
             email="some email"
             alias="some alias"
-            isAdmin={true}
-            allowUserCreation={true}
+        isAdmin
+            allowUserCreation
             enableUserAccountCreation={() => {
 
             }}
@@ -113,17 +113,17 @@ const contentMap = {
             onUploadImage={() => {
 
             }}
-        />
+      />
     ),
     device: (
         <DeviceInfo
-            automateCoreVersion="some version"
+        automateCoreVersion="some version"
             ipAddress="some ip"
-            macAddress="some mac"
-            onClickConfirmLockSystem={() => {
+        macAddress="some mac"
+        onClickConfirmLockSystem={() => {
                 console.log('lock system');
             }}
-        />
+      />
     ),
     env: (
         <Environment
@@ -137,13 +137,13 @@ const contentMap = {
                 { name: 'some name',  value: 'some value' },
 
             ]}
-            onDelete={(item, index) => {
-                console.log('delete index ', index, ' value ', item)
+        onDelete={(item, index) => {
+                console.log('delete index ', index, ' value ', item);
             }}
             onAdd={({ token, value}) => {
                 console.log('add: token(',token, ') value: (', value,')');
             }}
-        />
+      />
     )
 };
 
@@ -152,15 +152,15 @@ class InjectableContent extends Component {
         content: contentMap['disconnected'],
     };
     setContent = contentType => {
-      const component = contentMap[contentType];
-      this.setState({
-          content: component || null,
-      })
+        const component = contentMap[contentType];
+        this.setState({
+            content: component || null,
+        });
     };
     render() {
         window.set  = this.setContent;
         return this.state.content;
-    };
+    }
 }
 
 class MockApp extends Component {
@@ -170,7 +170,7 @@ class MockApp extends Component {
     toggle = () => {
         this.setState({
             drawerOpen: !this.state.drawerOpen,
-        })
+        });
     }
     render() {
         window.toggle = this.toggle;
@@ -182,23 +182,24 @@ class MockApp extends Component {
                 //background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))'
                 background: 'url(http://getwallpapers.com/wallpaper/full/5/3/a/623615.jpg)',
                 boxShadow: '0px 0px 10px 2px black inset',
-            }}>
+            }}
+          >
                 <Appbar
-                    title="automate"
-                    showHideMenu
-                    rotateAddIcon={this.state.drawerOpen}
-                    systemLocked={false}
-                    onRotatedAddIconClick={() => {
+                title="automate"
+                showHideMenu
+                rotateAddIcon={this.state.drawerOpen}
+                systemLocked={false}
+                onRotatedAddIconClick={() => {
                         console.log('rotated click');
                         this.setState({
                             drawerOpen: false,
-                        })
+                        });
                     }}
                     onAddIconClick={() => {
                         console.log('hide menu clicked');
                         this.setState({
                             drawerOpen: true,
-                        })
+                        });
                     }}
                     onUserIconClick={() => {
                         console.log('user icon clicked');
@@ -209,7 +210,7 @@ class MockApp extends Component {
                     onToggle={() => {
                         console.log('toggle');
                     }}
-                />
+              />
 
                 {/*<Overlay isExpanded={this.state.isRotated}>
                     <InjectableContent />
@@ -217,7 +218,7 @@ class MockApp extends Component {
 
                 <div style={{  background: 'green', flexGrow: 1, position: 'relative' }}>
 
-                   <div style={{ background: 'pink',  position: 'absolute',  top: 0, bottom: 0, left: 0, right: 0 }}>
+                    <div style={{ background: 'pink',  position: 'absolute',  top: 0, bottom: 0, left: 0, right: 0 }}>
                         <Drawer
                             open={this.state.drawerOpen}
                             tileNames={[
@@ -253,25 +254,25 @@ class MockApp extends Component {
                             onRequestClose={() => {
                                 this.setState({
                                     drawerOpen: false,
-                                })
+                                });
                             }}
                             onTileClick={tile => {
                                 console.log('tile clicked: ', tile);
                             }}
-                        />
+                  />
 
                     </div>
 
-                </div>
+              </div>
                 {/*
 
                 */}
 
 
-            </div>
-        )
+          </div>
+        );
     }
 }
 
 
-ReactDOM.render(<MockApp />, document.getElementById("root"));
+ReactDOM.render(<MockApp />, document.getElementById('root'));

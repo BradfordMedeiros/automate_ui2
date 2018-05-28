@@ -15,7 +15,7 @@ class AccountManagement extends Component {
     showImageUpload = () => {
         this.setState({
             showImageUpload: true,
-        })
+        });
     };
     hideImageUpload = () => {
         this.setState({
@@ -50,17 +50,17 @@ class AccountManagement extends Component {
         return (
             <div id="account_management">
                 <UploadImageDialog
-                    showImageUpload={this.state.showImageUpload}
-                    hideImageUpload={this.hideImageUpload}
+                showImageUpload={this.state.showImageUpload}
+                hideImageUpload={this.hideImageUpload}
                     uploadImage={this.uploadImage}
                     onSetImageUrl={(_, imageUrl) => {
                         this.setState({
                             imageUrl,
-                        })
+                        });
                     }}
-                />
-                <AccountHeader
-                    isAdmin={isAdmin}
+              />
+            <AccountHeader
+                  isAdmin={isAdmin}
                     imageURL={imageURL}
                     onLogout={onLogout}
                     shouldShowAdminSettings={this.state.showAdminSettings}
@@ -73,15 +73,15 @@ class AccountManagement extends Component {
                         allowUserCreation={allowUserCreation}
                         enableUserAccountCreation={enableUserAccountCreation}
                         disableUserAccountCreation={disableUserAccountCreation}
-                    />
+                  />
                 ): (
                     <AccountInformation
                         email={email}
                         alias={alias}
-                    />
+                  />
                 )}
-            </div>
-        )
+          </div>
+        );
     }
 }
 

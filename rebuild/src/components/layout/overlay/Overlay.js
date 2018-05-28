@@ -24,7 +24,7 @@ class SelectionOverlay extends Component {
             </div>
         );
     }
-};
+}
 
 SelectionOverlay.propTypes = {
     isExpanded: PropTypes.bool.isRequired,

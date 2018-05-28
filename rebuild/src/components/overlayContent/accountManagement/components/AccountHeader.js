@@ -23,24 +23,27 @@ const AccountHeader = ({
             position: 'relative',
             width: '100%',
             height: 100,
-        }}>
+        }}
+        >
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <div onClick={showImageUpload} style={{
-                    background: `url(${imageURL})`,
-                    backgroundSize: 'contain',
-                    border: '2px solid black',
-                    boxShadow: '0px 0px 8px 1px black inset',
-                    cursor: 'pointer',
-                    width: 100,
-                    height: 100
-                }}/>
+                <div
+                    onClick={showImageUpload} style={{
+                        background: `url(${imageURL})`,
+                        backgroundSize: 'contain',
+                        border: '2px solid black',
+                        boxShadow: '0px 0px 8px 1px black inset',
+                        cursor: 'pointer',
+                        width: 100,
+                        height: 100
+                    }}
+                />
                 <div style={{marginLeft: 48}}>{shouldShowAdminSettings ? 'Admin Settings' : 'My Account'}</div>
             </div>
             <div>
                 {isAdmin &&
                 <Button
                     style={{margin: 4}}
-                    variant={"raised"}
+                    variant="raised"
                     onClick={() => {
                         if (shouldShowAdminSettings) {
                             hideAdminSettings();
@@ -61,6 +64,6 @@ const AccountHeader = ({
             </div>
         </div>
     );
-}
+};
 
 export default AccountHeader;
