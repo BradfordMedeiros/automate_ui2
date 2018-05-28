@@ -11,13 +11,10 @@ import ActionDelete from '@material-ui/icons/Delete';
 import './style.css';
 
 class NestedMenuItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
+  state = {
+    open: false,
   }
-  handleClick() {
+  handleClick = ()=> {
     this.setState({
       open: !this.state.open,
     });
