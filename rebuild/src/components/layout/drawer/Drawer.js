@@ -65,17 +65,13 @@ class TileDrawer extends Component {
             <List>{tileNames.map((value, index) => (
               <DrawerMenuItem
                 onTileClick={onTileClick}
-                onDownloadTile={(tile) => {
-                                    onDownloadTile(tile);
-                                }}
-                onDeleteTile={(tile) => {
-                                    onDeleteTile(tile);
-                                }}
+                onDownloadTile={(tile) => { onDownloadTile(tile); }}
+                onDeleteTile={(tile) => { onDeleteTile(tile); }}
                 tile={value}
                 tileIndex={index}
                 path={index}
               />
-                        ))}
+            ))}
             </List>}
 
 
