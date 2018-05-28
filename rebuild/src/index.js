@@ -225,7 +225,29 @@ class MockApp extends Component {
                                 'thing',
                                 {
                                     label: 'controls',
-                                    children: ['thing', 'another', 'wow', 'go'],
+                                    children: [
+                                        'thing',
+                                        'another',
+                                        'wow',
+                                        {
+                                            label: 'thing',
+                                            children: [
+                                                'poop',
+                                            ],
+                                        },
+                                        {
+                                            name: 'custom',
+                                            url: true,
+                                        }
+                                    ],
+                                },
+                                {
+                                    name: 'custom 1',
+                                    url: true,
+                                },
+                                {
+                                    name: 'custom 2',
+                                    url: true,
                                 }
                             ]}
                             onRequestClose={() => {
