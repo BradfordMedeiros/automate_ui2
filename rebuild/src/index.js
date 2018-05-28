@@ -221,20 +221,16 @@ class MockApp extends Component {
                 <Drawer
                     open={this.state.drawerOpen}
                     tileNames={[
-                      'graph',
-                      'thing',
+                      {
+                        label: 'graphs',
+                        children: ['bar', 'line'],
+                      },
                       {
                         label: 'controls',
                         children: [
                           'thing',
                           'another',
                           'wow',
-                          {
-                            label: 'thing',
-                            children: [
-                              'poop',
-                            ],
-                          },
                           {
                             name: 'custom',
                             url: true,
@@ -254,6 +250,9 @@ class MockApp extends Component {
                       this.setState({
                         drawerOpen: false,
                       });
+                    }}
+                    onDeleteTile={tile  => {
+                      console.log('delete clicked: ', tile);
                     }}
                     onTileClick={(tile) => {
                       console.log('tile clicked: ', tile);

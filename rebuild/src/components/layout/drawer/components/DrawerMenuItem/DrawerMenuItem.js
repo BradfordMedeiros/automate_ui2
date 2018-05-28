@@ -27,7 +27,7 @@ class NestedMenuItem extends Component {
         {this.state.open ? <ExpandLess/> : <ExpandMore/>}
       </ListItem>,
       <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <List component="div">
+        <List component="div" style={{ paddingLeft: 18 }}>
           {tile.children && tile.children.map(tileName => (
               <DrawerMenuItem
                   tile={tileName}
@@ -65,6 +65,7 @@ const DrawerMenuItem = ({
           {tile.name}
           <div>
             <IconButton
+                className="drawer_menu_icon_button"
                 onClick={(event) => {
                   event.stopPropagation();
                   onDeleteTile(tile);
@@ -73,6 +74,7 @@ const DrawerMenuItem = ({
               <ActionDelete/>
             </IconButton>
             <IconButton
+                className="drawer_menu_icon_button"
                 onClick={(event) => {
                   event.stopPropagation();
                   onDownloadTile(tile);
