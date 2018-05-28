@@ -1,7 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { Drawer, List, MenuItem, Dialog, TextField, FlatButton } from 'material-ui';
-import DrawerMenuItem from './components/DrawerMenuItem';
-import File from './components/File';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import MenuItem from '@material-ui/core/MenuItem';
+import Dialog from '@material-ui/core/Dialog';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import DrawerMenuItem from './components/DrawerMenuItem/DrawerMenuItem';
+//import File from './components/File';
+import './style.css';
 
 const styles = {
   tiles: {
@@ -22,94 +29,79 @@ const styles = {
   }
 };
 
-const TileDrawer = ({
-  open,
-  onTileClick,
-  onUploadClick,
-  onUploadFileButtonClick,
-  onUploadRequestClose,
-  onFormData,
-  tileNames,
-  onTileNameChange,
-  onDrawerStateChange,
-  showUploadDialog,
-  onDeleteTile,
-  onDownloadTile,
-  errorText,
-  style
-}) => (
-  <Drawer
-    open={open}
-    onRequestChange={onDrawerStateChange}
-    openSecondary
-    docked={false}
-    overlayStyle={{ background: 'transparent' }}
-    containerStyle={{ background: 'rgb(18,18,18)',...style}}
-  >
-    <Dialog
-      open={showUploadDialog}
-      onRequestClose={onUploadRequestClose}
-      bodyStyle={{
-        background: 'rgb(10,10,10)',
-        borderLeft: '1px solid steelblue',
-        borderRight: '1px solid steelblue',
-      }}
-    >
-      Tile Name:
-        <TextField
-          errorText={errorText}
-          onChange={(_, text) => {
-            onTileNameChange(text);
-          }}
-        />
-        <File
-          onChange={form => {
-            onFormData(form);
-          }}
-        />
-      <FlatButton labelStyle={{ color: 'steelblue' }} label="Upload" onClick={onUploadFileButtonClick} />
-    </Dialog>
-    <div style={styles.tiles}>tiles</div>
-    <div
-      onClick={onUploadClick}
-      style={styles.upload}
-    >
-      Upload New
-    </div>
-    {(tileNames === undefined || tileNames.length === 0) ?
-      <MenuItem>No tiles</MenuItem> :
-      <List>{tileNames.map(
-        (value, index) => (
-          <DrawerMenuItem
-            onTileClick={onTileClick}
-            onDownloadTile={tile => {
-              onDownloadTile(tile);
-            }}
-            onDeleteTile={tile => {
-              onDeleteTile(tile);
-            }}
-            tile={value}
-            tileIndex={index}
-            path={index}
-          />
-        ))}
-      </List>}
-  </Drawer>
-);
+class TileDrawer extends Component {
+    render() {
+        const {
+            open,
+            onTileClick,
+            onUploadClick,
+            onUploadFileButtonClick,
+            onUploadRequestClose,
+            onRequestClose,
+            onFormData,
+            tileNames,
+            onTileNameChange,
+            onDrawerStateChange,
+            showUploadDialog,
+            onDeleteTile,
+            onDownloadTile,
+            errorText,
+            style
+        } = this.props;
+
+        return (
+            <Drawer
+                open={open}
+                anchor="right"
+                variant="persistent"
+                classes={{
+                    paper: 'drawer_main_panel',
+                }}
+            >
+                <Button className="drawer_upload_button" onClick={onUploadFileButtonClick} >Upload</Button>
+                {(tileNames === undefined || tileNames.length === 0) ?
+                    <MenuItem>No tiles</MenuItem> :
+                    <List>{tileNames.map((value, index) => {
+                        return (
+                            <DrawerMenuItem
+                                onTileClick={onTileClick}
+                                onDownloadTile={tile => {
+                                    onDownloadTile(tile);
+                                }}
+                                onDeleteTile={tile => {
+                                    onDeleteTile(tile);
+                                }}
+                                tile={value}
+                                tileIndex={index}
+                                path={index}
+                            />
+                        )
+                    })}
+                    </List>}
+            </Drawer>
+        );
+
+    }
+};
+
+/*
+  */
+
+
 
 TileDrawer.propTypes = {
-  open: PropTypes.bool,
-  onTileClick: PropTypes.func,
-  errorText: PropTypes.string,
-  onUploadFileButtonClick: PropTypes.func,
-  onUploadClick: PropTypes.func,
-  onUploadRequestClose: PropTypes.func,
-  onTileNameChange: PropTypes.func,
-  showUploadDialog: PropTypes.bool,
-  onDeleteTile: PropTypes.func,
-  onDownloadTile: PropTypes.func,
-  onFormData: PropTypes.func,
-  style: PropTypes.object,
+open: PropTypes.bool,
+onTileClick: PropTypes.func,
+errorText: PropTypes.string,
+onUploadFileButtonClick: PropTypes.func,
+onUploadClick: PropTypes.func,
+onUploadRequestClose: PropTypes.func,
+onTileNameChange: PropTypes.func,
+showUploadDialog: PropTypes.bool,
+onDeleteTile: PropTypes.func,
+onDownloadTile: PropTypes.func,
+onFormData: PropTypes.func,
+style: PropTypes.object,
 };
 
 export default TileDrawer;

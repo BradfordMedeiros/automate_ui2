@@ -1,0 +1,11 @@
+
+.drawer_main_panel {
+    width: 260px;
+    background: rgb(30,30,30) !important;
+    color: whitesmoke !important;
+    position: absolute !important;
+}
+
+.drawer_upload_button {
+    color: steelblue !important;
+}

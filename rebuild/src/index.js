@@ -165,9 +165,15 @@ class InjectableContent extends Component {
 
 class MockApp extends Component {
     state = {
-        isRotated: false,
+        drawerOpen: true,
     };
+    toggle = () => {
+        this.setState({
+            drawerOpen: !this.state.drawerOpen,
+        })
+    }
     render() {
+        window.toggle = this.toggle;
         return (
             <div style={{
                 display: 'flex',
@@ -180,34 +186,66 @@ class MockApp extends Component {
                 <Appbar
                     title="automate"
                     showHideMenu
-                    rotateAddIcon={this.state.isRotated}
+                    rotateAddIcon={this.state.drawerOpen}
                     systemLocked={false}
                     onRotatedAddIconClick={() => {
                         console.log('rotated click');
                         this.setState({
-                            isRotated: false,
+                            drawerOpen: false,
                         })
                     }}
                     onAddIconClick={() => {
-                        console.log('icon clicked');
+                        console.log('hide menu clicked');
                         this.setState({
-                            isRotated: true,
+                            drawerOpen: true,
                         })
                     }}
                     onUserIconClick={() => {
                         console.log('user icon clicked');
                     }}
                     onHideMenu={() => {
-                        console.log('hide menu clicked');
+
                     }}
                     onToggle={() => {
                         console.log('toggle');
                     }}
                 />
 
-                <Overlay isExpanded={this.state.isRotated}>
+                {/*<Overlay isExpanded={this.state.isRotated}>
                     <InjectableContent />
-                </Overlay>
+                </Overlay>*/}
+
+                <div style={{  background: 'green', flexGrow: 1, position: 'relative' }}>
+
+                   <div style={{ background: 'pink',  position: 'absolute',  top: 0, bottom: 0, left: 0, right: 0 }}>
+                        <Drawer
+                            open={this.state.drawerOpen}
+                            tileNames={[
+                                'graph',
+                                'thing',
+                                {
+                                    label: 'controls',
+                                    children: ['thing', 'another', 'wow', 'go'],
+                                }
+                            ]}
+                            onRequestClose={() => {
+                                this.setState({
+                                    drawerOpen: false,
+                                })
+                            }}
+                            onTileClick={tile => {
+                                console.log('tile clicked: ', tile);
+                            }}
+                        />
+
+                    </div>
+
+                </div>
+                {/*
+
+                */}
+
+
             </div>
         )
     }
