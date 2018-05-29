@@ -14,6 +14,7 @@ import DeviceInfo from './containers/overlayContent/DeviceInfo';
 import EventLog from './containers/overlayContent/EventLog';
 import Environment from './containers/overlayContent/Environment';
 import Database from './containers/overlayContent/Database';
+import Programming from './containers/overlayContent/Programming';
 
 import LoginScreen from './containers/special/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnected_overlay/DisconnectedOverlay';
@@ -31,10 +32,15 @@ const contentMap = {
   account: <AccountManagement />,
   device: <DeviceInfo />,
   env: <Environment />,
+  programming: <Programming/>,
 };
 
-class InjectableContent extends Component {
+
+class MockApp extends Component {
     state = {
+      drawerOpen: false,
+      showContent: false,
+      isEditable: false,
       content: contentMap.env,
     };
     setContent = (contentType) => {
@@ -42,18 +48,6 @@ class InjectableContent extends Component {
       this.setState({
         content: component || null,
       });
-    };
-    render() {
-      window.set = this.setContent;
-      return this.state.content;
-    }
-}
-
-class MockApp extends Component {
-    state = {
-      drawerOpen: false,
-      showContent: false,
-      isEditable: false,
     };
     toggle = () => {
       this.setState({
@@ -65,9 +59,11 @@ class MockApp extends Component {
         showContent: !this.state.showContent,
       })
 
-    }
+    };
     render() {
       window.toggle = this.toggle;
+      window.set = this.setContent;
+
       return (
           <div style={{
             display: 'flex',
@@ -96,9 +92,11 @@ class MockApp extends Component {
                   });
                 }}
                 onUserIconClick={() => {
-                  console.log('user icon clicked');
+                  this.setContent('account');
+                  this.toggleContent();
                 }}
                 onHideMenu={() => {
+                  this.setContent('programming');
                   this.toggleContent();
                 }}
                 onToggle={() => {
@@ -110,7 +108,7 @@ class MockApp extends Component {
             />
             <div style={{ flexGrow: 1, position: 'relative' }}>
               <Overlay isExpanded={this.state.showContent}>
-                <InjectableContent />
+                {this.state.content}
               </Overlay>
               <Grid
                   onLayoutChange={(_, allLayouts) => {
