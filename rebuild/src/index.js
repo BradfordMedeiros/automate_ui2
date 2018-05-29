@@ -35,7 +35,7 @@ const contentMap = {
 
 class InjectableContent extends Component {
     state = {
-      content: contentMap.disconnected,
+      content: contentMap.env,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];
@@ -108,7 +108,6 @@ class MockApp extends Component {
                   })
                 }}
             />
-
             <div style={{ flexGrow: 1, position: 'relative' }}>
               <Overlay isExpanded={this.state.showContent}>
                 <InjectableContent />

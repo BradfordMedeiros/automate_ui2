@@ -31,6 +31,7 @@ const Appbar = ({
   return (
     <div className="titlebar">
       <div className="app_title">{title}</div>
+
       {!systemLocked && <div className="app_properties">
         <IconButton onClick={onUserIconClick} className="app_property"><AccountIcon /></IconButton>
         {showHideMenu && <IconButton className="app_property" onClick={onHideMenu}><NavigationMenu /></IconButton>}

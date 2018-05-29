@@ -38,6 +38,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "downloadjs": "^1.4.7"
+    "downloadjs": "^1.4.7",
+    "react-grid-layout": "^0.16.6"
   }
 }
