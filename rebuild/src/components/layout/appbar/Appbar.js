@@ -38,7 +38,7 @@ const Appbar = ({
           <Toggle
             thumbStyle={{ background: 'darkgrey' }}
             thumbSwitchedStyle={{ background: 'white' }}
-            onToggle={onToggle}
+            onChange={onToggle}
           />
          </div>}
         {<div className="app_property">

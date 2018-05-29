@@ -53,6 +53,7 @@ class MockApp extends Component {
     state = {
       drawerOpen: false,
       showContent: false,
+      isEditable: false,
     };
     toggle = () => {
       this.setState({
@@ -101,7 +102,10 @@ class MockApp extends Component {
                   this.toggleContent();
                 }}
                 onToggle={() => {
-                  console.log('toggle');
+                  console.log('toggle editable');
+                  this.setState({
+                    isEditable: !this.state.isEditable,
+                  })
                 }}
             />
 
@@ -126,7 +130,7 @@ class MockApp extends Component {
                   onTileDoubleClick={tile  => {
                     console.log('clicked: ', tile);
                   }}
-                  isEditable={true}
+                  isEditable={this.state.isEditable}
 
               />
               <Drawer open={this.state.drawerOpen} onRequestClose={() => { this.setState({ drawerOpen: false })}} />
