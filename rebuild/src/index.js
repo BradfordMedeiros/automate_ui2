@@ -19,7 +19,7 @@ import LoginScreen from './containers/special/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnected_overlay/DisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
-import tiles from './containers/tiles';
+import tiles from './containers/special/tiles/tiles';
 // const Data = getData();
 
 
