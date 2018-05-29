@@ -18,6 +18,8 @@ import Database from './containers/overlayContent/Database';
 import LoginScreen from './containers/special/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnected_overlay/DisconnectedOverlay';
 
+import Grid from './components/layout/grid/Grid';
+import tiles from './containers/tiles';
 // const Data = getData();
 
 
@@ -70,8 +72,8 @@ class MockApp extends Component {
             display: 'flex',
             flexGrow: 1,
             flexDirection: 'column',
-            background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))',
-            //background: 'url(http://getwallpapers.com/wallpaper/full/5/3/a/623615.jpg)',
+            //background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))',
+            background: 'url(http://getwallpapers.com/wallpaper/full/5/3/a/623615.jpg)',
             boxShadow: '0px 0px 10px 2px black inset',
           }}
           >
@@ -103,11 +105,30 @@ class MockApp extends Component {
                 }}
             />
 
-            <div style={{ border: '1px solid yellow', flexGrow: 1, position: 'relative' }}>
+            <div style={{ flexGrow: 1, position: 'relative' }}>
               <Overlay isExpanded={this.state.showContent}>
                 <InjectableContent />
               </Overlay>
+              <Grid
+                  onLayoutChange={(_, allLayouts) => {
+                    localStorage.setItem('layout', JSON.stringify(allLayouts));
+                  }}
+                  layout={(() => {
+                    try {
+                      const value = JSON.parse(localStorage.getItem('layout'))
+                      if (value){
+                        return value;
+                      }
+                    }catch(err){
+                    }
+                  })()}
+                  tiles={tiles}
+                  onTileDoubleClick={tile  => {
+                    console.log('clicked: ', tile);
+                  }}
+                  isEditable={true}
 
+              />
               <Drawer open={this.state.drawerOpen} onRequestClose={() => { this.setState({ drawerOpen: false })}} />
             </div>
 

@@ -1,0 +1,11 @@
+.main_grid_wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.react-grid-layout {
+    height: 100% !important;
+}
