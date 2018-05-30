@@ -1,0 +1,21 @@
+.programming_menu{
+    width: 260px;
+    border-right: 1px solid black;
+    height: 100%;
+    background: linear-gradient(rgb(50,50,50),rgb(45,45,45));
+}
+.liname {
+    font-size: 110%;
+    font-family: Arial;
+    color: white;
+    padding: 18px !important;
+}
+.liname:hover {
+    color: steelblue;
+    cursor: pointer;
+}
+
+.liname-selected{
+    background: black;
+    color: white;
+}
