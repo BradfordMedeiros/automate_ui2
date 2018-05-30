@@ -28,7 +28,7 @@ class Menu extends Component {
                 </ListItem>
             )
           })}
-          <hr />
+          <hr className="programming_menu_divider" />
           {buttonLabels.map((item, index) => {
             const className = ('liname' + ((this.state.selectedIndex === index )? ' liname-selected' : ''));
             return (

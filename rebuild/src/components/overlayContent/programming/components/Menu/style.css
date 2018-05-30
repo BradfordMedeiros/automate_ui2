@@ -19,3 +19,9 @@
     background: black;
     color: white;
 }
+
+.programming_menu_divider{
+    height: 2px;
+    border: none;
+    background: steelblue;
+}
