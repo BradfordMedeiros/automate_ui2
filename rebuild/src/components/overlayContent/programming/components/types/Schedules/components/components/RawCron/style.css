@@ -1,0 +1,11 @@
+.schedule_editor_raw_cron {
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 18px;
+    padding-bottom: 40px;
+    background: rgb(40, 40, 40);
+}

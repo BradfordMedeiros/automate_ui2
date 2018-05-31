@@ -1,7 +1,6 @@
 .selectable_types_outer{
     border-right: 1px solid black;
     width: 240px;
-    flex-grow: 1;
 }
 
 .selectable_type{

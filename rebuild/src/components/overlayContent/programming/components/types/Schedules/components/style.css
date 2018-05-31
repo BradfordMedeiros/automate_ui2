@@ -1,0 +1,19 @@
+
+@keyframes schedule_slide_in {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+
+@keyframes schedule_slide_out {
+    from {
+        left: 0;
+    }
+    to {
+        left: 100%;
+    }
+}

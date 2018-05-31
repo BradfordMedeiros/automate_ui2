@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header';
 import SelectableTypes from './components/SelectableTypes/SelectableTypes';
+import Schedules from './components/types/Schedules/Schedules';
 
 class Programming extends Component {
   state = {
@@ -27,9 +28,6 @@ class Programming extends Component {
                 {
                   label: 'Rules',
                 },
-                /*{
-                  label: 'conditions'
-                },*/
               ]}
               additionalLabels={[
                 {
@@ -48,16 +46,19 @@ class Programming extends Component {
           />
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Header itemName={'some name'} itemType={'some type'} deleteSequence={() => { }} />
-            <SelectableTypes
-                items={['one','two','three','four']}
-                selectedIndex={this.state.selectedIndex}
-                onItemSelected={(_, selectedIndex) => {
-                  console.log('selected');
-                  this.setState({
-                    selectedIndex,
-                  })
-                }}
-            />
+            <div style={{ display: 'flex' }}>
+              <SelectableTypes
+                  items={['one','two','three','four']}
+                  selectedIndex={this.state.selectedIndex}
+                  onItemSelected={(_, selectedIndex) => {
+                    console.log('selected');
+                    this.setState({
+                      selectedIndex,
+                    })
+                  }}
+              />
+              <Schedules />
+            </div>
           </div>
         </div>
     )
