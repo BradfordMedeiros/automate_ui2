@@ -22,7 +22,7 @@ class QuickAdd extends Component {
     } = this.props;
 
     return (
-      <div style={{ background: 'blue',  flexGrow: 1 }}>
+      <div style={{ background: 'blue',  flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <QuickOptions
             style={{ width: '100%', height: 52 }}
             selectedOption={this.state.selectedOption}
@@ -30,11 +30,9 @@ class QuickAdd extends Component {
               this.setState({ selectedOption });
             }}
           />
-
-        {/*
-          <div style={{ display: 'flex', flexDirection: 'row', top: 52, position: 'absolute', width: '100%', height: 'calc(100% - 152px)' }}>
+          <div style={{ display: 'flex', flexGrow: 1, background: 'red', border: '1px solid orange' }}>
             <MqttOptions
-              style={{ width: 340, position: 'absolute', height: '100%' }}
+              style={{ width: 340 }}
               topic={topic}
               onTopicChange={onTopicChange}
               value={value}
@@ -42,12 +40,12 @@ class QuickAdd extends Component {
               onSubmitSchedule={onSubmitSchedule}
             />
             <FrequencyEditor
-              style={{ position: 'absolute', height: '100%',  left: 340, right: 0 }}
+              style={{ flexGrow: 1 }}
               type={this.state.selectedOption}
               schedule={schedule}
               onScheduleChange={onScheduleChange}
             />
-          </div>*/}
+          </div>
           <RawCron schedule={schedule} onScheduleChange={onScheduleChange} />
       </div>
     );

@@ -46,7 +46,7 @@ class Programming extends Component {
           />
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Header itemName={'some name'} itemType={'some type'} deleteSequence={() => { }} />
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexGrow: 1 }}>
               <SelectableTypes
                   items={['one','two','three','four']}
                   selectedIndex={this.state.selectedIndex}
