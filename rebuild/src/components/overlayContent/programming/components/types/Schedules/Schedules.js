@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ScheduleEditor from './components/ScheduleEditor';
+import ScheduleEditor from './components/ScheduleEditor/ScheduleEditor';
 
 class Schedules extends Component{
   state = {
