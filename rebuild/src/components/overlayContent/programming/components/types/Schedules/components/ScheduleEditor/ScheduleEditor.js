@@ -23,13 +23,15 @@ class QuickAdd extends Component {
 
     return (
       <div style={{ background: 'blue',  flexGrow: 1 }}>
-        {/*<QuickOptions
+        <QuickOptions
             style={{ width: '100%', height: 52 }}
             selectedOption={this.state.selectedOption}
             onScheduleSelected={selectedOption => {
               this.setState({ selectedOption });
             }}
           />
+
+        {/*
           <div style={{ display: 'flex', flexDirection: 'row', top: 52, position: 'absolute', width: '100%', height: 'calc(100% - 152px)' }}>
             <MqttOptions
               style={{ width: 340, position: 'absolute', height: '100%' }}
