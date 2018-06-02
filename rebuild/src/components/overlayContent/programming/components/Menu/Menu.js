@@ -5,23 +5,19 @@ import ListItem from '@material-ui/core/ListItem';
 import './style.css';
 
 class Menu extends Component {
-  state = {
-    selectedIndex: 0,
-  };
   render() {
-    const { buttonLabels, additionalLabels} = this.props;
+    const { buttonLabels, additionalLabels, selectedLabel, onSelectLabel } = this.props;
+
     return (
       <div className="programming_menu" >
         <List>
-          {additionalLabels.map((item, index) => {
-            const className = ('liname' + ((this.state.selectedIndex - buttonLabels.length === index )? ' liname-selected' : ''));
+          {additionalLabels.map((item) => {
+            const className = ('liname' + ((selectedLabel === item.label)? ' liname-selected' : ''));
             return (
                 <ListItem
                     className={className}
                     onClick={() => {
-                      this.setState({
-                        selectedIndex: index + buttonLabels.length,
-                      })
+                      onSelectLabel(item.label);
                     }}
                 >
                   {item.label}
@@ -29,15 +25,13 @@ class Menu extends Component {
             )
           })}
           <hr className="programming_menu_divider" />
-          {buttonLabels.map((item, index) => {
-            const className = ('liname' + ((this.state.selectedIndex === index )? ' liname-selected' : ''));
+          {buttonLabels.map((item) => {
+            const className = ('liname' + ((selectedLabel === item.label)? ' liname-selected' : ''));
             return (
                 <ListItem
                     className={className}
                     onClick={() => {
-                      this.setState({
-                        selectedIndex: index,
-                      })
+                      onSelectLabel(item.label);
                     }}
                 >
                   {item.label}
@@ -52,6 +46,9 @@ class Menu extends Component {
 
 Menu.propTypes = {
   buttonLabels: PropTypes.array,
+  selectedLabel: PropTypes.string,
+  onSelectLabel: PropTypes.func,
+
 };
 
 export default Menu;

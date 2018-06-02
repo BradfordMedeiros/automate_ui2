@@ -3,15 +3,35 @@ import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header';
 import SelectableTypes from './components/SelectableTypes/SelectableTypes';
 import Schedules from './components/types/Schedules/Schedules';
+import Rules from './components/types/Rules/Rules';
+import getActionScript from './components/types/ActionScript/getActionScript';
+import getStateScript from './components/types/StateScript/getStateScript';
+
+const ActionScript = getActionScript(Header, SelectableTypes);
+const StateScript = getStateScript(Header, SelectableTypes);
+
+
+const labelComponentMap = {
+  Actionscripts: <ActionScript />,
+  Statescripts: <StateScript />,
+
+};
+
 
 class Programming extends Component {
   state = {
-    selectedIndex: 0,
+    selectedComponent: 'Actionscripts',
   };
   render() {
     return (
         <div style={{ display: 'flex' }}>
           <Menu
+              selectedLabel={this.state.selectedComponent}
+              onSelectLabel={selectedComponent => {
+                this.setState({
+                  selectedComponent,
+                })
+              }}
               buttonLabels={[
                 {
                   label: 'Statescripts',
@@ -44,22 +64,7 @@ class Programming extends Component {
                 }
               ]}
           />
-          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            <Header itemName={'some name'} itemType={'some type'} deleteSequence={() => { }} />
-            <div style={{ display: 'flex', flexGrow: 1 }}>
-              <SelectableTypes
-                  items={['one','two','three','four']}
-                  selectedIndex={this.state.selectedIndex}
-                  onItemSelected={(_, selectedIndex) => {
-                    console.log('selected');
-                    this.setState({
-                      selectedIndex,
-                    })
-                  }}
-              />
-              <Schedules />
-            </div>
-          </div>
+          {labelComponentMap[this.state.selectedComponent] || null}
         </div>
     )
   }
