@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginScreenComponent from '../../components/special/login_screen/LoginScreen';
+import LoginScreenComponent from '../../components/special/loginScreen/LoginScreen';
 
 const LoginScreen = () => (
     <LoginScreenComponent

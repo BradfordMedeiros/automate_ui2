@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Action from './components/Action';
 import Wait from './components/Wait';
 

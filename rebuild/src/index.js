@@ -17,7 +17,7 @@ import Database from './containers/overlayContent/Database';
 import Programming from './containers/overlayContent/Programming';
 
 import LoginScreen from './containers/special/LoginScreen';
-import DisconnectedOverlay from './components/special/disconnected_overlay/DisconnectedOverlay';
+import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
 import tiles from './containers/special/tiles/tiles';

@@ -4,11 +4,13 @@ import Header from './components/Header/Header';
 import SelectableTypes from './components/SelectableTypes/SelectableTypes';
 import getActionScript from './components/types/ActionScript/getActionScript';
 import getStateScript from './components/types/StateScript/getStateScript';
+import getSequences from './components/types/Sequences/getSequences';
 import Schedules from './components/types/Schedules/Schedules';
 import Rules from './components/types/Rules/Rules';
 
 const ActionScript = getActionScript(Header, SelectableTypes);
 const StateScript = getStateScript(Header, SelectableTypes);
+const Sequences = getSequences(Header, SelectableTypes);
 
 
 const labelComponentMap = {
@@ -16,6 +18,7 @@ const labelComponentMap = {
   Statescripts: <StateScript />,
   Schedules: <Schedules />,
   Rules: <Rules />,
+  Sequences: <Sequences />,
 
 };
 

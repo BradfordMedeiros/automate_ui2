@@ -1,7 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
-import AxiomHeader from '../../../../axiomBuilder/components/AxiomHeader/AxiomHeader';
-import InlineDropdownDialog from '../../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+//import InlineDropdownDialog from '../../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
 import SequenceUnit from './components/sequenceUnit/SequenceUnit';
 
 class SequenceInfo extends Component {
@@ -25,7 +28,7 @@ class SequenceInfo extends Component {
     const { actions, metaActions, sequenceName, onChange, deleteSequence } = this.props;
     return (
       <div style={{ width: '100%' }}>
-        <InlineDropdownDialog
+        {/*<InlineDropdownDialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
           onChange={(newAction) => {
@@ -35,14 +38,9 @@ class SequenceInfo extends Component {
           }}
           onOkClick={this.closeDialog}
           options={metaActions}
-        />
-        <AxiomHeader
-          deleteSequence={deleteSequence}
-          axiomName="Sequence"
-          axiomNameValue={sequenceName}
-        />
-        <Table selectable={false}>
-          <TableBody displayRowCheckbox={false} >
+        />*/}
+        <Table>
+          <TableBody>
             {actions.map((action, index) => (
               <SequenceUnit
                 type={action.type}
@@ -57,13 +55,12 @@ class SequenceInfo extends Component {
               />
             ))}
             <TableRow>
-              <TableRowColumn
+              <TableCell
                 onTouchTap={this.openDialog}
                 style={{ cursor: 'pointer' }}
               >
                 + Add New
-              </TableRowColumn>
-              <TableRowColumn />
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

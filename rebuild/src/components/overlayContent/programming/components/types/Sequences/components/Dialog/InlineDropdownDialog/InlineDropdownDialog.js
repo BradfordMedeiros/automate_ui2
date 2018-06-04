@@ -1,4 +1,3 @@
-
 import React, { Component, PropTypes } from 'react';
 import { DropDownMenu, MenuItem } from 'material-ui';
 import DialogContainer from '../InlineDialogContainer';
