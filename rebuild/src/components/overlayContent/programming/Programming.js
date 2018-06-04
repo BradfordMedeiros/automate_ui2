@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header';
 import SelectableTypes from './components/SelectableTypes/SelectableTypes';
-import Schedules from './components/types/Schedules/Schedules';
-import Rules from './components/types/Rules/Rules';
 import getActionScript from './components/types/ActionScript/getActionScript';
 import getStateScript from './components/types/StateScript/getStateScript';
+import Schedules from './components/types/Schedules/Schedules';
+import Rules from './components/types/Rules/Rules';
 
 const ActionScript = getActionScript(Header, SelectableTypes);
 const StateScript = getStateScript(Header, SelectableTypes);
@@ -14,6 +14,8 @@ const StateScript = getStateScript(Header, SelectableTypes);
 const labelComponentMap = {
   Actionscripts: <ActionScript />,
   Statescripts: <StateScript />,
+  Schedules: <Schedules />,
+  Rules: <Rules />,
 
 };
 
