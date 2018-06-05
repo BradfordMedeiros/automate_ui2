@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Menu from './components/Menu/Menu';
+import './style.css';
 
 class Programming extends Component {
   state = {
-    selectedComponent: 'Actionscripts',
+    selectedComponent: 'States',
   };
   render() {
     const { labelComponentMap } = this.props;
     return (
-        <div style={{ display: 'flex' }}>
+        <div className="programming_comp_outer">
           <Menu
               selectedLabel={this.state.selectedComponent}
               onSelectLabel={selectedComponent => {
