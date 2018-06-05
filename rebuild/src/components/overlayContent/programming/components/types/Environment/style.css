@@ -1,5 +1,6 @@
 .env_outer{
     border-bottom: 1px solid black;
+    flex-grow: 1;
 }
 
 .env_row {

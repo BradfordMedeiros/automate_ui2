@@ -17,7 +17,7 @@ class EventLog extends Component {
         onSetIsAlertingEnabled,
       } = this.props;
       return (
-        <div>
+        <div style={{ flexGrow: 1 }}>
           <Selection
             onShowLog={() => {
                         this.setState({

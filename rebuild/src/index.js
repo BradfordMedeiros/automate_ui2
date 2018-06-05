@@ -11,10 +11,8 @@ import Drawer from './containers/layout/Drawer';
 
 import AccountManagement from './containers/overlayContent/AccountManagement';
 import DeviceInfo from './containers/overlayContent/DeviceInfo';
-import EventLog from './containers/overlayContent/EventLog';
-import Environment from './containers/overlayContent/Environment';
 import Database from './containers/overlayContent/Database';
-import Programming from './containers/overlayContent/Programming';
+import Programming from './containers/overlayContent/Programming/Programming';
 
 import LoginScreen from './containers/special/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
@@ -28,10 +26,8 @@ const contentMap = {
   disconnected: <DisconnectedOverlay />,
   login: <LoginScreen />,
   database: <Database />,
-  event: <EventLog />,
   account: <AccountManagement />,
   device: <DeviceInfo />,
-  env: <Environment />,
   programming: <Programming/>,
 };
 

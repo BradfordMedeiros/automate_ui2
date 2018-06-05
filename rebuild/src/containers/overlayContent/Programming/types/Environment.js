@@ -1,5 +1,5 @@
 import React from 'react';
-import EnvironmentComponent from '../../components/overlayContent/environment/Environment';
+import EnvironmentComponent from '../../../../components/overlayContent/programming/components/types/Environment/Environment';
 
 const Environment = () => (
     <EnvironmentComponent
