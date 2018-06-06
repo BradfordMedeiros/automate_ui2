@@ -3,34 +3,10 @@ import StatesComponent from '../../../../components/overlayContent/programming/c
 
 const States = () => (
     <StatesComponent states={[
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
-      { topic: 'states/temperature', value: 'some value' },
+      { topic: 'state/temperature/type', value: 'hot' },
+      { topic: 'state/temperature/fareneheit', value: '70' },
+      { topic: 'state/room0/door_open', value: 'false' },
+      { topic: 'state/room1/door_open', value: 'true' },
 
     ]} />
 );

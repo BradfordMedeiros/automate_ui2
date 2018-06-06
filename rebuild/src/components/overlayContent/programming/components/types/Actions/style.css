@@ -1,9 +1,9 @@
-.programming_states_outer{
+.programming_actions_outer{
     flex-grow: 1;
     margin: 18px;
     overflow: auto;
 }
-.programming_state{
+.programming_action{
     color: white;
     padding: 18px;
     margin: 8px;
@@ -11,10 +11,10 @@
     font-family: monospace;
 }
 
-.programming_state_topic {
+.programming_action_topic {
     color: steelblue;
 
 }
 
-.programming_state_value {
+.programming_action_value {
 }

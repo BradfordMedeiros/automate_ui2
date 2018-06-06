@@ -33,6 +33,12 @@ class Programming extends Component {
                 {
                   label: 'Rules',
                 },
+                {
+                  label: 'Env Variables'
+                },
+                {
+                  label: 'Device Info',
+                },
               ]}
               additionalLabels={[
                 {
@@ -44,9 +50,6 @@ class Programming extends Component {
                 {
                   label: 'Events',
                 },
-                {
-                  label: 'Env Variables'
-                }
               ]}
           />
           {labelComponentMap[this.state.selectedComponent] || null}
