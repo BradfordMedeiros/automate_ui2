@@ -9,6 +9,7 @@ import ActionScript from './types/ActionScript';
 import Schedules from './types/Schedules';
 import Sequences from './types/Sequences';
 import Rules from './types/Rules';
+import DeviceInfo from './types/DeviceInfo';
 
 const labelComponentMap = {
   States: <States />,
@@ -20,6 +21,7 @@ const labelComponentMap = {
   Schedules: <Schedules />,
   Sequences: <Sequences />,
   Rules: <Rules />,
+  'Device Info': <DeviceInfo />,
 };
 
 

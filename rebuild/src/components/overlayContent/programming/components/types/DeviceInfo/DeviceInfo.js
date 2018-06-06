@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import Subheader from 'material-ui/Subheader';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-// import GenericOverlay from '../genericOverlayInner/GenericOverlay';
 import './style.css';
 
 const renderField = (title, value) => (
@@ -47,7 +45,7 @@ class DeviceInfo extends Component {
       } = this.props;
 
       return (
-        <div>
+        <div style={{ flexGrow: 1 }}>
           {renderField('IP Address', ipAddress)}
           {renderField('Mac Address', macAddress)}
           {renderField('Core Version', automateCoreVersion)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import DeviceInfoComponent from '../../components/overlayContent/deviceInfo/DeviceInfo';
+import DeviceInfoComponent from '../../../../components/overlayContent/programming/components/types/DeviceInfo/DeviceInfo';
 
 const DeviceInfo = () => (
     <DeviceInfoComponent
