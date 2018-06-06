@@ -10,7 +10,6 @@ import Drawer from './containers/layout/Drawer';
 
 
 import AccountManagement from './containers/overlayContent/AccountManagement';
-import DeviceInfo from './containers/overlayContent/Programming/types/DeviceInfo';
 import Database from './containers/overlayContent/Database';
 import Programming from './containers/overlayContent/Programming/Programming';
 
@@ -27,7 +26,6 @@ const contentMap = {
   login: <LoginScreen />,
   database: <Database />,
   account: <AccountManagement />,
-  device: <DeviceInfo />,
   programming: <Programming/>,
 };
 

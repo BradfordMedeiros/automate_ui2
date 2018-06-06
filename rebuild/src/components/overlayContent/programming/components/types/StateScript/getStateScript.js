@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import CodeEditor from './components/CodeEditor';
+import EditorControls from './components/EditorControls';
+import PropTypes from "prop-types";
 
 const getStateScript = (Header, SelectableTypes) => {
 
@@ -27,7 +30,23 @@ const getStateScript = (Header, SelectableTypes) => {
                     })
                   }}
               />
-              <div>state script here</div>
+              <EditorControls
+                  onEditModeClicked={() => { }}
+                  onUploadClicked={() => {} }
+                  onRevertClicked={()=>{}}
+                  editModeEnabled={true}
+                  disableRevert={false}
+                  hideUpload={false}
+                  hideRevert={false}
+                  showRate={true}
+                  rate={1000}
+                  onRateChange={()=>{}}
+              />
+              <CodeEditor
+                  initialText={"// insert code here \n\n"}
+                  onTextChange={() => { }}
+                  name="statescript name"
+              />
             </div>
           </div>
       )
