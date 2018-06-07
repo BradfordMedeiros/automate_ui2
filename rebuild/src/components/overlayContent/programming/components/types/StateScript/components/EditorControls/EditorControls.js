@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import './style.css';
 
 const EditorControls = ({
   editModeEnabled,
@@ -14,7 +15,7 @@ const EditorControls = ({
   rate,
   onRateChange,
 }) => (
-  <div>
+  <div className="editor_controls_outer">
     <div
       style={{ display: 'inline', cursor: 'pointer' }}
       onClick={() => {

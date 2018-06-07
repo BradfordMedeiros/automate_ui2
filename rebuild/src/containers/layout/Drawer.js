@@ -1,7 +1,7 @@
 import React from 'react';
 import DrawerComponent from '../../components/layout/drawer/Drawer';
 
-const Drawer = ({ open, onRequestClose }) => (
+const Drawer = ({ open, onTileClick, onRequestClose }) => (
     <DrawerComponent
         open={open}
         tileNames={[
@@ -34,9 +34,7 @@ const Drawer = ({ open, onRequestClose }) => (
         onDeleteTile={tile  => {
           console.log('delete clicked: ', tile);
         }}
-        onTileClick={(tile) => {
-          console.log('tile clicked: ', tile);
-        }}
+        onTileClick={onTileClick}
         onDownloadTile={tile => {
           console.log('download tile: ', tile);
         }}

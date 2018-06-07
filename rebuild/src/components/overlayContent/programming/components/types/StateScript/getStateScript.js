@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CodeEditor from './components/CodeEditor';
-import EditorControls from './components/EditorControls';
+import EditorControls from './components/EditorControls/EditorControls';
 import PropTypes from "prop-types";
+import './style.css';
 
 const getStateScript = (Header, SelectableTypes) => {
 
@@ -12,7 +13,7 @@ const getStateScript = (Header, SelectableTypes) => {
 
     render() {
       return (
-          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
             <Header
                 itemName={'some name'}
                 itemType={'some type'}
@@ -30,23 +31,25 @@ const getStateScript = (Header, SelectableTypes) => {
                     })
                   }}
               />
-              <EditorControls
-                  onEditModeClicked={() => { }}
-                  onUploadClicked={() => {} }
-                  onRevertClicked={()=>{}}
-                  editModeEnabled={true}
-                  disableRevert={false}
-                  hideUpload={false}
-                  hideRevert={false}
-                  showRate={true}
-                  rate={1000}
-                  onRateChange={()=>{}}
-              />
-              <CodeEditor
-                  initialText={"// insert code here \n\n"}
-                  onTextChange={() => { }}
-                  name="statescript name"
-              />
+              <div className="statescript_editor_wrapper">
+                <EditorControls
+                    onEditModeClicked={() => { }}
+                    onUploadClicked={() => {} }
+                    onRevertClicked={()=>{}}
+                    editModeEnabled={true}
+                    disableRevert={false}
+                    hideUpload={false}
+                    hideRevert={false}
+                    showRate={true}
+                    rate={1000}
+                    onRateChange={()=>{}}
+                />
+                <CodeEditor
+                    initialText={"// insert code here \n\n"}
+                    onTextChange={() => { }}
+                    name="statescript name"
+                />
+              </div>
             </div>
           </div>
       )

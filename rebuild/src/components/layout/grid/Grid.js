@@ -10,12 +10,24 @@ import './style.css';
 const GridLayout = WidthProvider(Responsive);
 
 class Grid extends Component {
-  generateGridItemsFromTiles = (tiles, onTileDoubleClick) => {
-    const gridItems = tiles.map(tile => {
+  generateGridItemsFromTiles = (layouts, onTileDoubleClick, breakpoint) => {
+    console.error('-- breakpoint is: ', breakpoint);
+    /*const gridItems = tiles.map(tile => {
       return <div onDoubleClick={() => onTileDoubleClick(tile)} key={tile.name}><Tile>{tile.node}</Tile></div>;
     });
-    return gridItems;
+    return gridItems;*/
+  
+    const currentLayout = layouts[breakpoint];
+    if (currentLayout === undefined){
+      return [];
+    }
+    return currentLayout.map(tile => (
+        <div key={tile.i}><Tile>{tile.i}</Tile></div>
+    ))
   };
+  state = {
+    breakpoint: null,
+  }
   render() {
     const { tiles, onLayoutChange, layout, isEditable, onTileDoubleClick } = this.props;
 
@@ -23,8 +35,18 @@ class Grid extends Component {
         <div className="main_grid_wrapper">
           {tiles.length === 0 && <AddTilesText message={"add tiles"} />}
           <GridLayout
-              layouts={layout}
-              onLayoutChange={onLayoutChange}
+              layouts={JSON.parse(JSON.stringify(layout))}
+              onLayoutChange={(x, allLayouts) => {
+                const breakpoint = Object.keys(allLayouts).find(
+                    breakpointSize => allLayouts[breakpointSize] === x
+                );
+                if (breakpoint !== this.state.breakpoint){
+                  this.setState({
+                    breakpoint,
+                  });
+                }
+                onLayoutChange(allLayouts, breakpoint);
+              }}
               isResizable={isEditable === true}
               isDraggable={isEditable === true}
               containerPadding={[0,0]}
@@ -33,7 +55,7 @@ class Grid extends Component {
               preventCollision
               className="layout"
           >
-            {this.generateGridItemsFromTiles(tiles, onTileDoubleClick)}
+            {this.generateGridItemsFromTiles(layout, onTileDoubleClick, this.state.breakpoint)}
           </GridLayout>
         </div>
 
