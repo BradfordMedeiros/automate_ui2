@@ -35,17 +35,9 @@ class Grid extends Component {
         <div className="main_grid_wrapper">
           {tiles.length === 0 && <AddTilesText message={"add tiles"} />}
           <GridLayout
-              layouts={JSON.parse(JSON.stringify(layout))}
+              //layouts={JSON.parse(JSON.stringify(layout))}
               onLayoutChange={(x, allLayouts) => {
-                const breakpoint = Object.keys(allLayouts).find(
-                    breakpointSize => allLayouts[breakpointSize] === x
-                );
-                if (breakpoint !== this.state.breakpoint){
-                  this.setState({
-                    breakpoint,
-                  });
-                }
-                onLayoutChange(allLayouts, breakpoint);
+                onLayoutChange(allLayouts);
               }}
               isResizable={isEditable === true}
               isDraggable={isEditable === true}
@@ -55,7 +47,6 @@ class Grid extends Component {
               preventCollision
               className="layout"
           >
-            {this.generateGridItemsFromTiles(layout, onTileDoubleClick, this.state.breakpoint)}
           </GridLayout>
         </div>
 

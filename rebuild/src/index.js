@@ -63,8 +63,8 @@ class MockApp extends Component {
             display: 'flex',
             flexGrow: 1,
             flexDirection: 'column',
-            //background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))',
-            background: 'url(http://getwallpapers.com/wallpaper/full/5/3/a/623615.jpg)',
+            background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))',
+            //background: 'url(http://getwallpapers.com/wallpaper/full/5/3/a/623615.jpg)',
             boxShadow: '0px 0px 10px 2px black inset',
           }}
           >

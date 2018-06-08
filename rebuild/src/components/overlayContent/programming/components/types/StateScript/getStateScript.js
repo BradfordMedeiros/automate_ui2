@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CodeEditor from './components/CodeEditor';
 import EditorControls from './components/EditorControls/EditorControls';
-import PropTypes from "prop-types";
 import './style.css';
 
 const getStateScript = (Header, SelectableTypes) => {

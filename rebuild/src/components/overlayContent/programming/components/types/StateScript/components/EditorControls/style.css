@@ -1,3 +1,18 @@
 .editor_controls_outer{
-    
+    padding: 18px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.editor_controls_button {
+    background: rgb(50,50,50) !important;
+    color: whitesmoke !important;
+}
+
+.editor_controls_rate {
+    margin-left: 48px;
+    font-family: monospace;
+    color: lightsteelblue;
+    font-size: 15px;
 }

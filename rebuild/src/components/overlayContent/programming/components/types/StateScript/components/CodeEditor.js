@@ -14,33 +14,45 @@ class CodeEditor extends Component {
     this.text = props.initialText;
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props.name !== nextProps.name){
+  componentWillReceiveProps(nextProps) {
+    if (this.props.name !== nextProps.name) {
       this.text = nextProps.initialText;
     }
   }
 
   render() {
-    const { onTextChange } = this.props;
+    const {onTextChange} = this.props;
     return (
-      <AceEditor
-        style={{ width:  '100%'}}
-        mode="javascript"
-        theme="monokai"
-        name="ace_editor"
-        onLoad={() => { }}
-        onChange={newCode => {
-          this.text = newCode;
-          onTextChange(newCode)
-        }}
-        fontSize={18}
-        showGutter={true}
-        highlightActiveLine={true}
-        enableBasicAutocompletion
-        enableLiveAutocompletion
-        showPrintMargin={false}
-        value={this.text}
-      />
+        <div style={{ display: 'flex',  flexGrow: 1, overflow: 'hidden', position: 'relative' }}>
+          <AceEditor
+              ref={ref => {
+                if (ref) {
+                  window.ref = ref;
+                  ref.editor.resize();
+                  setTimeout(() => {
+                    ref.editor.resize()
+                  }, 100)
+                }
+              }}
+              style={{ position: 'absolute', width: '100%', height: '100%'}}
+              mode="javascript"
+              theme="monokai"
+              name="ace_editor"
+              onLoad={() => {
+              }}
+              onChange={newCode => {
+                this.text = newCode;
+                onTextChange(newCode)
+              }}
+              fontSize={18}
+              showGutter={true}
+              highlightActiveLine={true}
+              enableBasicAutocompletion
+              enableLiveAutocompletion
+              showPrintMargin={false}
+              value={this.text}
+          />
+        </div>
     );
   }
 }

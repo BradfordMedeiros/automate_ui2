@@ -4,50 +4,19 @@ import Button from '@material-ui/core/Button';
 import './style.css';
 
 const EditorControls = ({
-  editModeEnabled,
   onUploadClicked,
   onRevertClicked,
-  onEditModeClicked,
-  disableRevert,
-  hideUpload,
-  hideRevert,
-  showRate,
   rate,
   onRateChange,
 }) => (
   <div className="editor_controls_outer">
-    <div
-      style={{ display: 'inline', cursor: 'pointer' }}
-      onClick={() => {
-        if (onEditModeClicked) {
-          onEditModeClicked();
-        }
-      }}
-    >
-      {editModeEnabled ? 'Hide Script ' : 'View Script'}
-    </div>
-    {!hideUpload && <Button
-      variant="raised"
-      label="Upload"
-      disabled={!editModeEnabled}
-      style={{ marginLeft: 40 }}
-      onClick={() => {
-        if (onUploadClicked) {
-          onUploadClicked();
-        }
-      }}
-    />}
-    {!hideRevert && <Button
-      variant="raised"
-      label="Revert"
-      disabled={disableRevert}
-      onClick={() => {
-        if (onRevertClicked) {
-          onRevertClicked();
-        }
-      }}
-    />}
-    {showRate && <div style={{ display: 'inline', marginLeft: 40 }}>
+    <Button className="editor_controls_button" variant="raised" onClick={() => { if (onUploadClicked) { onUploadClicked(); }}}>
+      Upload
+    </Button>
+    <Button className="editor_controls_button" variant="raised" onClick={() => { if (onRevertClicked) { onRevertClicked(); }}}>
+      Revert
+    </Button>
+    <div className="editor_controls_rate">
       Rate (ms):
         <input
           ref={inputRef => {
@@ -65,19 +34,13 @@ const EditorControls = ({
             fontSize: 14,
             marginLeft: 18,
           }} />
-    </div>}
+    </div>
   </div>
 );
 
 EditorControls.propTypes = {
-  onEditModeClicked: PropTypes.func,
   onUploadClicked: PropTypes.func,
   onRevertClicked: PropTypes.func,
-  editModeEnabled: PropTypes.bool,
-  disableRevert: PropTypes.bool,
-  hideUpload: PropTypes.bool,
-  hideRevert: PropTypes.bool,
-  showRate: PropTypes.bool,
   rate: PropTypes.number,
   onRateChange: PropTypes.func,
 };
