@@ -27,7 +27,7 @@ class QuickAdd extends Component {
               this.setState({ selectedOption });
             }}
           />
-          <div style={{ display: 'flex', flexGrow: 1, background: 'rgb(30,30,30)', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexGrow: 1, background: 'rgb(30,30,30)', boxShadow: '0px 0px 10px 1px black inset', justifyContent: 'center', alignItems: 'center' }}>
             <RawCron schedule={schedule} onScheduleChange={onScheduleChange} />
           </div>
       </div>
