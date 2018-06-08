@@ -29,37 +29,43 @@ const RawCron = ({ schedule, onScheduleChange }) => {
         onChange={handleChange(schedule, onScheduleChange, 0)}
         helperText="Second"
         value={timeObject.s}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 1)}
         helperText="Minute"
         value={timeObject.m}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 2)}
         helperText="Hourly"
         value={timeObject.h}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 3)}
         helperText="Daily"
         value={timeObject.d}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 4)}
-        floatingLabelText="Week"
+        helperText="Week"
         value={timeObject.w}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
       <TextField
         onChange={handleChange(schedule, onScheduleChange, 5)}
         helperText="Month"
         value={timeObject.M}
-        style={{ width: 100 }}
+        InputProps={{ className: "schedule_editor_raw_cron_text" }}
+        FormHelperTextProps={{ className: "schedule_editor_raw_cron_text" }}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import './style.css';
 
 class Programming extends Component {
   state = {
-    selectedComponent: 'Statescripts',
+    selectedComponent: 'Schedules',
   };
   render() {
     const { labelComponentMap } = this.props;
