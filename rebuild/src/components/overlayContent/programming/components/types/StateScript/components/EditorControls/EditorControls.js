@@ -17,6 +17,24 @@ const EditorControls = ({
       Revert
     </Button>
     <div className="editor_controls_rate">
+      topic:
+      <input
+          ref={inputRef => {
+            if(inputRef){
+              inputRef.value = 'topic here'
+            }
+          }}
+          onChange={event => { onRateChange(event.target.value) }}
+          style={{
+            background: 'none',
+            border: 'none',
+            borderBottom: '1px solid rgba(245, 245, 245, 0.07)',
+            color: 'whitesmoke',
+            fontSize: 14,
+            marginLeft: 18,
+          }} />
+    </div>
+    <div className="editor_controls_rate">
       Rate (ms):
         <input
           ref={inputRef => {
