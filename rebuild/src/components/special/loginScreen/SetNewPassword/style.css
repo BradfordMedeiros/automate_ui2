@@ -1,0 +1,6 @@
+.set_new_password_outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}

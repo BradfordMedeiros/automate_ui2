@@ -28,7 +28,8 @@ class PasswordEntry extends Component {
         <TextField
           type="password"
           className={errorText ? 'shake_error' : undefined}
-          errorText={errorText}
+          helperText={errorText ? <div style={{ height: 30 }}>{errorText}</div> : <div style={{ height: 30 }}></div>}
+          error={errorText ? true: false}
           value={this.state.password}
           onChange={(event) => {
                       const password = event.target.value;

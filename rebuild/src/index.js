@@ -13,7 +13,7 @@ import AccountManagement from './containers/overlayContent/AccountManagement';
 import Database from './containers/overlayContent/Database';
 import Programming from './containers/overlayContent/Programming/Programming';
 
-import LoginScreen from './containers/special/LoginScreen';
+import LoginScreen from './containers/special/LoginScreen/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
@@ -35,7 +35,7 @@ class MockApp extends Component {
       drawerOpen: false,
       showContent: true,
       isEditable: false,
-      content: contentMap.programming,
+      content: contentMap.login,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];

@@ -1,0 +1,22 @@
+.main_login_saved_user {
+    color: grey;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    display: inline-table;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    height: 180px;
+    width: 180px;
+
+}
+
+.main_login_saved_user:hover {
+    color: whitesmoke;
+    font-size: 120%;
+    border: 1px solid white !important;
+    color: white !important;
+    zIndex: 10000 !important;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import './style.css';
 
 class SetNewPassword extends Component {
   state = {
@@ -13,27 +14,18 @@ class SetNewPassword extends Component {
   render() {
     const { resetErrorText } = this.props;
     return (
-      <div style={{
-              position: 'absolute',
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-          }}
-      >
+      <div className="set_new_password_outer">
         <TextField
-          onChange={(_, password) => {
-                      this.setState({
-                          password,
-                      });
-                  }}
-          floatingLabelFixed
-          floatingLabelText="password"
-          errorText={resetErrorText}
-          hintText="password"
+            label="password"
+            helperText="password"
+            margin="dense"
+            error={resetErrorText}
+            onChange={event => {
+              const password = event.target.value;
+              this.setState({
+                password,
+              });
+            }}
         />
         <Button
           onClick={this.setPassword}

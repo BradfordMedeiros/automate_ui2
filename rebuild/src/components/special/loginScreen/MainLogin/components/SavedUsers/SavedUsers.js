@@ -19,9 +19,7 @@ const SavedUsers = ({ users, onSelectUser, selectedUserIndex }) => (
     {users.map((user, index) => (
       <SavedUser
         isSelected={selectedUserIndex === index}
-        onClick={() => {
-                        onSelectUser(index);
-                    }}
+        onClick={() => { onSelectUser(user, index); }}
         username={user.username}
         imageURL={user.imageURL}
         remote={user.remote}

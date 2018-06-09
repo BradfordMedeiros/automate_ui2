@@ -1,0 +1,38 @@
+.main_login_outer{
+    position: absolute;
+    color: white;
+    background: rgb(60,60,60);
+    border-top: 1px solid  rgb(30,30,30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.main_login_outer2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_login_selection_outer{
+    color: whitesmoke;
+    display: flex;
+    width: 40%;
+    border-bottom: 1px solid rgb(40,40,40);
+    font-size: 24px;
+    justify-content: space-evenly;
+}
+
+.login_selection{
+    cursor: pointer;
+}
+
+.login_selection:hover{
+    color: blue;
+}
+
