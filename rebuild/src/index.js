@@ -35,7 +35,7 @@ class MockApp extends Component {
       drawerOpen: false,
       showContent: true,
       isEditable: false,
-      content: contentMap.login,
+      content: contentMap.programming,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];

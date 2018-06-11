@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import SequenceInfo from './components/SequenceInfo';
+import PropTypes from 'prop-types';
+import SequenceInfo from './components/SequenceInfo/SequenceInfo';
 
 const getSequences = (Header, SelectableTypes) => {
   class Sequences extends Component {
-    state = {
-      selectedIndex: 0,
-    };
-
     render() {
+      const { sequences, onSequenceSelected,  selectedIndex } = this.props;
       return (
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Header
@@ -18,24 +16,36 @@ const getSequences = (Header, SelectableTypes) => {
             />
             <div style={{display: 'flex', flexGrow: 1}}>
               <SelectableTypes
-                  items={['one', 'two', 'three', 'four']}
-                  selectedIndex={this.state.selectedIndex}
-                  onItemSelected={(_, selectedIndex) => {
-                    console.log('selected');
-                    this.setState({
-                      selectedIndex,
-                    })
-                  }}
+                  items={sequences}
+                  selectedIndex={selectedIndex}
+                  onItemSelected={(_, selectedIndex) => { onSequenceSelected(sequences[selectedIndex], selectedIndex); }}
               />
-              <SequenceInfo actions={[]} />
+              <SequenceInfo
+                  actions={[
+                    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
+                    {type: 'wait', options: 1000}
+                  ]}
+                  onChange={() => {
+                    console.log('on change');
+                  }}
+                  metaActions={[
+
+                  ]}
+
+              />
             </div>
           </div>
       )
     }
   }
 
+  Sequences.propTypes = {
+    sequences: PropTypes.arrayOf(PropTypes.string),
+    onSequenceSelected: PropTypes.func,
+    selectedIndex: PropTypes.number,
+  };
+
   return Sequences;
 };
-
 
 export default getSequences;

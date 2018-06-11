@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
-import { TextField } from 'material-ui';
+import React from 'react';
+import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
 
 const NumericTextfield = ({ onChange }) => (
   <TextField
-    floatingLabelText="ms"
-    hintText="time to wait"
+    label="ms"
+    helperText="time to wait"
     onChange={(_, value) => {
       onChange(value);
     }}

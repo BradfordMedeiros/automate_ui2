@@ -1,0 +1,5 @@
+.sequences_table_cell{
+    background: rgb(49, 49, 49);
+    border-bottom: 1px solid rgb(30,30,30) !important;
+    color: whitesmoke !important;
+}

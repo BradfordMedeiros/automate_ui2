@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import NumericTextfield from './transforms/NumericTextfield';
-import MqttTopicValue from './transforms/MqttTopicValue/MqttTopicValue';
+import React from 'react';
+import PropTypes from 'prop-types';
+import NumericTextfield from './components/NumericTextfield';
+import MqttTopicValue from './components/MqttTopicValue';
 
 const Transforms = ({ item, onChange, selectedValue }) => {
   const { type, ...otherProps } = item;

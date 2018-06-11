@@ -21,8 +21,7 @@ class PasswordEntry extends Component {
               justifyContent: 'center',
               alignItems: 'center',
               border: '1px solid #1b1b1b',
-              // background: 'rgb(10,10,10)',
-              background: 'white',
+              background: 'rgb(90,90,90)',
           }}
       >
         <TextField
@@ -39,8 +38,6 @@ class PasswordEntry extends Component {
                       onPasswordTextChange();
                   }}
           disabled={isHidden}
-          floatingLabelFixed
-          floatingLabelText="password"
         />
         <Button
           primary

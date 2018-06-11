@@ -4,8 +4,9 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-//import InlineDropdownDialog from '../../../../Dialog/InlineDropdownDialog/InlineDropdownDialog';
-import SequenceUnit from './components/sequenceUnit/SequenceUnit';
+import Dialog from './components/Dialog/Dialog';
+import SequenceUnit from './components/SequenceUnit/SequenceUnit';
+import './style.css';
 
 class SequenceInfo extends Component {
   constructor(props) {
@@ -18,17 +19,17 @@ class SequenceInfo extends Component {
     this.setState({
       showAddDialog: true,
     });
-  }
+  };
   closeDialog = () => {
     this.setState({
       showAddDialog: false,
     });
-  }
+  };
   render() {
-    const { actions, metaActions, sequenceName, onChange, deleteSequence } = this.props;
+    const { actions, metaActions, onChange } = this.props;
     return (
       <div style={{ width: '100%' }}>
-        {/*<InlineDropdownDialog
+        <Dialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
           onChange={(newAction) => {
@@ -38,25 +39,29 @@ class SequenceInfo extends Component {
           }}
           onOkClick={this.closeDialog}
           options={metaActions}
-        />*/}
+        />
         <Table>
           <TableBody>
             {actions.map((action, index) => (
               <SequenceUnit
                 type={action.type}
                 options={action.options}
-                deleteSelf={() => {
+                deleteSelf={
+                  /*() => {
                   const newActions = (actions
                       .slice(0, Math.max(index, 0))
                       .concat(actions.slice(index + 1))
                   );
                   onChange(newActions);
-                }}
+                }*/
+                undefined
+                }
               />
             ))}
             <TableRow>
               <TableCell
-                onTouchTap={this.openDialog}
+                className="sequence_info_add_new"
+                onClick={this.openDialog}
                 style={{ cursor: 'pointer' }}
               >
                 + Add New
@@ -72,8 +77,6 @@ class SequenceInfo extends Component {
 SequenceInfo.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.string),
   metaActions: PropTypes.arrayOf(PropTypes.string),
-  sequenceName: PropTypes.string,
-  deleteSequence: PropTypes.func,
   onChange: PropTypes.func,
 };
 
