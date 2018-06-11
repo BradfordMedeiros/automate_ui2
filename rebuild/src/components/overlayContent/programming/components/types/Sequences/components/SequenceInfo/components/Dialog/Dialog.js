@@ -23,10 +23,11 @@ class Dialog extends Component {
     const { open, closeDialog  } = this.props;
 
     return (
-        <MDialog open={open} onClose={closeDialog}>
+        <MDialog PaperProps={{ className: 'sequence_dialog_outer' }} open={open} onClose={closeDialog}>
           <FormControl>
             <InputLabel>sequence type</InputLabel>
             <Select
+                className="sequence_dialog_select"
                 value={this.state.defaultType}
                 onChange={x => {
                   const defaultType = x.target.value;
@@ -48,7 +49,7 @@ class Dialog extends Component {
               type: transformTypeToTransform[this.state.defaultType],
             }}
           />
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18 }} >
             <Button variant="raised" onClick={closeDialog}>
               Cancel
             </Button>
