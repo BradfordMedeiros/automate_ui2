@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import CodeEditor from './components/CodeEditor';
-import EditorControls from './components/EditorControls/EditorControls';
 import './style.css';
 
-const getStateScript = (Header, SelectableTypes) => {
+const getStateScript = (Header, SelectableTypes, CodeEditor, EditorControls) => {
 
   class StateScript extends Component {
     state = {
@@ -31,18 +29,7 @@ const getStateScript = (Header, SelectableTypes) => {
                   }}
               />
               <div className="statescript_editor_wrapper">
-                <EditorControls
-                    onEditModeClicked={() => { }}
-                    onUploadClicked={() => {} }
-                    onRevertClicked={()=>{}}
-                    editModeEnabled={true}
-                    disableRevert={false}
-                    hideUpload={false}
-                    hideRevert={false}
-                    showRate={true}
-                    rate={1000}
-                    onRateChange={()=>{}}
-                />
+                <EditorControls showRate={true} />
                 <CodeEditor
                     initialText={"// insert code here \n\n"}
                     onTextChange={() => { }}

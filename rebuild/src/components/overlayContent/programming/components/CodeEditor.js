@@ -27,7 +27,6 @@ class CodeEditor extends Component {
           <AceEditor
               ref={ref => {
                 if (ref) {
-                  window.ref = ref;
                   ref.editor.resize();
                   setTimeout(() => {
                     ref.editor.resize()

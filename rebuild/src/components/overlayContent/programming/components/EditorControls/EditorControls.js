@@ -6,6 +6,7 @@ import './style.css';
 const EditorControls = ({
   onUploadClicked,
   onRevertClicked,
+  showRate,
   rate,
   onRateChange,
 }) => (
@@ -34,7 +35,7 @@ const EditorControls = ({
             marginLeft: 18,
           }} />
     </div>
-    <div className="editor_controls_rate">
+    {showRate && <div className="editor_controls_rate">
       Rate (ms):
         <input
           ref={inputRef => {
@@ -52,13 +53,14 @@ const EditorControls = ({
             fontSize: 14,
             marginLeft: 18,
           }} />
-    </div>
+    </div>}
   </div>
 );
 
 EditorControls.propTypes = {
   onUploadClicked: PropTypes.func,
   onRevertClicked: PropTypes.func,
+  showRate: PropTypes.bool,
   rate: PropTypes.number,
   onRateChange: PropTypes.func,
 };

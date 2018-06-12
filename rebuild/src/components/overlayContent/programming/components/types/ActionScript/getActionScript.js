@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './style.css';
 
-const getActionScript = (Header, SelectableTypes) => {
+const getActionScript = (Header, SelectableTypes, CodeEditor, EditorControls) => {
 
   class ActionScript extends Component {
     state = {
@@ -9,7 +10,7 @@ const getActionScript = (Header, SelectableTypes) => {
 
     render() {
       return (
-          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
             <Header
                 itemName={'some name'}
                 itemType={'some type'}
@@ -27,7 +28,14 @@ const getActionScript = (Header, SelectableTypes) => {
                     })
                   }}
               />
-              <div>action script here</div>
+              <div className="actionscript_editor_wrapper">
+                <EditorControls showRate={false} />
+                <CodeEditor
+                    initialText={"// insert code here \n\n"}
+                    onTextChange={() => { }}
+                    name="action script name"
+                />
+              </div>
             </div>
           </div>
       )
