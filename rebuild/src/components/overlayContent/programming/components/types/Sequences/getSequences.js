@@ -5,13 +5,14 @@ import SequenceInfo from './components/SequenceInfo/SequenceInfo';
 const getSequences = (Header, SelectableTypes) => {
   class Sequences extends Component {
     render() {
-      const { sequences, onSequenceSelected,  selectedIndex } = this.props;
+      const { sequences, onSequenceSelected,  selectedIndex, sequenceActions, onChange, onDelete } = this.props;
       return (
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Header
                 itemName={'some name'}
                 itemType={'some type'}
-                deleteSequence={() => {
+                deleteItem={() => {
+                  onDelete(sequences[selectedIndex], selectedIndex);
                 }}
             />
             <div style={{display: 'flex', flexGrow: 1}}>
@@ -21,17 +22,8 @@ const getSequences = (Header, SelectableTypes) => {
                   onItemSelected={(_, selectedIndex) => { onSequenceSelected(sequences[selectedIndex], selectedIndex); }}
               />
               <SequenceInfo
-                  actions={[
-                    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
-                    {type: 'wait', options: 1000}
-                  ]}
-                  onChange={() => {
-                    console.log('on change');
-                  }}
-                  metaActions={[
-
-                  ]}
-
+                  actions={sequenceActions}
+                  onChange={onChange}
               />
             </div>
           </div>
@@ -43,6 +35,9 @@ const getSequences = (Header, SelectableTypes) => {
     sequences: PropTypes.arrayOf(PropTypes.string),
     onSequenceSelected: PropTypes.func,
     selectedIndex: PropTypes.number,
+
+    sequenceActions: PropTypes.arrayOf(PropTypes.object),
+    onDelete: PropTypes.func,
   };
 
   return Sequences;

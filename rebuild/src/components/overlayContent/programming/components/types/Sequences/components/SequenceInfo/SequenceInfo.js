@@ -26,7 +26,7 @@ class SequenceInfo extends Component {
     });
   };
   render() {
-    const { actions, metaActions, onChange } = this.props;
+    const { actions, onChange } = this.props;
     return (
       <div style={{ width: '100%' }}>
         <Dialog
@@ -38,7 +38,6 @@ class SequenceInfo extends Component {
             onChange(newActions, newAction);
           }}
           onOkClick={this.closeDialog}
-          options={metaActions}
         />
         <Table>
           <TableBody>
@@ -46,16 +45,13 @@ class SequenceInfo extends Component {
               <SequenceUnit
                 type={action.type}
                 options={action.options}
-                deleteSelf={
-                  /*() => {
+                deleteSelf={() => {
                   const newActions = (actions
                       .slice(0, Math.max(index, 0))
                       .concat(actions.slice(index + 1))
                   );
                   onChange(newActions);
-                }*/
-                undefined
-                }
+                }}
               />
             ))}
             <TableRow>
@@ -76,7 +72,6 @@ class SequenceInfo extends Component {
 
 SequenceInfo.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.string),
-  metaActions: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
 };
 
