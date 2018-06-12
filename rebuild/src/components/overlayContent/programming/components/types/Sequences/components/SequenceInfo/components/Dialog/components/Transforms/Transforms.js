@@ -6,13 +6,13 @@ import MqttTopicValue from './components/MqttTopicValue';
 const Transforms = ({ item, onChange, selectedValue }) => {
   const { type, ...otherProps } = item;
 
-  const newProps = { ...otherProps, selectedValue, onChange };
+  const newProps = { ...otherProps, selectedValue };
   switch (type) {
-    case 'options': {
-      return <MqttTopicValue {...newProps} />;
+    case 'action': {
+      return <MqttTopicValue onChange={value => onChange({ type: 'action', options: value })} {...newProps} />;
     }
-    case 'text': {
-      return <NumericTextfield {...newProps} />;
+    case 'wait': {
+      return <NumericTextfield onChange={value => onChange({ type: 'wait', options: value })} {...newProps} />;
     }
     default: {
       throw (new Error('Invalid transform type ', type));

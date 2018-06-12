@@ -10,7 +10,7 @@ class MqttTopicValue extends Component {
   mqttTopic = '';
   mqttValue = '';
   handleChange = () => {
-    const {onChange} = this.props;
+    const { onChange } = this.props;
     const value = createMqttTopicOptions({
       mqttTopic: this.mqttTopic,
       mqttValue: this.mqttValue,
@@ -24,16 +24,16 @@ class MqttTopicValue extends Component {
           <TextField
               helperText="mqtt topic"
               label="mqtt"
-              onChange={(_, mqttTopic) => {
-                this.mqttTopic = mqttTopic;
-                this.handleChange({});
+              onChange={event => {
+                this.mqttTopic = event.target.value;
+                this.handleChange();
               }}
           />
           <TextField
               helperText="mqtt value"
               label="value"
-              onChange={(_, mqttValue) => {
-                this.mqttValue = mqttValue;
+              onChange={event => {
+                this.mqttValue = event.target.value;
                 this.handleChange();
               }}
           />

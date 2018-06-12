@@ -6,8 +6,8 @@ const NumericTextfield = ({ onChange }) => (
   <TextField
     label="ms"
     helperText="time to wait"
-    onChange={(_, value) => {
-      onChange(value);
+    onChange={event => {
+      onChange(event.target.value);
     }}
   />
 );

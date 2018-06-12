@@ -11,7 +11,7 @@ const Wait = ({ options, deleteSelf }) => (
     <TableCell className="sequences_table_cell" />
     <TableCell
       className="sequences_table_cell"
-      onTouchTap={deleteSelf}
+      onClick={deleteSelf}
       style={{ fontSize: 25, cursor: 'pointer' }}
     >
         &times;

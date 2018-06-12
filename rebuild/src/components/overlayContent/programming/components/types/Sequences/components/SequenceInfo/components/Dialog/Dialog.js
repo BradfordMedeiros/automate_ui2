@@ -10,17 +10,14 @@ import Button from '@material-ui/core/Button';
 import MDialog from '@material-ui/core/Dialog';
 import  './style.css';
 
-const transformTypeToTransform = {
-  action: 'options',
-  wait: 'text',
-};
 
 class Dialog extends Component {
   state = {
     defaultType: 'action',
+    newAction: null,
   };
   render() {
-    const { open, closeDialog  } = this.props;
+    const { open, closeDialog, onAdd } = this.props;
 
     return (
         <MDialog PaperProps={{ className: 'sequence_dialog_outer' }} open={open} onClose={closeDialog}>
@@ -42,18 +39,20 @@ class Dialog extends Component {
             <FormHelperText>sequence type</FormHelperText>
           </FormControl>
           <Transforms
-            onChange={x => {
-              console.log('change: ', x);
+            onChange={newAction => {
+              this.setState({
+                newAction,
+              })
             }}
             item={{
-              type: transformTypeToTransform[this.state.defaultType],
+              type: this.state.defaultType,
             }}
           />
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18 }} >
             <Button variant="raised" onClick={closeDialog}>
               Cancel
             </Button>
-            <Button variant="raised">Ok</Button>
+            <Button onClick={() => onAdd(this.state.newAction)} variant="raised">Ok</Button>
           </div>
         </MDialog>
     );
@@ -63,6 +62,7 @@ class Dialog extends Component {
 Dialog.propTypes = {
   open: PropTypes.bool,
   closeDialog: PropTypes.func,
+  onAdd: PropTypes.func,
 };
 
 export default Dialog;

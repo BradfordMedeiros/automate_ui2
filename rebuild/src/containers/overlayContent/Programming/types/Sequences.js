@@ -52,8 +52,9 @@ class Sequences extends Component{
             })
           }}
           sequenceActions={debugSequenceActionMap[selectedName] || []}
-          onChange={() => {
-            console.log('changed');
+          onChange={newActions => {
+            debugSequenceActionMap[selectedName] = newActions;
+            this.forceUpdate();
           }}
           onDelete={(sequence, index) => {
             console.log('delete sequence: ', sequence);
@@ -61,6 +62,10 @@ class Sequences extends Component{
             this.setState({
               selectedIndex: 0,
             })
+          }}
+          onChange={(actions, newAction, deletedAction) => {
+            debugSequenceActionMap[selectedName] = actions;
+            this.forceUpdate();
           }}
         />
     )

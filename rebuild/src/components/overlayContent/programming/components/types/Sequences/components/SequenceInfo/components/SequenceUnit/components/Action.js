@@ -11,7 +11,7 @@ const Action = ({ options, deleteSelf }) => (
     <TableCell className="sequences_table_cell">{options.value}</TableCell>
     <TableCell
       className="sequences_table_cell"
-      onTouchTap={deleteSelf}
+      onClick={deleteSelf}
       style={{ fontSize: 25, cursor: 'pointer' }}
     >
       &times;

@@ -9,8 +9,8 @@ const getSequences = (Header, SelectableTypes) => {
       return (
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Header
-                itemName={'some name'}
-                itemType={'some type'}
+                itemName={'Sequences'}
+                itemType={'Type'}
                 deleteItem={() => {
                   onDelete(sequences[selectedIndex], selectedIndex);
                 }}

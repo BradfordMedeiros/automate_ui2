@@ -28,14 +28,14 @@ class SequenceInfo extends Component {
   render() {
     const { actions, onChange } = this.props;
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ flexGrow: 1, overflow: 'auto' }}>
         <Dialog
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
-          onChange={(newAction) => {
+          onAdd={(newAction) => {
             const newActions = actions.slice();
             newActions.push(newAction);
-            onChange(newActions, newAction);
+            onChange(newActions, newAction, null);
           }}
           onOkClick={this.closeDialog}
         />
@@ -50,7 +50,7 @@ class SequenceInfo extends Component {
                       .slice(0, Math.max(index, 0))
                       .concat(actions.slice(index + 1))
                   );
-                  onChange(newActions);
+                  onChange(newActions, null, action);
                 }}
               />
             ))}
