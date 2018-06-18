@@ -1,0 +1,12 @@
+.selectable_types_outer{
+    border-right: 1px solid black;
+    min-width: 240px;
+}
+
+.selectable_type{
+    color: whitesmoke !important;
+}
+
+.selectable_type:hover{
+    color: lightsteelblue !important;
+}

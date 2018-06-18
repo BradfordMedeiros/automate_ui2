@@ -1,0 +1,93 @@
+<div
+                style={{ position: 'relative' }}
+                className="drawer_container"
+                ref={el => {
+              if (el){
+                this.el = el;
+              }else{
+                this.el = null;
+              }
+            }}>
+                {this.state.showDrawer && <Drawer
+                    open={open}
+                    onClose={onDrawerStateChange}
+                    classes={{
+                      paperAnchorRight: 'drawer_paper_right',
+                      paper: 'drawer_main_panel',
+                    }}
+                    ModalProps={{
+                        //container: <div></div>
+                        BackdropProps:{
+                            style:  {
+                              position: 'relative',
+                                opacity: 0,
+                            }
+                        },
+                        container: this.el,
+
+                    }}
+
+
+                    anchor="right"
+
+                    //overlayStyle={{ background: 'transparent' }}
+                    //containerStyle={{ background: 'rgb(18,18,18)',...style}}
+                >
+                    {/*<Dialog
+
+      open={showUploadDialog}
+      onRequestClose={onUploadRequestClose}
+      bodyStyle={{
+        background: 'rgb(10,10,10)',
+        borderLeft: '1px solid steelblue',
+        borderRight: '1px solid steelblue',
+      }}
+    >
+      Tile Name:
+        <TextField
+          errorText={errorText}
+          onChange={(_, text) => {
+            onTileNameChange(text);
+          }}
+        />
+        <File
+          onChange={form => {
+            onFormData(form);
+          }}
+        />*
+        <div>todo add back in file</div>
+        <Button labelStyle={{ color: 'steelblue' }} onClick={onUploadFileButtonClick} >Upload</Button>/
+    </Dialog>*/}
+                    {/*<div style={styles.tiles}>tiles</div>*/}
+                    {/*<div
+      onClick={onUploadClick}
+      style={styles.upload}
+    >
+      Upload New
+    </div>*/}
+                    {/*(tileNames === undefined || tileNames.length === 0) ?
+      <MenuItem>No tiles</MenuItem> :
+      <List>{tileNames.map(
+        (value, index) => {
+          /*
+
+            <DrawerMenuItem
+            onTileClick={onTileClick}
+            onDownloadTile={tile => {
+              onDownloadTile(tile);
+            }}
+            onDeleteTile={tile => {
+              onDeleteTile(tile);
+            }}
+            tile={value}
+            tileIndex={index}
+            path={index}
+          />
+
+          return (
+                <div>to do add drawer item</div>
+            )
+        })}
+      </List>*/}
+                    wow
+                </Drawer>}

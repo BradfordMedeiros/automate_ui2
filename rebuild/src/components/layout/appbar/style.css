@@ -1,0 +1,56 @@
+.titlebar {
+    background: linear-gradient(#1c1c1c,rgb(48, 48, 48),#353535);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px 1px black;
+    z-index: 1;
+}
+.app_title{
+    color: whitesmoke;
+    margin-left: 30px;
+    font-size: 22px;
+}
+.app_properties {
+    margin-right: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.app_property{
+    color: whitesmoke !important;
+    border-radius: 0 !important;
+    border: 1px solid rgb(30,30,30) !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: 12px !important;
+}
+.xIcon {
+    display: inline-block;
+    font-size: 300%;
+    color: whitesmoke;
+    transform: rotateZ(45deg);
+    cursor: pointer;
+}
+
+@keyframes turn_into_x {
+    from {
+        transform: rotateZ(45deg);
+    }
+    to {
+        transform: rotateZ(90deg);
+
+    }
+}
+@keyframes turn_out_x {
+    from {
+        transform: rotateZ(90deg);
+    }
+    to {
+        transform: rotateZ(45deg);
+    }
+}

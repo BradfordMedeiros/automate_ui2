@@ -1,0 +1,21 @@
+.drawer_menu_item_base{
+    cursor: pointer;
+    padding-left: 28;
+    height: 60px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.drawer_menu_item_base:hover{
+    color: steelblue !important;
+}
+
+.drawer_menu_item_toggle_header{
+    flex-grow: 1;
+}
+
+.drawer_menu_icon_button{
+   color: grey !important;
+}
+.drawer_menu_icon_button:hover{
+    color: white  !important;
+}

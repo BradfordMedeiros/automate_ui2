@@ -1,0 +1,20 @@
+.programming_states_outer{
+    flex-grow: 1;
+    margin: 18px;
+    overflow: auto;
+}
+.programming_state{
+    color: white;
+    padding: 18px;
+    margin: 8px;
+    font-size: 18px;
+    font-family: monospace;
+}
+
+.programming_state_topic {
+    color: steelblue;
+
+}
+
+.programming_state_value {
+}

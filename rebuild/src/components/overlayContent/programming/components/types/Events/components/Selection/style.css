@@ -1,0 +1,14 @@
+.event_log_selection {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    padding: 18px;
+    padding-right: 32px;
+    border-bottom: 1px solid black;
+    color: white;
+}
+
+.event_log_selection_text {
+    margin-left: 28px;
+    cursor: pointer;
+}

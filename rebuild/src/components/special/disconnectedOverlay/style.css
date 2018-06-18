@@ -1,0 +1,20 @@
+.disconnected_overlay{
+    background: rgb(20,20,20);
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 24%;
+    justify-content: center;
+    bottom: 0;
+    right: 0;
+}
+
+#disconnected_overlay_header {
+    color: whitesmoke;
+}
+
+#disconnected_overlay_subtitle {
+    color: steelblue;
+}

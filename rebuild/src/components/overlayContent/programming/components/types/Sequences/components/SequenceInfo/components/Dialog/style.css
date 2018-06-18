@@ -1,0 +1,9 @@
+.sequence_dialog_outer{
+    padding: 18px !important;
+    background: red;
+    display: flex;
+    flex-direction: column;
+}
+.sequence_dialog_select{
+    width: 400px;
+}

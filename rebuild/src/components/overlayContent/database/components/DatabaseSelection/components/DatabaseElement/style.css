@@ -1,0 +1,17 @@
+.database_element {
+    width: 280px;
+    height: 180px;
+    background: rgb(0, 0, 0);
+    color: white;
+    border: 1px solid #3a3333;
+    margin: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.database_element:hover{
+    opacity: 1;
+}

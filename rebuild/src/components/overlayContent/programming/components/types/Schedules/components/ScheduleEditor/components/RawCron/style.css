@@ -1,0 +1,10 @@
+.schedule_editor_raw_cron {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: none;
+}
+
+.schedule_editor_raw_cron_text{
+    color: white  !important;
+}
