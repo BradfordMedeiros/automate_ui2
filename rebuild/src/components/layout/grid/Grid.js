@@ -12,10 +12,10 @@ const GridLayout = WidthProvider(Responsive);
 class Grid extends Component {
   generateGridItemsFromTiles = (layouts, onTileDoubleClick, breakpoint) => {
     console.error('-- breakpoint is: ', breakpoint);
-    /*const gridItems = tiles.map(tile => {
+    const gridItems = tiles.map(tile => {
       return <div onDoubleClick={() => onTileDoubleClick(tile)} key={tile.name}><Tile>{tile.node}</Tile></div>;
     });
-    return gridItems;*/
+    return gridItems;
   
     const currentLayout = layouts[breakpoint];
     if (currentLayout === undefined){
