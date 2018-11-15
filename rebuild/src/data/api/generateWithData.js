@@ -1,3 +1,5 @@
+import generateWithDataComponent from './util/generateWithDataComponent';
+
 import getWithPollingEvents from './polling/getWithEvents';
 import getWithStates from './polling/getWithStates';
 import getWithActions from './polling/getWithActions';
@@ -25,7 +27,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
     polling: {
       WithActions: getWithActions(automateUrl),
-      WithStates: getWithStates(automateUrl),
+      WithStates: generateWithDataComponent(automateUrl, getWithStates),
       WithEvents: getWithPollingEvents(automateUrl),
       WithSequences: getWithSequences(automateUrl),
       WithSystemInfo: getWithSystemInfo(automateUrl),

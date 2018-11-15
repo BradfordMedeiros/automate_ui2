@@ -10,15 +10,18 @@ import Drawer from './containers/layout/Drawer';
 
 
 import AccountManagement from './containers/overlayContent/AccountManagement';
-import Programming from './containers/overlayContent/Programming/Programming';
+import getProgramming from './containers/overlayContent/Programming/getProgramming';
 
 import LoginScreen from './containers/special/LoginScreen/LoginScreen';
 import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
 import tiles from './containers/layout/Grid/components/tiles/tiles';
-// const Data = getData();
 
+const Data = getData();
+const Programming = getProgramming({ 
+  WithStates: Data.polling.WithStates,
+})
 
 const contentMap = {
   disconnected: <DisconnectedOverlay />,
@@ -41,7 +44,7 @@ class MockApp extends Component {
       drawerOpen: false,
       showContent: true,
       isEditable: false,
-      content: contentMap.selection,
+      content: contentMap.programming,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];
@@ -109,7 +112,7 @@ class MockApp extends Component {
               <Overlay isExpanded={this.state.showContent}>
                 {this.state.content}
               </Overlay>
-              <Grid
+              {/*<Grid
                   onLayoutChange={(_, allLayouts) => {
                     localStorage.setItem('layout', JSON.stringify(allLayouts));
                   }}
@@ -128,7 +131,8 @@ class MockApp extends Component {
                   }}
                   isEditable={this.state.isEditable}
 
-              />
+              />*/}
+              <div style={{ color: 'white' }}> grid placeholder</div>
               <Drawer open={this.state.drawerOpen} onRequestClose={() => { this.setState({ drawerOpen: false })}} />
             </div>
 
