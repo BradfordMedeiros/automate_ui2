@@ -1,9 +1,0 @@
-.database_selection_outer {
-    flex-grow: 1;
-    overflow: auto;
-}
-.database_selection_content {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}

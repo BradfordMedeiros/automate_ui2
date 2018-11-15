@@ -10,7 +10,6 @@ import Drawer from './containers/layout/Drawer';
 
 
 import AccountManagement from './containers/overlayContent/AccountManagement';
-import Database from './containers/overlayContent/Database';
 import Programming from './containers/overlayContent/Programming/Programming';
 
 import LoginScreen from './containers/special/LoginScreen/LoginScreen';
@@ -24,9 +23,16 @@ import tiles from './containers/layout/Grid/components/tiles/tiles';
 const contentMap = {
   disconnected: <DisconnectedOverlay />,
   login: <LoginScreen />,
-  database: <Database />,
   account: <AccountManagement />,
   programming: <Programming/>,
+  selection: (
+    <div style={{ background: 'blue', color: 'white' }}>
+      <div onClick={() => window.set('disconnected')}>disconnected</div>
+      <div onClick={() => window.set('login')}>login</div>
+      <div onClick={() => window.set('account')}>account</div>
+      <div onClick={() => window.set('programming')}>programming</div>
+    </div>
+  )
 };
 
 
@@ -35,7 +41,7 @@ class MockApp extends Component {
       drawerOpen: false,
       showContent: true,
       isEditable: false,
-      content: contentMap.programming,
+      content: contentMap.selection,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];
