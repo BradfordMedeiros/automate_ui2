@@ -1,23 +1,27 @@
 import { Component } from 'react';
 
 const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
-  const componentSpecificHooks = getComponentSpecificHooks({ AUTOMATE_CORE_URL: automateUrl });
-  const { getData } = componentSpecificHooks.lifecycle;
-  const extraProps = componentSpecificHooks.props;
-
   class WithDataComponent extends Component {
     constructor(props) {
       super(props);
       this.state = {
         hasData: false,
       };
+      const componentSpecificHooks = getComponentSpecificHooks(
+        {AUTOMATE_CORE_URL: automateUrl},
+        {refresh: this.getDataAsyncWrapper}
+      );
+      const { getData } = componentSpecificHooks.lifecycle;
+      const extraProps = componentSpecificHooks.props;
+      this.getData = getData;
+      this.extraProps = extraProps;
     }
     componentWillMount() {
-      this.getData();
+      this.getDataAsyncWrapper();
     }
-    getData = async () => {
+    getDataAsyncWrapper = async () => {
       try {
-        const data = await getData()
+        const data = await this.getData()
         this.setState({
           hasData: true,
           data: data,
@@ -32,7 +36,7 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       if (hasData && children) {
         return children({
           data,
-          ...extraProps,
+          ...this.extraProps,
         });
       } 
       return null;

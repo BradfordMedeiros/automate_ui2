@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const getWithEnv = ({ AUTOMATE_CORE_URL }) => {
+const getWithEnv = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   const ENV_URL = `${AUTOMATE_CORE_URL}/env`;
 
   const getAllEnv = async () => {
@@ -38,8 +38,14 @@ const getWithEnv = ({ AUTOMATE_CORE_URL }) => {
       getData: getAllEnv,
     },
     props: {
-      deleteEnv,
-      setEnv,
+      deleteEnv: async token => {
+        await deleteEnv(token);
+        refresh();
+      },
+      setEnv: async (token, value) => {
+        await setEnv(token, value);
+        refresh();
+      }
     }
   }
 }
