@@ -22,6 +22,7 @@ const Data = getData();
 const Programming = getProgramming({ 
   WithStates: Data.polling.WithStates,
   WithActions: Data.polling.WithActions,
+  WithEvents: Data.polling.WithEvents,
 })
 
 const contentMap = {
