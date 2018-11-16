@@ -1,5 +1,3 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 
 const getWithStates = ({ AUTOMATE_CORE_URL }) => {

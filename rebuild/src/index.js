@@ -21,6 +21,7 @@ import tiles from './containers/layout/Grid/components/tiles/tiles';
 const Data = getData();
 const Programming = getProgramming({ 
   WithStates: Data.polling.WithStates,
+  WithActions: Data.polling.WithActions,
 })
 
 const contentMap = {

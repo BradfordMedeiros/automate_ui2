@@ -9,8 +9,7 @@ const getStates = (WithStates) => (
 				value: 'value still needs implementation + refresh',
 			}))
 			return (
-				<StatesComponent states={statesProp} 
-   	 		/>
+				<StatesComponent states={statesProp} />
 			)}}
 	</WithStates>
 )

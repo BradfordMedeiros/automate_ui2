@@ -1,7 +1,7 @@
 import React from 'react';
 import ProgrammingComponent from '../../../components/overlayContent/programming/Programming';
 import getStates from './types/getStates';
-import Actions from './types/Actions';
+import getActions from './types/getActions';
 import Events from './types/EventLog';
 import Environment from './types/Environment';
 import StateScript from './types/StateScript';
@@ -11,10 +11,10 @@ import Sequences from './types/Sequences';
 import Rules from './types/Rules';
 import DeviceInfo from './types/DeviceInfo';
 
-const getProgramming = ({ WithStates }) => () => {
+const getProgramming = ({ WithStates, WithActions }) => () => {
   const labelComponentMap = {
     States: getStates(WithStates),
-    Actions: <Actions />,
+    Actions: getActions(WithActions),
     Events: <Events />,
     'Env Variables': <Environment />,
     Statescripts: <StateScript />,

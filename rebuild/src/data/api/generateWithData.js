@@ -25,8 +25,8 @@ import getStyleSheet from './requests/getStyleSheet';
 const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
     polling: {
-      WithActions: getWithActions(automateUrl),
-      WithStates: generateWithDataComponent(automateUrl, getWithStates),
+      WithActions: generateWithDataComponent(automateUrl, getWithActions),
+      WithStates:  generateWithDataComponent(automateUrl, getWithStates),
       WithEvents: getWithPollingEvents(automateUrl),
       WithSequences: getWithSequences(automateUrl),
       WithSystemInfo: getWithSystemInfo(automateUrl),
