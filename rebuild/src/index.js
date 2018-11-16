@@ -24,6 +24,7 @@ const Programming = getProgramming({
   WithActions: Data.polling.WithActions,
   WithEvents: Data.polling.WithEvents,
   WithDeviceInfo: Data.polling.WithSystemInfo,
+  WithEnv: Data.polling.WithEnv,
 })
 
 const contentMap = {

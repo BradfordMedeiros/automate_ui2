@@ -35,7 +35,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithRules: getWithRules(automateUrl),
       WithStatus: getWithStatus(automateUrl),
       WithCustomTiles: getWithCustomTiles(automateUrl),
-      WithEnv: getWithEnv(automateUrl),
+      WithEnv: generateWithDataComponent(automateUrl, getWithEnv),
       WithEmail: getWithEmail(automateUrl),
       WithIsSystemLocked: getWithIsSystemLocked(automateUrl),
       WithAccounts: getWithAccounts(automateUrl),

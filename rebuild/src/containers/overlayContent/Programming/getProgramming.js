@@ -16,12 +16,13 @@ const getProgramming = ({
   WithActions, 
   WithEvents,
   WithDeviceInfo,
+  WithEnv,
 }) => () => {
   const labelComponentMap = {
     States: getStates(WithStates),
     Actions: getActions(WithActions),
     Events: getEventLog(WithEvents),
-    'Env Variables': getEnvironment(),
+    'Env Variables': getEnvironment(WithEnv),
     Statescripts: <StateScript />,
     Actionscripts: <ActionScript />,
     Schedules: <Schedules />,

@@ -1,19 +1,9 @@
 import { Component } from 'react';
 
-/*   
-   ({ AUTOMATE_CORE_URL }, { })   // data to pass in, then hooks 
-  {
-    lifecycle: {
-      getInitialData: () => [],
-      getData: 
-    },
-    props: {}   // these get injected into child component
-  })
-*/
-
 const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
   const componentSpecificHooks = getComponentSpecificHooks({ AUTOMATE_CORE_URL: automateUrl });
   const { getData } = componentSpecificHooks.lifecycle;
+  const extraProps = componentSpecificHooks.props;
 
   class WithDataComponent extends Component {
     constructor(props) {
@@ -42,6 +32,7 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       if (hasData && children) {
         return children({
           data,
+          ...extraProps,
         });
       } 
       return null;

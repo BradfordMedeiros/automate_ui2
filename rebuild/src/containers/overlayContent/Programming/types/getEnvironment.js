@@ -1,25 +1,26 @@
 import React from 'react';
 import EnvironmentComponent from '../../../../components/overlayContent/programming/components/types/Environment/Environment';
 
-const getEnvironment = () => (
-    <EnvironmentComponent
-        variables={[
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
-          { name: 'some name', value: 'some value' },
+const getEnvironment = WithEnv => (
+    <WithEnv>
+    {({ data, setEnv, deleteEnv }) => {
+      const variables = Object.keys(data).map(variable => ({
+        name: variable,
+        value: data[variable],
+      }))
 
-        ]}
-        onDelete={(item, index) => {
-          console.log('delete index ', index, ' value ', item);
-        }}
-        onAdd={({ token, value }) => {
-          console.log('add: token(', token, ') value: (', value, ')');
-        }}
-    />
+      return (
+        <EnvironmentComponent
+          variables={variables}
+          onDelete={(item, index) => {
+            deleteEnv(item.name)
+          }}
+          onAdd={({ token, value }) => {
+            setEnv(token, value);
+          }}
+        />
+      )}}
+    </WithEnv>
 );
 
 export default getEnvironment;
