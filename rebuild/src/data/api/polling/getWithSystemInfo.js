@@ -1,54 +1,25 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import fetch from 'isomorphic-fetch';
 
-const getWithSystemInfo = (AUTOMATE_CORE_URL) => {
-  const SYSTEM_INFO = `${AUTOMATE_CORE_URL}/info`;
+const getWithSystemInfo = ({ AUTOMATE_CORE_URL }) => {
+  const SYSTEMINFO_URL = `${AUTOMATE_CORE_URL}/info`;
 
-  class WithSystemInfo extends Component {
-    state = {
-      hasData: false,
-      info: undefined,
-    }
-    componentWillMount() {
-      this.getData();
-    }
-    getData = async () => {
-      try {
-        const response = await fetch(SYSTEM_INFO, {
-          mode: 'cors',
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-          },
-        });
-        const info = await response.json();
-        this.setState({
-          hasData: true,
-          info,
-        });
-      } catch (err) {
-        // better error handling?
+  const getSystemInfo = async () => {
+    const response = await fetch(SYSTEMINFO_URL, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
       }
-    }
-    render() {
-      const { children, injectLoading } = this.props;
-      if (!this.state.hasData) {
-        return injectLoading ? children({
-          public_ip_address: 'Loading',
-          mac_address: 'Loading',
-          automate_core_version: 'loading',
-        }) : null;
-      }
-      return children({ ...this.state.info });
-    }
+    });
+    const systemInfo = await response.json();
+    return systemInfo
   }
-
-  WithSystemInfo.propTypes = {
-    children: PropTypes.func.isRequired,
-    injectLoading: PropTypes.bool,
-  };
-  return WithSystemInfo;
-};
-
+  return {
+    lifecycle: {
+      getData: getSystemInfo,
+    },
+    props: {}
+  }
+}
 
 export default getWithSystemInfo;

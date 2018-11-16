@@ -9,9 +9,14 @@ import ActionScript from './types/ActionScript';
 import Schedules from './types/Schedules';
 import Sequences from './types/Sequences';
 import Rules from './types/Rules';
-import DeviceInfo from './types/DeviceInfo';
+import getDeviceInfo from './types/getDeviceInfo';
 
-const getProgramming = ({ WithStates, WithActions, WithEvents }) => () => {
+const getProgramming = ({ 
+  WithStates, 
+  WithActions, 
+  WithEvents,
+  WithDeviceInfo,
+}) => () => {
   const labelComponentMap = {
     States: getStates(WithStates),
     Actions: getActions(WithActions),
@@ -22,7 +27,7 @@ const getProgramming = ({ WithStates, WithActions, WithEvents }) => () => {
     Schedules: <Schedules />,
     Sequences: <Sequences />,
     Rules: <Rules />,
-    'Device Info': <DeviceInfo />,
+    'Device Info': getDeviceInfo(WithDeviceInfo),
   }
 
   return (

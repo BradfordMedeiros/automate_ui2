@@ -23,6 +23,7 @@ const Programming = getProgramming({
   WithStates: Data.polling.WithStates,
   WithActions: Data.polling.WithActions,
   WithEvents: Data.polling.WithEvents,
+  WithDeviceInfo: Data.polling.WithSystemInfo,
 })
 
 const contentMap = {
