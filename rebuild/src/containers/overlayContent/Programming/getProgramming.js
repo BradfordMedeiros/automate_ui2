@@ -3,7 +3,7 @@ import ProgrammingComponent from '../../../components/overlayContent/programming
 import getStates from './types/getStates';
 import getActions from './types/getActions';
 import getEventLog from './types/getEventLog';
-import Environment from './types/Environment';
+import getEnvironment from './types/getEnvironment';
 import StateScript from './types/StateScript';
 import ActionScript from './types/ActionScript';
 import Schedules from './types/Schedules';
@@ -21,7 +21,7 @@ const getProgramming = ({
     States: getStates(WithStates),
     Actions: getActions(WithActions),
     Events: getEventLog(WithEvents),
-    'Env Variables': <Environment />,
+    'Env Variables': getEnvironment(),
     Statescripts: <StateScript />,
     Actionscripts: <ActionScript />,
     Schedules: <Schedules />,

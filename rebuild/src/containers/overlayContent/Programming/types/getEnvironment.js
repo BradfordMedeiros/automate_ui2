@@ -1,7 +1,7 @@
 import React from 'react';
 import EnvironmentComponent from '../../../../components/overlayContent/programming/components/types/Environment/Environment';
 
-const Environment = () => (
+const getEnvironment = () => (
     <EnvironmentComponent
         variables={[
           { name: 'some name', value: 'some value' },
@@ -22,4 +22,4 @@ const Environment = () => (
     />
 );
 
-export default Environment;
+export default getEnvironment;
