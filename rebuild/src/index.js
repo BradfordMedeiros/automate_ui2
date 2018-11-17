@@ -12,7 +12,7 @@ import Drawer from './containers/layout/Drawer';
 import AccountManagement from './containers/overlayContent/AccountManagement';
 import getProgramming from './containers/overlayContent/Programming/getProgramming';
 
-import LoginScreen from './containers/special/LoginScreen/LoginScreen';
+import getLoginScreen from './containers/special/getLoginScreen/getLoginScreen';
 import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
@@ -27,9 +27,10 @@ const Programming = getProgramming({
   WithEnv: Data.polling.WithEnv,
 })
 
+const LoginScreenWithData = getLoginScreen(Data.polling.WithAccounts);
 const contentMap = {
   disconnected: <DisconnectedOverlay />,
-  login: <LoginScreen />,
+  login: <LoginScreenWithData />,
   account: <AccountManagement />,
   programming: <Programming/>,
   selection: (
@@ -48,7 +49,7 @@ class MockApp extends Component {
       drawerOpen: false,
       showContent: true,
       isEditable: false,
-      content: contentMap.programming,
+      content: contentMap.login,
     };
     setContent = (contentType) => {
       const component = contentMap[contentType];

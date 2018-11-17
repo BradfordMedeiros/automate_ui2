@@ -4,30 +4,28 @@ import SetNewPasswordScreen from '../../../components/special/loginScreen/SetNew
 import ForgotPasswordScreen from '../../../components/special/loginScreen/ForgotPasswordScreen';
 import CreateAccountScreen from '../../../components/special/loginScreen/CreateAccountScreen/CreateAccountScreen';
 
-class LoginScreen extends Component{
-  state = {
-    selectedAccountIndex: 0,
-    errorText : null,
-    screen: 'main',
-  };
-  render() {
-    return (
-        <div style={{ display: 'flex', position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, background: 'grey' }}>
-          {this.state.screen === 'main' && (
+const getLoginScreen = WithAccounts => {
+  class LoginScreen extends Component{
+    state = {
+      selectedAccountIndex: 0,
+      errorText : null,
+      screen: 'main',
+    };
+    render() {
+      return (
+        <WithAccounts>
+          {({ data, addAccount }) => {
+
+            const users = data.map(user => ({
+              username: user.email || 'no email', 
+              imageUrl: 'http://image.ibb.co/cqjRsk/white_omen_tansparent.png',
+              remote: false,
+            })) 
+            return (
+            <div style={{ display: 'flex', position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, background: 'grey' }}>
+            {this.state.screen === 'main' && (
               <MainLogin
-                users={[{
-                  username: 'user 1',
-                  imageUrl: undefined,
-                  remote: false,
-                }, {
-                    username: 'user 2',
-                    imageUrl: undefined,
-                    remote: false,
-                  }, {
-                    username: 'user 3',
-                    imageUrl: undefined,
-                    remote: false,
-                  }]}
+                users={users}
                 selectedAccountIndex={this.state.selectedAccountIndex}
                 onSelectAccount={(_,selectedAccountIndex) => {
                   this.setState({
@@ -56,9 +54,8 @@ class LoginScreen extends Component{
                     screen: 'reset',
                   })
                 }}
-            />
-          )}
-          {this.state.screen === 'create' && (
+            />)}
+            {this.state.screen === 'create' && (
               <CreateAccountScreen
                 onClickBack={() => {
                   this.setState({
@@ -66,11 +63,11 @@ class LoginScreen extends Component{
                   })
                 }}
                 onCreateAccount={account => {
-                  console.log('create account: ', account);
+                  const { email, password, alias } = account;
+                  addAccount(email, password, alias);
                 }}
-            />
-          )}
-          {this.state.screen === 'reset' && (
+            />)}
+            {this.state.screen === 'reset' && (
               <ForgotPasswordScreen
                   onClickBack={() => {
                     this.setState({
@@ -80,19 +77,21 @@ class LoginScreen extends Component{
                   onSendResetEmail={() => console.log('send reset email')}
                   disableSendReset={false}
               />
-          )}
-          {this.state.screen === 'confirm' && (
+            )}
+            {this.state.screen === 'confirm' && (
               <SetNewPasswordScreen
                   onSetPassword={() => {
 
                   }}
                   resetErrorText={null}
               />
-          )}
-        </div>
-    )
+            )}
+          </div>)}}
+        </WithAccounts>
+      )
+    }
   }
-}
+  return LoginScreen;
+};
 
-
-export default LoginScreen;
+export default getLoginScreen;
