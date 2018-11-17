@@ -112,13 +112,20 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
 
   return {
     lifecycle: {
-      getData: getAllAccounts,
+      getData: async () => {
+        const accounts = await getAllAccounts();
+        const isAccountCreation = await isAccountCreationAdminOnly();
+        return {
+         accounts,
+         isAccountCreationAdminOnly: isAccountCreation,
+       };
+      },
     },
     props: {
       addAccount: async (email, password, alias) => {
         await addAccount(email, password, alias);
         refresh();
-      }
+      },
     }
   }
 }

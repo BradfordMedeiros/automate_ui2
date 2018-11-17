@@ -15,8 +15,8 @@ const getLoginScreen = WithAccounts => {
       return (
         <WithAccounts>
           {({ data, addAccount }) => {
-
-            const users = data.map(user => ({
+            const { accounts, isAccountCreationAdminOnly } = data;
+            const users = accounts.map(user => ({
               username: user.email || 'no email', 
               imageUrl: 'http://image.ibb.co/cqjRsk/white_omen_tansparent.png',
               remote: false,
@@ -32,15 +32,13 @@ const getLoginScreen = WithAccounts => {
                     selectedAccountIndex,
                   })
                 }}
-                showCreateAccount={true}
+                showCreateAccount={!isAccountCreationAdminOnly}
                 onCreateAccount={() => {
                   this.setState({
                     screen: 'create',
                   })
                 }}
                 onLoginWithPassword={(user, password) => {
-                  console.log('login: ', user);
-                  console.log('password: ', password);
                   this.setState({
                     errorText: 'invalid',
                   })
