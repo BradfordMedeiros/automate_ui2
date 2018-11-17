@@ -11,8 +11,7 @@ const getWithEnv = ({ AUTOMATE_CORE_URL }, { refresh }) => {
         Accept: 'application/json',
       }
     });
-    const env = await response.json();
-    return env
+    return await response.json();
   }
 
   const deleteEnv = async (token) => {
