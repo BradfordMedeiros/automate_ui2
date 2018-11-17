@@ -4,7 +4,6 @@ import getStates from './types/getStates';
 import getActions from './types/getActions';
 import getEventLog from './types/getEventLog';
 import getEnvironment from './types/getEnvironment';
-import StateScript from './types/StateScript';
 import ActionScript from './types/ActionScript';
 import Schedules from './types/Schedules';
 import Sequences from './types/Sequences';
@@ -23,7 +22,6 @@ const getProgramming = ({
     Actions: getActions(WithActions),
     Events: getEventLog(WithEvents),
     'Env Variables': getEnvironment(WithEnv),
-    Statescripts: <StateScript />,
     Actionscripts: <ActionScript />,
     Schedules: <Schedules />,
     Sequences: <Sequences />,

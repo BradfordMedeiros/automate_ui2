@@ -19,9 +19,6 @@ class Programming extends Component {
               }}
               buttonLabels={[
                 {
-                  label: 'Statescripts',
-                },
-                {
                   label: 'Actionscripts',
                 },
                 {
