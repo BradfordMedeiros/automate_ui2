@@ -14,7 +14,7 @@ const getLoginScreen = WithAccounts => {
     render() {
       return (
         <WithAccounts>
-          {({ data, addAccount }) => {
+          {({ data, addAccount, loginWithPassword }) => {
             const { accounts, isAccountCreationAdminOnly } = data;
             const users = accounts.map(user => ({
               username: user.email || 'no email', 
@@ -38,10 +38,9 @@ const getLoginScreen = WithAccounts => {
                     screen: 'create',
                   })
                 }}
-                onLoginWithPassword={(user, password) => {
-                  this.setState({
-                    errorText: 'invalid',
-                  })
+                onLoginWithPassword={async (user, password) => {
+                  const valid_token = await loginWithPassword(user.username, password)
+                  console.log('token: ', valid_token)
                 }}
                 onPasswordTextChange={() => {
                   console.log('text changed')

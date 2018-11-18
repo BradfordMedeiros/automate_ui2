@@ -4,6 +4,18 @@ import assert from 'assert';
 const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   const ACCOUNTS_URL = `${AUTOMATE_CORE_URL}/accounts`;
 
+  const getAllAccounts = async () => {
+    const response = await fetch(ACCOUNTS_URL, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      }
+    });
+    const accounts= await response.json();
+    return accounts;
+  }
+
   const isAccountCreationAdminOnly = async () => {
     const response = await fetch(`${ACCOUNTS_URL}/isAccountCreationAdminOnly`, {
       method: 'GET',
@@ -35,6 +47,10 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   };
 
   const loginWithPassword = async (email, password) => {
+    console.log('login: ');
+    console.log('email: ', email);
+    console.log('password: ', password);
+    
     assert(typeof(email), typeof(''));
     assert(typeof(password), typeof(''));
 
@@ -57,6 +73,7 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
     throw (new Error('invalid credentials'));
   };
 
+  // @todo unused
   const requestResetPassword = async (email) => {
     assert(typeof(email), typeof(''));
 
@@ -74,6 +91,7 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
     return response;
   };
 
+  // @todo unused
   const confirmResetPassword = async (token, newPassword) => {
     assert(typeof(token), typeof(''));
     assert(typeof(newPassword), typeof(''));
@@ -98,17 +116,7 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   };
 
 
-  const getAllAccounts = async () => {
-    const response = await fetch(ACCOUNTS_URL, {
-      mode: 'cors',
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      }
-    });
-    const accounts= await response.json();
-    return accounts;
-  }
+
 
   return {
     lifecycle: {
@@ -126,6 +134,7 @@ const getWithAccounts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
         await addAccount(email, password, alias);
         refresh();
       },
+      loginWithPassword,
     }
   }
 }
