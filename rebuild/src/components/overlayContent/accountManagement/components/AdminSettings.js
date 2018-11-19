@@ -32,14 +32,6 @@ const AdminSettings = ({
          }}
         />)}
     />
-
-
-    {/*
-       I want these features so leaving them in here even though they are not implemented
-       <Toggle style={styles.toggle} label="Allow Password Email Reset" />
-       <Toggle style={styles.toggle} label="Grid is Per User" />
-       <Toggle style={styles.toggle} label="Enable Guest User" />
-       */}
   </div>
 );
 
