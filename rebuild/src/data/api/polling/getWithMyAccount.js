@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import assert from 'assert';
 
-const getWithMyAccount = ({ AUTOMATE_CORE_URL }) => {
+const getWithMyAccount = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   const ACCOUNTS_URL = `${AUTOMATE_CORE_URL}/accounts`;
 
   const setProfileImage = async (email, imageUrl) => {
@@ -39,6 +39,17 @@ const getWithMyAccount = ({ AUTOMATE_CORE_URL }) => {
     const myAccountInfo = await response.json();
     return myAccountInfo;
   }
+
+  const enableUserAccountCreation = async () => await fetch(`${ACCOUNTS_URL}/enableUserAccountCreation`, {
+    method: 'POST',
+    mode: 'cors',
+  });
+
+  const disableUserAccountCreation = async () => await fetch(`${ACCOUNTS_URL}/disableUserAccountCreation`, {
+    method: 'POST',
+    mode: 'cors',
+  });
+
   return {
     lifecycle: {
       getData: async ({ token }) => {
@@ -48,6 +59,14 @@ const getWithMyAccount = ({ AUTOMATE_CORE_URL }) => {
     },
     props: {
       setProfileImage,
+      enableUserAccountCreation: async () => {
+        await enableUserAccountCreation();
+        refresh();
+      },
+      disableUserAccountCreation: async () => {
+        await disableUserAccountCreation();
+        refresh();
+      }
     }
   }
 }
@@ -92,15 +111,7 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
     }
   };
 
-  const enableUserAccountCreation = async () => await fetch(`${accountsUrl}/enableUserAccountCreation`, {
-    method: 'POST',
-    mode: 'cors',
-  });
 
-  const disableUserAccountCreation = async () => await fetch(`${accountsUrl}/disableUserAccountCreation`, {
-    method: 'POST',
-    mode: 'cors',
-  });
 
   
 

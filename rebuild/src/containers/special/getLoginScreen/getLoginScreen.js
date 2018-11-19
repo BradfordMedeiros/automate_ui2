@@ -65,7 +65,15 @@ const getLoginScreen = WithAccounts => {
                 }}
                 onCreateAccount={account => {
                   const { email, password, alias } = account;
-                  addAccount(email, password, alias);
+                  try {
+                    addAccount(email, password, alias);
+                    this.setState({
+                      screen: 'main',
+                    })
+                  }catch(err){
+
+                  }
+                 
                 }}
             />)}
             {this.state.screen === 'reset' && (

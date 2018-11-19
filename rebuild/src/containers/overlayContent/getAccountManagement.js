@@ -9,21 +9,24 @@ const AccountManagement = (WithMyAccount) => ({
         {({ 
             data, 
             setProfileImage,
+            enableUserAccountCreation,
+            disableUserAccountCreation, 
         }) => {
 
         const { admin, email, imageURL, isAdmin, alias } = data;
+        console.log('allow user creation: ', admin)
         return (
             <AccountManagementComponent
                 email={email}
                 alias={alias}
                 isAdmin={isAdmin}
-                allowUserCreation={admin.allowUserCreation}
                 imageURL={imageURL}
+                allowUserCreation={admin.allowAccountCreation}
                 enableUserAccountCreation={() => {
-
+                    enableUserAccountCreation();
                 }}
                 disableUserAccountCreation={() => {
-
+                    disableUserAccountCreation();
                 }}
                 onLogout={onLogout}
                 onUploadImage={imageURL => {

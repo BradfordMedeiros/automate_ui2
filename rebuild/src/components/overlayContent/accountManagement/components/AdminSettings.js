@@ -19,18 +19,18 @@ const AdminSettings = ({
 }) => (
   <div style={styles.outer}>
     <FormControlLabel
+      label="Allow Account Creation"
       control={(
         <Switch
-                        // toggled={allowUserCreation}
-          onToggle={(_, toggleState) => {
-                            if (toggleState) {
-                                enableUserAccountCreation();
-                            } else {
-                                disableUserAccountCreation();
-                            }
-                        }}
+         checked={allowUserCreation}
+         onChange={(_, toggleState) => {
+           if (toggleState) {
+             enableUserAccountCreation();
+           } else {
+             disableUserAccountCreation();
+           }
+         }}
         />)}
-      label="Allow Account Creation"
     />
 
 
