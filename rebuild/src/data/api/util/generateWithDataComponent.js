@@ -20,8 +20,9 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       this.getDataAsyncWrapper();
     }
     getDataAsyncWrapper = async () => {
+      const params = this.props.params || {};
       try {
-        const data = await this.getData()
+        const data = await this.getData({...params})
         this.setState({
           hasData: true,
           data: data,

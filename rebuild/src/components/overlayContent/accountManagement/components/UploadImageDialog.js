@@ -9,10 +9,6 @@ const UploadImageDialog = ({
   <Dialog
     open={showImageUpload}
     onRequestClose={hideImageUpload}
-    actions={[
-      <Button onClick={hideImageUpload} label="Cancel" />,
-      <Button onClick={uploadImage} label="Upload" />,
-        ]}
   >
     <div>
             Select image url to upload
@@ -20,8 +16,12 @@ const UploadImageDialog = ({
     <TextField
       fullWidth
       floatingLabelText="Image URL"
-      onChange={onSetImageUrl}
+      onChange={event => {
+        onSetImageUrl(event.target.value)
+      }}
     />
+    <Button onClick={hideImageUpload}>Cancel</Button>
+    <Button onClick={uploadImage}>Upload</Button>
   </Dialog>
 );
 

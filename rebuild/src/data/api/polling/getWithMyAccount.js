@@ -1,4 +1,60 @@
-import { Component } from 'react';
+import fetch from 'isomorphic-fetch';
+import assert from 'assert';
+
+const getWithMyAccount = ({ AUTOMATE_CORE_URL }) => {
+  const ACCOUNTS_URL = `${AUTOMATE_CORE_URL}/accounts`;
+
+  const setProfileImage = async (email, imageUrl) => {
+    assert(email, typeof(''));
+    assert(imageUrl, typeof(''));
+
+    const response = await fetch(`${ACCOUNTS_URL}/setProfileImage`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      body: JSON.stringify({
+        email,
+        imageUrl,
+      }),
+    });
+  };
+
+  const getWithMyAccount = async token => {
+    assert(token, typeof(''));
+    const response = await fetch(`${ACCOUNTS_URL}/myAccount`, {
+        mode: 'cors',
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        }),
+        body: JSON.stringify({
+          token,
+        }),
+
+    });
+    const myAccountInfo = await response.json();
+    return myAccountInfo;
+  }
+  return {
+    lifecycle: {
+      getData: async ({ token }) => {
+          const { admin, email, imageURL, isAdmin, alias } = await getWithMyAccount(token);
+          return { admin, email, imageURL, isAdmin, alias };
+      },  
+    },
+    props: {
+      setProfileImage,
+    }
+  }
+}
+
+export default getWithMyAccount;
+
+/*import { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 
@@ -46,27 +102,7 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
     mode: 'cors',
   });
 
-  const setProfileImage = async (email, imageUrl) => {
-    if (typeof (email) !== typeof ('')) {
-      throw (new Error('email is undefined'));
-    }
-    if (typeof (imageUrl) !== typeof ('')) {
-      throw (new Error('password is undefined'));
-    }
-
-    const response = await fetch(`${accountsUrl}/setProfileImage`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      }),
-      body: JSON.stringify({
-        email,
-        imageUrl,
-      }),
-    });
-  };
+  
 
 
   class WithMyAccount extends Component {
@@ -133,3 +169,4 @@ const getWithMyAccount = (AUTOMATE_CORE_URL) => {
 
 
 export default getWithMyAccount;
+*/

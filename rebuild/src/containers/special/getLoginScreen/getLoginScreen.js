@@ -12,6 +12,8 @@ const getLoginScreen = WithAccounts => {
       screen: 'main',
     };
     render() {
+      const { onLogin } = this.props;
+
       return (
         <WithAccounts>
           {({ data, addAccount, loginWithPassword }) => {
@@ -40,7 +42,9 @@ const getLoginScreen = WithAccounts => {
                 }}
                 onLoginWithPassword={async (user, password) => {
                   const valid_token = await loginWithPassword(user.username, password)
-                  console.log('token: ', valid_token)
+                  if (onLogin){
+                    onLogin(valid_token);
+                  }
                 }}
                 onPasswordTextChange={() => {
                   console.log('text changed')

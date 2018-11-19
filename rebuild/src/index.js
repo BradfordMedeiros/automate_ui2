@@ -9,7 +9,7 @@ import Overlay from './components/layout/overlay/Overlay';
 import Drawer from './containers/layout/Drawer';
 
 
-import AccountManagement from './containers/overlayContent/AccountManagement';
+import getAccountManagement from './containers/overlayContent/getAccountManagement';
 import getProgramming from './containers/overlayContent/Programming/getProgramming';
 
 import getLoginScreen from './containers/special/getLoginScreen/getLoginScreen';
@@ -28,12 +28,13 @@ const Programming = getProgramming({
 })
 
 const LoginScreenWithData = getLoginScreen(Data.polling.WithAccounts);
-const contentMap = {
-  disconnected: <DisconnectedOverlay />,
-  login: <LoginScreenWithData />,
-  account: <AccountManagement />,
-  programming: <Programming/>,
-  selection: (
+const AccountManagement =  getAccountManagement(Data.polling.WithMyAccount);
+
+const getContentMap = ({ getUserToken }) => ({
+  disconnected: () => <DisconnectedOverlay />,
+  account: () => <AccountManagement userToken={getUserToken()} />,
+  programming: () => <Programming/>,
+  selection: () => (
     <div style={{ background: 'blue', color: 'white' }}>
       <div onClick={() => window.set('disconnected')}>disconnected</div>
       <div onClick={() => window.set('login')}>login</div>
@@ -41,18 +42,21 @@ const contentMap = {
       <div onClick={() => window.set('programming')}>programming</div>
     </div>
   )
-};
+})
 
+let userToken = null;
+const contentMap = getContentMap({ getUserToken: () => userToken });
 
 class MockApp extends Component {
     state = {
       drawerOpen: false,
-      showContent: true,
+      showContent: false,
       isEditable: false,
-      content: contentMap.login,
+      isLoggedIn: false,
+      content: contentMap.account,
     };
     setContent = (contentType) => {
-      const component = contentMap[contentType];
+      const component = contentMap[contentType]();
       this.setState({
         content: component || null,
       });
@@ -85,7 +89,7 @@ class MockApp extends Component {
                 title="automate"
                 showHideMenu
                 rotateAddIcon={this.state.drawerOpen}
-                systemLocked={false}
+                systemLocked={!this.state.isLoggedIn}
                 onRotatedAddIconClick={() => {
                   console.log('rotated click');
                   this.setState({
@@ -114,8 +118,18 @@ class MockApp extends Component {
                 }}
             />
             <div style={{ flexGrow: 1, position: 'relative' }}>
+              {!this.state.isLoggedIn && (
+                <LoginScreenWithData 
+                  onLogin={token => {  
+                    this.setState({
+                      isLoggedIn: true,
+                    })
+                    userToken = token;
+                  }}
+                />
+              )}
               <Overlay isExpanded={this.state.showContent}>
-                {this.state.content}
+                {this.state.isLoggedIn && this.state.content}
               </Overlay>
               {/*<Grid
                   onLayoutChange={(_, allLayouts) => {

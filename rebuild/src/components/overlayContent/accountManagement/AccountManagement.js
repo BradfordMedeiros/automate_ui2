@@ -53,11 +53,12 @@ class AccountManagement extends Component {
             showImageUpload={this.state.showImageUpload}
             hideImageUpload={this.hideImageUpload}
             uploadImage={this.uploadImage}
-            onSetImageUrl={(_, imageUrl) => {
-                        this.setState({
-                            imageUrl,
-                        });
-                    }}
+            onSetImageUrl={(imageUrl) => {
+              console.log('set image: ', imageUrl)
+              this.setState({
+                imageUrl,
+             });
+            }}
           />
           <AccountHeader
             isAdmin={isAdmin}
