@@ -1,9 +1,15 @@
 import React from 'react';
 import AccountManagementComponent from '../../components/overlayContent/accountManagement/AccountManagement';
 
-const AccountManagement = (WithMyAccount) => ({ userToken}) => (
+const AccountManagement = (WithMyAccount) => ({ 
+    userToken,
+    onLogout,
+}) => (
     <WithMyAccount params={{ token: userToken }}>
-        {({ data, setProfileImage }) => {
+        {({ 
+            data, 
+            setProfileImage,
+        }) => {
 
         const { admin, email, imageURL, isAdmin, alias } = data;
         return (
@@ -19,9 +25,7 @@ const AccountManagement = (WithMyAccount) => ({ userToken}) => (
                 disableUserAccountCreation={() => {
 
                 }}
-                onLogout={() => {
-
-                }}
+                onLogout={onLogout}
                 onUploadImage={imageURL => {
                     setProfileImage(email, imageURL)
                 }}

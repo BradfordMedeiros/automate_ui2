@@ -10,9 +10,7 @@ const UploadImageDialog = ({
     open={showImageUpload}
     onRequestClose={hideImageUpload}
   >
-    <div>
-            Select image url to upload
-    </div>
+    <div>Select image url to upload</div>
     <TextField
       fullWidth
       floatingLabelText="Image URL"

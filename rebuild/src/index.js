@@ -30,9 +30,9 @@ const Programming = getProgramming({
 const LoginScreenWithData = getLoginScreen(Data.polling.WithAccounts);
 const AccountManagement =  getAccountManagement(Data.polling.WithMyAccount);
 
-const getContentMap = ({ getUserToken }) => ({
+const getContentMap = ({ getUserToken, onLogout }) => ({
   disconnected: () => <DisconnectedOverlay />,
-  account: () => <AccountManagement userToken={getUserToken()} />,
+  account: () => <AccountManagement userToken={getUserToken()} onLogout={onLogout} />,
   programming: () => <Programming/>,
   selection: () => (
     <div style={{ background: 'blue', color: 'white' }}>
@@ -44,19 +44,33 @@ const getContentMap = ({ getUserToken }) => ({
   )
 })
 
-let userToken = null;
-const contentMap = getContentMap({ getUserToken: () => userToken });
+
 
 class MockApp extends Component {
-    state = {
-      drawerOpen: false,
-      showContent: false,
-      isEditable: false,
-      isLoggedIn: false,
-      content: contentMap.account,
-    };
+    constructor(props){
+      super(props);
+      this.userToken = null;
+      this.contentMap = getContentMap({
+        getUserToken: () => this.userToken,
+        onLogout: () => {
+          console.log('logout called')
+          this.userToken = null;
+          this.setState({
+            isLoggedIn: false,
+            showContent: false,
+          })
+        }
+      });
+      this.state = {
+        drawerOpen: false,
+        showContent: false,
+        isEditable: false,
+        isLoggedIn: false,
+        content: this.contentMap.account,
+      };
+    }
     setContent = (contentType) => {
-      const component = contentMap[contentType]();
+      const component = this.contentMap[contentType]();
       this.setState({
         content: component || null,
       });
@@ -120,11 +134,11 @@ class MockApp extends Component {
             <div style={{ flexGrow: 1, position: 'relative' }}>
               {!this.state.isLoggedIn && (
                 <LoginScreenWithData 
-                  onLogin={token => {  
+                  onLogin={token => {
+                    this.userToken = token;
                     this.setState({
                       isLoggedIn: true,
                     })
-                    userToken = token;
                   }}
                 />
               )}
