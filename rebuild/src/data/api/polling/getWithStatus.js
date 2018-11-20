@@ -1,77 +1,29 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import fetch from 'isomorphic-fetch';
 
-const REFRESH_RATE = 1000;
+const getWithStates = ({ AUTOMATE_CORE_URL }) => {
+  const STATUS_URL = `${AUTOMATE_CORE_URL}/status`;
 
-const getWithStatus = (AUTOMATE_CORE_URL) => {
-  const STATUS_INFO = `${AUTOMATE_CORE_URL}/status`;
-
-  class WithStatus extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        hasData: false,
-        isConnected: true,
-      };
-      this.handle = undefined;
-    }
-    componentWillMount() {
-      this.getData();
-      this.handle = setInterval(this.getData, REFRESH_RATE);
-    }
-    componentWillUnmount() {
-      clearInterval(this.handle);
-    }
-    getData = async () => {
-      const { onSetIsConnected, onSetIsDisconnected } = this.props;
-      try {
-        const response = await fetch(STATUS_INFO, {
-          mode: 'cors',
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-          },
-        });
-        await response.json();
-        if (!this.state.isConnected) {
-          this.setState({
-            hasData: true,
-            isConnected: true,
-          });
-          if (onSetIsConnected) {
-            onSetIsConnected();
-          }
+  const getStatus = async () => {
+    try {
+      await fetch(STATUS_URL, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
         }
-      } catch (err) {
-        if (this.state.isConnected) {
-          this.setState({
-            hasData: true,
-            isConnected: false,
-          });
-        }
-        if (onSetIsDisconnected) {
-          console.error('----------on is disconnected');
-          onSetIsDisconnected();
-        }
-      }
-    }
-    render() {
-      const { children } = this.props;
-      if (!this.state.hasData) {
-        return null;
-      }
-      return children ? children({ isConnected: this.state.isConnected }) : null;
+      });
+      return { isConnected: true };
+    }catch(e){
+        return { isConnected: false };
     }
   }
+  return {
+    refresh: 1000,
+    lifecycle: {
+      getData: getStatus,
+    },
+    props: {}
+  }
+}
 
-  WithStatus.propTypes = {
-    children: PropTypes.func,
-    onSetIsConnected: PropTypes.func,
-    onSetIsDisconnected: PropTypes.func,
-  };
-
-  return WithStatus;
-};
-
-
-export default getWithStatus;
+export default getWithStates;

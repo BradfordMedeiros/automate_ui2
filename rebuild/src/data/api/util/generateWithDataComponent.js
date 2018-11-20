@@ -15,9 +15,18 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       const extraProps = componentSpecificHooks.props;
       this.getData = getData;
       this.extraProps = extraProps;
+      this.refresh = componentSpecificHooks.refresh;
+      this.refreshHandle = undefined;
     }
     componentWillMount() {
       this.getDataAsyncWrapper();
+      if (this.refresh){
+        this.refreshHandle = setInterval(this.getDataAsyncWrapper, this.refresh);
+      }
+
+    }
+    componentWillUnmount(){
+      clearInterval(this.refreshHandle);
     }
     getDataAsyncWrapper = async () => {
       const params = this.props.params || {};

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MainLogin from '../../../components/special/loginScreen/MainLogin/MainLogin';
-import SetNewPasswordScreen from '../../../components/special/loginScreen/SetNewPassword/SetNewPasswordScreen';
-import ForgotPasswordScreen from '../../../components/special/loginScreen/ForgotPasswordScreen';
-import CreateAccountScreen from '../../../components/special/loginScreen/CreateAccountScreen/CreateAccountScreen';
+import MainLogin from '../../components/special/loginScreen/MainLogin/MainLogin';
+import SetNewPasswordScreen from '../../components/special/loginScreen/SetNewPassword/SetNewPasswordScreen';
+import ForgotPasswordScreen from '../../components/special/loginScreen/ForgotPasswordScreen';
+import CreateAccountScreen from '../../components/special/loginScreen/CreateAccountScreen/CreateAccountScreen';
 
 const getLoginScreen = WithAccounts => {
   class LoginScreen extends Component{

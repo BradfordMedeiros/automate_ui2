@@ -12,8 +12,8 @@ import Drawer from './containers/layout/Drawer';
 import getAccountManagement from './containers/overlayContent/getAccountManagement';
 import getProgramming from './containers/overlayContent/Programming/getProgramming';
 
-import getLoginScreen from './containers/special/getLoginScreen/getLoginScreen';
-import DisconnectedOverlay from './components/special/disconnectedOverlay/DisconnectedOverlay';
+import getLoginScreen from './containers/special/getLoginScreen';
+import getDisconnectedOverlay from './containers/special/getDisconnectedOverlay';
 
 import Grid from './components/layout/grid/Grid';
 import tiles from './containers/layout/Grid/components/tiles/tiles';
@@ -29,9 +29,9 @@ const Programming = getProgramming({
 
 const LoginScreenWithData = getLoginScreen(Data.polling.WithAccounts);
 const AccountManagement =  getAccountManagement(Data.polling.WithMyAccount);
+const DisconnectedOverlay = getDisconnectedOverlay(Data.polling.WithStatus);
 
 const getContentMap = ({ getUserToken, onLogout }) => ({
-  disconnected: () => <DisconnectedOverlay />,
   account: () => <AccountManagement userToken={getUserToken()} onLogout={onLogout} />,
   programming: () => <Programming/>,
   selection: () => (
@@ -132,6 +132,8 @@ class MockApp extends Component {
                 }}
             />
             <div style={{ flexGrow: 1, position: 'relative' }}>
+              <DisconnectedOverlay  />
+
               {!this.state.isLoggedIn && (
                 <LoginScreenWithData 
                   onLogin={token => {
