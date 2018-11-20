@@ -13,29 +13,8 @@ const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
     });
     return await response.json();
   }
-  return {
-    lifecycle: {
-      getData: getAllSequences,
-    },
-    props: {
-    }
-  }
-}
-
-export default getWithSequences;
-
-/*import { Component } from 'react';
-import PropTypes from 'prop-types';
-import fetch from 'isomorphic-fetch';
-
-const REFRESH_RATE = 1000;
-
-const getWithSequences = (AUTOMATE_CORE_URL) => {
-  const SEQUENCE_URL = `${AUTOMATE_CORE_URL}/sequences`;
-
-  const addSequence = (sequenceName, actions) => {
-    console.error('-a----added sequence');
-    fetch(`${SEQUENCE_URL}/modify/sequences/${sequenceName}`, {
+  const addSequence = async (sequenceName, actions) => {
+    await fetch(`${SEQUENCES_URL}/modify/sequences/${sequenceName}`, {
       headers: new Headers({
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -46,72 +25,27 @@ const getWithSequences = (AUTOMATE_CORE_URL) => {
       }),
     });
   };
-
-  const deleteSequence = (sequenceName) => {
-    fetch(`${SEQUENCE_URL}/sequences/${sequenceName}`, {
+  const deleteSequence = async (sequenceName) => {
+    await fetch(`${SEQUENCES_URL}/sequences/${sequenceName}`, {
       method: 'DELETE',
     });
   };
-
-
-  const executeSequence = (sequenceName) => {
-    fetch(`${SEQUENCE_URL}/${sequenceName}`, {
+  const executeSequence = async (sequenceName) => {
+    await fetch(`${SEQUENCES_URL}/${sequenceName}`, {
       method: 'POST',
     });
   };
 
-  class WithSequences extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        hasData: false,
-      };
-      this.handle = undefined;
-    }
-    componentWillMount() {
-      this.getData();
-      this.handle = setInterval(this.getData, REFRESH_RATE);
-    }
-    componentWillUnmount() {
-      clearInterval(this.handle);
-    }
-    getData = async () => {
-      try {
-        const response = await fetch(SEQUENCE_URL, {
-          mode: 'cors',
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-          },
-        });
-        const states = await response.json();
-        this.setState({
-          hasData: true,
-          sequences: states.sequences,
-        });
-      } catch (err) {
-        // what to do here?
-      }
-    }
-    render() {
-      const { children } = this.props;
-      const { hasData, sequences } = this.state;
-      return ((hasData && children) ?
-        children({
-          sequences, addSequence, deleteSequence, executeSequence,
-        }) :
-        null
-      );
+  return {
+    lifecycle: {
+      getData: getAllSequences,
+    },
+    props: {
+      addSequence,
+      deleteSequence,
+      executeSequence,
     }
   }
-
-  WithSequences.propTypes = {
-    children: PropTypes.func,
-  };
-
-  return WithSequences;
-};
+}
 
 export default getWithSequences;
-
-*/

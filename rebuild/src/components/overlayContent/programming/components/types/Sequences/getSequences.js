@@ -19,7 +19,9 @@ const getSequences = (Header, SelectableTypes) => {
               <SelectableTypes
                   items={sequences}
                   selectedIndex={selectedIndex}
-                  onItemSelected={(_, selectedIndex) => { onSequenceSelected(sequences[selectedIndex], selectedIndex); }}
+                  onItemSelected={(_, selectedIndex) => { 
+                    onSequenceSelected(sequences[selectedIndex], selectedIndex); 
+                  }}
               />
               <SequenceInfo
                   actions={sequenceActions}

@@ -10,7 +10,6 @@ import getSequences from './types/getSequences';
 import Rules from './types/Rules';
 import getDeviceInfo from './types/getDeviceInfo';
 
-const Sequences = getSequences();
 
 const getProgramming = ({ 
   WithStates, 
@@ -18,7 +17,11 @@ const getProgramming = ({
   WithEvents,
   WithDeviceInfo,
   WithEnv,
+  WithSequences,
 }) => () => {
+
+  const Sequences = getSequences(WithSequences);
+
   const labelComponentMap = {
     States: getStates(WithStates),
     Actions: getActions(WithActions),
