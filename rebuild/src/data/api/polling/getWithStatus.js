@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const getWithStates = ({ AUTOMATE_CORE_URL }, { }, { onConnected, onDisconnected}, { setState, getState }) => {
+const getWithStates = ({ AUTOMATE_CORE_URL }, { setState, getState }, { onConnected, onDisconnected}) => {
   const STATUS_URL = `${AUTOMATE_CORE_URL}/status`;
 
   const getStatus = async () => {

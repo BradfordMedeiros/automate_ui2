@@ -12,14 +12,14 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
 
       const componentSpecificHooks = getComponentSpecificHooks(
         {AUTOMATE_CORE_URL: automateUrl},
-        {refresh: this.getDataAsyncWrapper},
-        {...this.props.hooks},
-        { 
+        {
+          refresh: this.getDataAsyncWrapper,
           setState: state => { 
             this.innerState = state
           }, 
           getState: () => this.innerState, 
-        }
+        },
+        {...this.props.hooks},
       );
       const { getData } = componentSpecificHooks.lifecycle;
       const extraProps = componentSpecificHooks.props;

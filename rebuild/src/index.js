@@ -66,6 +66,7 @@ class MockApp extends Component {
         showContent: false,
         isEditable: false,
         isLoggedIn: false,
+        enableControls: true,
         content: this.contentMap.account,
       };
     }
@@ -86,6 +87,18 @@ class MockApp extends Component {
       })
 
     };
+    onConnected = () => {
+      console.log("connected !!!")
+      this.setState({
+        enableControls: true,
+      })
+    };
+    onDisconnected = () => {
+      this.setState({
+        showContent: false,
+        enableControls: false,
+      })
+    };
     render() {
       window.toggle = this.toggle;
       window.set = this.setContent;
@@ -103,7 +116,7 @@ class MockApp extends Component {
                 title="automate"
                 showHideMenu
                 rotateAddIcon={this.state.drawerOpen}
-                systemLocked={!this.state.isLoggedIn}
+                systemLocked={!this.state.isLoggedIn || !this.state.enableControls}
                 onRotatedAddIconClick={() => {
                   console.log('rotated click');
                   this.setState({
@@ -132,7 +145,7 @@ class MockApp extends Component {
                 }}
             />
             <div style={{ flexGrow: 1, position: 'relative' }}>
-              <DisconnectedOverlay  />
+              <DisconnectedOverlay onConnected={this.onConnected} onDisconnected={this.onDisconnected} />
 
               {!this.state.isLoggedIn && (
                 <LoginScreenWithData 
