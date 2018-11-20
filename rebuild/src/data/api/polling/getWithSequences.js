@@ -1,4 +1,30 @@
-import { Component } from 'react';
+import fetch from 'isomorphic-fetch';
+
+const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
+  const SEQUENCES_URL = `${AUTOMATE_CORE_URL}/sequences`;
+
+  const getAllSequences = async () => {
+    const response = await fetch(SEQUENCES_URL, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      }
+    });
+    return await response.json();
+  }
+  return {
+    lifecycle: {
+      getData: getAllSequences,
+    },
+    props: {
+    }
+  }
+}
+
+export default getWithSequences;
+
+/*import { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 
@@ -88,3 +114,4 @@ const getWithSequences = (AUTOMATE_CORE_URL) => {
 
 export default getWithSequences;
 
+*/
