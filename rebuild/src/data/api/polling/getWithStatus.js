@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const getWithStates = ({ AUTOMATE_CORE_URL }) => {
+const getWithStates = ({ AUTOMATE_CORE_URL }, { }, { onConnected, onDisconnected}, { setState, getState }) => {
   const STATUS_URL = `${AUTOMATE_CORE_URL}/status`;
 
   const getStatus = async () => {
@@ -12,9 +12,17 @@ const getWithStates = ({ AUTOMATE_CORE_URL }) => {
           Accept: 'application/json',
         }
       });
+      if (getState() !== 'connected'){
+        onConnected();
+      }
+      setState('connected');
       return { isConnected: true };
     }catch(e){
-        return { isConnected: false };
+      if (getState() !== 'disconnected'){
+        onDisconnected();  
+      }
+      setState('disconnected');
+      return { isConnected: false };
     }
   }
   return {

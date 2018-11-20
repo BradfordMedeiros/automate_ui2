@@ -2,7 +2,15 @@ import React from 'react';
 import DisconnectedOverlay from '../../components/special/disconnectedOverlay/DisconnectedOverlay'
 
 const getDisconnectedOverlay = WithStatus => () => (
-	<WithStatus>
+	<WithStatus 
+		hooks={{ 
+			onConnected: () => {	
+				console.log('connected!')
+			},
+			onDisconnected: () => {
+				console.log('disconnected!')
+			}
+		}}>
 		{({ data }) => {
 			const { isConnected } = data;
 			if (isConnected){

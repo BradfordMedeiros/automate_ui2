@@ -7,9 +7,19 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       this.state = {
         hasData: false,
       };
+
+      this.innerState = null;
+
       const componentSpecificHooks = getComponentSpecificHooks(
         {AUTOMATE_CORE_URL: automateUrl},
-        {refresh: this.getDataAsyncWrapper}
+        {refresh: this.getDataAsyncWrapper},
+        {...this.props.hooks},
+        { 
+          setState: state => { 
+            this.innerState = state
+          }, 
+          getState: () => this.innerState, 
+        }
       );
       const { getData } = componentSpecificHooks.lifecycle;
       const extraProps = componentSpecificHooks.props;
@@ -17,6 +27,7 @@ const generateWithDataComponent = (automateUrl, getComponentSpecificHooks) => {
       this.extraProps = extraProps;
       this.refresh = componentSpecificHooks.refresh;
       this.refreshHandle = undefined;
+
     }
     componentWillMount() {
       this.getDataAsyncWrapper();
