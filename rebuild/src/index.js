@@ -149,6 +149,7 @@ class MockApp extends Component {
                   console.log('toggle editable');
                   this.setState({
                     isEditable: !this.state.isEditable,
+                    showContent: false,
                   })
                 }}
             />
