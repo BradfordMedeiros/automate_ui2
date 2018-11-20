@@ -67,25 +67,13 @@ class MockApp extends Component {
         isEditable: false,
         isLoggedIn: false,
         enableControls: true,
-        content: this.contentMap.account,
+        contentString: 'account',
       };
     }
     setContent = (contentType) => {
-      const component = this.contentMap[contentType]();
       this.setState({
-        content: component || null,
+        contentString: contentType,
       });
-    };
-    toggle = () => {
-      this.setState({
-        drawerOpen: !this.state.drawerOpen,
-      });
-    }
-    toggleContent = () => {
-      this.setState({
-        showContent: !this.state.showContent,
-      })
-
     };
     onConnected = () => {
       console.log("connected !!!")
@@ -100,9 +88,6 @@ class MockApp extends Component {
       })
     };
     render() {
-      window.toggle = this.toggle;
-      window.set = this.setContent;
-
       return (
           <div style={{
             display: 'flex',
@@ -127,15 +112,38 @@ class MockApp extends Component {
                   console.log('hide menu clicked');
                   this.setState({
                     drawerOpen: true,
+                    showContent: false,
                   });
                 }}
                 onUserIconClick={() => {
+                  if (this.state.contentString === 'account'){
+                    this.setState({
+                      showContent: !this.state.showContent,
+                      drawerOpen: false,
+                    })
+                    return;
+                  }
+
                   this.setContent('account');
-                  this.toggleContent();
+                  this.setState({
+                    showContent: true,
+                    drawerOpen: false,
+                  })
+
                 }}
                 onHideMenu={() => {
+                  if (this.state.contentString === 'programming'){
+                    this.setState({
+                      showContent: !this.state.showContent,
+                      drawerOpen: false,
+                    })
+                    return;
+                  }
                   this.setContent('programming');
-                  this.toggleContent();
+                  this.setState({
+                    showContent: true,
+                    drawerOpen: false,
+                  })
                 }}
                 onToggle={() => {
                   console.log('toggle editable');
@@ -158,7 +166,7 @@ class MockApp extends Component {
                 />
               )}
               <Overlay isExpanded={this.state.showContent}>
-                {this.state.isLoggedIn && this.state.content}
+                {this.state.isLoggedIn && this.contentMap[this.state.contentString]()}
               </Overlay>
               {/*<Grid
                   onLayoutChange={(_, allLayouts) => {

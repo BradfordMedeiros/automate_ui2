@@ -4,6 +4,7 @@
     background: rgb(30,30,30) !important;
     color: whitesmoke !important;
     position: absolute !important;
+    z-index: 0 !important;
 }
 
 .drawer_upload_button {
