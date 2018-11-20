@@ -6,7 +6,7 @@ import './style.css';
 
 class SelectableTypes extends Component {
   render() {
-    const {items, onItemSelected, selectedIndex} = this.props;
+    const {items, onItemSelected, onAddClicked, selectedIndex} = this.props;
     return (
         <List className="selectable_types_outer">
           {items.map((item, index) =>
@@ -24,9 +24,9 @@ class SelectableTypes extends Component {
               </MenuItem>),
           )}
           <MenuItem
-              className="selectable_type"
               button
-              onClick={() => this.setState({dialogOpen: true})}
+              className="selectable_type"
+              onClick={() => { onAddClicked() }}
           >
             Add New +
           </MenuItem>
@@ -38,6 +38,7 @@ class SelectableTypes extends Component {
 SelectableTypes.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   onItemSelected: PropTypes.func,
+  onAddClicked: PropTypes.func,
   selectedIndex: PropTypes.number,
 };
 

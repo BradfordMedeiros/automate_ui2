@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Header from '../../../../components/overlayContent/programming/components/Header/Header';
 import SelectableTypes from '../../../../components/overlayContent/programming/components/SelectableTypes/SelectableTypes';
+import AddItemDialog from '../../../../components/overlayContent/programming/components/AddItemDialog/AddItemDialog';
 import getSequencesComponent from '../../../../components/overlayContent/programming/components/types/Sequences/getSequences';
 
-const SequencesComponent = getSequencesComponent(Header, SelectableTypes);
+const SequencesComponent = getSequencesComponent(Header, SelectableTypes, AddItemDialog);
 
 const debugSequenceActionMap = {
   one: [
@@ -72,6 +73,9 @@ const getSequences = WithSequences => {
                 onChange={(actions, newAction, deletedAction) => {
                   debugSequenceActionMap[selectedName] = actions;
                   this.forceUpdate();
+                }}
+                onAddSequence={sequence => {
+                  console.log("container: add sequence ", sequence)
                 }}
               />
             )
