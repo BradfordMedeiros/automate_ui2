@@ -9,17 +9,23 @@ const getActionScript = (Header, SelectableTypes, CodeEditor, EditorControls) =>
     };
 
     render() {
+      const { 
+        itemName, 
+        onDeleteItem, 
+        actionScriptNames,
+      } = this.props;
       return (
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
             <Header
-                itemName={'some name'}
-                itemType={'some type'}
-                deleteSequence={() => {
+                itemName={itemName}
+                itemType="Action Script"
+                deleteItem={() => {
+                  onDeleteItem(itemName);
                 }}
             />
             <div style={{display: 'flex', flexGrow: 1}}>
               <SelectableTypes
-                  items={['one', 'two', 'three', 'four']}
+                  items={actionScriptNames}
                   selectedIndex={this.state.selectedIndex}
                   onItemSelected={(_, selectedIndex) => {
                     console.log('selected');

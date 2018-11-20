@@ -4,7 +4,7 @@ import './style.css';
 
 class Programming extends Component {
   state = {
-    selectedComponent: 'Env Variables',
+    selectedComponent: 'Actionscripts',
   };
   render() {
     const { labelComponentMap } = this.props;

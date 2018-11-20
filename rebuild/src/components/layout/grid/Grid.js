@@ -35,7 +35,7 @@ class Grid extends Component {
         <div className="main_grid_wrapper">
           {tiles.length === 0 && <AddTilesText message={"add tiles"} />}
           <GridLayout
-              //layouts={JSON.parse(JSON.stringify(layout))}
+              layouts={JSON.parse(JSON.stringify(layout))}
               onLayoutChange={(x, allLayouts) => {
                 onLayoutChange(allLayouts);
               }}

@@ -4,11 +4,13 @@ import getStates from './types/getStates';
 import getActions from './types/getActions';
 import getEventLog from './types/getEventLog';
 import getEnvironment from './types/getEnvironment';
-import ActionScript from './types/ActionScript';
+import getActionScript from './types/getActionScript';
 import Schedules from './types/Schedules';
-import Sequences from './types/Sequences';
+import getSequences from './types/getSequences';
 import Rules from './types/Rules';
 import getDeviceInfo from './types/getDeviceInfo';
+
+const Sequences = getSequences();
 
 const getProgramming = ({ 
   WithStates, 
@@ -22,7 +24,7 @@ const getProgramming = ({
     Actions: getActions(WithActions),
     Events: getEventLog(WithEvents),
     'Env Variables': getEnvironment(WithEnv),
-    Actionscripts: <ActionScript />,
+    Actionscripts: getActionScript(),
     Schedules: <Schedules />,
     Sequences: <Sequences />,
     Rules: <Rules />,

@@ -63,11 +63,11 @@ class MockApp extends Component {
       });
       this.state = {
         drawerOpen: false,
-        showContent: false,
+        showContent: true,
         isEditable: false,
-        isLoggedIn: false,
+        isLoggedIn: true,
         enableControls: true,
-        contentString: 'account',
+        contentString: 'programming',
       };
     }
     setContent = (contentType) => {
