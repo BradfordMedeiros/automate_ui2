@@ -6,49 +6,17 @@ import getSequencesComponent from '../../../../components/overlayContent/program
 
 const SequencesComponent = getSequencesComponent(Header, SelectableTypes, AddItemDialog);
 
-const debugSequenceActionMap = {
-  one: [
-    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
-    {type: 'wait', options: 1000},
-  ],
-  two: [
-    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
-    {type: 'action', options: {topic: 'some topic', value: 'some value'}},
-    {type: 'wait', options: 1000},
-  ],
-  three: [
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-    {type: 'wait', options: 1000},
-
-  ],
-};
-
 const getSequences = WithSequences => {
   class Sequences extends Component{
     state = {
       selectedIndex: 0,
     }
     render(){
-      const selectedName = Object.keys(debugSequenceActionMap)[this.state.selectedIndex];
       return (
         <WithSequences>
-          {({ data, addSequence, deleteSequence, executeSequence }) => {
+          {({ data, addSequence, deleteSequence }) => {
             const sequences = data;
-            console.log('sequences: ', sequences)
+            const currentSequence = sequences[this.state.selectedIndex] || { };
             return (
               <SequencesComponent
                 sequences={sequences.map(sequence => sequence.name)}
@@ -58,11 +26,7 @@ const getSequences = WithSequences => {
                     selectedIndex,
                   })
                 }}
-                sequenceActions={debugSequenceActionMap[selectedName] || []}
-                onChange={newActions => {
-                  debugSequenceActionMap[selectedName] = newActions;
-                  this.forceUpdate();
-                }}
+                sequenceActions={currentSequence.actions || []}
                 onDelete={(sequence, index) => {
                   deleteSequence(sequence)
                   this.setState({
@@ -70,13 +34,9 @@ const getSequences = WithSequences => {
                   })
                 }}
                 onChange={(actions, newAction, deletedAction) => {
-                  debugSequenceActionMap[selectedName] = actions;
-                  this.forceUpdate();
+                  addSequence(currentSequence.name, actions)
                 }}
-                onAddSequence={sequence => {
-                  console.log("container: add sequence ", sequence)
-                  addSequence(sequence, []);
-                }}
+                onAddSequence={sequenceName => { addSequence(sequenceName, []) }}
               />
             )
           }}

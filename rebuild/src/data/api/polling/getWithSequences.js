@@ -31,11 +31,6 @@ const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
       method: 'DELETE',
     });
   };
-  const executeSequence = async (sequenceName) => {
-    await fetch(`${SEQUENCES_URL}/${sequenceName}`, {
-      method: 'POST',
-    });
-  };
 
   return {
     lifecycle: {
@@ -50,7 +45,6 @@ const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
         await deleteSequence(sequenceName);
         refresh();
       },
-      executeSequence,
     }
   }
 }

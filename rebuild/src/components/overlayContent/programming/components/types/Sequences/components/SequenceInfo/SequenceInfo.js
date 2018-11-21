@@ -33,9 +33,11 @@ class SequenceInfo extends Component {
           open={this.state.showAddDialog}
           closeDialog={this.closeDialog}
           onAdd={(newAction) => {
+            console.log('sequence info on add!')
             const newActions = actions.slice();
             newActions.push(newAction);
             onChange(newActions, newAction, null);
+            this.closeDialog();
           }}
           onOkClick={this.closeDialog}
         />
