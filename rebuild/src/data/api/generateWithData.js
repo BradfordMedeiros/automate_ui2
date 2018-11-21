@@ -11,7 +11,6 @@ import getWithSchedules from './polling/getWithSchedules';
 import getWithRules from './polling/getWithRules';
 import getWithCustomTiles from './polling/getWithCustomTiles';
 import getWithEnv from './polling/getWithEnv';
-import getWithEmail from './polling/getWithEmail';
 import getWithIsSystemLocked from './polling/getWithIsSystemLocked';
 import getWithAccounts from './polling/getWithAccounts';
 import getWithMyAccount from './polling/getWithMyAccount';
@@ -36,7 +35,6 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithStatus: generateWithDataComponent(automateUrl, getWithStatus),
       WithCustomTiles: getWithCustomTiles(automateUrl),
       WithEnv: generateWithDataComponent(automateUrl, getWithEnv),
-      WithEmail: getWithEmail(automateUrl),
       WithIsSystemLocked: getWithIsSystemLocked(automateUrl),
       WithAccounts: generateWithDataComponent(automateUrl, getWithAccounts),
       WithMyAccount: generateWithDataComponent(automateUrl, getWithMyAccount),

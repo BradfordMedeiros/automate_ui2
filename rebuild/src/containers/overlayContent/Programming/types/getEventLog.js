@@ -1,5 +1,5 @@
 import React from 'react';
-import EventLogComponent from '../../../../components/overlayContent/programming/components/types/Events/EventLog';
+import EventLogComponent from '../../../../components/overlayContent/programming/components/types/Events/Events';
 
 const getEventLog = (WithEvents) => (
   <WithEvents>
@@ -8,17 +8,7 @@ const getEventLog = (WithEvents) => (
           { topic: event.topic, timestamp: event.timestamp }
       ))
       return (
-        <EventLogComponent
-          data={eventProps}
-          isAlertingEnabled={false}
-          emailAddress="test email"
-          onSetEmailAddress={(emailAddress) => {
-            console.log('set email: ', emailAddress);
-          }}
-          onSetIsAlertingEnabled={(isEnabled) => {
-            console.log('set enable alerting: ', isEnabled);
-          }}
-        />
+        <EventLogComponent data={eventProps}/>
       )
     }}
   </WithEvents>
