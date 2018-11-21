@@ -35,14 +35,6 @@ const DisconnectedOverlay = getDisconnectedOverlay(Data.polling.WithStatus);
 const getContentMap = ({ getUserToken, onLogout }) => ({
   account: () => <AccountManagement userToken={getUserToken()} onLogout={onLogout} />,
   programming: () => <Programming/>,
-  selection: () => (
-    <div style={{ background: 'blue', color: 'white' }}>
-      <div onClick={() => window.set('disconnected')}>disconnected</div>
-      <div onClick={() => window.set('login')}>login</div>
-      <div onClick={() => window.set('account')}>account</div>
-      <div onClick={() => window.set('programming')}>programming</div>
-    </div>
-  )
 })
 
 

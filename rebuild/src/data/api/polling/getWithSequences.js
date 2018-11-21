@@ -11,7 +11,8 @@ const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
         Accept: 'application/json',
       }
     });
-    return await response.json();
+    const data = await response.json();
+    return data.sequences;
   }
   const addSequence = async (sequenceName, actions) => {
     await fetch(`${SEQUENCES_URL}/modify/sequences/${sequenceName}`, {
@@ -41,8 +42,14 @@ const getWithSequences = ({ AUTOMATE_CORE_URL }, { refresh }) => {
       getData: getAllSequences,
     },
     props: {
-      addSequence,
-      deleteSequence,
+      addSequence: async (sequenceName, actions) => {
+        await addSequence(sequenceName, actions);
+        refresh();
+      },
+      deleteSequence: async (sequenceName) => {
+        await deleteSequence(sequenceName);
+        refresh();
+      },
       executeSequence,
     }
   }

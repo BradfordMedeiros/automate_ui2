@@ -51,7 +51,7 @@ const getSequences = WithSequences => {
             console.log('sequences: ', sequences)
             return (
               <SequencesComponent
-                sequences={Object.keys(debugSequenceActionMap)}
+                sequences={sequences.map(sequence => sequence.name)}
                 selectedIndex={this.state.selectedIndex}
                 onSequenceSelected={(_, selectedIndex) => {
                   this.setState({
@@ -64,8 +64,7 @@ const getSequences = WithSequences => {
                   this.forceUpdate();
                 }}
                 onDelete={(sequence, index) => {
-                  console.log('delete sequence: ', sequence);
-                  delete debugSequenceActionMap[sequence];
+                  deleteSequence(sequence)
                   this.setState({
                     selectedIndex: 0,
                   })
@@ -76,6 +75,7 @@ const getSequences = WithSequences => {
                 }}
                 onAddSequence={sequence => {
                   console.log("container: add sequence ", sequence)
+                  addSequence(sequence, []);
                 }}
               />
             )

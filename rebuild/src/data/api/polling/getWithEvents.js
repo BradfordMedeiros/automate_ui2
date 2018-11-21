@@ -16,6 +16,7 @@ const getWithEvents = ({ AUTOMATE_CORE_URL }) => {
   }
 
   return {
+    refresh: 1000,
     lifecycle: {
       getData: getAllEvents,
     },
