@@ -49,18 +49,18 @@ class MockApp extends Component {
           console.log('logout called')
           this.userToken = null;
           this.setState({
-            isLoggedIn: false,
+            isLoggedIn: true,
             showContent: false,
           })
         }
       });
       this.state = {
         drawerOpen: false,
-        showContent: true,
+        showContent: false,
         isEditable: false,
-        isLoggedIn: true,
+        isLoggedIn: false,
         enableControls: true,
-        contentString: 'programming',
+        contentString: 'account',
       };
     }
     setContent = (contentType) => {
