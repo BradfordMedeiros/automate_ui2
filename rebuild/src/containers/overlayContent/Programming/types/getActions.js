@@ -7,7 +7,7 @@ const getActions = (WithActions) => {
       {({ data }) =>  { 
         const actionsProps = data.map(action => ({
           topic: action.name,
-          value: 'action value placeholder in getActions'
+          value: action.value,
         }))
         return <ActionsComponent actions={actionsProps} /> 
       }}
