@@ -8,14 +8,11 @@ import getActionScript from './types/getActionScript';
 import Schedules from './types/Schedules';
 import getSequences from './types/getSequences';
 import Rules from './types/Rules';
-import getDeviceInfo from './types/getDeviceInfo';
-
 
 const getProgramming = ({ 
   WithStates, 
   WithActions, 
   WithEvents,
-  WithDeviceInfo,
   WithEnv,
   WithSequences,
 }) => () => {
@@ -31,7 +28,6 @@ const getProgramming = ({
     Schedules: <Schedules />,
     Sequences: <Sequences />,
     Rules: <Rules />,
-    'Device Info': getDeviceInfo(WithDeviceInfo),
   }
 
   return (

@@ -42,9 +42,6 @@ class Programming extends Component {
                 {
                   label: 'Env Variables'
                 },
-                {
-                  label: 'Device Info',
-                },
               ]}
           />
           {labelComponentMap[this.state.selectedComponent] || null}
