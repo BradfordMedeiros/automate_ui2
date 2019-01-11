@@ -6,25 +6,11 @@ import './style.css';
 
 class Menu extends Component {
   render() {
-    const { buttonLabels, additionalLabels, selectedLabel, onSelectLabel } = this.props;
+    const { buttonLabels, selectedLabel, onSelectLabel } = this.props;
 
     return (
       <div className="programming_menu" >
         <List>
-          {additionalLabels.map((item) => {
-            const className = ('liname' + ((selectedLabel === item.label)? ' liname-selected' : ''));
-            return (
-                <ListItem
-                    className={className}
-                    onClick={() => {
-                      onSelectLabel(item.label);
-                    }}
-                >
-                  {item.label}
-                </ListItem>
-            )
-          })}
-          <hr className="programming_menu_divider" />
           {buttonLabels.map((item) => {
             const className = ('liname' + ((selectedLabel === item.label)? ' liname-selected' : ''));
             return (
@@ -48,7 +34,6 @@ Menu.propTypes = {
   buttonLabels: PropTypes.array,
   selectedLabel: PropTypes.string,
   onSelectLabel: PropTypes.func,
-
 };
 
 export default Menu;

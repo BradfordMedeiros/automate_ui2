@@ -4,7 +4,7 @@ import './style.css';
 
 class Programming extends Component {
   state = {
-    selectedComponent: 'Sequences',
+    selectedComponent: 'States',
   };
   render() {
     const { labelComponentMap } = this.props;
@@ -18,6 +18,15 @@ class Programming extends Component {
                 })
               }}
               buttonLabels={[
+                {
+                  label: 'States',
+                },
+                {
+                  label: 'Actions',
+                },
+                {
+                  label: 'Events',
+                },
                 {
                   label: 'Actionscripts',
                 },
@@ -35,17 +44,6 @@ class Programming extends Component {
                 },
                 {
                   label: 'Device Info',
-                },
-              ]}
-              additionalLabels={[
-                {
-                  label: 'States',
-                },
-                {
-                  label: 'Actions',
-                },
-                {
-                  label: 'Events',
                 },
               ]}
           />
