@@ -23,7 +23,7 @@ const getWithMyAccount = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   };
 
   const getWithMyAccount = async token => {
-    assert(token, typeof(''));
+    assert(typeof(token) === typeof(''), 'No token provided to my account.  This is a login error');
     const response = await fetch(`${ACCOUNTS_URL}/myAccount`, {
         mode: 'cors',
         method: 'POST',
