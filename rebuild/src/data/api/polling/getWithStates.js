@@ -11,11 +11,15 @@ const getWithStates = ({ AUTOMATE_CORE_URL }) => {
         Accept: 'application/json',
       }
     });
-    const states = await response.json();
-    return states.states;
+    const states = (await response.json()).states;
+    return states.map(state => ({
+      topic: state.topic,
+      value: state.value,
+    }))
   }
 
   return {
+    refresh: 1000,
     lifecycle: {
       getData: getAllStates,
     },

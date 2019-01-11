@@ -16,6 +16,7 @@ const getWithActions = ({ AUTOMATE_CORE_URL }) => {
   }
 
   return {
+    refresh: 1000,
     lifecycle: {
       getData: getAllActions,
     },
@@ -24,3 +25,4 @@ const getWithActions = ({ AUTOMATE_CORE_URL }) => {
 }
 
 export default getWithActions;
+
