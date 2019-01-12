@@ -25,6 +25,7 @@ const Programming = getProgramming({
   WithDeviceInfo: Data.polling.WithSystemInfo,
   WithEnv: Data.polling.WithEnv,
   WithSequences: Data.polling.WithSequences,
+  WithSchedules: Data.polling.WithSchedules,
 })
 
 const LoginScreenWithData = getLoginScreen(Data.polling.WithAccounts);

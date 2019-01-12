@@ -15,6 +15,7 @@ const getProgramming = ({
   WithEvents,
   WithEnv,
   WithSequences,
+  WithSchedules,
 }) => () => {
 
   const Sequences = getSequences(WithSequences);
@@ -25,7 +26,7 @@ const getProgramming = ({
     Events: getEventLog(WithEvents),
     'Env Variables': getEnvironment(WithEnv),
     Actionscripts: getActionScript(),
-    Schedules: getSchedules(),
+    Schedules: getSchedules(WithSchedules),
     Sequences: <Sequences />,
     Rules: <Rules />,
   }
