@@ -1,5 +1,9 @@
 import React from 'react';
-import Schedules from  '../../../../components/overlayContent/programming/components/types/Schedules/Schedules';
+import getSchedulesComponent from  '../../../../components/overlayContent/programming/components/types/Schedules/getSchedules';
+import Header from '../../../../components/overlayContent/programming/components/Header/Header';
+import SelectableTypes from '../../../../components/overlayContent/programming/components/SelectableTypes/SelectableTypes';
+
+const Schedules = getSchedulesComponent(Header, SelectableTypes);
 
 const getSchedules = (WithSchedules) => (
 	<WithSchedules>
