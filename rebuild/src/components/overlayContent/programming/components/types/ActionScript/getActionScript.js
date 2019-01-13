@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './style.css';
 
-const getActionScript = (Header, SelectableTypes, CodeEditor, EditorControls) => {
+const getActionScript = (Header, SelectableTypes, AddItemDialog, CodeEditor, EditorControls) => {
 
   class ActionScript extends Component {
     state = {
       selectedIndex: 0,
+      showDialog: false,
     };
-
+    addActionScript = () => {
+        this.props.onAddActionScript();
+    };
     render() {
       const { 
         itemName, 
@@ -33,6 +36,11 @@ const getActionScript = (Header, SelectableTypes, CodeEditor, EditorControls) =>
                       selectedIndex,
                     })
                   }}
+                  onAddClicked={() => {
+                    this.setState({
+                      showDialog: true,
+                    })
+                  }}
               />
               <div className="actionscript_editor_wrapper">
                 <EditorControls showRate={false} />
@@ -43,6 +51,21 @@ const getActionScript = (Header, SelectableTypes, CodeEditor, EditorControls) =>
                 />
               </div>
             </div>
+            <AddItemDialog 
+              open={this.state.showDialog} 
+              closeDialog={() => { this.setState({ showDialog: false }) }}
+              onInputChange={addItemName => {
+                /*this.setState({
+                  addItemName,
+                })*/
+              }}
+              onAddItem={() => {
+                this.addActionScript();
+                this.setState({
+                  showDialog: false,
+                })
+              }}
+            />
           </div>
       )
     }

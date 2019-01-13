@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import assert from 'assert';
 
 const getWithActionScripts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
   const ACTIONSCRIPT_URL = `${AUTOMATE_CORE_URL}/actionscripts`;
@@ -20,7 +21,17 @@ const getWithActionScripts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
       getData: getAllActionScripts,
     },
     props: {
-     
+      addScript: ({ name, fromTopic, toTopic, script }) => {
+        assert(name !== undefined, "Name must be provided");
+        assert(fromTopic !== undefined, "fromTopic must be provided");
+        assert(toTopic !== undefined, "toTopic must be provided");
+        assert(script !== undefined, "script must be defined");
+        console.log('should add: ', name);
+      },
+      deleteScript: actionScriptName => {
+        assert(actionScriptName !== undefined, "actionScriptName must be defined");
+        console.log('should delete: ', actionScriptName);
+      }
     }
   }
 }
