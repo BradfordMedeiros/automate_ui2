@@ -3,6 +3,7 @@ import generateWithDataComponent from './util/generateWithDataComponent';
 import getWithPollingEvents from './polling/getWithEvents';
 import getWithStates from './polling/getWithStates';
 import getWithActions from './polling/getWithActions';
+import getWithActionScripts from './polling/getWithActionScripts';
 import getWithSequences from './polling/getWithSequences';
 import getWithConditions from './polling/getWithConditions';
 import getWithStatus from './polling/getWithStatus';
@@ -24,6 +25,7 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
   const withData = {
     polling: {
       WithActions: generateWithDataComponent(automateUrl, getWithActions),
+      WithActionScripts: generateWithDataComponent(automateUrl, getWithActionScripts),
       WithStates:  generateWithDataComponent(automateUrl, getWithStates),
       WithEvents: generateWithDataComponent(automateUrl, getWithPollingEvents),
       WithSequences:generateWithDataComponent(automateUrl, getWithSequences),

@@ -7,14 +7,23 @@ import getActionScriptComponent from '../../../../components/overlayContent/prog
 
 const ActionScript = getActionScriptComponent(Header, SelectableTypes, CodeEditor, EditorControls);
 
-const getActionScript = () => (
-	<ActionScript
-		itemName={'action script name'}
-		onDeleteItem={() => {
-			console.log('delete item called')
-		}}
-		actionScriptNames={['callOnLightOn', 'callOnLightOff']}
-	 />
+const getActionScript = (WithActionScripts) => (
+	<WithActionScripts>
+      {({ data }) => {
+
+      	const actionScriptNames = data.map(actionScript => actionScript.name);
+
+      	return (
+      		<ActionScript
+				itemName={'action script name'}
+				onDeleteItem={() => {
+					console.log('delete item called')
+				}}
+				actionScriptNames={actionScriptNames}
+	 		/>
+	 	)
+      }}
+	</WithActionScripts>
 )
 
 export default getActionScript;
