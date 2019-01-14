@@ -26,7 +26,7 @@ const getActionScript = (WithActionScripts) => (
 						name, 
 						fromTopic: 'testfrom',
 						toTopic: 'testto',
-						script: 'test content',
+						script: 'return 2',
 					})
 				}}
 	 		/>
