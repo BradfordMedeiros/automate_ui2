@@ -21,10 +21,9 @@ const getActionScript = (WithActionScripts) => (
 					deleteScript(actionScriptName);
 				}}
 				actionScriptNames={actionScriptNames}
-				onAddActionScript={() => {
-					console.log('on add action script called');
+				onAddActionScript={({ name }) => {
 					addScript({
-						name: 'testname', 
+						name, 
 						fromTopic: 'testfrom',
 						toTopic: 'testto',
 						script: 'test content',

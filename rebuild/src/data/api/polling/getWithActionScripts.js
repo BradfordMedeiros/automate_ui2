@@ -21,12 +21,26 @@ const getWithActionScripts = ({ AUTOMATE_CORE_URL }, { refresh }) => {
       getData: getAllActionScripts,
     },
     props: {
-      addScript: ({ name, fromTopic, toTopic, script }) => {
+      addScript: async ({ name, fromTopic, toTopic, script }) => {
         assert(name !== undefined, "Name must be provided");
         assert(fromTopic !== undefined, "fromTopic must be provided");
         assert(toTopic !== undefined, "toTopic must be provided");
         assert(script !== undefined, "script must be defined");
-        console.log('should add: ', name);
+
+        const response = await fetch(`${ACTIONSCRIPT_URL}/modify/${name}`, {
+          method: 'POST',
+          mode: 'cors',
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          }),
+          body: JSON.stringify({
+            topic: fromTopic,
+            toTopic,
+            script,
+          }),
+        });
+        return response;
       },
       deleteScript: actionScriptName => {
         assert(actionScriptName !== undefined, "actionScriptName must be defined");

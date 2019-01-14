@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import assert from "assert";
 import './style.css';
 
 const getActionScript = (Header, SelectableTypes, AddItemDialog, CodeEditor, EditorControls) => {
@@ -8,14 +9,13 @@ const getActionScript = (Header, SelectableTypes, AddItemDialog, CodeEditor, Edi
       selectedIndex: 0,
       showDialog: false,
     };
-    addActionScript = () => {
-        this.props.onAddActionScript();
-    };
+    itemName = "";
     render() {
       const { 
         itemName, 
         onDeleteItem, 
         actionScriptNames,
+        onAddActionScript,
       } = this.props;
       return (
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
@@ -55,15 +55,16 @@ const getActionScript = (Header, SelectableTypes, AddItemDialog, CodeEditor, Edi
               open={this.state.showDialog} 
               closeDialog={() => { this.setState({ showDialog: false }) }}
               onInputChange={addItemName => {
-                /*this.setState({
-                  addItemName,
-                })*/
+                this.itemName = addItemName;
               }}
               onAddItem={() => {
-                this.addActionScript();
+                assert(this.itemName !== undefined, "need item name defined");
+                onAddActionScript({
+                  name: this.itemName,
+                });
                 this.setState({
                   showDialog: false,
-                })
+                });
               }}
             />
           </div>
