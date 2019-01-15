@@ -39,6 +39,9 @@ const getActionScript = (Header, SelectableTypes, AddItemDialog, CodeEditor, Edi
             itemType="Action Script"
             deleteItem={() => {
               onDeleteItem(currentScriptName);
+              this.setState({
+                selectedIndex: 0,
+              })
             }}
           />
           <div style={{display: 'flex', flexGrow: 1}}>
