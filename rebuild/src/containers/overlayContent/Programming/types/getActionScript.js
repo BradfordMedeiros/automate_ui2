@@ -16,17 +16,16 @@ const getActionScript = (WithActionScripts) => (
 
       	return (
       		<ActionScript
-				itemName={'action script name'}
+      			actionScripts={data}
 				onDeleteItem={actionScriptName => {
 					deleteScript(actionScriptName);
 				}}
-				actionScriptNames={actionScriptNames}
-				onAddActionScript={({ name }) => {
+				onAddActionScript={({ name, fromTopic, toTopic, script }) => {
 					addScript({
 						name, 
-						fromTopic: 'testfrom',
-						toTopic: 'testto',
-						script: 'return 2',
+						fromTopic,
+						toTopic,
+						script,
 					})
 				}}
 	 		/>

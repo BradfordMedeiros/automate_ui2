@@ -9,23 +9,28 @@ const EditorControls = ({
   showRate,
   rate,
   onRateChange,
+  initialTopicValue,
+  initialSecondaryTopicValue,
+  onTopicChange,
+  onTopicSecondaryChange,
+  showSecondaryTopic,
 }) => (
   <div className="editor_controls_outer">
     <Button className="editor_controls_button" variant="raised" onClick={() => { if (onUploadClicked) { onUploadClicked(); }}}>
       Upload
     </Button>
-    <Button className="editor_controls_button" variant="raised" onClick={() => { if (onRevertClicked) { onRevertClicked(); }}}>
+    {(onRevertClicked !== undefined) && <Button className="editor_controls_button" variant="raised" onClick={() => { if (onRevertClicked) { onRevertClicked(); }}}>
       Revert
-    </Button>
-    <div className="editor_controls_rate">
+    </Button>}
+    <div className="editor_controls_topic">
       topic:
       <input
           ref={inputRef => {
             if(inputRef){
-              inputRef.value = 'topic here'
+              inputRef.value = initialTopicValue || 'topic'
             }
           }}
-          onChange={event => { onRateChange(event.target.value) }}
+          onChange={event => { onTopicChange(event.target.value) }}
           style={{
             background: 'none',
             border: 'none',
@@ -35,6 +40,24 @@ const EditorControls = ({
             marginLeft: 18,
           }} />
     </div>
+    {showSecondaryTopic && <div className="editor_controls_topic">
+      topic:
+      <input
+          ref={inputRef => {
+            if(inputRef){
+              inputRef.value =  initialSecondaryTopicValue || 'topic'
+            }
+          }}
+          onChange={event => { onTopicSecondaryChange(event.target.value) }}
+          style={{
+            background: 'none',
+            border: 'none',
+            borderBottom: '1px solid rgba(245, 245, 245, 0.07)',
+            color: 'whitesmoke',
+            fontSize: 14,
+            marginLeft: 18,
+          }} />
+    </div>}
     {showRate && <div className="editor_controls_rate">
       Rate (ms):
         <input
@@ -63,6 +86,11 @@ EditorControls.propTypes = {
   showRate: PropTypes.bool,
   rate: PropTypes.number,
   onRateChange: PropTypes.func,
+  initialTopicValue: PropTypes.string,
+  initialSecondaryTopicValue: PropTypes.string,
+  onTopicChange: PropTypes.func,
+  onTopicSecondaryChange: PropTypes.func,
+  showSecondaryTopic: PropTypes.bool,
 };
 
 export default EditorControls;
