@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../../../components/overlayContent/programming/components/Header/Header';
 import SelectableTypes from '../../../../components/overlayContent/programming/components/SelectableTypes/SelectableTypes';
 import AddItemDialog from '../../../../components/overlayContent/programming/components/AddItemDialog/AddItemDialog';
-import getSequencesComponent from '../../../../components/overlayContent/programming/components/types/Sequences/getSequences';
-
+import { getSequences as getSequencesComponent } from '../../../../components/overlayContent/programming/components/types/Types';
 const SequencesComponent = getSequencesComponent(Header, SelectableTypes, AddItemDialog);
 
 const getSequences = WithSequences => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionsComponent from '../../../../components/overlayContent/programming/components/types/Actions/Actions';
+import { Actions as ActionsComponent } from '../../../../components/overlayContent/programming/components/types/Types';
 
 const getActions = (WithActions) => {
   return (

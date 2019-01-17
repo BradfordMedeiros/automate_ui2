@@ -1,5 +1,5 @@
 import React from 'react';
-import StatesComponent from '../../../../components/overlayContent/programming/components/types/States/States';
+import { States as StatesComponent }from '../../../../components/overlayContent/programming/components/types/Types';
 
 const getStates = (WithStates) => (
 	<WithStates>

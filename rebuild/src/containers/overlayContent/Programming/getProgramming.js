@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgrammingComponent from '../../../components/overlayContent/programming/Programming';
+import ProgrammingComponent from '../../../components/overlayContent/programming/Programming/Programming';
 import getStates from './types/getStates';
 import getActions from './types/getActions';
 import getEventLog from './types/getEventLog';

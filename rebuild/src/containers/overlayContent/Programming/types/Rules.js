@@ -1,3 +1,3 @@
-import Rules from '../../../../components/overlayContent/programming/components/types/Rules/Rules';
+import { Rules } from '../../../../components/overlayContent/programming/components/types/Types';
 
 export default Rules;

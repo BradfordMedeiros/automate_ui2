@@ -1,5 +1,5 @@
 import React from 'react';
-import EnvironmentComponent from '../../../../components/overlayContent/programming/components/types/Environment/Environment';
+import { Environment as EnvironmentComponent } from '../../../../components/overlayContent/programming/components/types/Types';
 
 const getEnvironment = WithEnv => (
     <WithEnv>
