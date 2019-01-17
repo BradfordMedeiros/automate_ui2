@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AccountInformation from './components/AccountInformation';
 import AdminSettings from './components/AdminSettings';
 import UploadImageDialog from './components/UploadImageDialog';
-import AccountHeader from './components/AccountHeader';
+import AccountHeader from './components/AccountHeader/AccountHeader';
 import './style.css';
 
 class AccountManagement extends Component {
