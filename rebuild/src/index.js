@@ -60,8 +60,8 @@ class MockApp extends Component {
         showContent: false,
         isEditable: false,
         isLoggedIn: false,
-        enableControls: true,
-        contentString: 'account',
+        enableControls: false,
+        contentString: 'programming',
       };
     }
     setContent = (contentType) => {
@@ -83,14 +83,7 @@ class MockApp extends Component {
     };
     render() {
       return (
-          <div style={{
-            display: 'flex',
-            flexGrow: 1,
-            flexDirection: 'column',
-            background: 'radial-gradient(rgb(30,30,30),rgb(20,20,20))',
-            boxShadow: '0px 0px 10px 2px black inset',
-          }}
-          >
+          <div className="automate_class_outer">
             <Appbar
                 title="automate"
                 showHideMenu

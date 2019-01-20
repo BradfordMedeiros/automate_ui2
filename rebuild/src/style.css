@@ -52,3 +52,10 @@ p {
     display: flex;
 }
 
+.automate_class_outer {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background: radial-gradient(rgb(30,30,30),rgb(20,20,20));
+    box-shadow: 0px 0px 10px 2px black inset;
+}
