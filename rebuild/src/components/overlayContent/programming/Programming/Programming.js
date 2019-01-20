@@ -4,7 +4,7 @@ import './style.css';
 
 class Programming extends Component {
   state = {
-    selectedComponent: 'States',
+    selectedComponent: 'Sequences',
   };
   render() {
     const { labelComponentMap } = this.props;

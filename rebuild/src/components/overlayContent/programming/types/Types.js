@@ -1,9 +1,9 @@
 // Common Components
-import Header from '../Header/Header';
-import SelectableTypes from '../SelectableTypes/SelectableTypes';
-import AddItemDialog from '../AddItemDialog/AddItemDialog';
-import CodeEditor from '../CodeEditor';
-import EditorControls from '../EditorControls/EditorControls';
+import Header from './common/Header/Header';
+import SelectableTypes from './common/SelectableTypes/SelectableTypes';
+import AddItemDialog from './common/AddItemDialog/AddItemDialog';
+import CodeEditor from './common/CodeEditor';
+import EditorControls from './common/EditorControls/EditorControls';
 
 // Exported Types
 import Actions from './components/Actions/Actions';

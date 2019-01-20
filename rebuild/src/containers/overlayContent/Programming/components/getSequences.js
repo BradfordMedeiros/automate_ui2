@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Sequences as SequencesComponent } from '../../../../components/overlayContent/programming/components/types/Types';
+import { Sequences as SequencesComponent } from '../../../../components/overlayContent/programming/types/Types';
 
 const getSequences = WithSequences => {
   class Sequences extends Component{

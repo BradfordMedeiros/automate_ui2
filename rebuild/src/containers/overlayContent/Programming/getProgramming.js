@@ -1,13 +1,13 @@
 import React from 'react';
 import ProgrammingComponent from '../../../components/overlayContent/programming/Programming/Programming';
-import getStates from './types/getStates';
-import getActions from './types/getActions';
-import getEventLog from './types/getEventLog';
-import getEnvironment from './types/getEnvironment';
-import getActionScript from './types/getActionScript';
-import getSchedules from './types/getSchedules';
-import getSequences from './types/getSequences';
-import Rules from './types/Rules';
+import getStates from './components/getStates';
+import getActions from './components/getActions';
+import getEventLog from './components/getEventLog';
+import getEnvironment from './components/getEnvironment';
+import getActionScript from './components/getActionScript';
+import getSchedules from './components/getSchedules';
+import getSequences from './components/getSequences';
+import Rules from './components/Rules';
 
 const getProgramming = ({ 
   WithStates, 

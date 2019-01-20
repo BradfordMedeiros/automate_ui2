@@ -1,5 +1,5 @@
 import React from 'react';
-import { Events as EventLogComponent } from '../../../../components/overlayContent/programming/components/types/Types';
+import { Events as EventLogComponent } from '../../../../components/overlayContent/programming/types/Types';
 
 const getEventLog = (WithEvents) => (
   <WithEvents>
