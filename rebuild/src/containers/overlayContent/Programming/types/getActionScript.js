@@ -4,9 +4,7 @@ import SelectableTypes from '../../../../components/overlayContent/programming/c
 import AddItemDialog from '../../../../components/overlayContent/programming/components/AddItemDialog/AddItemDialog';
 import CodeEditor from '../../../../components/overlayContent/programming/components/CodeEditor'
 import EditorControls from '../../../../components/overlayContent/programming/components/EditorControls/EditorControls';
-import { getActionScript as getActionScriptComponent } from '../../../../components/overlayContent/programming/components/types/Types';
-
-const ActionScript = getActionScriptComponent(Header, SelectableTypes, AddItemDialog, CodeEditor, EditorControls);
+import { ActionScript } from '../../../../components/overlayContent/programming/components/types/Types';
 
 const getActionScript = (WithActionScripts) => (
 	<WithActionScripts>
