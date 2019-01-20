@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../../../../components/overlayContent/programming/components/Header/Header';
-import SelectableTypes from '../../../../components/overlayContent/programming/components/SelectableTypes/SelectableTypes';
-import AddItemDialog from '../../../../components/overlayContent/programming/components/AddItemDialog/AddItemDialog';
-import { getSequences as getSequencesComponent } from '../../../../components/overlayContent/programming/components/types/Types';
-const SequencesComponent = getSequencesComponent(Header, SelectableTypes, AddItemDialog);
+import { Sequences as SequencesComponent } from '../../../../components/overlayContent/programming/components/types/Types';
 
 const getSequences = WithSequences => {
   class Sequences extends Component{

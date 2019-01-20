@@ -1,3 +1,11 @@
+// Common Components
+import Header from '../Header/Header';
+import SelectableTypes from '../SelectableTypes/SelectableTypes';
+import AddItemDialog from '../AddItemDialog/AddItemDialog';
+import CodeEditor from '../CodeEditor';
+import EditorControls from '../EditorControls/EditorControls';
+
+// Exported Types
 import Actions from './components/Actions/Actions';
 export { Actions }
 
@@ -14,19 +22,17 @@ import Rules from './components/Rules/Rules';
 export { Rules }
 
 import getActionScript from './components/ActionScript/getActionScript';
-import Header from '../Header/Header';
-import SelectableTypes from '../SelectableTypes/SelectableTypes';
-import AddItemDialog from '../AddItemDialog/AddItemDialog';
-import CodeEditor from '../CodeEditor';
-import EditorControls from '../EditorControls/EditorControls';
+
 const ActionScript = getActionScript(Header, SelectableTypes, AddItemDialog, CodeEditor, EditorControls);
 export { ActionScript }
 
 import getSchedules from './components/Schedules/getSchedules';
-export { getSchedules }
+const Schedules = getSchedules(Header, SelectableTypes);
+export { Schedules }
 
 import getSequences from './components/Sequences/getSequences';
-export { getSequences }
+const Sequences = getSequences(Header, SelectableTypes, AddItemDialog);
+export { Sequences }
 
 
 
