@@ -31,13 +31,7 @@ class Programming extends Component {
                   label: 'Actionscripts',
                 },
                 {
-                  label: 'Schedules',
-                },
-                {
                   label: 'Sequences',
-                },
-                {
-                  label: 'Rules',
                 },
                 {
                   label: 'Env Variables'

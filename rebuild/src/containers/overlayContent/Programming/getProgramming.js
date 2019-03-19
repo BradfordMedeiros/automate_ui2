@@ -5,9 +5,7 @@ import getActions from './components/getActions';
 import getEventLog from './components/getEventLog';
 import getEnvironment from './components/getEnvironment';
 import getActionScript from './components/getActionScript';
-import getSchedules from './components/getSchedules';
 import getSequences from './components/getSequences';
-import Rules from './components/Rules';
 
 const getProgramming = ({ 
   WithStates, 
@@ -15,7 +13,6 @@ const getProgramming = ({
   WithEvents,
   WithEnv,
   WithSequences,
-  WithSchedules,
   WithActionScripts,
 }) => () => {
 
@@ -27,9 +24,7 @@ const getProgramming = ({
     Events: getEventLog(WithEvents),
     'Env Variables': getEnvironment(WithEnv),
     Actionscripts: getActionScript(WithActionScripts),
-    Schedules: getSchedules(WithSchedules),
     Sequences: <Sequences />,
-    Rules: <Rules />,
   }
 
   return (

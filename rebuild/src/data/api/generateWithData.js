@@ -5,10 +5,7 @@ import getWithStates from './polling/getWithStates';
 import getWithActions from './polling/getWithActions';
 import getWithActionScripts from './polling/getWithActionScripts';
 import getWithSequences from './polling/getWithSequences';
-import getWithConditions from './polling/getWithConditions';
 import getWithStatus from './polling/getWithStatus';
-import getWithSchedules from './polling/getWithSchedules';
-import getWithRules from './polling/getWithRules';
 import getWithCustomTiles from './polling/getWithCustomTiles';
 import getWithEnv from './polling/getWithEnv';
 import getWithIsSystemLocked from './polling/getWithIsSystemLocked';
@@ -29,9 +26,6 @@ const generateWithData = ({ automateUrl, mqttBroker }) => {
       WithStates:  generateWithDataComponent(automateUrl, getWithStates),
       WithEvents: generateWithDataComponent(automateUrl, getWithPollingEvents),
       WithSequences:generateWithDataComponent(automateUrl, getWithSequences),
-      WithConditions: getWithConditions(automateUrl),
-      WithSchedules: getWithSchedules(automateUrl),
-      WithRules: getWithRules(automateUrl),
       WithStatus: generateWithDataComponent(automateUrl, getWithStatus),
       WithCustomTiles: getWithCustomTiles(automateUrl),
       WithEnv: generateWithDataComponent(automateUrl, getWithEnv),

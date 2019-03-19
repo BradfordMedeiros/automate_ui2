@@ -18,17 +18,9 @@ export { Environment }
 import Events from './components/Events/Events';
 export { Events }
 
-import Rules from './components/Rules/Rules';
-export { Rules }
-
 import getActionScript from './components/ActionScript/getActionScript';
-
 const ActionScript = getActionScript(Header, SelectableTypes, AddItemDialog, CodeEditor, EditorControls);
 export { ActionScript }
-
-import getSchedules from './components/Schedules/getSchedules';
-const Schedules = getSchedules(Header, SelectableTypes);
-export { Schedules }
 
 import getSequences from './components/Sequences/getSequences';
 const Sequences = getSequences(Header, SelectableTypes, AddItemDialog);

@@ -4,9 +4,7 @@ import { ActionScript } from '../../../../components/overlayContent/programming/
 const getActionScript = (WithActionScripts) => (
 	<WithActionScripts>
       {({ data, addScript, deleteScript }) => {
-
       	const actionScriptNames = data.map(actionScript => actionScript.name);
-
       	return (
       		<ActionScript
       			actionScripts={data}
